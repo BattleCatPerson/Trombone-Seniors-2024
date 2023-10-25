@@ -28,12 +28,19 @@ public class DragManager : MonoBehaviour
             Debug.Log(Camera.main.ScreenToWorldPoint(touch.screenPosition));
             List<Collider2D> results = new();
             int count = Physics2D.OverlapPoint(Camera.main.ScreenToWorldPoint(touch.screenPosition), new ContactFilter2D().NoFilter(), results);
-            if (count > 0 && touch.phase == TouchPhase.Began) draggedObject = results[0].gameObject;
+            if (count > 0 && touch.phase == TouchPhase.Began)
+            {
+                draggedObject = results[0].gameObject;
+                draggedObject.GetComponent<Fox>().Grab(true);
+            }
             //else if (count == 0 && touch.phase != TouchPhase.Began) hoveredObject = null;
         }
 
-        if (activeTouches.Count == 0) draggedObject = null;
-
+        if (activeTouches.Count == 0 && draggedObject)
+        {
+            draggedObject.GetComponent<Fox>().Grab(false);
+            draggedObject = null;
+        }
         // 10/23/2023 next thing to add make it so that the hovered object follows the touch position! 
         if (draggedObject) draggedObject.transform.position = new Vector2(mousePosition.x, mousePosition.y);
         Debug.Log(activeTouches.Count);
