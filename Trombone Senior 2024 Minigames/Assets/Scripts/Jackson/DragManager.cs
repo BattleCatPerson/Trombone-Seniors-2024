@@ -30,10 +30,9 @@ public class DragManager : MonoBehaviour
             Debug.Log(Camera.main.ScreenToWorldPoint(touch.screenPosition));
             List<Collider2D> results = new();
             int count = Physics2D.OverlapPoint(Camera.main.ScreenToWorldPoint(touch.screenPosition), new ContactFilter2D().NoFilter(), results);
-            if (count > 0 && touch.phase == TouchPhase.Began && results[0].TryGetComponent<Fox>(out Fox f))
+            if (count > 0 && touch.phase == TouchPhase.Began && results[0].TryGetComponent<Fox>(out Fox f) && f.Grabbable)
             {
                 draggedObject = results[0].gameObject;
-                if (f.Grabbable) continue;
                 f.Grab(true);
             }
             //else if (count == 0 && touch.phase != TouchPhase.Began) hoveredObject = null;
@@ -48,11 +47,5 @@ public class DragManager : MonoBehaviour
         if (draggedObject) draggedObject.transform.position = new Vector2(mousePosition.x, mousePosition.y);
         Debug.Log(activeTouches.Count);
     }
-
-    void OnTouchInput()
-    {
-        Debug.Log("SDFOJSDFKLMPFKSD");
-    }
-
 }
 

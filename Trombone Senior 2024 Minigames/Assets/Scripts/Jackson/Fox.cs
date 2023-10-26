@@ -13,6 +13,7 @@ public class Fox : MonoBehaviour
 
     [Header("Grab")]
     [SerializeField] bool grabbed;
+    public bool Grabbed => grabbed;
     [SerializeField] bool grabbable;
     public bool Grabbable => grabbable;
     [SerializeField] Rigidbody2D rb;

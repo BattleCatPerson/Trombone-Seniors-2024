@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028346, g: 0.22571373, b: 0.30692244, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -235,7 +235,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 2
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_BackGroundColor: {r: 0.8018868, g: 0.8018868, b: 0.8018868, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -740,6 +740,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   color: 0
+  foxesInArea: []
 --- !u!1 &754304487
 GameObject:
   m_ObjectHideFlags: 0
@@ -866,6 +867,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   color: 1
+  foxesInArea: []
 --- !u!1001 &847272573
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1136,10 +1138,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnRateInitial: 0
-  spawnRate: 1
+  spawnRate: 5
   spawnRateTimer: 0
   minSpawnRate: 0
-  timeToSpeedUp: 5
+  timeToSpeedUp: 10
   spawnRateDecrease: 0.1
   speedUpTimer: 0
   spawnPoints:
@@ -2041,7 +2043,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 800, y: 600}
@@ -2171,6 +2173,17 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2135428083}
     m_Modifications:
+    - target: {fileID: 7317976405121966627, guid: d0d3de33308d28c4892113de44b0d449,
+        type: 3}
+      propertyPath: m_Type
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7317976405121966627, guid: d0d3de33308d28c4892113de44b0d449,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 7482667652216324306, guid: 48e93eef0688c4a259cb0eddcd8661f7,
+        type: 3}
     - target: {fileID: 7317976405121966636, guid: d0d3de33308d28c4892113de44b0d449,
         type: 3}
       propertyPath: m_Pivot.x
@@ -2189,32 +2202,32 @@ PrefabInstance:
     - target: {fileID: 7317976405121966636, guid: d0d3de33308d28c4892113de44b0d449,
         type: 3}
       propertyPath: m_AnchorMax.x
-      value: 1
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 7317976405121966636, guid: d0d3de33308d28c4892113de44b0d449,
         type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 7317976405121966636, guid: d0d3de33308d28c4892113de44b0d449,
         type: 3}
       propertyPath: m_AnchorMin.x
-      value: 0
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 7317976405121966636, guid: d0d3de33308d28c4892113de44b0d449,
         type: 3}
       propertyPath: m_AnchorMin.y
-      value: 0
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 7317976405121966636, guid: d0d3de33308d28c4892113de44b0d449,
         type: 3}
       propertyPath: m_SizeDelta.x
-      value: -1200
+      value: 300
       objectReference: {fileID: 0}
     - target: {fileID: 7317976405121966636, guid: d0d3de33308d28c4892113de44b0d449,
         type: 3}
       propertyPath: m_SizeDelta.y
-      value: -400
+      value: 300
       objectReference: {fileID: 0}
     - target: {fileID: 7317976405121966636, guid: d0d3de33308d28c4892113de44b0d449,
         type: 3}
@@ -2280,6 +2293,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Game Over Panel
+      objectReference: {fileID: 0}
+    - target: {fileID: 7317976405121966637, guid: d0d3de33308d28c4892113de44b0d449,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7317976405642632494, guid: d0d3de33308d28c4892113de44b0d449,
+        type: 3}
+      propertyPath: m_fontSize
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 7317976405642632494, guid: d0d3de33308d28c4892113de44b0d449,
+        type: 3}
+      propertyPath: m_fontSizeBase
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 7867293389363043183, guid: d0d3de33308d28c4892113de44b0d449,
         type: 3}
