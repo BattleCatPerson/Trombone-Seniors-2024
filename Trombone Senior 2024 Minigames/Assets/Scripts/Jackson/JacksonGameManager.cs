@@ -1,9 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class JacksonGameManager : MonoBehaviour
 {
+    public static int score;
     [Header("Spawning")]
     [SerializeField] float spawnRateInitial;
     [SerializeField] float spawnRate;
@@ -22,17 +24,25 @@ public class JacksonGameManager : MonoBehaviour
     [SerializeField] bool firstOrSecond;
 
     [Header("Food Sources")]
-    [SerializeField] List<Transform> foodSources;
+    [SerializeField] Transform foodSource;
+
+    [Header("Score")]
+    [SerializeField] TextMeshProUGUI scoreText;
 
     void Start()
     {
+        score = 0;
         spawnRateInitial = spawnRate;
+        Spawn();
     }
 
     void Update()
     {
+        scoreText.text = score.ToString();
         spawnRateTimer += Time.deltaTime;
         speedUpTimer += Time.deltaTime;
+
+        if (FoodArea.gameOver) return;
 
         if (spawnRateTimer > spawnRate)
         {
@@ -55,9 +65,6 @@ public class JacksonGameManager : MonoBehaviour
         Transform spawn = spawnPoints[spawnIndex];
         
         var clone = Instantiate(g, spawn.position, spawn.rotation);
-
-        int foodIndex = Random.Range(0, foodSources.Count);
-        Transform foodSource = foodSources[foodIndex];
         clone.SetTarget(foodSource);
 
         firstOrSecond = !firstOrSecond;

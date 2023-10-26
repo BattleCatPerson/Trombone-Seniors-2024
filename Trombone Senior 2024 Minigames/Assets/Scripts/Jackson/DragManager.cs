@@ -20,6 +20,8 @@ public class DragManager : MonoBehaviour
 
     protected void Update()
     {
+        if (FoodArea.gameOver) return;
+
         var activeTouches = Touch.activeTouches;
         Vector3 mousePosition;
         mousePosition = activeTouches.Count > 0 ? Camera.main.ScreenToWorldPoint(activeTouches[0].screenPosition) : Vector3.zero;
@@ -28,10 +30,11 @@ public class DragManager : MonoBehaviour
             Debug.Log(Camera.main.ScreenToWorldPoint(touch.screenPosition));
             List<Collider2D> results = new();
             int count = Physics2D.OverlapPoint(Camera.main.ScreenToWorldPoint(touch.screenPosition), new ContactFilter2D().NoFilter(), results);
-            if (count > 0 && touch.phase == TouchPhase.Began)
+            if (count > 0 && touch.phase == TouchPhase.Began && results[0].TryGetComponent<Fox>(out Fox f))
             {
                 draggedObject = results[0].gameObject;
-                draggedObject.GetComponent<Fox>().Grab(true);
+                if (f.Grabbable) continue;
+                f.Grab(true);
             }
             //else if (count == 0 && touch.phase != TouchPhase.Began) hoveredObject = null;
         }
