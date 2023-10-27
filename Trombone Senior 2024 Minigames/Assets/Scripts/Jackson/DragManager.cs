@@ -12,10 +12,12 @@ public class DragManager : MonoBehaviour
     [SerializeField] Dictionary<Touch, GameObject> touchDictionary = new();
     [SerializeField] List<Touch> keys;
     [SerializeField] List<GameObject> results;
+    [SerializeField] int layer;
 
     protected void OnEnable()
     {
         EnhancedTouchSupport.Enable();
+        layer = 1 << layer;
     }
 
     protected void OnDisable()
@@ -34,14 +36,23 @@ public class DragManager : MonoBehaviour
         {
             Debug.Log(Camera.main.ScreenToWorldPoint(touch.screenPosition));
             List<Collider2D> results = new();
-            int count = Physics2D.OverlapPoint(Camera.main.ScreenToWorldPoint(touch.screenPosition), new ContactFilter2D().NoFilter(), results);
-            if (count > 0 && touch.phase == TouchPhase.Began && results[0].TryGetComponent<Fox>(out Fox f) && f.Grabbable)
+            Collider2D collider = Physics2D.OverlapPoint(Camera.main.ScreenToWorldPoint(touch.screenPosition), layer);
+            Debug.Log(collider);
+            if (collider && touch.phase == TouchPhase.Began && (collider.TryGetComponent<Fox>(out Fox f)) && f.Grabbable)
             {
-                draggedObject = results[0].gameObject;
+                draggedObject = collider.gameObject;
                 f.Grab(true);
 
                 touchDictionary.Add(touch, draggedObject);
             }
+            //int count = Physics2D.OverlapPoint(Camera.main.ScreenToWorldPoint(touch.screenPosition), layer, new ContactFilter2D().NoFilter(), results);
+            //if (count > 0 && touch.phase == TouchPhase.Began && (results[0].TryGetComponent<Fox>(out Fox f)) && f.Grabbable)
+            //{
+            //    draggedObject = results[0].gameObject;
+            //    f.Grab(true);
+
+            //    touchDictionary.Add(touch, draggedObject);
+            //}
             //else if (count == 0 && touch.phase != TouchPhase.Began) hoveredObject = null;
         }
 

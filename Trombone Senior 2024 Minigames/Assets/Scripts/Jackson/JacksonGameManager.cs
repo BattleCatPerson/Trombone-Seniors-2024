@@ -37,6 +37,8 @@ public class JacksonGameManager : MonoBehaviour
         score = 0;
         spawnRateInitial = spawnRate;
         Spawn();
+
+        if (!PlayerPrefs.HasKey("Jackson High Score")) PlayerPrefs.SetInt("Jackson High Score", 0);
     }
 
     void Update()
@@ -86,5 +88,15 @@ public class JacksonGameManager : MonoBehaviour
     {
         spawnRate -= spawnRateDecrease;
         spawnRate = Mathf.Clamp(spawnRate, minSpawnRate, spawnRateInitial);
+    }
+
+    public bool NewHighScore()
+    {
+        if (score > PlayerPrefs.GetInt("Jackson High Score"))
+        {
+            PlayerPrefs.SetInt("Jackson High Score", score);
+            return true;
+        }
+        return false;
     }
 }
