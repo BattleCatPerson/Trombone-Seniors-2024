@@ -13,7 +13,7 @@ public class FoodArea : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.GetComponent<Fox>() && !gameOver)
+        if (collision.gameObject.layer == 6 && !gameOver && !collision.GetComponentInParent<Fox>().Grabbed)
         {
             gameOver = true;
             gameOverPanel.SetActive(true);

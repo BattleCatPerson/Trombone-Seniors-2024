@@ -13,7 +13,7 @@ public class FoxArea : MonoBehaviour
     [SerializeField] List<Fox> foxesInArea;
     private void OnTriggerStay2D(Collider2D collision)
     {
-        if (collision.gameObject.TryGetComponent<Fox>(out Fox f) && f.Color == color && !f.Grabbed && !foxesInArea.Contains(f))
+        if (collision.transform.parent.TryGetComponent<Fox>(out Fox f) && f.Color == color && !f.Grabbed && !foxesInArea.Contains(f))
         {
             f.DisableGrab();
             JacksonGameManager.score++;

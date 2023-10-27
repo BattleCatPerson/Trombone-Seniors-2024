@@ -26,6 +26,7 @@ public class Fox : MonoBehaviour
     {
         if (grabbed || Vector3.Distance(transform.position, target.position) < 0.01f || !grabbable || FoodArea.gameOver) rb.velocity = Vector3.zero;
         else rb.velocity = (target.position - transform.position).normalized * speed;
+        if (grabbable) transform.up = -rb.velocity;
     }
 
     public void Grab(bool b) => grabbed = b;

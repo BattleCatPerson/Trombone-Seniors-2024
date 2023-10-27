@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class JacksonGameManager : MonoBehaviour
@@ -17,6 +19,7 @@ public class JacksonGameManager : MonoBehaviour
     [SerializeField] float speedUpTimer;
 
     [SerializeField] List<Transform> spawnPoints;
+    [SerializeField] int randomSpawns;
 
     [Header("Objects")]
     [SerializeField] Fox firstObject;
@@ -61,13 +64,22 @@ public class JacksonGameManager : MonoBehaviour
     {
         Fox g = firstOrSecond ? firstObject : secondObject;
 
-        int spawnIndex = Random.Range(0, spawnPoints.Count);
-        Transform spawn = spawnPoints[spawnIndex];
-        
-        var clone = Instantiate(g, spawn.position, spawn.rotation);
-        clone.SetTarget(foodSource);
+        int random = Random.Range(1, randomSpawns + 1);
 
-        firstOrSecond = !firstOrSecond;
+        List<Transform> tempSpawnPoints = new();
+        tempSpawnPoints.AddRange(spawnPoints);
+
+        for (int i = 0; i < random; i++)
+        {
+            int spawnIndex = Random.Range(0, tempSpawnPoints.Count);
+            Transform spawn = tempSpawnPoints[spawnIndex];
+
+            var clone = Instantiate(g, spawn.position, spawn.rotation);
+            clone.SetTarget(foodSource);
+
+            tempSpawnPoints.Remove(tempSpawnPoints[spawnIndex]);
+            firstOrSecond = !firstOrSecond;
+        }
     }
 
     public void SpeedUp()
