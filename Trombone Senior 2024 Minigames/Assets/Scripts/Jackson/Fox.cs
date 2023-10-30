@@ -20,6 +20,7 @@ public class Fox : MonoBehaviour
     void Start()
     {
         grabbable = true;
+        transform.up = -(target.position - transform.position);
     }
 
     void Update()
