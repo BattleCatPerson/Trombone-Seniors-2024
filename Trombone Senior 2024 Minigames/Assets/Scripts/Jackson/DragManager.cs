@@ -34,7 +34,6 @@ public class DragManager : MonoBehaviour
         mousePosition = activeTouches.Count > 0 ? Camera.main.ScreenToWorldPoint(activeTouches[0].screenPosition) : Vector3.zero;
         foreach (Touch touch in activeTouches)
         {
-            Debug.Log(Camera.main.ScreenToWorldPoint(touch.screenPosition));
             List<Collider2D> results = new();
             Collider2D collider = Physics2D.OverlapPoint(Camera.main.ScreenToWorldPoint(touch.screenPosition), layer);
             Debug.Log(collider);
