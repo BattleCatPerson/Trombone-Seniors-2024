@@ -40,6 +40,10 @@ public class JeremyGameManager : MonoBehaviour
 
     [SerializeField] float marginOfError;
 
+    [SerializeField] AudioSource source;
+    [SerializeField] AudioClip metronome;
+    [SerializeField] float metronomeTimer;
+
     [Header("Cursor")]
     [SerializeField] RectTransform cursor;
     [SerializeField] float xOffset;
@@ -53,12 +57,20 @@ public class JeremyGameManager : MonoBehaviour
     private void Update()
     {
         timer += Time.deltaTime;
-
+        metronomeTimer += Time.deltaTime;
+        if (metronomeTimer > timePerBeat)
+        {
+            source.PlayOneShot(metronome);
+            metronomeTimer = 0;
+        }
         cursor.anchoredPosition = new(Mathf.Lerp(-xOffset, xOffset, timer / duration), cursor.anchoredPosition.y);
 
         if (timer > duration)
         {
             timer = 0;
+            metronomeTimer = 0;
+            source.PlayOneShot(metronome);
+
             if (phase != DrumPhase.player)
             {
                 if (phase == DrumPhase.initial)
@@ -73,6 +85,7 @@ public class JeremyGameManager : MonoBehaviour
                         var clone = Instantiate(ReturnIcon(g), cursor.transform.parent);
                         clone.GetComponent<RectTransform>().anchoredPosition = cursor.anchoredPosition;
                         icons.Add(clone);
+                        timeIconPairs[f] = clone;
                     }
                 }
                 else if (phase == DrumPhase.wait)
@@ -156,7 +169,7 @@ public class JeremyGameManager : MonoBehaviour
         float nearestTime = 0;
         foreach (float t in times)
         {
-            if (Mathf.Abs(t - timer) < leastDiff)
+            if (Mathf.Abs(t - timer) < leastDiff && timeObjectPairs[t] == g)
             {
                 nearestTime = t;
                 leastDiff = Mathf.Abs(t - timer);
@@ -174,7 +187,9 @@ public class JeremyGameManager : MonoBehaviour
 
         Debug.Log("YOU DID IT");
 
+        if (!timeIconPairs.ContainsKey(nearestTime)) return;
         GameObject icon = timeIconPairs[nearestTime];
+
         icons.Remove(icon);
         Destroy(icon);
         timeIconPairs.Remove(nearestTime);
