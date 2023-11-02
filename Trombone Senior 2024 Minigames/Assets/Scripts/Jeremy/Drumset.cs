@@ -39,8 +39,11 @@ public class Drumset : MonoBehaviour
             if (Physics.Raycast(Camera.main.ScreenPointToRay(touch.screenPosition), out hit))
             {
                 GameObject g = hit.collider.gameObject;
-                PlayClip(g);
-                gameManager.AddInput(g);
+                if (GetClip(g) != null)
+                {
+                    PlayClip(g);
+                    gameManager.AddInput(g);
+                }
             }
         }
     }

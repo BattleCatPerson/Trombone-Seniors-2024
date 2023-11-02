@@ -113,7 +113,9 @@ public class JeremyGameManager : MonoBehaviour
                     drumSet.PlayClip(g);
 
                     var clone = Instantiate(ReturnIcon(g), cursor.transform.parent);
-                    clone.GetComponent<RectTransform>().anchoredPosition = cursor.anchoredPosition;
+
+                    float x = ((f / (timePerBeat * beats)) * 2 * xOffset) - xOffset;
+                    clone.GetComponent<RectTransform>().anchoredPosition = new Vector2(x, cursor.anchoredPosition.y);
                     cursor.SetAsLastSibling();
                     icons.Add(clone);
 
@@ -166,7 +168,7 @@ public class JeremyGameManager : MonoBehaviour
     {
         if (phase != DrumPhase.player) return;
         float leastDiff = Mathf.Infinity;
-        float nearestTime = 0;
+        float nearestTime = -1;
         foreach (float t in times)
         {
             if (Mathf.Abs(t - timer) < leastDiff && timeObjectPairs[t] == g)
@@ -175,6 +177,7 @@ public class JeremyGameManager : MonoBehaviour
                 leastDiff = Mathf.Abs(t - timer);
             }
         }
+        if (nearestTime == -1) return;
 
         GameObject nearest = timeObjectPairs[nearestTime];
         float diff = MathF.Abs(nearestTime - timer);
