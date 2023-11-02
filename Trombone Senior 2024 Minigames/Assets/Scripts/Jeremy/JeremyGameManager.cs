@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using Random = UnityEngine.Random;
 
 public enum DrumPhase
@@ -18,10 +19,21 @@ public class JeremyGameManager : MonoBehaviour
     [SerializeField] int BPMIncrease;
     [SerializeField] int beats;
     [SerializeField] int notesPerMeasure;
+    [Serializable]
+    public class Range
+    {
+        public int start;
+        public int end;
+    }
+    [SerializeField] Range notesPerMeasureRange;
+
+    [Header("Time")]
     [SerializeField] float duration;
     [SerializeField] float timer;
     [SerializeField] List<float> times;
     [SerializeField] List<float> timesToIgnore;
+
+    [Header("Inputs")]
     [SerializeField] List<GameObject> options;
     [SerializeField] List<GameObject> currentSequence;
     [SerializeField] Drumset drumSet;
@@ -48,10 +60,17 @@ public class JeremyGameManager : MonoBehaviour
     [SerializeField] RectTransform cursor;
     [SerializeField] float xOffset;
 
+    [Header("Player Ready Check")]
+    [SerializeField] Image bar;
+    [SerializeField] GameObject readyPanel;
+
+    
     private void Start()
     {
         Debug.Assert(BPM > 0);
+        notesPerMeasure = notesPerMeasureRange.start;
         GenerateMeasure();
+        readyPanel.SetActive(false);
     }
 
     private void Update()
@@ -62,6 +81,8 @@ public class JeremyGameManager : MonoBehaviour
         {
             source.PlayOneShot(metronome);
             metronomeTimer = 0;
+
+            if (phase == DrumPhase.wait) bar.fillAmount += 1f / beats;
         }
         cursor.anchoredPosition = new(Mathf.Lerp(-xOffset, xOffset, timer / duration), cursor.anchoredPosition.y);
 
@@ -70,6 +91,7 @@ public class JeremyGameManager : MonoBehaviour
             timer = 0;
             metronomeTimer = 0;
             source.PlayOneShot(metronome);
+            cursor.anchoredPosition = new(-xOffset, cursor.anchoredPosition.y);
 
             if (phase != DrumPhase.player)
             {
@@ -87,16 +109,20 @@ public class JeremyGameManager : MonoBehaviour
                         icons.Add(clone);
                         timeIconPairs[f] = clone;
                     }
+
+                    bar.fillAmount = 1f/ beats;
+                    readyPanel.SetActive(true);
                 }
                 else if (phase == DrumPhase.wait)
                 {
                     cursor.gameObject.SetActive(true);
+                    readyPanel.SetActive(false);
                 }
                 phase += 1;
             }
             else 
             {
-                BPM += BPMIncrease;
+                notesPerMeasure++;
                 phase = DrumPhase.initial;
                 GenerateMeasure();
             }
@@ -132,8 +158,15 @@ public class JeremyGameManager : MonoBehaviour
         foreach (GameObject g in icons) Destroy(g);
         icons.Clear();
 
-        beatsPerSecond = (float) BPM / 60;
+        if (notesPerMeasure > notesPerMeasureRange.end)
+        {
+            BPM += BPMIncrease;
+            notesPerMeasure = notesPerMeasureRange.start;
+        }
+
+        beatsPerSecond = (float)BPM / 60;
         timePerBeat = 1 / beatsPerSecond;
+
         timeObjectPairs = new();
         timeIconPairs = new();
         int count = 0;
@@ -141,9 +174,10 @@ public class JeremyGameManager : MonoBehaviour
         timeObjectPairs.Clear();
         timesToIgnore.Clear();
         timeIconPairs.Clear();
+
         while (count < notesPerMeasure)
         {
-            float eights = Random.Range(0, beats * 2 + 1);
+            float eights = Random.Range(0, beats * 2);
             float t = eights * timePerBeat / 2;
             if (!times.Contains(t))
             {
@@ -155,6 +189,8 @@ public class JeremyGameManager : MonoBehaviour
 
         duration = timePerBeat * beats;
         times.Sort();
+
+        marginOfError = timePerBeat / 2f;
 
     }
 
