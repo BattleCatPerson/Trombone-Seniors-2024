@@ -77,12 +77,15 @@ public class JeremyGameManager : MonoBehaviour
     [SerializeField] float scorePerHit;
     [SerializeField] float healthLostPerMiss;
 
+    [SerializeField] Animator bpmUpAnimation;
+
     private void Start()
     {
         Debug.Assert(BPM > 0);
         notesPerMeasure = notesPerMeasureRange.start;
         GenerateMeasure();
         readyPanel.SetActive(false);
+        maxHealth = health;
     }
 
     private void Update()
@@ -184,6 +187,7 @@ public class JeremyGameManager : MonoBehaviour
 
         scoreText.text = $"{score} Points";
         bpmText.text = $"{BPM} BPM";
+        healthBar.fillAmount = health / maxHealth;
     }
 
     public void GenerateMeasure()
@@ -196,6 +200,8 @@ public class JeremyGameManager : MonoBehaviour
         {
             BPM += BPMIncrease;
             notesPerMeasure = notesPerMeasureRange.start;
+
+            bpmUpAnimation.SetTrigger("BpmUp");
         }
 
         beatsPerSecond = (float)BPM / 60;
