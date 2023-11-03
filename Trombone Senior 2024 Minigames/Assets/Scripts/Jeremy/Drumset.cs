@@ -26,11 +26,13 @@ public class Drumset : MonoBehaviour
     [SerializeField] List<KeyPair> keys;
 
     [SerializeField] JeremyGameManager gameManager;
+    public bool playable;
     private void Awake()
     {
     }
     private void Update()
     {
+        if (!playable) return;
         var activeTouches = Touch.activeTouches;
         foreach (Touch touch in activeTouches)
         {

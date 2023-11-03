@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using Random = UnityEngine.Random;
+using TMPro;
 
 public enum DrumPhase
 {
@@ -64,7 +65,18 @@ public class JeremyGameManager : MonoBehaviour
     [SerializeField] Image bar;
     [SerializeField] GameObject readyPanel;
 
-    
+    [Header("Score and Health")]
+    [SerializeField] float score;
+    [SerializeField] float health;
+    [SerializeField] float maxHealth;
+
+    [SerializeField] TextMeshProUGUI bpmText;
+    [SerializeField] TextMeshProUGUI scoreText;
+    [SerializeField] Image healthBar;
+
+    [SerializeField] float scorePerHit;
+    [SerializeField] float healthLostPerMiss;
+
     private void Start()
     {
         Debug.Assert(BPM > 0);
@@ -117,6 +129,8 @@ public class JeremyGameManager : MonoBehaviour
                 {
                     cursor.gameObject.SetActive(true);
                     readyPanel.SetActive(false);
+                    drumSet.playable = true;
+                    timesToIgnore.Clear();
                 }
                 phase += 1;
             }
@@ -148,13 +162,33 @@ public class JeremyGameManager : MonoBehaviour
                     timeIconPairs[f] = clone;
 
                     timesToIgnore.Add(f);
+                    break;
                 }
             }
         }
+
+        if (phase == DrumPhase.player)
+        {
+            float timeToRemove = -1;
+            foreach (float f in times)
+            {
+                if (timer >= f + marginOfError)
+                {
+                    health -= healthLostPerMiss;
+                    timeToRemove = f;
+                    break;
+                }
+            }
+            times.Remove(timeToRemove);
+        }
+
+        scoreText.text = $"{score} Points";
+        bpmText.text = $"{BPM} BPM";
     }
 
     public void GenerateMeasure()
     {
+        drumSet.playable = false;
         foreach (GameObject g in icons) Destroy(g);
         icons.Clear();
 
@@ -213,7 +247,11 @@ public class JeremyGameManager : MonoBehaviour
                 leastDiff = Mathf.Abs(t - timer);
             }
         }
-        if (nearestTime == -1) return;
+        if (nearestTime == -1)
+        {
+            health -= healthLostPerMiss;
+            return;
+        }
 
         GameObject nearest = timeObjectPairs[nearestTime];
         float diff = MathF.Abs(nearestTime - timer);
@@ -221,10 +259,12 @@ public class JeremyGameManager : MonoBehaviour
         if (nearest != g || diff > marginOfError)
         {
             Debug.Log("your life is as valuable as a summer ant");
+            health -= healthLostPerMiss;
             return;
         }
 
         Debug.Log("YOU DID IT");
+        score += scorePerHit;
 
         if (!timeIconPairs.ContainsKey(nearestTime)) return;
         GameObject icon = timeIconPairs[nearestTime];
