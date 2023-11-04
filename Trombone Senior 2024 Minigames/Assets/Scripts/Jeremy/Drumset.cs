@@ -32,7 +32,7 @@ public class Drumset : MonoBehaviour
     }
     private void Update()
     {
-        if (!playable) return;
+        if (!playable || gameManager.stop) return;
         var activeTouches = Touch.activeTouches;
         foreach (Touch touch in activeTouches)
         {

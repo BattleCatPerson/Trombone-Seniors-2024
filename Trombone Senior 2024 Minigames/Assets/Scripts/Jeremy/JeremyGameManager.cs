@@ -66,19 +66,24 @@ public class JeremyGameManager : MonoBehaviour
     [SerializeField] GameObject readyPanel;
 
     [Header("Score and Health")]
-    [SerializeField] float score;
+    [SerializeField] int score;
     [SerializeField] float health;
     [SerializeField] float maxHealth;
 
     [SerializeField] TextMeshProUGUI bpmText;
     [SerializeField] TextMeshProUGUI scoreText;
+    [SerializeField] TextMeshProUGUI finalScoreText;
+
     [SerializeField] Image healthBar;
 
-    [SerializeField] float scorePerHit;
+    [SerializeField] int scorePerHit;
     [SerializeField] float healthLostPerMiss;
 
     [SerializeField] Animator bpmUpAnimation;
+    [SerializeField] GameObject gameOverPanel;
+    [SerializeField] GameObject newHighScoreText;
 
+    public bool stop; 
     private void Start()
     {
         Debug.Assert(BPM > 0);
@@ -86,10 +91,22 @@ public class JeremyGameManager : MonoBehaviour
         GenerateMeasure();
         readyPanel.SetActive(false);
         maxHealth = health;
+        gameOverPanel.SetActive(false);
+        newHighScoreText.SetActive(false);
+
+        if (!PlayerPrefs.HasKey("Jeremy High Score")) PlayerPrefs.SetInt("Jeremy High Score", 0);
     }
 
     private void Update()
     {
+        if (stop) return;
+        if (health <= 0)
+        {
+            stop = true;
+            gameOverPanel.SetActive(true);
+            NewHighScore();
+            return;
+        }
         timer += Time.deltaTime;
         metronomeTimer += Time.deltaTime;
         if (metronomeTimer > timePerBeat)
@@ -186,6 +203,7 @@ public class JeremyGameManager : MonoBehaviour
         }
 
         scoreText.text = $"{score} Points";
+        finalScoreText.text = $"{score} Points";
         bpmText.text = $"{BPM} BPM";
         healthBar.fillAmount = health / maxHealth;
     }
@@ -282,5 +300,14 @@ public class JeremyGameManager : MonoBehaviour
         timeObjectPairs.Remove(nearestTime);
         times.Remove(nearestTime);
 
+    }
+
+    public void NewHighScore()
+    {
+        if (score > PlayerPrefs.GetInt("Jeremy High Score"))
+        {
+            PlayerPrefs.SetInt("Jeremy High Score", score);
+            newHighScoreText.SetActive(true);
+        }
     }
 }

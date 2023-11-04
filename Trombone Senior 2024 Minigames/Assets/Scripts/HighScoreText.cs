@@ -25,16 +25,18 @@ public class HighScoreText : MonoBehaviour
             case Minigame.Jackson:
                 text.text += $"{PlayerPrefs.GetInt("Jackson High Score")}";
                 break;
-
-                //implement these later
-                //case Minigame.Jeremy:
-                //    break;
-                //case Minigame.Max:
-                //    break;
-                //case Minigame.Bhavandeep:
-                //    break;
-                //case Minigame.Nick:
-                //    break;
+            case Minigame.Jeremy:
+                text.text += $"{PlayerPrefs.GetInt("Jeremy High Score")}";
+                break;
+            case Minigame.Max:
+                text.text += $"{PlayerPrefs.GetInt("Max High Score")}";
+                break;
+            case Minigame.Bhavandeep:
+                text.text += $"{PlayerPrefs.GetInt("Bhavandeep High Score")}";
+                break;
+            case Minigame.Nick:
+                text.text += $"{PlayerPrefs.GetInt("Nick High Score")}";
+                break;
         }
     }
 }
