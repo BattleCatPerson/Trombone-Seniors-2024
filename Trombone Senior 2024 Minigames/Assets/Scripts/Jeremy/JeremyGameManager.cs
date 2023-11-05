@@ -15,6 +15,7 @@ public class JeremyGameManager : MonoBehaviour
 {
     [Header("Rhythm")]
     [SerializeField] int BPM;
+    [SerializeField] int BPMInitial;
     [SerializeField] float beatsPerSecond;
     [SerializeField] float timePerBeat;
     [SerializeField] int BPMIncrease;
@@ -83,28 +84,49 @@ public class JeremyGameManager : MonoBehaviour
     [SerializeField] GameObject gameOverPanel;
     [SerializeField] GameObject newHighScoreText;
 
-    public bool stop; 
+    public bool stop;
+
+    [SerializeField] AudioSource music;
+    [SerializeField] bool gameStarted;
+    [SerializeField] GameObject gameStartedPanel;
+
     private void Start()
     {
-        Debug.Assert(BPM > 0);
+        gameStarted = false;
         notesPerMeasure = notesPerMeasureRange.start;
-        GenerateMeasure();
         readyPanel.SetActive(false);
         maxHealth = health;
         gameOverPanel.SetActive(false);
         newHighScoreText.SetActive(false);
-
         if (!PlayerPrefs.HasKey("Jeremy High Score")) PlayerPrefs.SetInt("Jeremy High Score", 0);
+        gameStartedPanel.SetActive(true);
+        cursor.gameObject.SetActive(false);
+
+        scoreText.text = $"{score}";
+        finalScoreText.text = $"Final Score: {score}";
+        bpmText.text = $"{BPM} BPM";
+    }
+    public void StartGame()
+    {
+        Debug.Assert(BPM > 0);
+        GenerateMeasure();
+        source.PlayOneShot(metronome);
+        if (!music.isPlaying) music.Play();
+        BPMInitial = BPM;
+        gameStarted = true;
+        gameStartedPanel.SetActive(false);
+        cursor.gameObject.SetActive(true);
     }
 
     private void Update()
     {
-        if (stop) return;
+        if (stop || !gameStarted) return;
         if (health <= 0)
         {
             stop = true;
             gameOverPanel.SetActive(true);
             NewHighScore();
+            music.Stop();
             return;
         }
         timer += Time.deltaTime;
@@ -202,8 +224,8 @@ public class JeremyGameManager : MonoBehaviour
             times.Remove(timeToRemove);
         }
 
-        scoreText.text = $"{score} Points";
-        finalScoreText.text = $"{score} Points";
+        scoreText.text = $"{score}";
+        finalScoreText.text = $"Final Score: {score}";
         bpmText.text = $"{BPM} BPM";
         healthBar.fillAmount = health / maxHealth;
     }
@@ -220,6 +242,10 @@ public class JeremyGameManager : MonoBehaviour
             notesPerMeasure = notesPerMeasureRange.start;
 
             bpmUpAnimation.SetTrigger("BpmUp");
+
+            music.pitch += (float) BPMIncrease / BPMInitial;
+            music.Stop();
+            music.Play();
         }
 
         beatsPerSecond = (float)BPM / 60;
@@ -247,7 +273,6 @@ public class JeremyGameManager : MonoBehaviour
 
         duration = timePerBeat * beats;
         times.Sort();
-
         marginOfError = timePerBeat / 2f;
 
     }
