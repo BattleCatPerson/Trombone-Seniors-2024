@@ -8,6 +8,8 @@ public class StopGameOnWallCollision : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
+        if (collision.transform.position.z < transform.position.z) return;
         gameManager.StopGame();
+        collision.transform.root.GetComponent<Rigidbody>().velocity = Vector3.zero;
     }
 }
