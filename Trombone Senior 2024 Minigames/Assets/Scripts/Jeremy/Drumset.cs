@@ -32,17 +32,25 @@ public class Drumset : MonoBehaviour
     }
     private void Update()
     {
-        if (!playable || gameManager.stop) return;
+        if (!playable || gameManager.stop)
+        {
+            Debug.Log("RETURN");
+            return;
+        }
         var activeTouches = Touch.activeTouches;
+
+        if (activeTouches.Count == 0) Debug.Log("NO TOUCHES");
         foreach (Touch touch in activeTouches)
         {
             if (touch.phase != TouchPhase.Began) continue;
+            Debug.Log("TOUCH GO THROUGH");
             RaycastHit hit;
             if (Physics.Raycast(Camera.main.ScreenPointToRay(touch.screenPosition), out hit))
             {
                 GameObject g = hit.collider.gameObject;
                 if (GetClip(g) != null)
                 {
+                    Debug.Log("DRUM PLAY");
                     PlayClip(g);
                     gameManager.AddInput(g);
                 }

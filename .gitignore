@@ -1,2 +1,69 @@
 
 Trombone Senior 2024 Minigames/Build.zip
+*.h
+*.zip
+*.mm
+*.cpp
+*.c
+Trombone Senior 2024 Minigames/Debug Build/Classes/Prefix.pch
+Trombone Senior 2024 Minigames/Debug Build/Classes/UI/StoreReview.m
+Trombone Senior 2024 Minigames/Debug Build/Data/boot.config
+Trombone Senior 2024 Minigames/Debug Build/Data/globalgamemanagers
+Trombone Senior 2024 Minigames/Debug Build/Data/globalgamemanagers.assets
+Trombone Senior 2024 Minigames/Debug Build/Data/globalgamemanagers.assets.resS
+Trombone Senior 2024 Minigames/Debug Build/Data/level0
+Trombone Senior 2024 Minigames/Debug Build/Data/level0.resS
+Trombone Senior 2024 Minigames/Debug Build/Data/level1
+Trombone Senior 2024 Minigames/Debug Build/Data/level2
+Trombone Senior 2024 Minigames/Debug Build/Data/level2.resS
+Trombone Senior 2024 Minigames/Debug Build/Data/level3
+Trombone Senior 2024 Minigames/Debug Build/Data/Managed/EditorToUnityLinkerData.json
+Trombone Senior 2024 Minigames/Debug Build/Data/Managed/Metadata/global-metadata.dat
+Trombone Senior 2024 Minigames/Debug Build/Data/Managed/MethodsToPreserve.xml
+Trombone Senior 2024 Minigames/Debug Build/Data/Managed/mono/4.0/machine.config
+Trombone Senior 2024 Minigames/Debug Build/Data/Managed/Resources/mscorlib.dll-resources.dat
+Trombone Senior 2024 Minigames/Debug Build/Data/Managed/response.rsp
+Trombone Senior 2024 Minigames/Debug Build/Data/Managed/SerializedTypes.xml
+Trombone Senior 2024 Minigames/Debug Build/Data/Managed/TypesInScenes.xml
+Trombone Senior 2024 Minigames/Debug Build/Data/Managed/UnityLinkerToEditorData.json
+Trombone Senior 2024 Minigames/Debug Build/Data/resources.assets
+Trombone Senior 2024 Minigames/Debug Build/Data/resources.assets.resS
+Trombone Senior 2024 Minigames/Debug Build/Data/Resources/unity_builtin_extra
+Trombone Senior 2024 Minigames/Debug Build/Data/RuntimeInitializeOnLoads.json
+Trombone Senior 2024 Minigames/Debug Build/Data/ScriptingAssemblies.json
+Trombone Senior 2024 Minigames/Debug Build/Data/sharedassets0.assets
+Trombone Senior 2024 Minigames/Debug Build/Data/sharedassets0.assets.resS
+Trombone Senior 2024 Minigames/Debug Build/Data/sharedassets1.assets
+Trombone Senior 2024 Minigames/Debug Build/Data/sharedassets1.assets.resS
+Trombone Senior 2024 Minigames/Debug Build/Data/sharedassets1.resource
+Trombone Senior 2024 Minigames/Debug Build/Data/sharedassets2.assets
+Trombone Senior 2024 Minigames/Debug Build/Data/sharedassets2.assets.resS
+Trombone Senior 2024 Minigames/Debug Build/Data/sharedassets2.resource
+Trombone Senior 2024 Minigames/Debug Build/Data/sharedassets3.assets
+Trombone Senior 2024 Minigames/Debug Build/Data/sharedassets3.assets.resS
+Trombone Senior 2024 Minigames/Debug Build/Data/unity default resources
+Trombone Senior 2024 Minigames/Debug Build/Info.plist
+Trombone Senior 2024 Minigames/Debug Build/LaunchScreen-iPad.png
+Trombone Senior 2024 Minigames/Debug Build/LaunchScreen-iPad.storyboard
+Trombone Senior 2024 Minigames/Debug Build/LaunchScreen-iPhone.storyboard
+Trombone Senior 2024 Minigames/Debug Build/LaunchScreen-iPhoneLandscape.png
+Trombone Senior 2024 Minigames/Debug Build/LaunchScreen-iPhonePortrait.png
+Trombone Senior 2024 Minigames/Debug Build/Libraries/baselib.a
+Trombone Senior 2024 Minigames/Debug Build/Libraries/libil2cpp.a
+Trombone Senior 2024 Minigames/Debug Build/Libraries/libil2cpp/include/libil2cpp.icalls
+Trombone Senior 2024 Minigames/Debug Build/Libraries/libil2cpp/include/pch/pch-cpp.hpp
+Trombone Senior 2024 Minigames/Debug Build/Libraries/libiPhone-lib.a
+Trombone Senior 2024 Minigames/Debug Build/process_symbols.sh
+Trombone Senior 2024 Minigames/Debug Build/Unity-iPhone Tests/en.lproj/InfoPlist.strings
+Trombone Senior 2024 Minigames/Debug Build/Unity-iPhone Tests/Unity-iPhone Tests-Info.plist
+Trombone Senior 2024 Minigames/Debug Build/Unity-iPhone Tests/Unity-iPhone Tests-Prefix.pch
+Trombone Senior 2024 Minigames/Debug Build/Unity-iPhone Tests/Unity_iPhone_Tests.m
+Trombone Senior 2024 Minigames/Debug Build/Unity-iPhone.xcodeproj/project.pbxproj
+Trombone Senior 2024 Minigames/Debug Build/Unity-iPhone.xcodeproj/xcshareddata/xcschemes/Unity-iPhone.xcscheme
+Trombone Senior 2024 Minigames/Debug Build/Unity-iPhone/Images.xcassets/AppIcon.appiconset/Contents.json
+Trombone Senior 2024 Minigames/Debug Build/Unity-iPhone/Images.xcassets/AppIcon.appiconset/Icon-iPad-152.png
+Trombone Senior 2024 Minigames/Debug Build/Unity-iPhone/Images.xcassets/AppIcon.appiconset/Icon-iPad-167.png
+Trombone Senior 2024 Minigames/Debug Build/Unity-iPhone/Images.xcassets/AppIcon.appiconset/Icon-iPad-76.png
+Trombone Senior 2024 Minigames/Debug Build/Unity-iPhone/Images.xcassets/AppIcon.appiconset/Icon-iPhone-120.png
+Trombone Senior 2024 Minigames/Debug Build/Unity-iPhone/Images.xcassets/AppIcon.appiconset/Icon-iPhone-180.png
+Trombone Senior 2024 Minigames/Debug Build/UnityFramework/Info.plist
