@@ -76,8 +76,7 @@ public class NickGameManager : MonoBehaviour
     {
         Rigidbody rb = walls[Random.Range(0, walls.Count)];
         Rigidbody clone = Instantiate(rb, spawnPoint.position, spawnPoint.rotation);
-
-        clone.velocity = -Vector3.forward * wallMoveSpeed;
+        clone.GetComponent<WallSetVelocity>().moveSpeed = -Vector3.forward * wallMoveSpeed;
     }
 
     private void OnTriggerEnter(Collider other)
