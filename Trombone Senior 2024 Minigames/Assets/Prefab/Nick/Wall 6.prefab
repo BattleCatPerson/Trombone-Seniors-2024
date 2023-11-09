@@ -497,6 +497,7 @@ GameObject:
   - component: {fileID: 5714207208587850935}
   - component: {fileID: 4072979630536891335}
   - component: {fileID: 4198786551195144901}
+  - component: {fileID: 2277460385188975462}
   m_Layer: 0
   m_Name: Wall 6
   m_TagString: Untagged
@@ -577,6 +578,24 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &2277460385188975462
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2078551962493785049}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6a04f1426bfb4c94eba2f98afcaba4bf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  renderers: []
+  material1: {fileID: 2100000, guid: 2e114ef777b0d7e418c59f26e0d868f5, type: 2}
+  material2: {fileID: 2100000, guid: e9ffc591bdfe9d6489d3ea1136feb3fc, type: 2}
+  duration: 3
+  timer: 0
+  started: 0
 --- !u!1 &2078551962570926462
 GameObject:
   m_ObjectHideFlags: 0
