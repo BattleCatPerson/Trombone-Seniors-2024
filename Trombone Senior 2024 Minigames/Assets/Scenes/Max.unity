@@ -273,27 +273,29 @@ EdgeCollider2D:
   m_Offset: {x: 0, y: 0}
   m_EdgeRadius: 0
   m_Points:
-  - {x: -2.183341, y: 0.5751013}
-  - {x: -1.6819415, y: 0.5703488}
-  - {x: -1.483804, y: 0.45438087}
-  - {x: -1.3428066, y: 0.29127777}
-  - {x: -1.2275207, y: 0.100912064}
-  - {x: -1.0197479, y: -0.34575233}
-  - {x: -0.70537215, y: -1.0749888}
-  - {x: -0.47811496, y: -1.491751}
-  - {x: -0.35879532, y: -1.64917}
-  - {x: -0.2502693, y: -1.7554632}
-  - {x: -0.15113533, y: -1.8138458}
-  - {x: 0.052695274, y: -1.8117596}
-  - {x: 0.35363758, y: -1.628511}
-  - {x: 0.711663, y: -1.2704374}
-  - {x: 1.0826216, y: -0.81051445}
-  - {x: 1.6235197, y: -0.09579314}
-  - {x: 1.9665368, y: 0.29747736}
-  - {x: 2.1421995, y: 0.44803602}
-  - {x: 2.3426783, y: 0.5552652}
-  - {x: 2.511139, y: 0.5789794}
-  - {x: 2.83068, y: 0.60447973}
+  - {x: -2.112399, y: 0.3348567}
+  - {x: -1.7523397, y: 0.32994428}
+  - {x: -1.6475095, y: 0.26477388}
+  - {x: -1.4474052, y: -0.0190925}
+  - {x: -1.2499188, y: -0.4446037}
+  - {x: -0.9314835, y: -1.182803}
+  - {x: -0.8131894, y: -1.4176751}
+  - {x: -0.6862205, y: -1.6311866}
+  - {x: -0.5318682, y: -1.8302667}
+  - {x: -0.39999187, y: -1.956295}
+  - {x: -0.23758504, y: -2.0489557}
+  - {x: -0.060244724, y: -2.0823648}
+  - {x: 0.1272579, y: -2.0509052}
+  - {x: 0.39752036, y: -1.9046415}
+  - {x: 0.51152647, y: -1.822988}
+  - {x: 0.89965236, y: -1.4359978}
+  - {x: 1.2814126, y: -0.9629361}
+  - {x: 1.8196406, y: -0.25163552}
+  - {x: 2.1404943, y: 0.117230214}
+  - {x: 2.2856464, y: 0.24267477}
+  - {x: 2.4188526, y: 0.31662792}
+  - {x: 2.5389366, y: 0.33002648}
+  - {x: 2.7872505, y: 0.35777318}
   m_AdjacentStartPoint: {x: 0, y: 0}
   m_AdjacentEndPoint: {x: 0, y: 0}
   m_UseAdjacentStartPoint: 0
@@ -352,7 +354,7 @@ MonoBehaviour:
   m_WorldSpaceUV: 0
   m_CornerAngleThreshold: 30
   m_ColliderDetail: 16
-  m_ColliderOffset: 0.5
+  m_ColliderOffset: 0
   m_UpdateCollider: 1
   m_OptimizeCollider: 1
   m_OptimizeGeometry: 1
@@ -708,6 +710,7 @@ GameObject:
   - component: {fileID: 2137725484}
   - component: {fileID: 2137725483}
   - component: {fileID: 2137725487}
+  - component: {fileID: 2137725488}
   m_Layer: 0
   m_Name: Circle
   m_TagString: Untagged
@@ -782,4 +785,18 @@ MonoBehaviour:
   rb: {fileID: 2137725483}
   sprite: {fileID: 1806661369}
   direction: {x: 0, y: 0}
-  speed: 5
+  speed: 0
+  increaseRate: 1
+  speedCap: 10
+--- !u!114 &2137725488
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2137725482}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e31057ef324a04478bb4f7d469b3cdc0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
