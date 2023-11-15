@@ -18,7 +18,7 @@ public class MaxCharacterController : MonoBehaviour
         
     }
 
-    void FixedUpdate()
+    void Update()
     {
         sprite.position = rb.position;
         //sprite.right = direction;
@@ -26,8 +26,13 @@ public class MaxCharacterController : MonoBehaviour
         {
             rb.velocity = direction.normalized * speed;
             var activeTouches = Touch.activeTouches;
+            Debug.Log(activeTouches.Count);
 
-            if (activeTouches.Count > 0) speed += increaseRate * Time.fixedDeltaTime;
+            foreach (Touch t in activeTouches)
+            {
+                Debug.Log(t);
+            }
+            if (activeTouches.Count > 0) speed += increaseRate * Time.deltaTime;
             speed = Mathf.Clamp(speed, 0, speedCap);
         }
     }

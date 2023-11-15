@@ -118,7 +118,7 @@ public class JeremyGameManager : MonoBehaviour
         cursor.gameObject.SetActive(true);
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
         if (stop || !gameStarted) return;
         if (health <= 0)
@@ -129,8 +129,8 @@ public class JeremyGameManager : MonoBehaviour
             music.Stop();
             return;
         }
-        timer += Time.deltaTime;
-        metronomeTimer += Time.deltaTime;
+        timer += Time.fixedDeltaTime;
+        metronomeTimer += Time.fixedDeltaTime;
         if (metronomeTimer > timePerBeat)
         {
             source.PlayOneShot(metronome);
