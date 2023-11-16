@@ -13,6 +13,7 @@ public class MaxCharacterController : MonoBehaviour
     [SerializeField] float speed;
     [SerializeField] float increaseRate;
     [SerializeField] float speedCap;
+    [SerializeField] float downwardForceRate; 
     void Start()
     {
         
@@ -26,14 +27,24 @@ public class MaxCharacterController : MonoBehaviour
         {
             rb.velocity = direction.normalized * speed;
             var activeTouches = Touch.activeTouches;
-            Debug.Log(activeTouches.Count);
 
             foreach (Touch t in activeTouches)
             {
                 Debug.Log(t);
             }
             if (activeTouches.Count > 0) speed += increaseRate * Time.deltaTime;
-            speed = Mathf.Clamp(speed, 0, speedCap);
+            //else
+            //{
+            //    speed -= increaseRate * Time.deltaTime;
+            //    speed = Mathf.Clamp(speed, 0, Mathf.Infinity);
+            //}
+        }
+        else
+        {
+            speed = rb.velocity.magnitude;
+
+            var activeTouches = Touch.activeTouches;
+            if (activeTouches.Count > 0) rb.velocity += Vector2.down * downwardForceRate * Time.deltaTime;
         }
     }
 
@@ -45,7 +56,6 @@ public class MaxCharacterController : MonoBehaviour
             //{
             //    Debug.Log(c.point);
             //}
-
             int index = ReturnClosestPoint(e, collision.GetContact(collision.contactCount - 1).point);
             int next = Mathf.Clamp(index + 1, 0, e.pointCount - 1);
             //int previous = Mathf.Clamp(index - 1, 0, e.pointCount - 1);
@@ -54,8 +64,14 @@ public class MaxCharacterController : MonoBehaviour
             
             if (next != index)
             {
+                Debug.Log("HYEYEEY");
                 direction = e.points[next] - e.points[index];
             }
+            else
+            {
+                direction = e.points[index] - e.points[index - 1];
+            }
+
 
         }
     }
