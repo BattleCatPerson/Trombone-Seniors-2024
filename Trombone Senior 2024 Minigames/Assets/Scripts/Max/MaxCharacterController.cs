@@ -25,7 +25,6 @@ public class MaxCharacterController : MonoBehaviour
         //sprite.right = direction;
         if (direction != Vector2.zero)
         {
-            rb.velocity = direction.normalized * speed;
             var activeTouches = Touch.activeTouches;
 
             foreach (Touch t in activeTouches)
@@ -41,13 +40,39 @@ public class MaxCharacterController : MonoBehaviour
         }
         else
         {
-            speed = rb.velocity.magnitude;
+            //speed = rb.velocity.magnitude;
 
             var activeTouches = Touch.activeTouches;
             if (activeTouches.Count > 0) rb.velocity += Vector2.down * downwardForceRate * Time.deltaTime;
         }
     }
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.collider.gameObject.TryGetComponent<EdgeCollider2D>(out EdgeCollider2D e))
+        {
+            //foreach (ContactPoint2D c in collision.contacts)
+            //{
+            //    Debug.Log(c.point);
+            //}
+            int index = ReturnClosestPoint(e, collision.GetContact(collision.contactCount - 1).point);
+            int next = Mathf.Clamp(index + 1, 0, e.pointCount - 1);
+            //int previous = Mathf.Clamp(index - 1, 0, e.pointCount - 1);
+            //Vector2 slope = e.points[next] - e.points[previous];
+            //direction = slope;
 
+            if (next != index)
+            {
+                Debug.Log("HYEYEEY");
+                direction = e.points[next] - e.points[index];
+            }
+            else
+            {
+                direction = e.points[index] - e.points[index - 1];
+            }
+
+            rb.velocity = direction.normalized * speed;
+        }
+    }
     private void OnCollisionStay2D(Collision2D collision)
     {
         if (collision.collider.gameObject.TryGetComponent<EdgeCollider2D>(out EdgeCollider2D e))
@@ -72,7 +97,7 @@ public class MaxCharacterController : MonoBehaviour
                 direction = e.points[index] - e.points[index - 1];
             }
 
-
+            rb.velocity = direction.normalized * speed;
         }
     }
 
