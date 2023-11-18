@@ -13,97 +13,54 @@ public class MaxCharacterController : MonoBehaviour
     [SerializeField] float speed;
     [SerializeField] float increaseRate;
     [SerializeField] float speedCap;
-    [SerializeField] float downwardForceRate; 
+    [SerializeField] float downwardForceRate;
+
+    [SerializeField] bool colliding;
+    [SerializeField] float impactLimit;
     void Start()
     {
-        
+
     }
 
     void Update()
     {
         sprite.position = rb.position;
-        //sprite.right = direction;
-        if (direction != Vector2.zero)
+        var activeTouches = Touch.activeTouches;
+        if (colliding && activeTouches.Count > 0)
         {
-            var activeTouches = Touch.activeTouches;
-
-            foreach (Touch t in activeTouches)
-            {
-                Debug.Log(t);
-            }
-            if (activeTouches.Count > 0) speed += increaseRate * Time.deltaTime;
-            //else
-            //{
-            //    speed -= increaseRate * Time.deltaTime;
-            //    speed = Mathf.Clamp(speed, 0, Mathf.Infinity);
-            //}
+            rb.angularVelocity += -speed * Time.deltaTime;
         }
-        else
-        {
-            //speed = rb.velocity.magnitude;
-
-            var activeTouches = Touch.activeTouches;
-            if (activeTouches.Count > 0) rb.velocity += Vector2.down * downwardForceRate * Time.deltaTime;
-        }
+        else if (activeTouches.Count > 0) rb.velocity += Vector2.down * downwardForceRate * Time.deltaTime;
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.collider.gameObject.TryGetComponent<EdgeCollider2D>(out EdgeCollider2D e))
+        float angle = Vector2.Angle(collision.GetContact(0).normal, collision.relativeVelocity);
+        if (collision.GetContact(0).normal.x < 0)
         {
-            //foreach (ContactPoint2D c in collision.contacts)
-            //{
-            //    Debug.Log(c.point);
-            //}
-            int index = ReturnClosestPoint(e, collision.GetContact(collision.contactCount - 1).point);
-            int next = Mathf.Clamp(index + 1, 0, e.pointCount - 1);
-            //int previous = Mathf.Clamp(index - 1, 0, e.pointCount - 1);
-            //Vector2 slope = e.points[next] - e.points[previous];
-            //direction = slope;
-
-            if (next != index)
+            float sum = 0;
+            foreach (var c in collision.contacts)
             {
-                Debug.Log("HYEYEEY");
-                direction = e.points[next] - e.points[index];
+                Debug.Log(c.normalImpulse);
+                sum += c.normalImpulse;
             }
-            else
+            if (sum / collision.contactCount / rb.mass > impactLimit)
             {
-                direction = e.points[index] - e.points[index - 1];
+                Debug.Log("DIE");
             }
-
-            rb.velocity = direction.normalized * speed;
         }
+        
+        //erm what is this guy blabberng about??? D1 yapper for real!!!! this guy needs to shut up omg!!! he just keeps on yapping and running his mouth lol!!!!!
+        colliding = true;
     }
     private void OnCollisionStay2D(Collision2D collision)
     {
-        if (collision.collider.gameObject.TryGetComponent<EdgeCollider2D>(out EdgeCollider2D e))
-        {
-            //foreach (ContactPoint2D c in collision.contacts)
-            //{
-            //    Debug.Log(c.point);
-            //}
-            int index = ReturnClosestPoint(e, collision.GetContact(collision.contactCount - 1).point);
-            int next = Mathf.Clamp(index + 1, 0, e.pointCount - 1);
-            //int previous = Mathf.Clamp(index - 1, 0, e.pointCount - 1);
-            //Vector2 slope = e.points[next] - e.points[previous];
-            //direction = slope;
-            
-            if (next != index)
-            {
-                Debug.Log("HYEYEEY");
-                direction = e.points[next] - e.points[index];
-            }
-            else
-            {
-                direction = e.points[index] - e.points[index - 1];
-            }
-
-            rb.velocity = direction.normalized * speed;
-        }
+        colliding = true;
     }
 
     private void OnCollisionExit2D(Collision2D collision)
     {
         direction = Vector2.zero;
+        colliding = false;
     }
 
     public int ReturnClosestPoint(EdgeCollider2D e, Vector2 position)
