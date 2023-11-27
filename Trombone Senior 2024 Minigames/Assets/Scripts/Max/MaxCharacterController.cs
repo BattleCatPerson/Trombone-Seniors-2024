@@ -46,15 +46,16 @@ public class MaxCharacterController : MonoBehaviour
             if (sum / collision.contactCount / rb.mass > impactLimit)
             {
                 Debug.Log("DIE");
+                rb.constraints = RigidbodyConstraints2D.FreezeAll;
             }
         }
-        
-        //erm what is this guy blabberng about??? D1 yapper for real!!!! this guy needs to shut up omg!!! he just keeps on yapping and running his mouth lol!!!!!
+        sprite.up = collision.GetContact(0).normal;
         colliding = true;
     }
     private void OnCollisionStay2D(Collision2D collision)
     {
         colliding = true;
+        sprite.up = collision.GetContact(0).normal;
     }
 
     private void OnCollisionExit2D(Collision2D collision)
@@ -80,4 +81,5 @@ public class MaxCharacterController : MonoBehaviour
 
         return index;
     }
+
 }
