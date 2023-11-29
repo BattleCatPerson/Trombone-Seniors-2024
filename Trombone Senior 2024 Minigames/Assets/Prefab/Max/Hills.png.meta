@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 462952883c148ad4995ed006f3b17d37
+guid: be2fcdacc323f904c8930208e6bdd98a
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -33,7 +33,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 0
+    filterMode: 1
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -131,8 +131,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c2be35f87b7bb4b4fa5355405b0d2a03
-      internalID: -284129515
+      spriteID: bcd6c9dff1abe4a40b7e6fd3b11c789c
+      internalID: -219647813
       vertices: []
       indices: 
       edges: []
@@ -152,8 +152,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0ba6c5a6a2a064c479b4f62ef2976edf
-      internalID: 483295854
+      spriteID: efdaafb48b30f05479a257f5cf74e577
+      internalID: 2143581793
       vertices: []
       indices: 
       edges: []
@@ -173,8 +173,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0030d34a958c58b418c3ca2c9df988a1
-      internalID: 1107375725
+      spriteID: 147cb11603af78a43beb516b80932c6e
+      internalID: -1258664726
       vertices: []
       indices: 
       edges: []
@@ -194,8 +194,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e20ccd8cb94888540a0bb3151d0c9372
-      internalID: -1830291996
+      spriteID: 817d5d9fda6c45449877442aca5ccd52
+      internalID: -373903340
       vertices: []
       indices: 
       edges: []
@@ -215,29 +215,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d36356d02c2b81944bc238db736d68e7
-      internalID: 1660508696
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Hills_5
-      rect:
-        serializedVersion: 2
-        x: 768
-        y: 0
-        width: 768
-        height: 384
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: f13a73743832b6f4d938dc8d9e77fa20
-      internalID: 74820096
+      spriteID: ab0afda6a7623f44ab539041977acd51
+      internalID: -1957941293
       vertices: []
       indices: 
       edges: []
@@ -245,7 +224,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 11f0cf56c89790246844ba401ad10072
+    spriteID: cf2280e693a3b894faeef6e5101415ff
     internalID: 0
     vertices: []
     indices: 
@@ -253,12 +232,11 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Hills_0: -284129515
-      Hills_1: 483295854
-      Hills_2: 1107375725
-      Hills_3: -1830291996
-      Hills_4: 1660508696
-      Hills_5: 74820096
+      Hills_0: -219647813
+      Hills_1: 2143581793
+      Hills_2: -1258664726
+      Hills_3: -373903340
+      Hills_4: -1957941293
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
