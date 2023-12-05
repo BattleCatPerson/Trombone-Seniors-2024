@@ -48,7 +48,11 @@ public class MaxCharacterController : MonoBehaviour
         //sprite.up = collision.GetContact(0).normal;
         //colliding = true;
 
-        if (collision.gameObject.CompareTag("Ramp")) rb.velocity = collision.GetContact(0).normal * rb.velocity.magnitude;
+        if (collision.gameObject.CompareTag("Ramp"))
+        {
+            Debug.Log(Vector2.Perpendicular(-collision.GetContact(0).normal));
+            rb.velocity = Vector2.Perpendicular(-collision.GetContact(0).normal) * rb.velocity.magnitude;
+        }
     }
     //private void OnCollisionStay2D(Collision2D collision)
     //{
