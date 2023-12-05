@@ -13,6 +13,7 @@ public class MaxCharacterController : MonoBehaviour
     [SerializeField] float speed;
     [SerializeField] float downwardForceRate;
     [SerializeField] bool colliding;
+    [SerializeField] int collidersTouching;
     void Start()
     {
 
@@ -22,11 +23,11 @@ public class MaxCharacterController : MonoBehaviour
     {
         sprite.position = rb.position;
         var activeTouches = Touch.activeTouches;
-        if (colliding && activeTouches.Count > 0)
+        if (direction.magnitude > 0)
         {
-            rb.angularVelocity += -speed * Time.deltaTime;
+            rb.velocity = (Vector2)direction * speed;
+            transform.right = direction;
         }
-        else if (activeTouches.Count > 0) rb.velocity += Vector2.down * downwardForceRate * Time.deltaTime;
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
@@ -46,13 +47,18 @@ public class MaxCharacterController : MonoBehaviour
         //    }
         //}
         //sprite.up = collision.GetContact(0).normal;
-        //colliding = true;
-
-        if (collision.gameObject.CompareTag("Ramp"))
-        {
-            Debug.Log(Vector2.Perpendicular(-collision.GetContact(0).normal));
-            rb.velocity = Vector2.Perpendicular(-collision.GetContact(0).normal) * rb.velocity.magnitude;
-        }
+        colliding = true;
+        collidersTouching++;
+        Vector2 v = Vector2.Perpendicular(-collision.GetContact(0).normal);
+        rb.velocity = v * rb.velocity.magnitude;
+        direction = v;
+        rb.gravityScale = 0;
+        //if (collision.gameObject.CompareTag("Ramp"))
+        //{
+        //    Debug.Log(Vector2.Perpendicular(-collision.GetContact(0).normal));
+        //    rb.velocity = Vector2.Perpendicular(-collision.GetContact(0).normal) * rb.velocity.magnitude;
+        //    direction = Vector2.Perpendicular(-collision.GetContact(0).normal);
+        //}
     }
     //private void OnCollisionStay2D(Collision2D collision)
     //{
@@ -60,11 +66,16 @@ public class MaxCharacterController : MonoBehaviour
     //    sprite.up = collision.GetContact(0).normal;
     //}
 
-    //private void OnCollisionExit2D(Collision2D collision)
-    //{
-    //    direction = Vector2.zero;
-    //    colliding = false;
-    //}
+    private void OnCollisionExit2D(Collision2D collision)
+    {
+        collidersTouching--;
+        if (collidersTouching == 0)
+        {
+            colliding = false;
+            rb.gravityScale = 0.5f;
+            direction = Vector2.zero;
+        }
+    }
 
 
 }
