@@ -4,7 +4,7 @@ using UnityEngine;
 using Touch = UnityEngine.InputSystem.EnhancedTouch.Touch;
 using TouchPhase = UnityEngine.InputSystem.TouchPhase;
 using Random = UnityEngine.Random;
-
+using UnityEngine.UI;
 public class MaxCharacterController : MonoBehaviour
 {
     [SerializeField] Rigidbody2D rb;
@@ -14,6 +14,9 @@ public class MaxCharacterController : MonoBehaviour
     [SerializeField] float downwardForceRate;
     [SerializeField] bool colliding;
     [SerializeField] int collidersTouching;
+    [SerializeField] Slider slider;
+    [SerializeField] float acceleration;
+    [SerializeField] float rotationSpeed;
     void Start()
     {
 
@@ -27,6 +30,12 @@ public class MaxCharacterController : MonoBehaviour
         {
             rb.velocity = (Vector2)direction * speed;
             transform.right = direction;
+        }
+        if (!colliding)
+        {
+            rotationSpeed += acceleration * slider.value * Time.deltaTime;
+            if (rotationSpeed < 0) rotationSpeed = 0;
+            transform.eulerAngles += Vector3.forward * rotationSpeed * Time.deltaTime;
         }
     }
     private void OnCollisionEnter2D(Collision2D collision)
@@ -47,18 +56,15 @@ public class MaxCharacterController : MonoBehaviour
         //    }
         //}
         //sprite.up = collision.GetContact(0).normal;
+
         colliding = true;
         collidersTouching++;
         Vector2 v = Vector2.Perpendicular(-collision.GetContact(0).normal);
         rb.velocity = v * rb.velocity.magnitude;
         direction = v;
         rb.gravityScale = 0;
-        //if (collision.gameObject.CompareTag("Ramp"))
-        //{
-        //    Debug.Log(Vector2.Perpendicular(-collision.GetContact(0).normal));
-        //    rb.velocity = Vector2.Perpendicular(-collision.GetContact(0).normal) * rb.velocity.magnitude;
-        //    direction = Vector2.Perpendicular(-collision.GetContact(0).normal);
-        //}
+
+        rotationSpeed = 0;
     }
     //private void OnCollisionStay2D(Collision2D collision)
     //{
