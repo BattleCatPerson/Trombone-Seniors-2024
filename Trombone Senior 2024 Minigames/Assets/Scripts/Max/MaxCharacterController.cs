@@ -4,6 +4,8 @@ using UnityEngine;
 using Touch = UnityEngine.InputSystem.EnhancedTouch.Touch;
 using TouchPhase = UnityEngine.InputSystem.TouchPhase;
 using Random = UnityEngine.Random;
+using Mathf = UnityEngine.Mathf;
+using Cinemachine;
 using UnityEngine.UI;
 public class MaxCharacterController : MonoBehaviour
 {
@@ -16,10 +18,16 @@ public class MaxCharacterController : MonoBehaviour
     [SerializeField] int collidersTouching;
     [SerializeField] Slider slider;
     [SerializeField] float acceleration;
+    [SerializeField] float deceleration;
     [SerializeField] float rotationSpeed;
+    [SerializeField] float maxRotationSpeed;
+    [SerializeField] CinemachineVirtualCamera vCam;
+    [SerializeField] float verticalDistanceToFloor;
+    [SerializeField] int layer;
+    [SerializeField] float baseCameraSize;
     void Start()
     {
-
+        layer = 1 << layer;
     }
 
     void Update()
@@ -33,10 +41,20 @@ public class MaxCharacterController : MonoBehaviour
         }
         if (!colliding)
         {
-            rotationSpeed += acceleration * slider.value * Time.deltaTime;
-            if (rotationSpeed < 0) rotationSpeed = 0;
+            if (slider.value > 0) rotationSpeed += acceleration * slider.value * Time.deltaTime;
+            else rotationSpeed += deceleration * slider.value * Time.deltaTime;
+            rotationSpeed = Mathf.Clamp(rotationSpeed, 0, maxRotationSpeed);
             transform.eulerAngles += Vector3.forward * rotationSpeed * Time.deltaTime;
         }
+
+        Vector2 point = (Physics2D.Raycast(transform.position, Vector2.down, Mathf.Infinity, layer).point);
+        verticalDistanceToFloor = Vector2.Distance((Vector2) transform.position + Vector2.down * transform.localScale, point);
+
+        if (verticalDistanceToFloor > 1f)
+        {
+            vCam.m_Lens.OrthographicSize = baseCameraSize + verticalDistanceToFloor;
+        }
+        else vCam.m_Lens.OrthographicSize = baseCameraSize;
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
