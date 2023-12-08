@@ -9,6 +9,7 @@ using Cinemachine;
 using UnityEngine.UI;
 public class MaxCharacterController : MonoBehaviour
 {
+    [Header("Physics")]
     [SerializeField] Rigidbody2D rb;
     [SerializeField] Transform sprite;
     [SerializeField] Vector2 direction;
@@ -16,15 +17,25 @@ public class MaxCharacterController : MonoBehaviour
     [SerializeField] float downwardForceRate;
     [SerializeField] bool colliding;
     [SerializeField] int collidersTouching;
+    [Header("Rotation")]
     [SerializeField] Slider slider;
     [SerializeField] float acceleration;
     [SerializeField] float deceleration;
     [SerializeField] float rotationSpeed;
     [SerializeField] float maxRotationSpeed;
+    [Header("Camera")]
     [SerializeField] CinemachineVirtualCamera vCam;
     [SerializeField] float verticalDistanceToFloor;
     [SerializeField] int layer;
     [SerializeField] float baseCameraSize;
+    [Header("Score")]
+    [SerializeField] int flips;
+    [SerializeField] float accumulatedAngle;
+    [SerializeField] float score;
+    [SerializeField] float scorePerFlip;
+    [Header("Game Over")]
+    [SerializeField] float angleDeviation;
+    [SerializeField] bool gameOver;
     void Start()
     {
         layer = 1 << layer;
@@ -32,6 +43,7 @@ public class MaxCharacterController : MonoBehaviour
 
     void Update()
     {
+        if (gameOver) return;
         sprite.position = rb.position;
         var activeTouches = Touch.activeTouches;
         if (direction.magnitude > 0)
@@ -45,6 +57,13 @@ public class MaxCharacterController : MonoBehaviour
             else rotationSpeed += deceleration * slider.value * Time.deltaTime;
             rotationSpeed = Mathf.Clamp(rotationSpeed, 0, maxRotationSpeed);
             transform.eulerAngles += Vector3.forward * rotationSpeed * Time.deltaTime;
+            accumulatedAngle += rotationSpeed * Time.deltaTime;
+
+            if (accumulatedAngle >= 360)
+            {
+                flips++;
+                accumulatedAngle = 0;
+            }
         }
 
         Vector2 point = (Physics2D.Raycast(transform.position, Vector2.down, Mathf.Infinity, layer).point);
@@ -75,14 +94,33 @@ public class MaxCharacterController : MonoBehaviour
         //}
         //sprite.up = collision.GetContact(0).normal;
 
+        if (!colliding)
+        {
+            float floorRotation = collision.transform.eulerAngles.z;
+            float initialRotation = transform.eulerAngles.z;
+            float newRotation = Mathf.Abs(floorRotation - initialRotation) > Mathf.Abs(floorRotation - (initialRotation + 360)) ? initialRotation + 360 : initialRotation;
+            float deviation = Mathf.Abs(floorRotation - newRotation);
+            Debug.Log(deviation);
+            if (deviation > angleDeviation)
+            {
+                gameOver = true;
+                rb.isKinematic = true;
+                return;
+            }
+        }
+
         colliding = true;
         collidersTouching++;
+
         Vector2 v = Vector2.Perpendicular(-collision.GetContact(0).normal);
         rb.velocity = v * rb.velocity.magnitude;
         direction = v;
         rb.gravityScale = 0;
 
         rotationSpeed = 0;
+        score += scorePerFlip * flips;
+        flips = 0;
+        accumulatedAngle = 0;
     }
     //private void OnCollisionStay2D(Collision2D collision)
     //{

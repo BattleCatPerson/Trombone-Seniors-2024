@@ -1836,14 +1836,20 @@ MonoBehaviour:
   colliding: 0
   collidersTouching: 0
   slider: {fileID: 1026298543}
-  acceleration: 90
-  deceleration: 180
+  acceleration: 180
+  deceleration: 360
   rotationSpeed: 0
-  maxRotationSpeed: 180
+  maxRotationSpeed: 360
   vCam: {fileID: 410702991}
   verticalDistanceToFloor: 0
   layer: 8
   baseCameraSize: 5
+  flips: 0
+  accumulatedAngle: 0
+  score: 0
+  scorePerFlip: 100
+  angleDeviation: 30
+  gameOver: 0
 --- !u!61 &2137725488
 BoxCollider2D:
   m_ObjectHideFlags: 0
