@@ -28,6 +28,7 @@ public class MaxCharacterController : MonoBehaviour
     [SerializeField] float verticalDistanceToFloor;
     [SerializeField] int layer;
     [SerializeField] float baseCameraSize;
+    [SerializeField] float maxCameraSize;
     [Header("Score")]
     [SerializeField] int flips;
     [SerializeField] float accumulatedAngle;
@@ -74,6 +75,7 @@ public class MaxCharacterController : MonoBehaviour
             vCam.m_Lens.OrthographicSize = baseCameraSize + verticalDistanceToFloor;
         }
         else vCam.m_Lens.OrthographicSize = baseCameraSize;
+        vCam.m_Lens.OrthographicSize = Mathf.Clamp(vCam.m_Lens.OrthographicSize, baseCameraSize, maxCameraSize);
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
