@@ -16,6 +16,7 @@ public class MaxCharacterController : MonoBehaviour
     [SerializeField] float speed;
     [SerializeField] float downwardForceRate;
     [SerializeField] bool colliding;
+    public bool Colliding => colliding;
     [SerializeField] int collidersTouching;
     [Header("Rotation")]
     [SerializeField] Slider slider;
