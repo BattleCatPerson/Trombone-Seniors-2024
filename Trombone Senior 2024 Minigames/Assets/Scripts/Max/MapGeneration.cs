@@ -9,23 +9,27 @@ public class MapGeneration : MonoBehaviour
     public class ObjectActive
     {
         public Transform transform;
-        public bool active;
         public static List<ObjectActive> activeObjects = new();
         public static List<ObjectActive> standbyObjects = new();
-        public void MoveAway(Vector2 pos)
-        {
-            transform.position = pos;
-            standbyObjects.Add(this);
-            activeObjects.Remove(this);
+        public void MoveAway(Vector2 pos) => transform.position = pos;
 
-            int index = Random.Range(0, standbyObjects.Count);
-            activeObjects.Add(standbyObjects[index]);
-            standbyObjects[index].MoveTo(Vector2.zero);
+        public void MoveTo(Vector2 pos) => transform.localPosition = pos;
+
+        public static void SelectNew(Vector2 pos)
+        {
+            ObjectActive newObj = standbyObjects[Random.Range(0, standbyObjects.Count)];
+            standbyObjects.Remove(newObj);
+            activeObjects.Add(newObj);
+
+            newObj.MoveTo(pos);
         }
 
-        public void MoveTo(Vector2 pos)
+        public static void Remove(ObjectActive o, Vector2 pos)
         {
-            //tbi
+            standbyObjects.Add(o);
+            activeObjects.Remove(o);
+
+            o.MoveAway(pos);
         }
     }
 
@@ -46,7 +50,11 @@ public class MapGeneration : MonoBehaviour
         controller = player.GetComponent<MaxCharacterController>();
         floorAngle = floor.eulerAngles.z;
 
-        foreach (ObjectActive o in objects) ObjectActive.standbyObjects.Add(o);
+        foreach (ObjectActive o in objects)
+        {
+            ObjectActive.standbyObjects.Add(o);
+            o.MoveAway(holdPoint.position);
+        }
     }
     private void Update()
     {
@@ -62,15 +70,16 @@ public class MapGeneration : MonoBehaviour
                 {
                     if (Mathf.Abs(o.transform.localPosition.x - playerTracker.localPosition.x) > distance)
                     {
-                        o.MoveAway(holdPoint.position);
+                        ObjectActive.Remove(o, holdPoint.position);
+                        break;
                     }
                 }
             }
             else
             {
-                // implement move to code here!
+                ObjectActive.SelectNew(playerTracker.localPosition + Vector3.right * distance);
             }
-            
+
         }
     }
 }
