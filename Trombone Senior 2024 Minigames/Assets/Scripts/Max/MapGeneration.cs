@@ -11,9 +11,7 @@ public class MapGeneration : MonoBehaviour
         public Transform transform;
         public static List<ObjectActive> activeObjects = new();
         public static List<ObjectActive> standbyObjects = new();
-        public void MoveAway(Vector2 pos) => transform.position = pos;
-
-        public void MoveTo(Vector2 pos) => transform.localPosition = pos;
+        public void Move(Vector2 pos) => transform.localPosition = pos;
 
         public static void SelectNew(Vector2 pos)
         {
@@ -21,7 +19,7 @@ public class MapGeneration : MonoBehaviour
             standbyObjects.Remove(newObj);
             activeObjects.Add(newObj);
 
-            newObj.MoveTo(pos);
+            newObj.Move(pos);
         }
 
         public static void Remove(ObjectActive o, Vector2 pos)
@@ -29,7 +27,7 @@ public class MapGeneration : MonoBehaviour
             standbyObjects.Add(o);
             activeObjects.Remove(o);
 
-            o.MoveAway(pos);
+            o.Move(pos);
         }
     }
 
@@ -44,6 +42,9 @@ public class MapGeneration : MonoBehaviour
 
     [SerializeField] List<ObjectActive> active;
     [SerializeField] List<ObjectActive> standby;
+
+    [SerializeField] Transform currentFloor;
+    [SerializeField] Transform standbyFloor;
     private void Start()
     {
         //use renderer.isvisible;
@@ -53,7 +54,7 @@ public class MapGeneration : MonoBehaviour
         foreach (ObjectActive o in objects)
         {
             ObjectActive.standbyObjects.Add(o);
-            o.MoveAway(holdPoint.position);
+            o.Move(holdPoint.position);
         }
     }
     private void Update()
@@ -71,15 +72,29 @@ public class MapGeneration : MonoBehaviour
                     if (Mathf.Abs(o.transform.localPosition.x - playerTracker.localPosition.x) > distance)
                     {
                         ObjectActive.Remove(o, holdPoint.position);
+                        ObjectActive.SelectNew(Vector3.right * (distance + playerTracker.localPosition.x));
                         break;
                     }
                 }
             }
             else
             {
-                ObjectActive.SelectNew(playerTracker.localPosition + Vector3.right * distance);
+                ObjectActive.SelectNew(Vector3.right * (distance + playerTracker.localPosition.x));
             }
-
         }
+
+
+        if (playerTracker.localPosition.x > currentFloor.localPosition.x)
+        {
+            MoveFloors();
+        }
+    }
+
+    public void MoveFloors()
+    {
+        Transform temp = currentFloor;
+        standbyFloor.localPosition = Vector3.right * (currentFloor.localPosition.x + currentFloor.lossyScale.x);
+        currentFloor = standbyFloor;
+        standbyFloor = temp;
     }
 }
