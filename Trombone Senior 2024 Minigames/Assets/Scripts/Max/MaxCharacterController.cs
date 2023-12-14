@@ -108,6 +108,7 @@ public class MaxCharacterController : MonoBehaviour
             {
                 gameOver = true;
                 rb.isKinematic = true;
+                rb.velocity = Vector2.zero;
                 return;
             }
         }
