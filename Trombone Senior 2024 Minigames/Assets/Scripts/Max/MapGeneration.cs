@@ -45,10 +45,12 @@ public class MapGeneration : MonoBehaviour
 
     [SerializeField] Transform currentFloor;
     [SerializeField] Transform standbyFloor;
+
+    [SerializeField] List<ObjectActive> skySprites;
+
     private void Start()
     {
         //use renderer.isvisible;
-        controller = player.GetComponent<MaxCharacterController>();
         floorAngle = floor.eulerAngles.z;
 
         foreach (ObjectActive o in objects)

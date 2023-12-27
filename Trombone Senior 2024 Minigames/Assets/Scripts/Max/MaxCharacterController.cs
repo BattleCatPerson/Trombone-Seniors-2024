@@ -7,11 +7,19 @@ using Random = UnityEngine.Random;
 using Mathf = UnityEngine.Mathf;
 using Cinemachine;
 using UnityEngine.UI;
+using TMPro;
+
 public class MaxCharacterController : MonoBehaviour
 {
+    [Serializable]
+    public class CharToSpriteDictionary
+    {
+        public char number;
+        public Sprite sprite;
+    }
+
     [Header("Physics")]
     [SerializeField] Rigidbody2D rb;
-    [SerializeField] Transform sprite;
     [SerializeField] Vector2 direction;
     [SerializeField] float speed;
     [SerializeField] float downwardForceRate;
@@ -38,15 +46,32 @@ public class MaxCharacterController : MonoBehaviour
     [Header("Game Over")]
     [SerializeField] float angleDeviation;
     [SerializeField] bool gameOver;
+    [Header("Ragdoll")]
+    [SerializeField] Rigidbody2D maxRb;
+    [SerializeField] float launchForce;
+    [Header("Score Text")]
+    [SerializeField] SpriteRenderer oneSprite;
+    [SerializeField] SpriteRenderer tenSprite;
+    [SerializeField] List<CharToSpriteDictionary> dictionary;
+    [SerializeField] List<GameObject> comboTexts;
+    [SerializeField] int bonusActive;
+    [SerializeField] List<int> flipIntervals;
+    [SerializeField] List<float> statusBonuses;
+    [SerializeField] List<string> names;
+    [SerializeField] TextMeshProUGUI baseScoreText;
+    [SerializeField] TextMeshProUGUI bonusScoreText;
     void Start()
     {
         layer = 1 << layer;
+        maxRb.isKinematic = true;
+        SetSprites(false);
+        Combos(false);
+        bonusActive = -1;
     }
 
     void Update()
     {
         if (gameOver) return;
-        sprite.position = rb.position;
         var activeTouches = Touch.activeTouches;
         if (direction.magnitude > 0)
         {
@@ -65,6 +90,7 @@ public class MaxCharacterController : MonoBehaviour
             {
                 flips++;
                 accumulatedAngle = 0;
+                SetSprites(true);
             }
         }
 
@@ -109,8 +135,28 @@ public class MaxCharacterController : MonoBehaviour
                 gameOver = true;
                 rb.isKinematic = true;
                 rb.velocity = Vector2.zero;
+                maxRb.isKinematic = false;
+                maxRb.GetComponent<Collider2D>().enabled = true;
+                //maxRb.AddForce(new Vector2(1, 1).normalized * launchForce, ForceMode2D.Impulse);
+                maxRb.AddTorque(-launchForce);
+                colliding = true;
+                SetSprites(false);
                 return;
             }
+            rotationSpeed = 0;
+            if (flips > 0)
+            {
+                score += scorePerFlip * flips;
+                baseScoreText.text = $"+{scorePerFlip * flips}";
+                if (bonusActive != -1)
+                {
+                    score += statusBonuses[bonusActive];
+                    bonusScoreText.text = $"+{statusBonuses[bonusActive]} {names[bonusActive]} bonus";
+                }
+            }
+            flips = 0;
+            accumulatedAngle = 0;
+            bonusActive = -1;
         }
 
         colliding = true;
@@ -120,11 +166,7 @@ public class MaxCharacterController : MonoBehaviour
         rb.velocity = v * rb.velocity.magnitude;
         direction = v;
         rb.gravityScale = 0;
-
-        rotationSpeed = 0;
-        score += scorePerFlip * flips;
-        flips = 0;
-        accumulatedAngle = 0;
+        SetSprites(false);
     }
     //private void OnCollisionStay2D(Collision2D collision)
     //{
@@ -143,5 +185,56 @@ public class MaxCharacterController : MonoBehaviour
         }
     }
 
+    public void SetSprites(bool b)
+    {
+        if (b)
+        {
+            string str = flips.ToString();
+            char ones;
+            char tens;
+            if (flips >= 10)
+            {
+                ones = str[1];
+                tens = str[0];
+            }
+            else
+            {
+                ones = str[0];
+                tens = '0';
+            }
 
+            foreach (CharToSpriteDictionary c in dictionary)
+            {
+                if (c.number == ones) oneSprite.sprite = c.sprite;
+                else if (c.number == tens) tenSprite.sprite = c.sprite;
+            }
+            Combos(true);
+            return;
+        }
+        oneSprite.sprite = null;
+        tenSprite.sprite = null;
+        Combos(false);
+    }
+
+    public void Combos(bool b)
+    {
+        if (b)
+        {
+            Combos(false);
+            for (int i = flipIntervals.Count - 1; i > -1; i--)
+            {
+                if (flips >= flipIntervals[i])
+                {
+                    comboTexts[i].SetActive(true);
+                    bonusActive = i;
+                    return;
+                }
+            }
+        }
+        else
+        {
+            foreach (GameObject g in comboTexts) g.SetActive(false);
+        }
+
+    }
 }
