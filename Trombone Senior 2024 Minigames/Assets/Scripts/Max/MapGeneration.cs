@@ -11,9 +11,12 @@ public class MapGeneration : MonoBehaviour
         public Transform transform;
         public static List<ObjectActive> activeObjects = new();
         public static List<ObjectActive> standbyObjects = new();
-        public void Move(Vector2 pos) => transform.localPosition = pos;
-
-        public static void SelectNew(Vector2 pos)
+        public void Move(Vector3 pos)
+        {
+            transform.localPosition = (Vector2)pos;
+            transform.position += Vector3.forward * pos.z;
+        }
+        public static void SelectNew(Vector3 pos)
         {
             ObjectActive newObj = standbyObjects[Random.Range(0, standbyObjects.Count)];
             standbyObjects.Remove(newObj);
@@ -47,7 +50,7 @@ public class MapGeneration : MonoBehaviour
     [SerializeField] Transform standbyFloor;
 
     [SerializeField] List<ObjectActive> skySprites;
-
+    [SerializeField] float zOffset;
     private void Start()
     {
         //use renderer.isvisible;
@@ -75,14 +78,14 @@ public class MapGeneration : MonoBehaviour
                     if (Mathf.Abs(o.transform.localPosition.x - playerTracker.localPosition.x) > distance)
                     {
                         ObjectActive.Remove(o, holdPoint.position);
-                        ObjectActive.SelectNew(Vector3.right * (distance + playerTracker.localPosition.x));
+                        ObjectActive.SelectNew(Vector3.right * (distance + playerTracker.localPosition.x) + Vector3.forward * zOffset);
                         break;
                     }
                 }
             }
             else
             {
-                ObjectActive.SelectNew(Vector3.right * (distance + playerTracker.localPosition.x));
+                ObjectActive.SelectNew(Vector3.right * (distance + playerTracker.localPosition.x) + Vector3.forward * zOffset);
             }
         }
 

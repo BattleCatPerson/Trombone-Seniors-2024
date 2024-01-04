@@ -21,14 +21,18 @@ public class MaxCharacterController : MonoBehaviour
     [Header("Physics")]
     [SerializeField] Rigidbody2D rb;
     [SerializeField] Vector2 direction;
+    [SerializeField] Vector2 rampDirection;
     [SerializeField] float speed;
     [SerializeField] float downwardForceRate;
     [SerializeField] bool colliding;
     [SerializeField] float initialForce;
     public bool Colliding => colliding;
+    [SerializeField] bool canFlip;
+    [SerializeField] bool touchingRamp;
     [SerializeField] int collidersTouching;
     [SerializeField] List<GameObject> colliders;
     [SerializeField] float rampImpulse;
+    [SerializeField] float rampImpulseIncrease;
     [Header("Rotation")]
     [SerializeField] Slider slider;
     [SerializeField] float acceleration;
@@ -81,6 +85,7 @@ public class MaxCharacterController : MonoBehaviour
         gameOverPanel.SetActive(false);
         newHighScoreText.SetActive(false);
         if (!PlayerPrefs.HasKey("Max High Score")) PlayerPrefs.SetInt("Max High Score", 0);
+        canFlip = false;
     }
 
     void Update()
@@ -107,7 +112,8 @@ public class MaxCharacterController : MonoBehaviour
             //rb.AddForce(direction * speed * Time.deltaTime);
             transform.right = direction;
         }
-        if (!colliding)
+
+        if (canFlip)
         {
             if (slider.value > 0) rotationSpeed += acceleration * slider.value * Time.deltaTime;
             else rotationSpeed += deceleration * slider.value * Time.deltaTime;
@@ -135,22 +141,7 @@ public class MaxCharacterController : MonoBehaviour
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        //float angle = Vector2.Angle(collision.GetContact(0).normal, collision.relativeVelocity);
-        //if (collision.GetContact(0).normal.x < 0)
-        //{
-        //    float sum = 0;
-        //    foreach (var c in collision.contacts)
-        //    {
-        //        Debug.Log(c.normalImpulse);
-        //        sum += c.normalImpulse;
-        //    }
-        //    if (sum / collision.contactCount / rb.mass > impactLimit)
-        //    {
-        //        Debug.Log("DIE");
-        //        rb.constraints = RigidbodyConstraints2D.FreezeAll;
-        //    }
-        //}
-        //sprite.up = collision.GetContact(0).normal;
+        canFlip = false;
         if (!colliders.Contains(collision.gameObject))
         {
             colliders.Add(collision.gameObject);
@@ -167,7 +158,9 @@ public class MaxCharacterController : MonoBehaviour
                 StopGame();
                 return;
             }
+
             rotationSpeed = 0;
+            rampImpulse += rampImpulseIncrease;
             if (flips > 0)
             {
                 scoreTextGroup.alpha = 1;
@@ -190,11 +183,9 @@ public class MaxCharacterController : MonoBehaviour
         Vector2 v = Vector2.Perpendicular(-collision.GetContact(0).normal);
         rb.velocity = v * rb.velocity.magnitude;
         direction = v;
-        //rb.gravityScale = 0;
-        //transform.position = collision.GetContact(0).point + collision.GetContact(0).normal * transform.localScale.y * 0.5f;
         SetSprites(false);
 
-        if (collision.gameObject.CompareTag("Ramp"))
+        if (collision.gameObject.CompareTag("Ramp") && !touchingRamp)
         {
             Debug.Log("boost");
             rb.velocity = direction * rampImpulse;
@@ -210,6 +201,18 @@ public class MaxCharacterController : MonoBehaviour
     private void OnCollisionExit2D(Collision2D collision)
     {
         colliders.Remove(collision.gameObject);
+
+        if (collision.gameObject.CompareTag("Ramp"))
+        {
+            RaycastHit2D hit = Physics2D.Raycast(transform.position, -transform.up);
+            Debug.Log(hit.collider);
+            if (!hit.collider.gameObject.CompareTag("Ramp"))
+            {
+                Debug.Log("no longer touching ramp");
+                canFlip = true;
+                touchingRamp = false;
+            }
+        }
     }
 
     public void SetSprites(bool b)
@@ -274,7 +277,6 @@ public class MaxCharacterController : MonoBehaviour
         GetComponent<Collider2D>().enabled = false;
         maxRb.isKinematic = false;
         maxRb.GetComponent<Collider2D>().enabled = true;
-        //maxRb.AddForce(new Vector2(1, 1).normalized * launchForce, ForceMode2D.Impulse);
         maxRb.AddTorque(-launchForce);
         SetSprites(false);
 

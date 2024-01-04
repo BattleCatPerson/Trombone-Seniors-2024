@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028346, g: 0.22571373, b: 0.30692244, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1477,7 +1477,7 @@ MonoBehaviour:
   m_Follow: {fileID: 915824889}
   m_Lens:
     FieldOfView: 40
-    OrthographicSize: 5
+    OrthographicSize: 20
     NearClipPlane: 0.1
     FarClipPlane: 5000
     Dutch: 0
@@ -2917,7 +2917,7 @@ GameObject:
   - component: {fileID: 915824890}
   - component: {fileID: 915824891}
   - component: {fileID: 915824892}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Max
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9079,7 +9079,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1257232952}
   - component: {fileID: 1257232953}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Board
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9707,7 +9707,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1524330140}
   - component: {fileID: 1524330141}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Square
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9874,7 +9874,7 @@ Camera:
   far clip plane: 5000
   field of view: 40
   orthographic: 1
-  orthographic size: 5
+  orthographic size: 20
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
@@ -15313,6 +15313,7 @@ MonoBehaviour:
   currentFloor: {fileID: 638261954}
   standbyFloor: {fileID: 390407640}
   skySprites: []
+  zOffset: 5
 --- !u!4 &1900620851
 Transform:
   m_ObjectHideFlags: 0
@@ -15564,7 +15565,7 @@ GameObject:
   - component: {fileID: 2137725483}
   - component: {fileID: 2137725487}
   - component: {fileID: 2137725488}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Circle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -15623,13 +15624,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rb: {fileID: 2137725483}
   direction: {x: 0, y: 0}
+  rampDirection: {x: 0, y: 0}
   speed: 3000
   downwardForceRate: 100
   colliding: 0
   initialForce: 10
+  canFlip: 0
+  touchingRamp: 0
   collidersTouching: 0
   colliders: []
-  rampImpulse: 30
+  rampImpulse: 10
+  rampImpulseIncrease: 5
   slider: {fileID: 1026298543}
   acceleration: 360
   deceleration: 720
