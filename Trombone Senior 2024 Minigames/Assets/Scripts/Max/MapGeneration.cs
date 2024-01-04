@@ -52,7 +52,8 @@ public class MapGeneration : MonoBehaviour
     {
         //use renderer.isvisible;
         floorAngle = floor.eulerAngles.z;
-
+        ObjectActive.standbyObjects.Clear();
+        ObjectActive.activeObjects.Clear();
         foreach (ObjectActive o in objects)
         {
             ObjectActive.standbyObjects.Add(o);

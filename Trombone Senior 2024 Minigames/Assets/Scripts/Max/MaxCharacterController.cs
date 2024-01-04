@@ -24,8 +24,11 @@ public class MaxCharacterController : MonoBehaviour
     [SerializeField] float speed;
     [SerializeField] float downwardForceRate;
     [SerializeField] bool colliding;
+    [SerializeField] float initialForce;
     public bool Colliding => colliding;
     [SerializeField] int collidersTouching;
+    [SerializeField] List<GameObject> colliders;
+    [SerializeField] float rampImpulse;
     [Header("Rotation")]
     [SerializeField] Slider slider;
     [SerializeField] float acceleration;
@@ -43,6 +46,10 @@ public class MaxCharacterController : MonoBehaviour
     [SerializeField] float accumulatedAngle;
     [SerializeField] float score;
     [SerializeField] float scorePerFlip;
+    [SerializeField] TextMeshProUGUI scoreText;
+    [SerializeField] GameObject gameOverPanel;
+    [SerializeField] TextMeshProUGUI finalScoreText;
+    [SerializeField] GameObject newHighScoreText;
     [Header("Game Over")]
     [SerializeField] float angleDeviation;
     [SerializeField] bool gameOver;
@@ -60,6 +67,8 @@ public class MaxCharacterController : MonoBehaviour
     [SerializeField] List<string> names;
     [SerializeField] TextMeshProUGUI baseScoreText;
     [SerializeField] TextMeshProUGUI bonusScoreText;
+    [SerializeField] CanvasGroup scoreTextGroup;
+    [SerializeField] float fadeRate;
     void Start()
     {
         layer = 1 << layer;
@@ -67,15 +76,35 @@ public class MaxCharacterController : MonoBehaviour
         SetSprites(false);
         Combos(false);
         bonusActive = -1;
+        scoreTextGroup.alpha = 0;
+        rb.velocity = Vector2.right * initialForce;
+        gameOverPanel.SetActive(false);
+        newHighScoreText.SetActive(false);
+        if (!PlayerPrefs.HasKey("Max High Score")) PlayerPrefs.SetInt("Max High Score", 0);
     }
 
     void Update()
     {
         if (gameOver) return;
+        scoreText.text = $"Score: {score}";
+        finalScoreText.text = $"Score: {score}";
+
+        collidersTouching = colliders.Count;
+        colliding = collidersTouching > 0;
+        if (collidersTouching == 0)
+        {
+            colliding = false;
+            direction = Vector2.zero;
+        }
+        if (scoreTextGroup.alpha > 0)
+        {
+            scoreTextGroup.alpha -= fadeRate * Time.deltaTime;
+        }
         var activeTouches = Touch.activeTouches;
         if (direction.magnitude > 0)
         {
-            rb.velocity = (Vector2)direction * speed;
+            //rb.velocity = (Vector2)direction * speed;
+            //rb.AddForce(direction * speed * Time.deltaTime);
             transform.right = direction;
         }
         if (!colliding)
@@ -122,7 +151,10 @@ public class MaxCharacterController : MonoBehaviour
         //    }
         //}
         //sprite.up = collision.GetContact(0).normal;
-
+        if (!colliders.Contains(collision.gameObject))
+        {
+            colliders.Add(collision.gameObject);
+        }
         if (!colliding)
         {
             float floorRotation = collision.transform.eulerAngles.z;
@@ -130,22 +162,15 @@ public class MaxCharacterController : MonoBehaviour
             float newRotation = Mathf.Abs(floorRotation - initialRotation) > Mathf.Abs(floorRotation - (initialRotation + 360)) ? initialRotation + 360 : initialRotation;
             float deviation = Mathf.Abs(floorRotation - newRotation);
             Debug.Log(deviation);
-            if (deviation > angleDeviation)
+            if (deviation > angleDeviation && !collision.gameObject.CompareTag("Ramp"))
             {
-                gameOver = true;
-                rb.isKinematic = true;
-                rb.velocity = Vector2.zero;
-                maxRb.isKinematic = false;
-                maxRb.GetComponent<Collider2D>().enabled = true;
-                //maxRb.AddForce(new Vector2(1, 1).normalized * launchForce, ForceMode2D.Impulse);
-                maxRb.AddTorque(-launchForce);
-                colliding = true;
-                SetSprites(false);
+                StopGame();
                 return;
             }
             rotationSpeed = 0;
             if (flips > 0)
             {
+                scoreTextGroup.alpha = 1;
                 score += scorePerFlip * flips;
                 baseScoreText.text = $"+{scorePerFlip * flips}";
                 if (bonusActive != -1)
@@ -153,36 +178,38 @@ public class MaxCharacterController : MonoBehaviour
                     score += statusBonuses[bonusActive];
                     bonusScoreText.text = $"+{statusBonuses[bonusActive]} {names[bonusActive]} bonus";
                 }
+                else
+                {
+                    bonusScoreText.text = "";
+                }
             }
             flips = 0;
             accumulatedAngle = 0;
             bonusActive = -1;
         }
-
-        colliding = true;
-        collidersTouching++;
-
         Vector2 v = Vector2.Perpendicular(-collision.GetContact(0).normal);
         rb.velocity = v * rb.velocity.magnitude;
         direction = v;
-        rb.gravityScale = 0;
+        //rb.gravityScale = 0;
+        //transform.position = collision.GetContact(0).point + collision.GetContact(0).normal * transform.localScale.y * 0.5f;
         SetSprites(false);
-    }
-    //private void OnCollisionStay2D(Collision2D collision)
-    //{
-    //    colliding = true;
-    //    sprite.up = collision.GetContact(0).normal;
-    //}
 
+        if (collision.gameObject.CompareTag("Ramp"))
+        {
+            Debug.Log("boost");
+            rb.velocity = direction * rampImpulse;
+        }
+    }
+    private void OnCollisionStay2D(Collision2D collision)
+    {
+        if (!colliders.Contains(collision.gameObject))
+        {
+            colliders.Add(collision.gameObject);
+        }
+    }
     private void OnCollisionExit2D(Collision2D collision)
     {
-        collidersTouching--;
-        if (collidersTouching == 0)
-        {
-            colliding = false;
-            rb.gravityScale = 0.5f;
-            direction = Vector2.zero;
-        }
+        colliders.Remove(collision.gameObject);
     }
 
     public void SetSprites(bool b)
@@ -236,5 +263,26 @@ public class MaxCharacterController : MonoBehaviour
             foreach (GameObject g in comboTexts) g.SetActive(false);
         }
 
+    }
+
+    public void StopGame()
+    {
+        gameOver = true;
+        colliding = true;
+        rb.isKinematic = true;
+        rb.velocity = Vector2.zero;
+        GetComponent<Collider2D>().enabled = false;
+        maxRb.isKinematic = false;
+        maxRb.GetComponent<Collider2D>().enabled = true;
+        //maxRb.AddForce(new Vector2(1, 1).normalized * launchForce, ForceMode2D.Impulse);
+        maxRb.AddTorque(-launchForce);
+        SetSprites(false);
+
+        gameOverPanel.SetActive(true);
+        if (score > PlayerPrefs.GetInt("Max High Score"))
+        {
+            newHighScoreText.SetActive(true);
+            PlayerPrefs.SetInt("Max High Score", (int) score);
+        }
     }
 }
