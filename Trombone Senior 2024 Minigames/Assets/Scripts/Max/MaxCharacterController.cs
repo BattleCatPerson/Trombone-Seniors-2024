@@ -138,6 +138,22 @@ public class MaxCharacterController : MonoBehaviour
         }
         else vCam.m_Lens.OrthographicSize = baseCameraSize;
         vCam.m_Lens.OrthographicSize = Mathf.Clamp(vCam.m_Lens.OrthographicSize, baseCameraSize, maxCameraSize);
+
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, -transform.up);
+        if (hit.collider && hit.collider.gameObject.CompareTag("Ramp"))
+        {
+            if (!touchingRamp && !canFlip)
+            {
+                touchingRamp = true;
+                rb.velocity = direction * rampImpulse;
+                Debug.Log($"Impulse {rampImpulse}");
+            }
+        }
+        else if (touchingRamp)
+        {
+            canFlip = true;
+            touchingRamp = false;
+        }
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
@@ -152,7 +168,6 @@ public class MaxCharacterController : MonoBehaviour
             float initialRotation = transform.eulerAngles.z;
             float newRotation = Mathf.Abs(floorRotation - initialRotation) > Mathf.Abs(floorRotation - (initialRotation + 360)) ? initialRotation + 360 : initialRotation;
             float deviation = Mathf.Abs(floorRotation - newRotation);
-            Debug.Log(deviation);
             if (deviation > angleDeviation && !collision.gameObject.CompareTag("Ramp"))
             {
                 StopGame();
@@ -160,7 +175,6 @@ public class MaxCharacterController : MonoBehaviour
             }
 
             rotationSpeed = 0;
-            rampImpulse += rampImpulseIncrease;
             if (flips > 0)
             {
                 scoreTextGroup.alpha = 1;
@@ -175,6 +189,7 @@ public class MaxCharacterController : MonoBehaviour
                 {
                     bonusScoreText.text = "";
                 }
+                rampImpulse += rampImpulseIncrease;
             }
             flips = 0;
             accumulatedAngle = 0;
@@ -185,11 +200,7 @@ public class MaxCharacterController : MonoBehaviour
         direction = v;
         SetSprites(false);
 
-        if (collision.gameObject.CompareTag("Ramp") && !touchingRamp)
-        {
-            Debug.Log("boost");
-            rb.velocity = direction * rampImpulse;
-        }
+        
     }
     private void OnCollisionStay2D(Collision2D collision)
     {
@@ -202,17 +213,14 @@ public class MaxCharacterController : MonoBehaviour
     {
         colliders.Remove(collision.gameObject);
 
-        if (collision.gameObject.CompareTag("Ramp"))
-        {
-            RaycastHit2D hit = Physics2D.Raycast(transform.position, -transform.up);
-            Debug.Log(hit.collider);
-            if (!hit.collider.gameObject.CompareTag("Ramp"))
-            {
-                Debug.Log("no longer touching ramp");
-                canFlip = true;
-                touchingRamp = false;
-            }
-        }
+        //if (collision.gameObject.CompareTag("Ramp"))
+        //{
+        //    RaycastHit2D hit = Physics2D.Raycast(transform.position, -transform.up);
+        //    if (hit.collider && !hit.collider.gameObject.CompareTag("Ramp"))
+        //    {
+        //        canFlip = true;
+        //    }
+        //}
     }
 
     public void SetSprites(bool b)
