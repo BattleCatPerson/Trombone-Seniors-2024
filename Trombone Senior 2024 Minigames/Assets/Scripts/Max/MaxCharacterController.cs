@@ -73,6 +73,12 @@ public class MaxCharacterController : MonoBehaviour
     [SerializeField] TextMeshProUGUI bonusScoreText;
     [SerializeField] CanvasGroup scoreTextGroup;
     [SerializeField] float fadeRate;
+    [Header("Sound")]
+    [SerializeField] AudioSource audioSource;
+    [SerializeField] AudioClip clip;
+    [SerializeField] float pitch;
+    [SerializeField] float pitchIncrease;
+    [SerializeField] float pitchFloor;
     void Start()
     {
         layer = 1 << layer;
@@ -86,6 +92,8 @@ public class MaxCharacterController : MonoBehaviour
         newHighScoreText.SetActive(false);
         if (!PlayerPrefs.HasKey("Max High Score")) PlayerPrefs.SetInt("Max High Score", 0);
         canFlip = false;
+        pitch = audioSource.pitch;
+        pitchFloor = pitch;
     }
 
     void Update()
@@ -124,6 +132,9 @@ public class MaxCharacterController : MonoBehaviour
             if (accumulatedAngle >= 360)
             {
                 flips++;
+                Debug.Log("PLAY SOUND");
+                audioSource.PlayOneShot(clip);
+                audioSource.pitch += pitchIncrease;
                 accumulatedAngle = 0;
                 SetSprites(true);
             }
@@ -158,6 +169,7 @@ public class MaxCharacterController : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D collision)
     {
         canFlip = false;
+
         if (!colliders.Contains(collision.gameObject))
         {
             colliders.Add(collision.gameObject);
@@ -200,7 +212,7 @@ public class MaxCharacterController : MonoBehaviour
         direction = v;
         SetSprites(false);
 
-        
+        audioSource.pitch = pitchFloor;
     }
     private void OnCollisionStay2D(Collision2D collision)
     {
