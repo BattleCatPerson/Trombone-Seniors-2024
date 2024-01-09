@@ -43,6 +43,7 @@ public class MaxCharacterController : MonoBehaviour
     [SerializeField] CinemachineVirtualCamera vCam;
     [SerializeField] float verticalDistanceToFloor;
     [SerializeField] int layer;
+    [SerializeField] int layerInt;
     [SerializeField] float baseCameraSize;
     [SerializeField] float maxCameraSize;
     [Header("Score")]
@@ -76,11 +77,13 @@ public class MaxCharacterController : MonoBehaviour
     [Header("Sound")]
     [SerializeField] AudioSource audioSource;
     [SerializeField] AudioClip clip;
+    [SerializeField] AudioClip confirmClip;
     [SerializeField] float pitch;
     [SerializeField] float pitchIncrease;
     [SerializeField] float pitchFloor;
     void Start()
     {
+        layerInt = layer;
         layer = 1 << layer;
         maxRb.isKinematic = true;
         SetSprites(false);
@@ -160,7 +163,7 @@ public class MaxCharacterController : MonoBehaviour
                 Debug.Log($"Impulse {rampImpulse}");
             }
         }
-        else if (touchingRamp)
+        else if (hit.collider && touchingRamp)
         {
             canFlip = true;
             touchingRamp = false;
@@ -168,8 +171,7 @@ public class MaxCharacterController : MonoBehaviour
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        canFlip = false;
-
+        if (collision.gameObject.layer == layerInt) canFlip = false;
         if (!colliders.Contains(collision.gameObject))
         {
             colliders.Add(collision.gameObject);
@@ -202,6 +204,7 @@ public class MaxCharacterController : MonoBehaviour
                     bonusScoreText.text = "";
                 }
                 rampImpulse += rampImpulseIncrease;
+                audioSource.PlayOneShot(confirmClip);
             }
             flips = 0;
             accumulatedAngle = 0;

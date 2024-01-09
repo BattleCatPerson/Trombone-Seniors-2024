@@ -1605,7 +1605,7 @@ MonoBehaviour:
   m_Follow: {fileID: 915824889}
   m_Lens:
     FieldOfView: 40
-    OrthographicSize: 11.84706
+    OrthographicSize: 8.127373
     NearClipPlane: 0.1
     FarClipPlane: 5000
     Dutch: 0
@@ -10130,7 +10130,7 @@ Camera:
   far clip plane: 5000
   field of view: 40
   orthographic: 1
-  orthographic size: 11.84706
+  orthographic size: 8.127373
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
@@ -15562,7 +15562,7 @@ MonoBehaviour:
   playerTracker: {fileID: 1995808605}
   player: {fileID: 915824889}
   controller: {fileID: 2137725487}
-  distance: 25
+  distance: 30
   holdPoint: {fileID: 1711838626}
   active: []
   standby: []
@@ -15885,12 +15885,12 @@ MonoBehaviour:
   speed: 3000
   downwardForceRate: 100
   colliding: 0
-  initialForce: 10
+  initialForce: 15
   canFlip: 0
   touchingRamp: 0
   collidersTouching: 0
   colliders: []
-  rampImpulse: 15
+  rampImpulse: 30
   rampImpulseIncrease: 5
   slider: {fileID: 1026298543}
   acceleration: 360
@@ -15900,6 +15900,7 @@ MonoBehaviour:
   vCam: {fileID: 410702991}
   verticalDistanceToFloor: 0
   layer: 8
+  layerInt: 0
   baseCameraSize: 5
   maxCameraSize: 20
   flips: 0
@@ -15957,8 +15958,9 @@ MonoBehaviour:
   fadeRate: 1
   audioSource: {fileID: 402441933}
   clip: {fileID: 8300000, guid: 7ac84605c98d7cf40856ec6382392cf2, type: 3}
+  confirmClip: {fileID: 8300000, guid: c3807d9f6b86cb04685c7ac3b88ff55e, type: 3}
   pitch: 0
-  pitchIncrease: 1
+  pitchIncrease: 0.1
   pitchFloor: 0
 --- !u!61 &2137725488
 BoxCollider2D:
