@@ -81,6 +81,8 @@ public class MaxCharacterController : MonoBehaviour
     [SerializeField] float pitch;
     [SerializeField] float pitchIncrease;
     [SerializeField] float pitchFloor;
+    [SerializeField] AudioSource rampSource;
+    [SerializeField] AudioClip rampClip;
     void Start()
     {
         layerInt = layer;
@@ -160,6 +162,7 @@ public class MaxCharacterController : MonoBehaviour
             {
                 touchingRamp = true;
                 rb.velocity = direction * rampImpulse;
+                rampSource.PlayOneShot(rampClip);
                 Debug.Log($"Impulse {rampImpulse}");
             }
         }
