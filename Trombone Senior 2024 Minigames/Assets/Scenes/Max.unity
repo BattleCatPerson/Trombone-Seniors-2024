@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028346, g: 0.22571373, b: 0.30692244, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1733,7 +1733,7 @@ MonoBehaviour:
   m_Follow: {fileID: 915824889}
   m_Lens:
     FieldOfView: 40
-    OrthographicSize: 8.127373
+    OrthographicSize: 20
     NearClipPlane: 0.1
     FarClipPlane: 5000
     Dutch: 0
@@ -10258,7 +10258,7 @@ Camera:
   far clip plane: 5000
   field of view: 40
   orthographic: 1
-  orthographic size: 8.127373
+  orthographic size: 20
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
@@ -16019,7 +16019,7 @@ MonoBehaviour:
   touchingRamp: 0
   collidersTouching: 0
   colliders: []
-  rampImpulse: 30
+  rampImpulse: 15
   rampImpulseIncrease: 5
   slider: {fileID: 1026298543}
   acceleration: 360
@@ -16093,6 +16093,7 @@ MonoBehaviour:
   pitchFloor: 0
   rampSource: {fileID: 220080943}
   rampClip: {fileID: 8300000, guid: 38656e633a592f540aa3d4d8409cf89e, type: 3}
+  deathClip: {fileID: 8300000, guid: 513b1efde61ca5d47983b035a25ac4bd, type: 3}
 --- !u!61 &2137725488
 BoxCollider2D:
   m_ObjectHideFlags: 0

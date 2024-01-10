@@ -83,6 +83,7 @@ public class MaxCharacterController : MonoBehaviour
     [SerializeField] float pitchFloor;
     [SerializeField] AudioSource rampSource;
     [SerializeField] AudioClip rampClip;
+    [SerializeField] AudioClip deathClip;
     void Start()
     {
         layerInt = layer;
@@ -101,7 +102,7 @@ public class MaxCharacterController : MonoBehaviour
         pitchFloor = pitch;
     }
 
-    void Update()
+    void FixedUpdate()
     {
         if (gameOver) return;
         scoreText.text = $"Score: {score}";
@@ -116,23 +117,23 @@ public class MaxCharacterController : MonoBehaviour
         }
         if (scoreTextGroup.alpha > 0)
         {
-            scoreTextGroup.alpha -= fadeRate * Time.deltaTime;
+            scoreTextGroup.alpha -= fadeRate * Time.fixedDeltaTime;
         }
         var activeTouches = Touch.activeTouches;
         if (direction.magnitude > 0)
         {
             //rb.velocity = (Vector2)direction * speed;
-            //rb.AddForce(direction * speed * Time.deltaTime);
+            //rb.AddForce(direction * speed * TimefixedDeltaTime);
             transform.right = direction;
         }
 
         if (canFlip)
         {
-            if (slider.value > 0) rotationSpeed += acceleration * slider.value * Time.deltaTime;
-            else rotationSpeed += deceleration * slider.value * Time.deltaTime;
+            if (slider.value > 0) rotationSpeed += acceleration * slider.value * Time.fixedDeltaTime;
+            else rotationSpeed += deceleration * slider.value * Time.fixedDeltaTime;
             rotationSpeed = Mathf.Clamp(rotationSpeed, 0, maxRotationSpeed);
-            transform.eulerAngles += Vector3.forward * rotationSpeed * Time.deltaTime;
-            accumulatedAngle += rotationSpeed * Time.deltaTime;
+            transform.eulerAngles += Vector3.forward * rotationSpeed * Time.fixedDeltaTime;
+            accumulatedAngle += rotationSpeed * Time.fixedDeltaTime;
 
             if (accumulatedAngle >= 360)
             {
@@ -166,7 +167,7 @@ public class MaxCharacterController : MonoBehaviour
                 Debug.Log($"Impulse {rampImpulse}");
             }
         }
-        else if (hit.collider && touchingRamp)
+        else if ((!hit.collider || hit.collider.gameObject.layer == layerInt) && touchingRamp)
         {
             canFlip = true;
             touchingRamp = false;
@@ -174,7 +175,10 @@ public class MaxCharacterController : MonoBehaviour
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.layer == layerInt) canFlip = false;
+        if (collision.gameObject.layer == layerInt && canFlip)
+        {
+            canFlip = false;
+        }
         if (!colliders.Contains(collision.gameObject))
         {
             colliders.Add(collision.gameObject);
@@ -305,7 +309,7 @@ public class MaxCharacterController : MonoBehaviour
         maxRb.GetComponent<Collider2D>().enabled = true;
         maxRb.AddTorque(-launchForce);
         SetSprites(false);
-
+        rampSource.PlayOneShot(deathClip);
         gameOverPanel.SetActive(true);
         if (score > PlayerPrefs.GetInt("Max High Score"))
         {
