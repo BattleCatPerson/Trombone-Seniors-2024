@@ -1,0 +1,7 @@
+ideas
+clouds pick up in the air: tap them to boost next ramp
+collectibles in the air: trade after game for cosmetics
+dynamic particles while flipping based on flip number
+dynamic particle after landing based on flip number
+constant rotational drag that decreases rotational speed, slows down rotation if you are not touching the slider
+change status texts in the air to pop more (1)
