@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using Touch = UnityEngine.InputSystem.EnhancedTouch.Touch;
 using TouchPhase = UnityEngine.InputSystem.TouchPhase;
 using Random = UnityEngine.Random;
@@ -33,6 +34,7 @@ public class MaxCharacterController : MonoBehaviour
     [SerializeField] List<GameObject> colliders;
     [SerializeField] float rampImpulse;
     [SerializeField] float rampImpulseIncrease;
+    [SerializeField, Tooltip("On Ground Hit: reset background and get rid of sun")] UnityEvent hitFloorEvent;
     [Header("Rotation")]
     [SerializeField] Slider slider;
     [SerializeField] float acceleration;
@@ -74,6 +76,7 @@ public class MaxCharacterController : MonoBehaviour
     [SerializeField] TextMeshProUGUI bonusScoreText;
     [SerializeField] CanvasGroup scoreTextGroup;
     [SerializeField] float fadeRate;
+    [SerializeField] List<UnityEvent> comboEvents;
     [Header("Sound")]
     [SerializeField] AudioSource audioSource;
     [SerializeField] AudioClip clip;
@@ -178,6 +181,7 @@ public class MaxCharacterController : MonoBehaviour
         if (collision.gameObject.layer == layerInt && canFlip)
         {
             canFlip = false;
+            hitFloorEvent?.Invoke();
         }
         if (!colliders.Contains(collision.gameObject))
         {
@@ -286,6 +290,7 @@ public class MaxCharacterController : MonoBehaviour
                 if (flips >= flipIntervals[i])
                 {
                     comboTexts[i].SetActive(true);
+                    comboEvents[i]?.Invoke();
                     bonusActive = i;
                     return;
                 }
