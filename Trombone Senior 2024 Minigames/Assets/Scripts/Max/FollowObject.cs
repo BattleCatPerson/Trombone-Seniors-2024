@@ -28,7 +28,7 @@ public class FollowObject : MonoBehaviour
         //raycast ground, make y level yOffset from that raycast point! eASTY!
         transform.position = target.position + Vector3.right * offset.x + Vector3.up * 10f;
         point = (Physics2D.Raycast(transform.position, Vector2.down, Mathf.Infinity, layer).point);
-        transitionSpeed = rb.velocity.magnitude * 2;
+        transitionSpeed = rb.velocity.magnitude * 4;
         if (spriteFollowActive)
         {
             Vector2 newPoint = point + Vector2.up * offset.y;
