@@ -10,20 +10,41 @@ public class Altimeter : MonoBehaviour
     [SerializeField] Transform player;
     [SerializeField] TextMeshProUGUI text;
     [SerializeField] Vector2 minAndMaxAngles;
-    [SerializeField] Vector2 currentAngle;
+    [SerializeField] float currentAngle;
     [SerializeField] Transform pointer;
+
+    [SerializeField] int multiplier;
+
+    float min;
+    float max;
     private void Start()
     {
         floorLayer = 1 << floorLayer;
+        currentAngle = minAndMaxAngles[0];
+        multiplier = minAndMaxAngles[1] > minAndMaxAngles[0] ? 1 : -1;
+
+        if (minAndMaxAngles[0] > minAndMaxAngles[1])
+        {
+            min = minAndMaxAngles[1];
+            max = minAndMaxAngles[0];
+        }
+        else
+        {
+            max = minAndMaxAngles[1];
+            min = minAndMaxAngles[0];
+        }
     }
     void Update()
     {
         //just raycast only to the floor at all times to get the altitude
         Vector2 point = (Physics2D.Raycast(player.position, Vector2.down, Mathf.Infinity, floorLayer).point);
         height = Mathf.Floor(player.position.y - point.y);
-        text.text = height.ToString();
+        text.text = $"Altitude\n{height}";
 
         //set rotation of the pointer based off height / maxMeterHeight. If height > maxMeterHeight, just make the pointer stay at the max angle.
         // multiply the fraction by the different between the min and max angles and then add that value to the min value in order to get the right angle.
+
+        float delta = (height / maxMeterHeight) * Mathf.Abs(minAndMaxAngles[1] - minAndMaxAngles[0]);
+        pointer.transform.eulerAngles = Vector3.forward * Mathf.Clamp((minAndMaxAngles[0] + multiplier * delta), min, max);
     }
 }
