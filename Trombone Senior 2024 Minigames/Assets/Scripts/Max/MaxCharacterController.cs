@@ -78,6 +78,7 @@ public class MaxCharacterController : MonoBehaviour
     [SerializeField] CanvasGroup scoreTextGroup;
     [SerializeField] float fadeRate;
     [SerializeField] List<UnityEvent> comboEvents;
+    [SerializeField] CollectibleManager collectibleManager;
     [Header("Sound")]
     [SerializeField] AudioSource audioSource;
     [SerializeField] AudioClip clip;
@@ -176,6 +177,8 @@ public class MaxCharacterController : MonoBehaviour
         {
             canFlip = true;
             touchingRamp = false;
+
+            collectibleManager.SpawnCollectibles(rb.velocity, transform.position, 9.8f * rb.gravityScale);
         }
     }
     private void OnCollisionEnter2D(Collision2D collision)
@@ -323,5 +326,7 @@ public class MaxCharacterController : MonoBehaviour
             newHighScoreText.SetActive(true);
             PlayerPrefs.SetInt("Max High Score", (int) score);
         }
+
+        collectibleManager.UpdateCollectibles();
     }
 }
