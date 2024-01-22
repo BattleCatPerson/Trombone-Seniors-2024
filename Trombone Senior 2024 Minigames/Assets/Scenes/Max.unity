@@ -414,9 +414,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   layer: 9
+  floorLayer: 8
   collectiblePrefab: {fileID: 7102876086738374529, guid: 856014eb3f640984ba78ace4d61fdf3f,
     type: 3}
   collectibles: 0
+  minSpawn: 1
+  maxSpawn: 10
+  maxDistanceFromPoint: 10
 --- !u!4 &71768895
 Transform:
   m_ObjectHideFlags: 0
@@ -17252,7 +17256,7 @@ MonoBehaviour:
   deceleration: 720
   rotationSpeed: 0
   maxRotationSpeed: 360
-  drag: 45
+  drag: 180
   vCam: {fileID: 410702991}
   verticalDistanceToFloor: 0
   layer: 8
