@@ -37,9 +37,16 @@ public class Altimeter : MonoBehaviour
     void Update()
     {
         //just raycast only to the floor at all times to get the altitude
-        Vector2 point = (Physics2D.Raycast(player.position, Vector2.down, Mathf.Infinity, floorLayer).point);
-        int temp = Mathf.FloorToInt(player.position.y - point.y);
-        if (temp > 0) height = temp;
+        RaycastHit2D hit = Physics2D.Raycast(player.position, Vector2.down, Mathf.Infinity, floorLayer);
+        Vector2 point = hit.point;
+        int temp = (int)Mathf.Floor(player.position.y - point.y);
+        if (point != Vector2.zero && temp >= 0) height = temp;
+        else
+        {
+            Debug.Log("TEMP:" + temp + "POINT:" + point + "COLLIDER:" + hit.collider);
+            player.GetComponent<Rigidbody2D>().isKinematic = true;
+            player.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+        }
         text.text = $"Altitude\n{height}";
 
         //set rotation of the pointer based off height / maxMeterHeight. If height > maxMeterHeight, just make the pointer stay at the max angle.

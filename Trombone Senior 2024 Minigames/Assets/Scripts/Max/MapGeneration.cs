@@ -90,7 +90,7 @@ public class MapGeneration : MonoBehaviour
         }
 
 
-        if (playerTracker.localPosition.x >= currentFloor.localPosition.x)
+        if (playerTracker.localPosition.x >= currentFloor.localPosition.x - 10f)
         {
             MoveFloors();
         }
