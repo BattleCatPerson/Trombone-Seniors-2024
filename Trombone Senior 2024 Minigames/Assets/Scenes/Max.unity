@@ -17234,7 +17234,7 @@ MonoBehaviour:
   touchingRamp: 0
   collidersTouching: 0
   colliders: []
-  rampImpulse: 500
+  rampImpulse: 15
   rampImpulseIncrease: 5
   hitFloorEvent:
     m_PersistentCalls:

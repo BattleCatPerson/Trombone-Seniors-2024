@@ -47,10 +47,6 @@ public class CollectibleManager : MonoBehaviour
         Vector2 currentPos = pos;
         while (true)
         {
-            prevVelY = velY;
-            currentPos += new Vector2(v0.x * step, velY * step);
-            velY -= g * step;
-            t += step;
             if (velY < 0)
             {
                 Vector2 point = (Physics2D.Raycast(currentPos, Vector2.down, Mathf.Infinity, floorLayer).point);
@@ -58,6 +54,12 @@ public class CollectibleManager : MonoBehaviour
                 if (height > maxDistanceFromPoint) Spawn(currentPos);
                 break;
             }
+
+            prevVelY = velY;
+            currentPos += new Vector2(v0.x * step, velY * step);
+            velY -= g * step;
+            t += step;
+            
         }
         Debug.Log(t);
     }

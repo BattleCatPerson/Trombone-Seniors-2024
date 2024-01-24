@@ -40,12 +40,12 @@ public class Altimeter : MonoBehaviour
         RaycastHit2D hit = Physics2D.Raycast(player.position, Vector2.down, Mathf.Infinity, floorLayer);
         Vector2 point = hit.point;
         int temp = (int)Mathf.Floor(player.position.y - point.y);
-        if (point != Vector2.zero && temp >= 0) height = temp;
+        if (hit.collider) height = temp;
         else
         {
             Debug.Log("TEMP:" + temp + "POINT:" + point + "COLLIDER:" + hit.collider);
-            player.GetComponent<Rigidbody2D>().isKinematic = true;
-            player.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+            //player.GetComponent<Rigidbody2D>().isKinematic = true;
+            //player.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
         }
         text.text = $"Altitude\n{height}";
 
