@@ -178,7 +178,7 @@ public class MaxCharacterController : MonoBehaviour
             canFlip = true;
             touchingRamp = false;
 
-            collectibleManager.SpawnCollectibles(rb.velocity, transform.position, 9.81f * rb.gravityScale);
+            collectibleManager.SpawnCollectibles(rb.velocity, transform.position, -Physics2D.gravity.y * rb.gravityScale);
         }
     }
     private void OnCollisionEnter2D(Collision2D collision)

@@ -47,9 +47,7 @@ public class CollectibleManager : MonoBehaviour
 
         float prevVelY = -Mathf.Infinity;
         float velY = v0.y;
-        float t = 0;
         float step = Time.fixedDeltaTime;
-        Vector2 currentPos = pos;
         List<Vector2> points = new();
         
         while (true)
@@ -57,15 +55,14 @@ public class CollectibleManager : MonoBehaviour
             prevVelY = velY;
             if (velY < 0)
             {
-                Vector2 point = (Physics2D.Raycast(currentPos, Vector2.down, Mathf.Infinity, floorLayer).point);
-                float height = currentPos.y - point.y;
-                if (height > maxDistanceFromPoint) Spawn(currentPos);
+                Vector2 point = (Physics2D.Raycast(pos, Vector2.down, Mathf.Infinity, floorLayer).point);
+                float height = pos.y - point.y;
+                if (height > maxDistanceFromPoint) Spawn(pos);
                 break;
             }
-            currentPos += new Vector2(v0.x * step, velY * step);
-            points.Add(currentPos);
             velY -= g * step;
-            t += step;
+            pos += new Vector2(v0.x * step, velY * step);
+            points.Add(pos);
         }
         lineRenderer.positionCount = points.Count;
         for (int i = 0; i < lineRenderer.positionCount; i++)
