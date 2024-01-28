@@ -162,7 +162,7 @@ public class MaxCharacterController : MonoBehaviour
         else vCam.m_Lens.OrthographicSize = baseCameraSize;
         vCam.m_Lens.OrthographicSize = Mathf.Clamp(vCam.m_Lens.OrthographicSize, baseCameraSize, maxCameraSize);
 
-        RaycastHit2D hit = Physics2D.Raycast(transform.position, -transform.up);
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, -transform.up, Mathf.Infinity, layer);
         if (hit.collider && hit.collider.gameObject.CompareTag("Ramp"))
         {
             if (!touchingRamp && !canFlip)

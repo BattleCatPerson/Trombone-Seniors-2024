@@ -74,26 +74,24 @@ public class CollectibleManager : MonoBehaviour
     public void Spawn(Vector2 pos)
     {
         int count = Random.Range(minSpawn, maxSpawn);
-        Instantiate(collectiblePrefab, pos  , transform.rotation);
+        Dictionary<float, float> dict = new();
 
-        //Dictionary<float, float> dict = new();
+        for (int i = 0; i < count; i++)
+        {
+            float distance = 0;
+            float r = 0;
+            while (true)
+            {
+                distance = Random.Range(0, maxDistanceFromPoint);
+                r = (10 * Random.Range(0, 36)) * Mathf.PI / 180f;
 
-        //for (int i = 0; i < count; i++)
-        //{
-        //    float distance = 0;
-        //    float r = 0;
-        //    while (true)
-        //    {
-        //        distance = Random.Range(0, maxDistanceFromPoint);
-        //        r = (10 * Random.Range(0, 36)) * Mathf.PI / 180f;
+                if (!CheckInDictionary(dict, distance, r)) break;
+            }
 
-        //        if (!CheckInDictionary(dict, distance, r)) break;
-        //    }
-
-        //    Vector2 dir = (new Vector2(Mathf.Cos(r), Mathf.Sin(r))).normalized;
-        //    Instantiate(collectiblePrefab, pos + dir * distance, transform.rotation);
-        //    dict.Add(distance, r);
-        //}
+            Vector2 dir = (new Vector2(Mathf.Cos(r), Mathf.Sin(r))).normalized;
+            Instantiate(collectiblePrefab, pos + dir * distance, transform.rotation);
+            dict.Add(distance, r);
+        }
     }
 
     public bool CheckInDictionary(Dictionary<float, float> d, float distance, float rotation)

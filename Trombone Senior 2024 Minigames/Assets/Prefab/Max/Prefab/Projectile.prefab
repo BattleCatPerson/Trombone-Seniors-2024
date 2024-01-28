@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 1779025180276880908}
   - component: {fileID: 1779025180276880909}
   - component: {fileID: 1579952667721699565}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Projectile
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -149,3 +149,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rb: {fileID: 1779025180276880908}
   spriteRenderer: {fileID: 1779025180276880907}
+  lifeTime: 2
