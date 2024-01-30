@@ -8,11 +8,20 @@ public class Projectile : MonoBehaviour
     //[SerializeField] SpriteRenderer spriteRenderer;
     //[SerializeField] float lifeTime;
     [SerializeField] float time;
-    [SerializeField] Transform child;
+    [SerializeField] float accumulated;
+    [SerializeField] int currentInt;
+    [SerializeField] Transform laser;
     [SerializeField] LayerMask mask;
+    [SerializeField] bool shot;
+    [SerializeField] SpriteRenderer countdownRenderer;
+    [SerializeField] List<Sprite> countdownSprites;
+    SpriteRenderer renderer;
     private void Start()
     {
         //Destroy(gameObject, lifeTime);
+        renderer = laser.GetComponent<SpriteRenderer>();
+        renderer.enabled = false;
+        countdownRenderer.sprite = countdownSprites[0];
     }
     //public void Assign(Vector2 velocity, Sprite sprite)
     //{
@@ -21,10 +30,18 @@ public class Projectile : MonoBehaviour
     //}
     private void Update()
     {
-        if (time >= 0) time -= Time.deltaTime;
-        else
+        if (accumulated < time)
         {
-            RaycastHit2D p = Physics2D.Raycast(child.position, -child.right, Mathf.Infinity, mask);
+            accumulated += Time.deltaTime;
+            if (accumulated > currentInt + 1 && currentInt != countdownSprites.Count - 1)
+            {
+                currentInt++;
+                countdownRenderer.sprite = countdownSprites[currentInt];
+            }
+        }
+        else if (!shot)
+        {
+            RaycastHit2D p = Physics2D.Raycast(laser.position, -laser.right, Mathf.Infinity, mask);
             if (!p.collider) return;
 
             if (LayerMask.LayerToName(p.collider.gameObject.layer) == "Player")
@@ -35,9 +52,16 @@ public class Projectile : MonoBehaviour
             {
                 Debug.Log("BLOCK");
             }
+            countdownRenderer.enabled = false;
+            renderer.enabled = true;
 
-            Destroy(gameObject);
+            shot = true;
+            Vector2 point = p.point;
+            float d = Vector2.Distance(point, laser.position);
+            laser.localPosition = (Vector2)laser.localPosition - Vector2.right * d / 2;
+            renderer.size = new(renderer.size.x * d, renderer.size.y);
+            Destroy(gameObject, 2f);
         }
-            
+
     }
 }
