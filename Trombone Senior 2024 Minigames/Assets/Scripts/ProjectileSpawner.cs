@@ -68,6 +68,7 @@ public class ProjectileSpawner : MonoBehaviour
 
         Transform t = Instantiate(projectilePrefab, transform.position, transform.rotation);
         t.parent = spawnParent;
+        t.localPosition = Vector3.zero;
         t.eulerAngles = Vector3.forward * angle;
     }
 

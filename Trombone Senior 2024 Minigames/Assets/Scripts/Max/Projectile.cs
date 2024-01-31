@@ -61,6 +61,7 @@ public class Projectile : MonoBehaviour
             laser.localPosition = (Vector2)laser.localPosition - Vector2.right * d / 2;
             renderer.size = new(renderer.size.x * d, renderer.size.y);
             Destroy(gameObject, 2f);
+
         }
 
     }
