@@ -11,10 +11,13 @@ public class Projectile : MonoBehaviour
     [SerializeField] float accumulated;
     [SerializeField] int currentInt;
     [SerializeField] Transform laser;
+    [SerializeField] Transform cannon;
     [SerializeField] LayerMask mask;
     [SerializeField] bool shot;
     [SerializeField] SpriteRenderer countdownRenderer;
     [SerializeField] List<Sprite> countdownSprites;
+    [SerializeField] float offset;
+    [SerializeField] Transform laserPoint;
     SpriteRenderer renderer;
     private void Start()
     {
@@ -22,6 +25,7 @@ public class Projectile : MonoBehaviour
         renderer = laser.GetComponent<SpriteRenderer>();
         renderer.enabled = false;
         countdownRenderer.sprite = countdownSprites[0];
+        laserPoint.gameObject.SetActive(false);
     }
     //public void Assign(Vector2 velocity, Sprite sprite)
     //{
@@ -41,7 +45,7 @@ public class Projectile : MonoBehaviour
         }
         else if (!shot)
         {
-            RaycastHit2D p = Physics2D.Raycast(laser.position, -laser.right, Mathf.Infinity, mask);
+            RaycastHit2D p = Physics2D.Raycast(transform.position + transform.right * offset, -cannon.right, Mathf.Infinity, mask);
             if (!p.collider) return;
 
             if (LayerMask.LayerToName(p.collider.gameObject.layer) == "Player")
@@ -54,13 +58,17 @@ public class Projectile : MonoBehaviour
             }
             countdownRenderer.enabled = false;
             renderer.enabled = true;
-
             shot = true;
             Vector2 point = p.point;
-            float d = Vector2.Distance(point, laser.position);
-            laser.localPosition = (Vector2)laser.localPosition - Vector2.right * d / 2;
-            renderer.size = new(renderer.size.x * d, renderer.size.y);
+            laserPoint.gameObject.SetActive(true);
+            laserPoint.position = point;
+            Debug.Log(point);
+            float d = Vector2.Distance(point, transform.position + transform.right * offset);
+            laser.localPosition = Vector2.right * offset - Vector2.right * d / 2;
+            laser.localScale = new(d, laser.localScale.y);
             Destroy(gameObject, 2f);
+
+            Debug.Log(d);
 
         }
 
