@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Drawing;
 using UnityEngine;
 
 public class Projectile : MonoBehaviour
@@ -18,14 +19,21 @@ public class Projectile : MonoBehaviour
     [SerializeField] List<Sprite> countdownSprites;
     [SerializeField] float offset;
     [SerializeField] Transform laserPoint;
+    [SerializeField] float duration;
+    public Vector2 initialPosition;
+    [SerializeField] bool moving;
+    [SerializeField] float moveSpeed;
+    public Rigidbody2D playerRb;
     SpriteRenderer renderer;
     private void Start()
     {
         //Destroy(gameObject, lifeTime);
+        moving = true;
         renderer = laser.GetComponent<SpriteRenderer>();
         renderer.enabled = false;
         countdownRenderer.sprite = countdownSprites[0];
         laserPoint.gameObject.SetActive(false);
+        moveSpeed = playerRb.velocity.magnitude;
     }
     //public void Assign(Vector2 velocity, Sprite sprite)
     //{
@@ -34,6 +42,44 @@ public class Projectile : MonoBehaviour
     //}
     private void Update()
     {
+        if (moving)
+        {
+            if (!shot)
+            {
+                moveSpeed += (moveSpeed * 1.1f * Time.deltaTime);
+                Vector2 newPos = playerRb.transform.position;
+                if (Vector2.Distance(transform.position, newPos) > 0.5) transform.position = Vector2.MoveTowards(transform.position, newPos, moveSpeed * Time.deltaTime);
+                else
+                {
+                    transform.position = newPos;
+                    moving = false;
+                }
+            }
+            else
+            {
+                Vector2 newPos = (Vector2) playerRb.transform.position + initialPosition;
+                if (Vector2.Distance(transform.position, newPos) > 0.5) transform.position = Vector2.MoveTowards(transform.position, newPos, moveSpeed * Time.deltaTime);
+                else
+                {
+                    Destroy(gameObject);
+                }
+            }
+            return;
+        }
+
+        if (shot && duration >= 0)
+        {
+            duration -= Time.deltaTime;
+            if (duration <= 0)
+            {
+                moving = true;
+                renderer.enabled = false;
+                laserPoint.gameObject.SetActive(false);
+            }
+        }
+
+
+
         if (accumulated < time)
         {
             accumulated += Time.deltaTime;
@@ -66,7 +112,7 @@ public class Projectile : MonoBehaviour
             float d = Vector2.Distance(point, transform.position + transform.right * offset);
             laser.localPosition = Vector2.right * offset - Vector2.right * d / 2;
             laser.localScale = new(d, laser.localScale.y);
-            Destroy(gameObject, 2f);
+            //Destroy(gameObject, 2f);
 
             Debug.Log(d);
 

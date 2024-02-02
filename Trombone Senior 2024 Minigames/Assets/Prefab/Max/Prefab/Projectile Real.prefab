@@ -96,7 +96,7 @@ GameObject:
   - component: {fileID: 6173751565306038866}
   - component: {fileID: 1244439816154569266}
   m_Layer: 0
-  m_Name: Cannon
+  m_Name: Countdown
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -110,7 +110,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1938731750982218514}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 7.25, y: 0, z: 0}
+  m_LocalPosition: {x: 5.25, y: 0, z: 0}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -329,7 +329,7 @@ MonoBehaviour:
   accumulated: 0
   currentInt: 0
   laser: {fileID: 4127972158256934840}
-  cannon: {fileID: 6173751565306038866}
+  cannon: {fileID: 4732981842730715466}
   mask:
     serializedVersion: 2
     m_Bits: 6144
@@ -339,8 +339,13 @@ MonoBehaviour:
   - {fileID: -451327759, guid: c64d264df7548cc469ac044b3954624b, type: 3}
   - {fileID: -810473568, guid: c64d264df7548cc469ac044b3954624b, type: 3}
   - {fileID: 184874539, guid: c64d264df7548cc469ac044b3954624b, type: 3}
-  offset: 6.5
+  offset: 5.5
   laserPoint: {fileID: 1939363651931824942}
+  duration: 1
+  initialPosition: {x: 0, y: 0}
+  moving: 0
+  moveSpeed: 0
+  playerRb: {fileID: 0}
 --- !u!1 &4732981842730715829
 GameObject:
   m_ObjectHideFlags: 0
@@ -353,7 +358,7 @@ GameObject:
   - component: {fileID: 4732981842730715467}
   - component: {fileID: 4109915571981799060}
   m_Layer: 0
-  m_Name: Square
+  m_Name: Cannon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -367,7 +372,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4732981842730715829}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 7, y: 0, z: 0}
+  m_LocalPosition: {x: 5, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

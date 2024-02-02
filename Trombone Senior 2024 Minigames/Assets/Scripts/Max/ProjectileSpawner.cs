@@ -13,6 +13,7 @@ public class ProjectileSpawner : MonoBehaviour
     [SerializeField] List<Sprite> sprites;
     [SerializeField] Transform projectilePrefab;
     [SerializeField] Transform spawnParent;
+    [SerializeField] Rigidbody2D playerRb;
     //get bounds
     //get random direction
     void Update()
@@ -23,7 +24,7 @@ public class ProjectileSpawner : MonoBehaviour
             float height = transform.position.y - point.y;
             if (height > minHeight)
             {
-                SpawnAttack();
+                SpawnProjectile();
                 timer = frequency;
             }
         }
@@ -52,19 +53,17 @@ public class ProjectileSpawner : MonoBehaviour
             int mult = plane == 2 ? 1 : -1;
             point = new(randX, mult * sideLength);
         }
-
+        Vector2 offset = point;
         point += (Vector2)transform.position;
 
-        Transform p = Instantiate(projectilePrefab, point, transform.rotation);
-
-    }
-    public void SpawnAttack()
-    {
-        float angle = Random.Range(0, 360f);
-
-        Transform t = Instantiate(projectilePrefab, transform.position, transform.rotation);
+        Transform t = Instantiate(projectilePrefab, point, transform.rotation);
         t.parent = spawnParent;
-        t.localPosition = Vector3.zero;
+
+        Projectile p = t.GetComponent<Projectile>();
+        p.playerRb = playerRb;
+        p.initialPosition = offset;
+
+        float angle = Random.Range(0, 360f);
         t.eulerAngles = Vector3.forward * angle;
     }
 
