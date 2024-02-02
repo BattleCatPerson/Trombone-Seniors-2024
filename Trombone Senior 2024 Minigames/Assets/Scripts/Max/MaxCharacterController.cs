@@ -45,7 +45,7 @@ public class MaxCharacterController : MonoBehaviour
     [Header("Camera")]
     [SerializeField] CinemachineVirtualCamera vCam;
     [SerializeField] float verticalDistanceToFloor;
-    [SerializeField] int layer;
+    [SerializeField] LayerMask layer;
     [SerializeField] int layerInt;
     [SerializeField] float baseCameraSize;
     [SerializeField] float maxCameraSize;
@@ -91,8 +91,6 @@ public class MaxCharacterController : MonoBehaviour
     [SerializeField] AudioClip deathClip;
     void Start()
     {
-        layerInt = layer;
-        layer = 1 << layer;
         maxRb.isKinematic = true;
         SetSprites(false);
         Combos(false);
@@ -173,7 +171,7 @@ public class MaxCharacterController : MonoBehaviour
                 Debug.Log($"Impulse {rampImpulse}");
             }
         }
-        else if ((!hit.collider || hit.collider.gameObject.layer == layerInt) && touchingRamp)
+        else if ((!hit.collider || (layer == (layer | (1 << hit.collider.gameObject.layer)))) && touchingRamp)
         {
             canFlip = true;
             touchingRamp = false;

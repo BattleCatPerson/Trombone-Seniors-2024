@@ -13,5 +13,8 @@ public class Shield : MonoBehaviour
     void Update()
     {
         transform.eulerAngles = Vector3.forward * rotation;
+
+        if (Input.GetKey(KeyCode.Q)) rotation += 180 * Time.deltaTime;
+        if (Input.GetKey(KeyCode.E)) rotation -= 180 * Time.deltaTime;
     }
 }
