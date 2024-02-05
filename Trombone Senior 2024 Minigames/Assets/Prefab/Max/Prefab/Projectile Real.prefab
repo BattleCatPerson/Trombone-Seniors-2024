@@ -327,7 +327,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   time: 3
   accumulated: 0
-  currentInt: 0
   laser: {fileID: 4127972158256934840}
   cannon: {fileID: 4732981842730715466}
   mask:

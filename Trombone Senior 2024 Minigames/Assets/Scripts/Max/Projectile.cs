@@ -10,7 +10,6 @@ public class Projectile : MonoBehaviour
     //[SerializeField] float lifeTime;
     [SerializeField] float time;
     [SerializeField] float accumulated;
-    [SerializeField] int currentInt;
     [SerializeField] Transform laser;
     [SerializeField] Transform cannon;
     [SerializeField] LayerMask mask;
@@ -78,16 +77,15 @@ public class Projectile : MonoBehaviour
             }
         }
 
-
-
         if (accumulated < time)
         {
             accumulated += Time.deltaTime;
-            if (accumulated > currentInt + 1 && currentInt != countdownSprites.Count - 1)
-            {
-                currentInt++;
-                countdownRenderer.sprite = countdownSprites[currentInt];
-            }
+            int ind = 0;
+            if (accumulated >= 2 * time / 3) ind = 2;
+            else if (accumulated >= time / 3) ind = 1;
+
+            countdownRenderer.sprite = countdownSprites[ind];
+
         }
         else if (!shot)
         {

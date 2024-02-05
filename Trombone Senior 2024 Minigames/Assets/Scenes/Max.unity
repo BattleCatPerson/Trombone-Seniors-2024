@@ -967,11 +967,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f2008dc6c9d93b4a84b5129f87485e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  frequency: 5
+  frequency: 0.1
   timer: 0
   speed: 10
   sideLength: 25
-  minHeight: 50
+  minHeight: 5
   sprites:
   - {fileID: 21300000, guid: ec274b04108fcb24a9850787b4a9f99f, type: 3}
   projectilePrefab: {fileID: 4732981841494436536, guid: 14fde38d7ed56ca4180e37713329d0de,
@@ -2390,7 +2390,7 @@ MonoBehaviour:
   m_Follow: {fileID: 915824889}
   m_Lens:
     FieldOfView: 40
-    OrthographicSize: 5
+    OrthographicSize: 10
     NearClipPlane: 0.1
     FarClipPlane: 5000
     Dutch: 0
@@ -11582,7 +11582,7 @@ Camera:
   far clip plane: 5000
   field of view: 40
   orthographic: 1
-  orthographic size: 5
+  orthographic size: 10
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
