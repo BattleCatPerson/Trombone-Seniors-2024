@@ -8,7 +8,9 @@ public class Projectile : MonoBehaviour
     //[SerializeField] Rigidbody2D rb;
     //[SerializeField] SpriteRenderer spriteRenderer;
     //[SerializeField] float lifeTime;
-    [SerializeField] float time;
+    const float MULT = 0.9f;
+    public static float time = 3f;
+    public static float currentTime = time;
     [SerializeField] float accumulated;
     [SerializeField] Transform laser;
     [SerializeField] Transform cannon;
@@ -77,7 +79,7 @@ public class Projectile : MonoBehaviour
             }
         }
 
-        if (accumulated < time)
+        if (accumulated < currentTime)
         {
             accumulated += Time.deltaTime;
             int ind = 0;
@@ -116,5 +118,10 @@ public class Projectile : MonoBehaviour
 
         }
 
+    }
+
+    public static void UpdateTime(int thousands)
+    {
+        currentTime = time * Mathf.Pow(MULT, thousands);
     }
 }

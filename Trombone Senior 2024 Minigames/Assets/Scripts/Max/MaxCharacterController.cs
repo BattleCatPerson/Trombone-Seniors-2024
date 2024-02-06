@@ -223,6 +223,8 @@ public class MaxCharacterController : MonoBehaviour
             flips = 0;
             accumulatedAngle = 0;
             bonusActive = -1;
+
+            Projectile.UpdateTime((int)score / 1000);
         }
         Vector2 v = Vector2.Perpendicular(-collision.GetContact(0).normal);
         rb.velocity = v * rb.velocity.magnitude;
