@@ -18,6 +18,7 @@ public class ProjectileSpawner : MonoBehaviour
     //get random direction
     void Update()
     {
+        if (!MaxGameManager.started) return;
         if (timer <= 0)
         {
             Vector2 point = (Physics2D.Raycast(transform.position, Vector2.down, Mathf.Infinity, 1 << 8).point);

@@ -89,20 +89,25 @@ public class MaxCharacterController : MonoBehaviour
     [SerializeField] AudioSource rampSource;
     [SerializeField] AudioClip rampClip;
     [SerializeField] AudioClip deathClip;
-    void Start()
+    private void Start()
     {
+        rb.isKinematic = true;
         maxRb.isKinematic = true;
         SetSprites(false);
         Combos(false);
         bonusActive = -1;
         scoreTextGroup.alpha = 0;
-        rb.velocity = Vector2.right * initialForce;
         gameOverPanel.SetActive(false);
         newHighScoreText.SetActive(false);
         if (!PlayerPrefs.HasKey("Max High Score")) PlayerPrefs.SetInt("Max High Score", 0);
         canFlip = false;
         pitch = audioSource.pitch;
         pitchFloor = pitch;
+    }
+    public void StartGame()
+    {
+        rb.isKinematic = false;
+        rb.velocity = Vector2.right * initialForce;
     }
 
     void FixedUpdate()
