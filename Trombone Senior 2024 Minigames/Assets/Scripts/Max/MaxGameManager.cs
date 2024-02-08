@@ -7,14 +7,15 @@ using Cinemachine;
 public class MaxGameManager : MonoBehaviour
 {
     [SerializeField] MaxCharacterController controller;
-    [SerializeField] GameObject gamePanel;
+    [SerializeField] GameObject startPanel;
+    [SerializeField] List<GameObject> startObjects;
     [SerializeField] Animator bank;
     public static bool started;
     [SerializeField] CinemachineVirtualCamera cam;
     void Start()
     {
         started = false;
-        gamePanel.SetActive(false);
+        foreach (var v in startObjects) v.SetActive(false);
     }
 
     void Update()
@@ -29,7 +30,8 @@ public class MaxGameManager : MonoBehaviour
             bank.SetTrigger("Start");
             controller.StartGame();
             cam.Priority = 0;
-            gamePanel.SetActive(true);
+            startPanel.SetActive(false);
+            foreach (var v in startObjects) v.SetActive(true);
         }
     }
 }
