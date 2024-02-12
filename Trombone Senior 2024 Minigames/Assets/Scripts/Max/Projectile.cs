@@ -24,6 +24,9 @@ public class Projectile : MonoBehaviour
     public Vector2 initialPosition;
     [SerializeField] bool moving;
     [SerializeField] float moveSpeed;
+    public float angle;
+    [SerializeField] float rotateTime;
+    float rotateTimer = 0;
     public Rigidbody2D playerRb;
     SpriteRenderer renderer;
     private void Start()
@@ -55,6 +58,10 @@ public class Projectile : MonoBehaviour
                     transform.position = newPos;
                     moving = false;
                 }
+
+                cannon.localPosition = Vector3.right * Mathf.Lerp(0, offset, rotateTimer);
+                transform.eulerAngles = Vector3.forward * Mathf.Lerp(0, angle, rotateTimer);
+                rotateTimer += Time.deltaTime;
             }
             else
             {
