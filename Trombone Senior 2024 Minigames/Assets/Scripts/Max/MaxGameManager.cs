@@ -11,10 +11,12 @@ public class MaxGameManager : MonoBehaviour
     [SerializeField] List<GameObject> startObjects;
     [SerializeField] Animator bank;
     public static bool started;
+    public static bool gameOver;
     [SerializeField] CinemachineVirtualCamera cam;
     void Start()
     {
         started = false;
+        gameOver = false;
         foreach (var v in startObjects) v.SetActive(false);
     }
 

@@ -19,7 +19,7 @@ public class ProjectileSpawner : MonoBehaviour
     //get random direction
     void Update()
     {
-        if (!MaxGameManager.started) return;
+        if (!MaxGameManager.started || MaxGameManager.gameOver) return;
         if (timer <= 0)
         {
             Vector2 point = (Physics2D.Raycast(playerRb.transform.position, Vector2.down, Mathf.Infinity, 1 << 8).point);
@@ -59,8 +59,9 @@ public class ProjectileSpawner : MonoBehaviour
         p.playerRb = playerRb;
         p.initialPosition = offset;
 
-        float angle = Random.Range(0, 360f);
-        p.angle = angle;
+        float angle = Random.Range(0, 2 * Mathf.PI);
+        Vector3 position = new Vector3(Mathf.Cos(angle), Mathf.Sin(angle)).normalized;
+        p.position = position;
     }
 
 }

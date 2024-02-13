@@ -316,6 +316,7 @@ public class MaxCharacterController : MonoBehaviour
     public void StopGame()
     {
         gameOver = true;
+        MaxGameManager.gameOver = true;
         colliding = true;
         rb.isKinematic = true;
         rb.velocity = Vector2.zero;

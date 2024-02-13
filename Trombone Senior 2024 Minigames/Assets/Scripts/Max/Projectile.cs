@@ -24,9 +24,7 @@ public class Projectile : MonoBehaviour
     public Vector2 initialPosition;
     [SerializeField] bool moving;
     [SerializeField] float moveSpeed;
-    public float angle;
-    [SerializeField] float rotateTime;
-    float rotateTimer = 0;
+    public Vector3 position;
     public Rigidbody2D playerRb;
     SpriteRenderer renderer;
     private void Start()
@@ -46,22 +44,20 @@ public class Projectile : MonoBehaviour
     //}
     private void Update()
     {
+        if (MaxGameManager.gameOver) return;
+        transform.right = (playerRb.position - (Vector2)transform.position).normalized;
         if (moving)
         {
             if (!shot)
             {
                 moveSpeed += (moveSpeed * 1.1f * Time.deltaTime);
-                Vector2 newPos = playerRb.transform.position;
+                Vector2 newPos = playerRb.transform.position + position * offset;
                 if (Vector2.Distance(transform.position, newPos) > 0.5) transform.position = Vector2.MoveTowards(transform.position, newPos, moveSpeed * Time.deltaTime);
                 else
                 {
                     transform.position = newPos;
                     moving = false;
                 }
-
-                cannon.localPosition = Vector3.right * Mathf.Lerp(0, offset, rotateTimer);
-                transform.eulerAngles = Vector3.forward * Mathf.Lerp(0, angle, rotateTimer);
-                rotateTimer += Time.deltaTime;
             }
             else
             {
@@ -98,7 +94,7 @@ public class Projectile : MonoBehaviour
         }
         else if (!shot)
         {
-            RaycastHit2D p = Physics2D.Raycast(transform.position + transform.right * offset, -cannon.right, Mathf.Infinity, mask);
+            RaycastHit2D p = Physics2D.Raycast(transform.position, transform.right, Mathf.Infinity, mask);
             if (!p.collider) return;
 
             if (LayerMask.LayerToName(p.collider.gameObject.layer) == "Player")
@@ -116,8 +112,8 @@ public class Projectile : MonoBehaviour
             laserPoint.gameObject.SetActive(true);
             laserPoint.position = point;
             Debug.Log(point);
-            float d = Vector2.Distance(point, transform.position + transform.right * offset);
-            laser.localPosition = Vector2.right * offset - Vector2.right * d / 2;
+            float d = Vector2.Distance(point, transform.position);
+            laser.position = transform.position + transform.right * d / 2;
             laser.localScale = new(d, laser.localScale.y);
             //Destroy(gameObject, 2f);
 
