@@ -25,8 +25,7 @@ public class MaxGameManager : MonoBehaviour
         if (started) return;
         var activeTouches = Touch.activeTouches;
 
-        if (activeTouches.Count == 0) Debug.Log("NO TOUCHES");
-        else
+        if (activeTouches.Count > 0)
         {
             started = true;
             bank.SetTrigger("Start");
