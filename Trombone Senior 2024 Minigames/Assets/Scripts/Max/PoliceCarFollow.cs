@@ -9,13 +9,12 @@ public class PoliceCarFollow : MonoBehaviour
     [SerializeField] float smoothTime;
     private Vector3 currentVelocity = Vector3.zero;
     [SerializeField] Vector3 offset;
-    void Start()
-    {
-    }
+    private bool started = false;
+    public void Enable() => started = true;
 
     void FixedUpdate()
     {
-        transform.right = (target.position - transform.position).normalized;
+        if (!started) return;
         transform.position = Vector3.SmoothDamp(transform.position, target.position + offset, ref currentVelocity, smoothTime);
     }
 }

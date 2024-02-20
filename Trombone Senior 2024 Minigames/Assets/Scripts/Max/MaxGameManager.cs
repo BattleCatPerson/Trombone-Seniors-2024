@@ -9,7 +9,7 @@ public class MaxGameManager : MonoBehaviour
     [SerializeField] MaxCharacterController controller;
     [SerializeField] GameObject startPanel;
     [SerializeField] List<GameObject> startObjects;
-    [SerializeField] Animator bank;
+    [SerializeField] List<AnimatorSetTrigger> animators;
     public static bool started;
     public static bool gameOver;
     [SerializeField] CinemachineVirtualCamera cam;
@@ -28,7 +28,7 @@ public class MaxGameManager : MonoBehaviour
         if (activeTouches.Count > 0)
         {
             started = true;
-            bank.SetTrigger("Start");
+            foreach (AnimatorSetTrigger a in animators) a.SetTrigger();
             controller.StartGame();
             cam.Priority = 0;
             startPanel.SetActive(false);

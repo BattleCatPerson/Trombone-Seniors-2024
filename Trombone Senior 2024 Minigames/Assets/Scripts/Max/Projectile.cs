@@ -100,6 +100,7 @@ public class Projectile : MonoBehaviour
             if (LayerMask.LayerToName(p.collider.gameObject.layer) == "Player")
             {
                 Debug.Log("DIE");
+                p.collider.transform.root.GetComponent<MaxCharacterController>().StopGame();
             }
             else
             {
