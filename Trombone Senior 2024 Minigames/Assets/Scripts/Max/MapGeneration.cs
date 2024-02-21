@@ -39,6 +39,10 @@ public class MapGeneration : MonoBehaviour
     [SerializeField] float floorAngle;
     [SerializeField] Transform playerTracker;
     [SerializeField] Transform player;
+
+    [SerializeField] Transform spriteTracker;
+    [SerializeField] Transform sprite;
+
     [SerializeField] MaxCharacterController controller;
     [SerializeField] float distance;
     [SerializeField] Transform holdPoint;
@@ -66,6 +70,7 @@ public class MapGeneration : MonoBehaviour
     private void Update()
     {
         playerTracker.position = player.position;
+        spriteTracker.position = sprite.position;
 
         active = ObjectActive.activeObjects;
         standby = ObjectActive.standbyObjects;
@@ -75,7 +80,7 @@ public class MapGeneration : MonoBehaviour
             {
                 foreach (ObjectActive o in active)
                 {
-                    if (Mathf.Abs(o.transform.localPosition.x - playerTracker.localPosition.x) > distance)
+                    if (Mathf.Abs(o.transform.localPosition.x - spriteTracker.localPosition.x) > distance)
                     {
                         ObjectActive.Remove(o, holdPoint.position);
                         ObjectActive.SelectNew(Vector3.right * (distance + playerTracker.localPosition.x) + Vector3.forward * zOffset);
@@ -90,7 +95,7 @@ public class MapGeneration : MonoBehaviour
         }
 
 
-        if (playerTracker.localPosition.x >= currentFloor.localPosition.x - 10f)
+        if (spriteTracker.localPosition.x >= currentFloor.localPosition.x - 10f)
         {
             MoveFloors();
         }
