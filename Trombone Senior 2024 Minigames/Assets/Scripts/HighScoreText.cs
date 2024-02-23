@@ -19,7 +19,7 @@ public class HighScoreText : MonoBehaviour
 
     void Update()
     {
-        text.text = "High Score: ";
+        text.text = "High: ";
         switch (minigame)
         {
             case Minigame.Jackson:

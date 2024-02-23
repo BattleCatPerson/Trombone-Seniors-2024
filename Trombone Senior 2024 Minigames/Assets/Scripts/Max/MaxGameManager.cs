@@ -15,20 +15,36 @@ public class MaxGameManager : MonoBehaviour
     public static bool started;
     public static bool gameOver;
     [SerializeField] CinemachineVirtualCamera cam;
-    [SerializeField] float camInitialSize;
     [SerializeField] float shrinkRate;
     [SerializeField] float startDelay;
+    [SerializeField] CanvasGroup canvasGroup;
+    [SerializeField] float canvasAppearTime;
+    private float accumulated = 0;
     void Start()
     {
-        cam.m_Lens.OrthographicSize = camInitialSize;
         started = false;
         gameOver = false;
         foreach (var v in startObjects) v.SetActive(false);
+        canvasGroup.alpha = 0;
     }
 
     void Update()
     {
-        if (started) return;
+        if (gameOver)
+        {
+            foreach (var v in startObjects) v.SetActive(false);
+            canvasGroup.alpha = 0;
+            return; 
+        }
+        if (started)
+        {
+            if (accumulated < canvasAppearTime)
+            {
+                accumulated += Time.deltaTime;
+                canvasGroup.alpha = Mathf.Lerp(0, 1, accumulated / canvasAppearTime);
+            }
+            return;
+        }
         if (startedInitial)
         {
             startDelay -= Time.deltaTime;

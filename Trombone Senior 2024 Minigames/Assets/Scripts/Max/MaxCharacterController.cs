@@ -113,8 +113,8 @@ public class MaxCharacterController : MonoBehaviour
     void FixedUpdate()
     {
         if (gameOver) return;
-        scoreText.text = $"Score: {score}";
-        finalScoreText.text = $"Score: {score}";
+        scoreText.text = $"{score}";
+        finalScoreText.text = $"{score}";
 
         collidersTouching = colliders.Count;
         colliding = collidersTouching > 0;
