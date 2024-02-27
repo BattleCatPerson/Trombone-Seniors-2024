@@ -13,20 +13,19 @@ public enum Rarity
 {
     common, rare, superRare
 }
-
+[Serializable]
+public class Cosmetic
+{
+    public int id;
+    public Sprite sprite;
+    public Rarity rarity;
+}
 public class CosmeticShop : MonoBehaviour, IWardrobe
 {
-    [Serializable]
-    public class Cosmetic
-    {
-        public int id;
-        public Sprite sprite;
-        public Rarity rarity;
-    }
-
     [SerializeField] CosmeticType type;
     [SerializeField] List<Cosmetic> cosmetics;
-    [SerializeField] List<int> unlocked;
+    [SerializeField] List<Cosmetic> unlocked;
+    [SerializeField] Wardrobe wardrobe;
     List<Rarity> chances;
 
     const int COMMON_PERCENT = 70;
@@ -54,7 +53,11 @@ public class CosmeticShop : MonoBehaviour, IWardrobe
         }
         Cosmetic final = valid[Random.Range(0, valid.Count)];
 
-        if (!unlocked.Contains(final.id)) unlocked.Add(final.id);
+        if (!unlocked.Contains(final))
+        {
+            unlocked.Add(final);
+            wardrobe.AddToPanel(final.sprite);
+        }
     }
 
     public void Start()

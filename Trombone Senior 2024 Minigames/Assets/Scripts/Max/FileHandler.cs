@@ -20,8 +20,8 @@ public class FileHandler
         CosmeticData loadedData = null;
         if (File.Exists(fullPath))
         {
-            //try
-            //{
+            try
+            {
                 string dataToLoad = "";
                 using (FileStream stream = new FileStream(fullPath, FileMode.Open))
                 {
@@ -32,11 +32,11 @@ public class FileHandler
                 }
 
                 loadedData = JsonUtility.FromJson<CosmeticData>(dataToLoad);
-            //}
-            //catch (Exception e)
-            //{
-            //    Debug.LogError($"can't load file ouaewfhaweoifjoweiaf at path {fullPath}");
-            //}
+            }
+            catch (Exception e)
+            {
+                Debug.LogError($"can't load file ouaewfhaweoifjoweiaf at path {fullPath}");
+            }
         }
         return loadedData;
     }

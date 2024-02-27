@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class CosmeticData
 {
-    public List<int> costumes;
-    public List<int> trails;
+    public List<Cosmetic> costumes;
+    public List<Cosmetic> trails;
 
-    public List<int> ReturnList(CosmeticType type)
+    public List<Cosmetic> ReturnList(CosmeticType type)
     {
         if (type == CosmeticType.costume) return costumes;
         if (type == CosmeticType.trail) return trails;
