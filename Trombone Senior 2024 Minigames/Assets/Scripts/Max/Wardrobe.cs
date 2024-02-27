@@ -24,7 +24,8 @@ public class Wardrobe : MonoBehaviour
     [SerializeField] WardrobeState wardrobeState;
     [SerializeField] GameObject rollPanel;
     [SerializeField] GameObject wardrobePanel;
-    [SerializeField] Animator animator;
+    [SerializeField] AnimatorSetTrigger animator;
+    [SerializeField] bool transitioning;
 
     void Start()
     {
@@ -69,16 +70,27 @@ public class Wardrobe : MonoBehaviour
 
         g.transform.parent = collectionPanel;
     }
-
+    public void InititateSwitch()
+    {
+        if (transitioning) return;
+        animator.SetTrigger();
+        transitioning = true;
+    }
     public void SwitchWardrobeState()
     {
+        if (!transitioning) return;
         if (wardrobeState == WardrobeState.rolling)
         {
             rollPanel.SetActive(false);
+            wardrobePanel.SetActive(true);
+            wardrobeState = WardrobeState.wardrobe;
         }
-        if (wardrobeState == WardrobeState.wardrobe)
+        else if (wardrobeState == WardrobeState.wardrobe)
         {
             wardrobePanel.SetActive(false);
+            rollPanel.SetActive(true);
+            wardrobeState = WardrobeState.rolling;
         }
+        transitioning = false;
     }
 }
