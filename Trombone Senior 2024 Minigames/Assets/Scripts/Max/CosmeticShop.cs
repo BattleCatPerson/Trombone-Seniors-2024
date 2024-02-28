@@ -26,6 +26,7 @@ public class CosmeticShop : MonoBehaviour, IWardrobe
     [SerializeField] List<Cosmetic> cosmetics;
     [SerializeField] List<Cosmetic> unlocked;
     [SerializeField] Wardrobe wardrobe;
+    [SerializeField] GameObject rollPanel;
     List<Rarity> chances;
 
     const int COMMON_PERCENT = 70;
@@ -41,7 +42,8 @@ public class CosmeticShop : MonoBehaviour, IWardrobe
     {
         
     }
-    
+    public void DisableUi() => rollPanel.SetActive(false);
+    public void EnableUi() => rollPanel.SetActive(true);
     public void Roll()
     {
         Rarity selected = chances[Random.Range(0, chances.Count)];
