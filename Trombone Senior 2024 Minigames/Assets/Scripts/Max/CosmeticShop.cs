@@ -2,9 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UI;
 using System;
 using Random = UnityEngine.Random;
-
+using TMPro;
 public enum CosmeticType
 {
     costume, trail
@@ -19,14 +20,24 @@ public class Cosmetic
     public int id;
     public Sprite sprite;
     public Rarity rarity;
+    public string name;
 }
 public class CosmeticShop : MonoBehaviour, IWardrobe
 {
+    [Header("Cosmetic Pool")]
     [SerializeField] CosmeticType type;
     [SerializeField] List<Cosmetic> cosmetics;
     [SerializeField] List<Cosmetic> unlocked;
     [SerializeField] Wardrobe wardrobe;
     [SerializeField] GameObject rollPanel;
+    [Header("Results")]
+    [SerializeField] CanvasGroup resultsPanel;
+    [SerializeField] Image resultImage;
+    [SerializeField] TextMeshProUGUI resultText;
+    [SerializeField] TextMeshProUGUI rarityText;
+    [SerializeField] bool resultPanelActive;
+    [SerializeField] float growthRate;
+    [SerializeField] GameObject continueButton;
     List<Rarity> chances;
 
     const int COMMON_PERCENT = 70;
@@ -54,7 +65,9 @@ public class CosmeticShop : MonoBehaviour, IWardrobe
             if (c.rarity == selected) valid.Add(c);
         }
         Cosmetic final = valid[Random.Range(0, valid.Count)];
-
+        resultImage.sprite = final.sprite;
+        resultText.text = final.name;
+        rarityText.text = final.rarity.ToString();
         if (!unlocked.Contains(final))
         {
             unlocked.Add(final);
@@ -68,5 +81,33 @@ public class CosmeticShop : MonoBehaviour, IWardrobe
         for (int i = 0; i < COMMON_PERCENT; i++) chances.Add(Rarity.common);
         for (int i = 0; i < RARE_PERCENT; i++) chances.Add(Rarity.rare);
         for (int i = 0; i < SUPER_RARE_PERCENT; i++) chances.Add(Rarity.superRare);
+    }
+
+    public void Update()
+    {
+        if (resultPanelActive)
+        {
+            resultsPanel.blocksRaycasts = true;
+
+            if (resultsPanel.alpha < 1f)
+            {
+                resultsPanel.alpha += growthRate * Time.deltaTime;
+            }
+            else
+            {
+                resultPanelActive = false;
+                continueButton.SetActive(true);
+            }
+        }
+    }
+
+    public void SetPanelActive() => resultPanelActive = true;
+    public void SetPanelStandby()
+    {
+        resultsPanel.alpha = 0f;
+        resultText.text = "";
+        rarityText.text = "";
+        resultImage.sprite = null;
+        resultsPanel.blocksRaycasts = false;
     }
 }
