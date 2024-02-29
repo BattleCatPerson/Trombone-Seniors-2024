@@ -18,7 +18,6 @@ public enum Rarity
 public class Cosmetic
 {
     public int id;
-    public Sprite sprite;
     public Rarity rarity;
     public string name;
 }
@@ -38,6 +37,10 @@ public class CosmeticShop : MonoBehaviour, IWardrobe
     [SerializeField] bool resultPanelActive;
     [SerializeField] float growthRate;
     [SerializeField] GameObject continueButton;
+    [Header("Cost")]
+    [SerializeField] int cost;
+    [SerializeField] int currency;
+
     List<Rarity> chances;
 
     const int COMMON_PERCENT = 70;
@@ -65,13 +68,15 @@ public class CosmeticShop : MonoBehaviour, IWardrobe
             if (c.rarity == selected) valid.Add(c);
         }
         Cosmetic final = valid[Random.Range(0, valid.Count)];
-        resultImage.sprite = final.sprite;
         resultText.text = final.name;
         rarityText.text = final.rarity.ToString();
-        if (!unlocked.Contains(final))
+
+        List<int> ids = new();
+        foreach (Cosmetic c in unlocked) ids.Add(c.id);
+        if (!ids.Contains(final.id))
         {
             unlocked.Add(final);
-            wardrobe.AddToPanel(final.sprite);
+            wardrobe.AddToPanel(final.id);
         }
     }
 
@@ -81,6 +86,7 @@ public class CosmeticShop : MonoBehaviour, IWardrobe
         for (int i = 0; i < COMMON_PERCENT; i++) chances.Add(Rarity.common);
         for (int i = 0; i < RARE_PERCENT; i++) chances.Add(Rarity.rare);
         for (int i = 0; i < SUPER_RARE_PERCENT; i++) chances.Add(Rarity.superRare);
+        currency = PlayerPrefs.GetInt("Max Collectibles");
     }
 
     public void Update()
@@ -109,5 +115,6 @@ public class CosmeticShop : MonoBehaviour, IWardrobe
         rarityText.text = "";
         resultImage.sprite = null;
         resultsPanel.blocksRaycasts = false;
+        continueButton.SetActive(false);
     }
 }

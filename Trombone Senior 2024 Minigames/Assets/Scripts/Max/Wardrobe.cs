@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
-
+using System;
 public enum WardrobeState
 {
     rolling, wardrobe
@@ -11,6 +11,13 @@ public enum WardrobeState
 
 public class Wardrobe : MonoBehaviour
 {
+    [Serializable]
+    public class IdSpritePair
+    {
+        public int id;
+        public Sprite sprite;
+    }
+
     public CosmeticData data;
     public List<IWardrobe> crates;
     [Header("File")]
@@ -26,6 +33,7 @@ public class Wardrobe : MonoBehaviour
     [SerializeField] GameObject wardrobePanel;
     [SerializeField] AnimatorSetTrigger animator;
     [SerializeField] bool transitioning;
+    [SerializeField] List<IdSpritePair> pairs;
 
     void Start()
     {
@@ -34,7 +42,10 @@ public class Wardrobe : MonoBehaviour
         if (data == null) data = new CosmeticData();
 
         crates = Initialize();
-        foreach (Cosmetic c in data.costumes) AddToPanel(c.sprite);
+        foreach (Cosmetic c in data.costumes)
+        {
+            AddToPanel(c.id);
+        }
         foreach (var v in crates) v.Load(data);
     }
 
@@ -62,11 +73,11 @@ public class Wardrobe : MonoBehaviour
         foreach (var v in crates) v.Load(data);
     }
 
-    public void AddToPanel(Sprite sprite)
+    public void AddToPanel(int id)
     {
         GameObject g = new GameObject();
         Image i = g.AddComponent<Image>();
-        i.sprite = sprite;
+        i.sprite = MatchIdToSprite(id);
 
         g.transform.parent = collectionPanel;
     }
@@ -92,5 +103,15 @@ public class Wardrobe : MonoBehaviour
             wardrobeState = WardrobeState.rolling;
         }
         transitioning = false;
+    }
+
+    public Sprite MatchIdToSprite(int id)
+    {
+        foreach (IdSpritePair i in pairs)
+        {
+            if (i.id == id) return i.sprite;
+        }
+        Debug.Log("please add the id to the list");
+        return null;
     }
 }
