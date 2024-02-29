@@ -1549,7 +1549,7 @@ MonoBehaviour:
   resultText: {fileID: 2038488741}
   rarityText: {fileID: 1086531783}
   resultPanelActive: 0
-  growthRate: 0.5
+  growthRate: 1
   continueButton: {fileID: 1328031918}
 --- !u!114 &548401899
 MonoBehaviour:
