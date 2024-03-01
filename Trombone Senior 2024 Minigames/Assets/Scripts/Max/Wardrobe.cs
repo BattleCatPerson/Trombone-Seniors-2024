@@ -15,9 +15,8 @@ public class Wardrobe : MonoBehaviour
     public class IdSpritePair
     {
         public int id;
-        public Sprite sprite;
+        public List<Sprite> sprites;
     }
-
     public CosmeticData data;
     public List<IWardrobe> crates;
     [Header("File")]
@@ -77,7 +76,7 @@ public class Wardrobe : MonoBehaviour
     {
         GameObject g = new GameObject();
         Image i = g.AddComponent<Image>();
-        i.sprite = MatchIdToSprite(id);
+        i.sprite = MatchIdToSprite(id)[0];
 
         g.transform.parent = collectionPanel;
     }
@@ -105,11 +104,11 @@ public class Wardrobe : MonoBehaviour
         transitioning = false;
     }
 
-    public Sprite MatchIdToSprite(int id)
+    public List<Sprite> MatchIdToSprite(int id)
     {
         foreach (IdSpritePair i in pairs)
         {
-            if (i.id == id) return i.sprite;
+            if (i.id == id) return i.sprites;
         }
         Debug.Log("please add the id to the list");
         return null;

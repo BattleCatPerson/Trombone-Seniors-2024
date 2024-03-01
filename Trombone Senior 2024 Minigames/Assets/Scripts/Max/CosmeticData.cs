@@ -6,7 +6,6 @@ public class CosmeticData
 {
     public List<Cosmetic> costumes;
     public List<Cosmetic> trails;
-
     public List<Cosmetic> ReturnList(CosmeticType type)
     {
         if (type == CosmeticType.costume) return costumes;

@@ -31,7 +31,8 @@ public class CosmeticShop : MonoBehaviour, IWardrobe
     [SerializeField] GameObject rollPanel;
     [Header("Results")]
     [SerializeField] CanvasGroup resultsPanel;
-    [SerializeField] Image resultImage;
+    [SerializeField] Image resultPlayerImage;
+    [SerializeField] Image resultBoardImage;
     [SerializeField] TextMeshProUGUI resultText;
     [SerializeField] TextMeshProUGUI rarityText;
     [SerializeField] bool resultPanelActive;
@@ -40,6 +41,7 @@ public class CosmeticShop : MonoBehaviour, IWardrobe
     [Header("Cost")]
     [SerializeField] int cost;
     [SerializeField] int currency;
+    [SerializeField] Button rollButton;
 
     List<Rarity> chances;
 
@@ -70,7 +72,8 @@ public class CosmeticShop : MonoBehaviour, IWardrobe
         Cosmetic final = valid[Random.Range(0, valid.Count)];
         resultText.text = final.name;
         rarityText.text = final.rarity.ToString();
-
+        resultPlayerImage.sprite = wardrobe.MatchIdToSprite(final.id)[0];
+        resultBoardImage.sprite = wardrobe.MatchIdToSprite(final.id)[1];
         List<int> ids = new();
         foreach (Cosmetic c in unlocked) ids.Add(c.id);
         if (!ids.Contains(final.id))
@@ -105,6 +108,7 @@ public class CosmeticShop : MonoBehaviour, IWardrobe
                 continueButton.SetActive(true);
             }
         }
+        rollButton.interactable = currency >= cost;
     }
 
     public void SetPanelActive() => resultPanelActive = true;
@@ -113,8 +117,16 @@ public class CosmeticShop : MonoBehaviour, IWardrobe
         resultsPanel.alpha = 0f;
         resultText.text = "";
         rarityText.text = "";
-        resultImage.sprite = null;
+        resultPlayerImage.sprite = null;
+        resultBoardImage.sprite = null;
         resultsPanel.blocksRaycasts = false;
         continueButton.SetActive(false);
     }
+
+    public void Charge()
+    {
+        currency -= cost;
+        PlayerPrefs.SetInt("Max Collectibles", currency);
+    }
+
 }

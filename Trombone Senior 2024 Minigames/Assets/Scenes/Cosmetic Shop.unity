@@ -1514,43 +1514,40 @@ MonoBehaviour:
   type: 0
   cosmetics:
   - id: 0
-    sprite: {fileID: 184874539, guid: c64d264df7548cc469ac044b3954624b, type: 3}
     rarity: 0
     name: Test Obj 1
   - id: 1
-    sprite: {fileID: -810473568, guid: c64d264df7548cc469ac044b3954624b, type: 3}
     rarity: 0
     name: Test Obj 2
   - id: 2
-    sprite: {fileID: -451327759, guid: c64d264df7548cc469ac044b3954624b, type: 3}
     rarity: 0
     name: Test Obj 3
   - id: 3
-    sprite: {fileID: -280168458, guid: c64d264df7548cc469ac044b3954624b, type: 3}
     rarity: 0
     name: Test Obj 4
   - id: 4
-    sprite: {fileID: -2060705576, guid: c64d264df7548cc469ac044b3954624b, type: 3}
     rarity: 1
     name: Test Obj 5
   - id: 5
-    sprite: {fileID: 371434691, guid: c64d264df7548cc469ac044b3954624b, type: 3}
     rarity: 1
     name: Test Obj 6
   - id: 6
-    sprite: {fileID: -798920744, guid: c64d264df7548cc469ac044b3954624b, type: 3}
     rarity: 2
     name: Test Obj 7
   unlocked: []
   wardrobe: {fileID: 1707957481}
   rollPanel: {fileID: 332568837}
   resultsPanel: {fileID: 925037259}
-  resultImage: {fileID: 1936290740}
+  resultPlayerImage: {fileID: 0}
+  resultBoardImage: {fileID: 0}
   resultText: {fileID: 2038488741}
   rarityText: {fileID: 1086531783}
   resultPanelActive: 0
   growthRate: 1
   continueButton: {fileID: 1328031918}
+  cost: 100
+  currency: 0
+  rollButton: {fileID: 1993895978}
 --- !u!114 &548401899
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3285,19 +3282,21 @@ MonoBehaviour:
   transitioning: 0
   pairs:
   - id: 0
-    sprite: {fileID: 184874539, guid: c64d264df7548cc469ac044b3954624b, type: 3}
+    sprites:
+    - {fileID: 0}
+    - {fileID: 0}
   - id: 1
-    sprite: {fileID: -810473568, guid: c64d264df7548cc469ac044b3954624b, type: 3}
+    sprites: []
   - id: 2
-    sprite: {fileID: -451327759, guid: c64d264df7548cc469ac044b3954624b, type: 3}
+    sprites: []
   - id: 3
-    sprite: {fileID: -280168458, guid: c64d264df7548cc469ac044b3954624b, type: 3}
+    sprites: []
   - id: 4
-    sprite: {fileID: -2060705576, guid: c64d264df7548cc469ac044b3954624b, type: 3}
+    sprites: []
   - id: 5
-    sprite: {fileID: 371434691, guid: c64d264df7548cc469ac044b3954624b, type: 3}
+    sprites: []
   - id: 6
-    sprite: {fileID: -798920744, guid: c64d264df7548cc469ac044b3954624b, type: 3}
+    sprites: []
 --- !u!4 &1707957482
 Transform:
   m_ObjectHideFlags: 0
@@ -3677,7 +3676,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1936856224
 Transform:
   m_ObjectHideFlags: 0
@@ -3711,12 +3710,16 @@ MonoBehaviour:
   wardrobe: {fileID: 1707957481}
   rollPanel: {fileID: 0}
   resultsPanel: {fileID: 0}
-  resultImage: {fileID: 0}
+  resultPlayerImage: {fileID: 0}
+  resultBoardImage: {fileID: 0}
   resultText: {fileID: 0}
   rarityText: {fileID: 0}
   resultPanelActive: 0
   growthRate: 0
   continueButton: {fileID: 0}
+  cost: 0
+  currency: 0
+  rollButton: {fileID: 0}
 --- !u!1 &1993895976
 GameObject:
   m_ObjectHideFlags: 0
@@ -3804,6 +3807,18 @@ MonoBehaviour:
       - m_Target: {fileID: 548401899}
         m_TargetAssemblyTypeName: AnimatorSetTrigger, Assembly-CSharp
         m_MethodName: SetTrigger
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 548401898}
+        m_TargetAssemblyTypeName: CosmeticShop, Assembly-CSharp
+        m_MethodName: Charge
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
