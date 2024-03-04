@@ -8,15 +8,15 @@ public enum WardrobeState
 {
     rolling, wardrobe
 }
-
+[Serializable]
+public class IdSpritePair
+{
+    public int id;
+    public List<Sprite> sprites;
+}
 public class Wardrobe : MonoBehaviour
 {
-    [Serializable]
-    public class IdSpritePair
-    {
-        public int id;
-        public List<Sprite> sprites;
-    }
+    
     public CosmeticData data;
     public List<IWardrobe> crates;
     [Header("File")]
@@ -32,7 +32,8 @@ public class Wardrobe : MonoBehaviour
     [SerializeField] GameObject wardrobePanel;
     [SerializeField] AnimatorSetTrigger animator;
     [SerializeField] bool transitioning;
-    [SerializeField] List<IdSpritePair> pairs;
+    [SerializeField] ListOfIdsToSprites pairs;
+    [SerializeField] CostumeButton button;
 
     void Start()
     {
@@ -58,6 +59,7 @@ public class Wardrobe : MonoBehaviour
     {
         fileHandler.Save(data);
     }
+    public void SaveData() => fileHandler.Save(data);
 
     public List<IWardrobe> Initialize()
     {
@@ -74,11 +76,15 @@ public class Wardrobe : MonoBehaviour
 
     public void AddToPanel(int id)
     {
-        GameObject g = new GameObject();
-        Image i = g.AddComponent<Image>();
-        i.sprite = MatchIdToSprite(id)[0];
+        //GameObject g = new GameObject();
+        //Image i = g.AddComponent<Image>();
+        //i.sprite = MatchIdToSprite(id)[0];
 
-        g.transform.parent = collectionPanel;
+        //g.transform.parent = collectionPanel;
+
+        CostumeButton c = Instantiate(button, collectionPanel);
+        c.Initiate(id, this, MatchIdToSprite(id)[0]);
+        //c.transform.localScale = Vector3.one;
     }
     public void InititateSwitch()
     {
@@ -106,7 +112,7 @@ public class Wardrobe : MonoBehaviour
 
     public List<Sprite> MatchIdToSprite(int id)
     {
-        foreach (IdSpritePair i in pairs)
+        foreach (IdSpritePair i in pairs.pairs)
         {
             if (i.id == id) return i.sprites;
         }

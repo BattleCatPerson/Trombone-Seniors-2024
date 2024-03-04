@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.12731713, g: 0.13414735, b: 0.1210785, a: 1}
+  m_IndirectSpecularColor: {r: 0.12731749, g: 0.13414757, b: 0.1210787, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -20664,6 +20664,87 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1001 &1162393302
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 8926486790698560768, guid: e6fad1b4e3c1dfe489b47ac4ef087dfa,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 21
+      objectReference: {fileID: 0}
+    - target: {fileID: 8926486790698560768, guid: e6fad1b4e3c1dfe489b47ac4ef087dfa,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 487.10025
+      objectReference: {fileID: 0}
+    - target: {fileID: 8926486790698560768, guid: e6fad1b4e3c1dfe489b47ac4ef087dfa,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 140.415
+      objectReference: {fileID: 0}
+    - target: {fileID: 8926486790698560768, guid: e6fad1b4e3c1dfe489b47ac4ef087dfa,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 1.8018107
+      objectReference: {fileID: 0}
+    - target: {fileID: 8926486790698560768, guid: e6fad1b4e3c1dfe489b47ac4ef087dfa,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8926486790698560768, guid: e6fad1b4e3c1dfe489b47ac4ef087dfa,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8926486790698560768, guid: e6fad1b4e3c1dfe489b47ac4ef087dfa,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8926486790698560768, guid: e6fad1b4e3c1dfe489b47ac4ef087dfa,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8926486790698560768, guid: e6fad1b4e3c1dfe489b47ac4ef087dfa,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8926486790698560768, guid: e6fad1b4e3c1dfe489b47ac4ef087dfa,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8926486790698560768, guid: e6fad1b4e3c1dfe489b47ac4ef087dfa,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8926486790698560771, guid: e6fad1b4e3c1dfe489b47ac4ef087dfa,
+        type: 3}
+      propertyPath: m_Name
+      value: List of Ids To Sprites
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: e6fad1b4e3c1dfe489b47ac4ef087dfa, type: 3}
+--- !u!114 &1162393303 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8926486790698560769, guid: e6fad1b4e3c1dfe489b47ac4ef087dfa,
+    type: 3}
+  m_PrefabInstance: {fileID: 1162393302}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9de6e12ae137a8e419bcbe159759559b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1167999447
 GameObject:
   m_ObjectHideFlags: 0
@@ -33276,6 +33357,7 @@ GameObject:
   - component: {fileID: 2137725483}
   - component: {fileID: 2137725487}
   - component: {fileID: 2137725488}
+  - component: {fileID: 2137725489}
   m_Layer: 2
   m_Name: Circle
   m_TagString: Untagged
@@ -33486,3 +33568,20 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &2137725489
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2137725482}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 45cfc9451bab7624eb3ed3fe0ba9d44a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerSprite: {fileID: 915824890}
+  boardSprite: {fileID: 1257232953}
+  pairs: {fileID: 1162393303}
+  currentId: -1
+  fileName: GOOB.txt
