@@ -15,5 +15,5 @@ public class CostumeButton : MonoBehaviour
         this.wardrobe = wardrobe;
         image.sprite = sprite;
     }
-    public void AssignCosmetic() => wardrobe.data.selectedId = id;
+    public void AssignCosmetic() => wardrobe.SelectId(id);
 }

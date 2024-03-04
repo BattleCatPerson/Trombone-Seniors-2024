@@ -18,5 +18,6 @@ public class CosmeticData
     {
         costumes = new();
         trails = new();
+        selectedId = -1;
     }
 }

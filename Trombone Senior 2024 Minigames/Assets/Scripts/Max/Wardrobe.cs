@@ -26,6 +26,7 @@ public class Wardrobe : MonoBehaviour
     [SerializeField] List<Cosmetic> costumes;
     [SerializeField] List<Cosmetic> trails;
     [SerializeField] Transform collectionPanel;
+    [SerializeField] Image previewSprite;
     [Header("State Transitions")]
     [SerializeField] WardrobeState wardrobeState;
     [SerializeField] GameObject rollPanel;
@@ -47,6 +48,7 @@ public class Wardrobe : MonoBehaviour
             AddToPanel(c.id);
         }
         foreach (var v in crates) v.Load(data);
+        previewSprite.sprite = MatchIdToSprite(data.selectedId)[0];
     }
 
     void Update()
@@ -118,5 +120,11 @@ public class Wardrobe : MonoBehaviour
         }
         Debug.Log("please add the id to the list");
         return null;
+    }
+
+    public void SelectId(int id)
+    {
+        data.selectedId = id;
+        previewSprite.sprite = MatchIdToSprite(id)[0];
     }
 }
