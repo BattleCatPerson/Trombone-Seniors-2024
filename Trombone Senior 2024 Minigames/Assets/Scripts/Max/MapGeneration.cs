@@ -55,6 +55,8 @@ public class MapGeneration : MonoBehaviour
 
     [SerializeField] List<ObjectActive> skySprites;
     [SerializeField] float zOffset;
+
+    [SerializeField] Transform altitudeCollider;
     private void Start()
     {
         //use renderer.isvisible;
@@ -99,6 +101,8 @@ public class MapGeneration : MonoBehaviour
         {
             MoveFloors();
         }
+
+        altitudeCollider.localPosition = Vector3.right * playerTracker.localPosition.x; 
     }
 
     public void MoveFloors()
