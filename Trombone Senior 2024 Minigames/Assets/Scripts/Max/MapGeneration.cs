@@ -35,6 +35,8 @@ public class MapGeneration : MonoBehaviour
     }
 
     [SerializeField] Transform floor;
+    [SerializeField] float floorLength;
+    [SerializeField] float floorX;
     [SerializeField] List<ObjectActive> objects;
     [SerializeField] float floorAngle;
     [SerializeField] Transform playerTracker;
@@ -56,7 +58,6 @@ public class MapGeneration : MonoBehaviour
     [SerializeField] List<ObjectActive> skySprites;
     [SerializeField] float zOffset;
 
-    [SerializeField] Transform altitudeCollider;
     private void Start()
     {
         //use renderer.isvisible;
@@ -68,6 +69,7 @@ public class MapGeneration : MonoBehaviour
             ObjectActive.standbyObjects.Add(o);
             o.Move(holdPoint.position);
         }
+        floorX = floorLength * MathF.Cos(Mathf.Abs(floor.transform.eulerAngles.z) * MathF.PI / 180f);
     }
     private void Update()
     {
@@ -97,18 +99,16 @@ public class MapGeneration : MonoBehaviour
         }
 
 
-        if (spriteTracker.localPosition.x >= currentFloor.localPosition.x - 10f)
+        if (spriteTracker.position.x >= currentFloor.position.x + floorX / 2)
         {
             MoveFloors();
         }
-
-        altitudeCollider.localPosition = Vector3.right * playerTracker.localPosition.x; 
     }
 
     public void MoveFloors()
     {
         Transform temp = currentFloor;
-        standbyFloor.localPosition = Vector3.right * (currentFloor.localPosition.x + currentFloor.lossyScale.x);
+        standbyFloor.localPosition = Vector3.right * (temp.localPosition.x + floorLength);
         currentFloor = standbyFloor;
         standbyFloor = temp;
     }
