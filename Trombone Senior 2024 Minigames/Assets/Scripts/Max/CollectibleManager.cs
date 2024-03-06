@@ -5,6 +5,7 @@ using UnityEngine;
 using Touch = UnityEngine.InputSystem.EnhancedTouch.Touch;
 using TouchPhase = UnityEngine.InputSystem.TouchPhase;
 using Random = UnityEngine.Random;
+using TMPro;
 public class CollectibleManager : MonoBehaviour
 {
     [SerializeField] int layer;
@@ -16,6 +17,7 @@ public class CollectibleManager : MonoBehaviour
     [SerializeField] int maxSpawn;
     [SerializeField] float maxDistanceFromPoint;
     [SerializeField] LineRenderer lineRenderer;
+    [SerializeField] TextMeshProUGUI text;
     private void Start()
     {
         layer = 1 << layer;
@@ -38,6 +40,7 @@ public class CollectibleManager : MonoBehaviour
                 Destroy(hit.collider.gameObject);
             }
         }
+        text.text = $"{collectibles}";
     }
 
     public void UpdateCollectibles() => PlayerPrefs.SetInt("Max Collectibles", collectibles);

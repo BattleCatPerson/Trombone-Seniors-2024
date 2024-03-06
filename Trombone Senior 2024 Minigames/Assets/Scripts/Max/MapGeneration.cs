@@ -46,6 +46,7 @@ public class MapGeneration : MonoBehaviour
     [SerializeField] Transform sprite;
 
     [SerializeField] MaxCharacterController controller;
+    public MaxCharacterController Controller => controller;
     [SerializeField] float distance;
     [SerializeField] Transform holdPoint;
 
