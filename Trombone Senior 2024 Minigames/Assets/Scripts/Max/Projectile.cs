@@ -10,7 +10,7 @@ public class Projectile : MonoBehaviour
     //[SerializeField] float lifeTime;
     const float MULT = 0.9f;
     public static float time = 3f;
-    public static float currentTime = time;
+    public static float currentTime = -1f;
     [SerializeField] float accumulated;
     [SerializeField] Transform laser;
     [SerializeField] Transform cannon;
@@ -30,6 +30,7 @@ public class Projectile : MonoBehaviour
     private void Start()
     {
         //Destroy(gameObject, lifeTime);
+        if (currentTime == -1) currentTime = time;
         moving = true;
         renderer = laser.GetComponent<SpriteRenderer>();
         renderer.enabled = false;
@@ -86,8 +87,8 @@ public class Projectile : MonoBehaviour
         {
             accumulated += Time.deltaTime;
             int ind = 0;
-            if (accumulated >= 2 * time / 3) ind = 2;
-            else if (accumulated >= time / 3) ind = 1;
+            if (accumulated >= 2 * currentTime / 3) ind = 2;
+            else if (accumulated >= currentTime / 3) ind = 1;
 
             countdownRenderer.sprite = countdownSprites[ind];
 
