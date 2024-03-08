@@ -2352,7 +2352,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9819c7f6217faa340898e854ea564029, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  separation: 15
+  separation: 12
   texts:
   - {fileID: 1934874853}
   - {fileID: 1001844309}
@@ -8516,7 +8516,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9819c7f6217faa340898e854ea564029, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  separation: 15
+  separation: 12
   texts:
   - {fileID: 1003808538}
   - {fileID: 1445827009}
