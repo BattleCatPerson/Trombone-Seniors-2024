@@ -5,5 +5,6 @@ using UnityEngine;
 public class CallWardrobeTransition : MonoBehaviour
 {
     [SerializeField] Wardrobe wardrobe;
-    public void Switch() => wardrobe.SwitchWardrobeState();
+    [SerializeField] WardrobeState state;
+    public void Switch() => wardrobe.SwitchWardrobeState(state);
 }

@@ -4,9 +4,10 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 using System;
+using Cinemachine;
 public enum WardrobeState
 {
-    rolling, wardrobe
+    menu, rolling, wardrobe
 }
 [Serializable]
 public class IdSpritePair
@@ -29,12 +30,16 @@ public class Wardrobe : MonoBehaviour
     [SerializeField] Image previewSprite;
     [Header("State Transitions")]
     [SerializeField] WardrobeState wardrobeState;
-    [SerializeField] GameObject rollPanel;
-    [SerializeField] GameObject wardrobePanel;
+    [SerializeField] GameObject rollCanvas;
+    [SerializeField] GameObject wardrobeCanvas;
+    [SerializeField] GameObject menuCanvas;
     [SerializeField] AnimatorSetTrigger animator;
     [SerializeField] bool transitioning;
     [SerializeField] ListOfIdsToSprites pairs;
     [SerializeField] CostumeButton button;
+    [SerializeField] CinemachineVirtualCamera menuCam;
+    [SerializeField] CinemachineVirtualCamera lootboxCam;
+    [SerializeField] CinemachineVirtualCamera wardrobeCam;
 
     void Start()
     {
@@ -49,6 +54,8 @@ public class Wardrobe : MonoBehaviour
         }
         foreach (var v in crates) v.Load(data);
         previewSprite.sprite = MatchIdToSprite(data.selectedId)[0];
+
+        SwitchWardrobeState(WardrobeState.menu);
     }
 
     void Update()
@@ -94,22 +101,39 @@ public class Wardrobe : MonoBehaviour
         animator.SetTrigger();
         transitioning = true;
     }
-    public void SwitchWardrobeState()
+    public void SwitchWardrobeState(WardrobeState state)
     {
-        if (!transitioning) return;
-        if (wardrobeState == WardrobeState.rolling)
+        //if (!transitioning) return;
+        if (state == WardrobeState.rolling)
         {
-            rollPanel.SetActive(false);
-            wardrobePanel.SetActive(true);
-            wardrobeState = WardrobeState.wardrobe;
+            //rollCanvas.SetActive(true);
+            //wardrobeCanvas.SetActive(false);
+            //menuCanvas.SetActive(false);
+
+            lootboxCam.Priority = 2;
+            wardrobeCam.Priority = 1;
+            menuCam.Priority = 0;
         }
-        else if (wardrobeState == WardrobeState.wardrobe)
+        else if (state == WardrobeState.wardrobe)
         {
-            wardrobePanel.SetActive(false);
-            rollPanel.SetActive(true);
-            wardrobeState = WardrobeState.rolling;
+            //rollCanvas.SetActive(false);
+            //wardrobeCanvas.SetActive(true);
+            //menuCanvas.SetActive(false);
+
+            lootboxCam.Priority = 1;
+            wardrobeCam.Priority = 2;
+            menuCam.Priority = 0;
         }
-        transitioning = false;
+        else if (state == WardrobeState.menu)
+        {
+            //rollCanvas.SetActive(false);
+            //wardrobeCanvas.SetActive(false);
+            //menuCanvas.SetActive(true);
+
+            lootboxCam.Priority = 0;
+            wardrobeCam.Priority = 1;
+            menuCam.Priority = 2;
+        }
     }
 
     public List<Sprite> MatchIdToSprite(int id)
