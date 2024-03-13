@@ -6,6 +6,8 @@ using UnityEngine.UI;
 using System;
 using Random = UnityEngine.Random;
 using TMPro;
+using Touch = UnityEngine.InputSystem.EnhancedTouch.Touch;
+using TouchPhase = UnityEngine.InputSystem.TouchPhase;
 public enum CosmeticType
 {
     costume, trail
@@ -42,7 +44,13 @@ public class CosmeticShop : MonoBehaviour, IWardrobe
     [SerializeField] int cost;
     [SerializeField] int currency;
     [SerializeField] Button rollButton;
-
+    [Header("Box Launching")]
+    [SerializeField] float launchForce;
+    [SerializeField] float torque;
+    [SerializeField] Rigidbody lid;
+    [SerializeField] Vector3 originalPosition;
+    [SerializeField] bool waitingForLaunchInput;
+    [SerializeField] Animator animator;
     List<Rarity> chances;
 
     const int COMMON_PERCENT = 70;
@@ -90,10 +98,24 @@ public class CosmeticShop : MonoBehaviour, IWardrobe
         for (int i = 0; i < RARE_PERCENT; i++) chances.Add(Rarity.rare);
         for (int i = 0; i < SUPER_RARE_PERCENT; i++) chances.Add(Rarity.superRare);
         currency = PlayerPrefs.GetInt("Max Collectibles");
+
+        lid.isKinematic = true;
+        originalPosition = lid.transform.localPosition;
     }
 
     public void Update()
     {
+        if (waitingForLaunchInput && Touch.activeTouches.Count > 0)
+        {
+            //disable waiting
+            waitingForLaunchInput = false;
+            //launch lid
+            lid.isKinematic = false;
+            lid.AddForce((new Vector3(Random.Range(-1f, 1f), Random.Range(0, 1f), Random.Range(-1f, 1f)).normalized * launchForce), ForceMode.Impulse);
+            lid.AddTorque((new Vector3(Random.Range(-1f, 1f), Random.Range(0, 1f), Random.Range(-1f, 1f)).normalized * torque));
+            //do the stuff it did before
+            SetPanelActive();
+        }
         if (resultPanelActive)
         {
             resultsPanel.blocksRaycasts = true;
@@ -129,4 +151,13 @@ public class CosmeticShop : MonoBehaviour, IWardrobe
         PlayerPrefs.SetInt("Max Collectibles", currency);
     }
 
+    public void ReturnLid()
+    {
+        lid.isKinematic = true;
+        lid.transform.eulerAngles = Vector3.zero;
+        lid.transform.localPosition = originalPosition;
+        animator.SetTrigger("Roll");
+    }
+
+    public void SetLidReady() => waitingForLaunchInput = true;
 }
