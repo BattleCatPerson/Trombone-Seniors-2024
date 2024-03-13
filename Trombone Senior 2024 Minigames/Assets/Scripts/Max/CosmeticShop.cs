@@ -111,7 +111,7 @@ public class CosmeticShop : MonoBehaviour, IWardrobe
             waitingForLaunchInput = false;
             //launch lid
             lid.isKinematic = false;
-            lid.AddForce((new Vector3(Random.Range(-1f, 1f), Random.Range(0, 1f), Random.Range(-1f, 1f)).normalized * launchForce), ForceMode.Impulse);
+            lid.AddForce((new Vector3(Random.Range(-1f, 1f), Random.Range(0.5f, 1f), Random.Range(-1f, 1f)).normalized * launchForce), ForceMode.Impulse);
             lid.AddTorque((new Vector3(Random.Range(-1f, 1f), Random.Range(0, 1f), Random.Range(-1f, 1f)).normalized * torque));
             //do the stuff it did before
             SetPanelActive();
