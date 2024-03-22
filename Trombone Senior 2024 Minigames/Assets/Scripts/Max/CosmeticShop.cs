@@ -14,7 +14,7 @@ public enum CosmeticType
 }
 public enum Rarity
 {
-    common, rare, superRare
+    Common, Rare, SuperRare
 }
 [Serializable]
 public class Cosmetic
@@ -79,7 +79,7 @@ public class CosmeticShop : MonoBehaviour, IWardrobe
         }
         Cosmetic final = valid[Random.Range(0, valid.Count)];
         resultText.text = final.name;
-        rarityText.text = final.rarity.ToString();
+        rarityText.text = ReturnRarityString(final.rarity);
         resultPlayerImage.sprite = wardrobe.MatchIdToSprite(final.id)[0];
         resultBoardImage.sprite = wardrobe.MatchIdToSprite(final.id)[1];
         List<int> ids = new();
@@ -94,9 +94,9 @@ public class CosmeticShop : MonoBehaviour, IWardrobe
     public void Start()
     {
         chances = new();
-        for (int i = 0; i < COMMON_PERCENT; i++) chances.Add(Rarity.common);
-        for (int i = 0; i < RARE_PERCENT; i++) chances.Add(Rarity.rare);
-        for (int i = 0; i < SUPER_RARE_PERCENT; i++) chances.Add(Rarity.superRare);
+        for (int i = 0; i < COMMON_PERCENT; i++) chances.Add(Rarity.Common);
+        for (int i = 0; i < RARE_PERCENT; i++) chances.Add(Rarity.Rare);
+        for (int i = 0; i < SUPER_RARE_PERCENT; i++) chances.Add(Rarity.SuperRare);
         currency = PlayerPrefs.GetInt("Max Collectibles");
 
         lid.isKinematic = true;
@@ -160,4 +160,9 @@ public class CosmeticShop : MonoBehaviour, IWardrobe
     }
 
     public void SetLidReady() => waitingForLaunchInput = true;
+    public string ReturnRarityString(Rarity r)
+    {
+        if (r == Rarity.SuperRare) return "Super Rare";
+        else return r.ToString();
+    }
 }
