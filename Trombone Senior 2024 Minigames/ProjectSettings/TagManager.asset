@@ -42,6 +42,12 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Police Car
+    uniqueID: 2448168489
+    locked: 0
+  - name: Player
+    uniqueID: 2995118861
+    locked: 0
   - name: Laser
     uniqueID: 3576448921
     locked: 0
