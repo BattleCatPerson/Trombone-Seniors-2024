@@ -58,6 +58,7 @@ public class MaxGameManager : MonoBehaviour
         {
             accumulated += Time.deltaTime;
             if (accumulated < canvasAppearTime) canvasGroup.alpha = Mathf.Lerp(0, 1, accumulated / canvasAppearTime);
+            else canvasGroup.alpha = 1;
             if (accumulated >= tutorialPopupDelay && playedTutorial == false)
             {
                 playedTutorial = true;
