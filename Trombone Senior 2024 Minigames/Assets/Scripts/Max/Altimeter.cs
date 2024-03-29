@@ -5,6 +5,7 @@ using TMPro;
 public class Altimeter : MonoBehaviour
 {
     [SerializeField] float height;
+    public float floatHeight;
     [SerializeField] float maxMeterHeight;
     [SerializeField] int floorLayer;
     [SerializeField] Transform player;
@@ -39,7 +40,8 @@ public class Altimeter : MonoBehaviour
         //just raycast only to the floor at all times to get the altitude
         RaycastHit2D hit = Physics2D.Raycast(player.position, Vector2.down, Mathf.Infinity, floorLayer);
         Vector2 point = hit.point;
-        int temp = (int)Mathf.Floor(player.position.y - point.y);
+        floatHeight = player.position.y - point.y;
+        int temp = (int)Mathf.Floor(floatHeight);
         if (hit.collider) height = temp;
         else
         {

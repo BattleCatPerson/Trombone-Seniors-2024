@@ -49,6 +49,7 @@ public class MaxCharacterController : MonoBehaviour
     [SerializeField] int layerInt;
     [SerializeField] float baseCameraSize;
     [SerializeField] float maxCameraSize;
+    [SerializeField] Altimeter altimeter;
     [Header("Score")]
     [SerializeField] int flips;
     [SerializeField] float accumulatedAngle;
@@ -155,14 +156,9 @@ public class MaxCharacterController : MonoBehaviour
             }
         }
 
-        Vector2 point = (Physics2D.Raycast(transform.position, Vector2.down, Mathf.Infinity, layer).point);
-        verticalDistanceToFloor = Vector2.Distance((Vector2) transform.position + Vector2.down * transform.localScale, point);
-
-        if (verticalDistanceToFloor > 1f)
-        {
-            vCam.m_Lens.OrthographicSize = baseCameraSize + verticalDistanceToFloor;
-        }
-        else vCam.m_Lens.OrthographicSize = baseCameraSize;
+        //Vector2 point = (Physics2D.Raycast(transform.position, Vector2.down, Mathf.Infinity, layer).point);
+        verticalDistanceToFloor = altimeter.floatHeight;
+        vCam.m_Lens.OrthographicSize = baseCameraSize + verticalDistanceToFloor;
         vCam.m_Lens.OrthographicSize = Mathf.Clamp(vCam.m_Lens.OrthographicSize, baseCameraSize, maxCameraSize);
 
         RaycastHit2D hit = Physics2D.Raycast(transform.position, -transform.up, Mathf.Infinity, layer);
@@ -330,7 +326,7 @@ public class MaxCharacterController : MonoBehaviour
         if (score > PlayerPrefs.GetInt("Max High Score"))
         {
             newHighScoreText.SetActive(true);
-            PlayerPrefs.SetInt("Max High Score", (int) score);
+            PlayerPrefs.SetInt("Max High Score", (int)score);
         }
 
         collectibleManager.UpdateCollectibles();
