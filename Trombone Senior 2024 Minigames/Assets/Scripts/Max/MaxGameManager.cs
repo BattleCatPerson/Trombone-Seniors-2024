@@ -28,6 +28,8 @@ public class MaxGameManager : MonoBehaviour
     [SerializeField] bool playedTutorial;
     [SerializeField] float tutorialPopupDelay;
     [SerializeField] Animator tutorialAnimator;
+    [Header("Pause")]
+    [SerializeField] GameObject pauseMenu;
     private float accumulated = 0;
     void Start()
     {
@@ -99,4 +101,15 @@ public class MaxGameManager : MonoBehaviour
     public void EnablePanel() => tutorialAnimator.SetTrigger("Rise");
     public void DisablePanel() => tutorialAnimator.SetTrigger("Fall");
     public void SetAutoStart() => autoStart = true;
+    public void EnablePauseMenu()
+    {
+        pauseMenu.SetActive(true);
+        PauseGame();
+    }
+
+    public void DisablePauseMenu()
+    {
+        pauseMenu.SetActive(false);
+        UnpauseGame();
+    }
 }
