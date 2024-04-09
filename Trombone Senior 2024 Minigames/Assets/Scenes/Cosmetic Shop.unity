@@ -5427,6 +5427,12 @@ MonoBehaviour:
   - id: 12
     rarity: 2
     name: M
+  - id: 13
+    rarity: 2
+    name: King
+  - id: 14
+    rarity: 1
+    name: Pirate
   unlocked: []
   wardrobe: {fileID: 1707957481}
   rollPanel: {fileID: 213840297}

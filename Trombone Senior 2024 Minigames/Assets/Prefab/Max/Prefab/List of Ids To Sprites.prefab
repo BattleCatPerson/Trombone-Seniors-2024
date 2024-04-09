@@ -97,7 +97,15 @@ MonoBehaviour:
     sprites:
     - {fileID: -467795652, guid: d7f9b80f02ae5ca48a0cd55ecdbedbcb, type: 3}
     - {fileID: -617145526, guid: d7f9b80f02ae5ca48a0cd55ecdbedbcb, type: 3}
-  - id: 11
+  - id: 12
     sprites:
     - {fileID: 2020909053, guid: 455ccd19f33077b479bc26272d1f08cd, type: 3}
     - {fileID: -347771439, guid: 455ccd19f33077b479bc26272d1f08cd, type: 3}
+  - id: 13
+    sprites:
+    - {fileID: 1285528794, guid: 9a45e22dd5651fa4480059e64796969e, type: 3}
+    - {fileID: -886329392, guid: 9a45e22dd5651fa4480059e64796969e, type: 3}
+  - id: 14
+    sprites:
+    - {fileID: -1098691921, guid: 842923ad999a4ab43b183a17b7e13306, type: 3}
+    - {fileID: 1614842489, guid: 842923ad999a4ab43b183a17b7e13306, type: 3}
