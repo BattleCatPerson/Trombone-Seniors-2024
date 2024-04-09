@@ -42,7 +42,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -115,7 +115,28 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: Resume Button_5
+      rect:
+        serializedVersion: 2
+        x: 66
+        y: 264
+        width: 455
+        height: 456
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2fc35b06f9adb0446b7565fd9b598a25
+      internalID: 2077428610
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -126,7 +147,22 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Resume Button_0: 676782066
+      Resume Button_1: 348916958
+      Resume Button_10: 389547395
+      Resume Button_11: 443758667
+      Resume Button_12: -2007302353
+      Resume Button_13: 313270397
+      Resume Button_14: -1111520753
+      Resume Button_2: 147481335
+      Resume Button_3: 1110181583
+      Resume Button_4: 910336159
+      Resume Button_5: 2077428610
+      Resume Button_6: 251463041
+      Resume Button_7: -1023212532
+      Resume Button_8: 1494124112
+      Resume Button_9: -1754835935
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
