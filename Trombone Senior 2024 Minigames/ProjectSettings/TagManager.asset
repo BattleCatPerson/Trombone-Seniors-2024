@@ -51,3 +51,6 @@ TagManager:
   - name: Laser
     uniqueID: 3576448921
     locked: 0
+  - name: Logo
+    uniqueID: 4243981993
+    locked: 0
