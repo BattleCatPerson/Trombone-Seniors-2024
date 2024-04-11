@@ -43,6 +43,7 @@ public class MaxGameManager : MonoBehaviour
 
         if (autoStart)
         {
+            startPanel.SetActive(false);
             StartGameInitial();
             autoStart = false;
         }
@@ -83,7 +84,6 @@ public class MaxGameManager : MonoBehaviour
     public void StartGameInitial()
     {
         startedInitial = true;
-        startPanel.SetActive(false);
     }
     public void StartGame()
     {
