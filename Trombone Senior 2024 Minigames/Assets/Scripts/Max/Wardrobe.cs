@@ -25,6 +25,7 @@ public class Wardrobe : MonoBehaviour
     [Header("Lists")]
     [SerializeField] List<Cosmetic> costumes;
     [SerializeField] List<Cosmetic> trails;
+    [SerializeField] Cosmetic initialCosmetic;
     [SerializeField] Transform collectionPanel;
     [SerializeField] Image previewSprite;
     [SerializeField] RectTransform scrollPanel;
@@ -45,8 +46,7 @@ public class Wardrobe : MonoBehaviour
     {
         fileHandler = new FileHandler(Application.persistentDataPath, fileName);
         data = fileHandler.Load();
-        if (data == null) data = new CosmeticData();
-
+        if (data == null) data = new CosmeticData(initialCosmetic);
         crates = Initialize();
         foreach (Cosmetic c in data.costumes)
         {
@@ -54,7 +54,8 @@ public class Wardrobe : MonoBehaviour
         }
         foreach (var v in crates) v.Load(data);
         previewSprite.sprite = MatchIdToSprite(data.selectedId)[0];
-        costumes = data.costumes;
+
+        costumes.AddRange(data.costumes);
         SwitchWardrobeState(WardrobeState.menu);
         UpdatePanel();
     }

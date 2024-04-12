@@ -11,16 +11,16 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Cosmetic Shop.unity
     guid: dfc03191f0f243c479022aef7a27de32
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Menu.unity
     guid: 99c9720ab356a0642a771bea13969a05
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Jeremy.unity
     guid: e7216ddc7cc04204aaedbb16354aef2c
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Jackson.unity
     guid: ba417cc63b2ada84097925d064f88a9e
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Nick.unity
     guid: 968a2d9dab1bbcc4da4800e6ab828967
   m_configObjects: {}

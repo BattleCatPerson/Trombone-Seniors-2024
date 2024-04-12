@@ -20,4 +20,12 @@ public class CosmeticData
         trails = new();
         selectedId = -1;
     }
+
+    public CosmeticData(Cosmetic initialCosmetic)
+    {
+        costumes = new();
+        costumes.Add(initialCosmetic);
+        trails = new();
+        selectedId = -1;
+    }
 }
