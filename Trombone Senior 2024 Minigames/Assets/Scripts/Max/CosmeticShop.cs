@@ -88,6 +88,7 @@ public class CosmeticShop : MonoBehaviour, IWardrobe
         {
             unlocked.Add(final);
             wardrobe.AddToPanel(final.id);
+            wardrobe.UpdatePanel();
         }
     }
 

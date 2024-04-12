@@ -17,7 +17,6 @@ public class IdSpritePair
 }
 public class Wardrobe : MonoBehaviour
 {
-    
     public CosmeticData data;
     public List<IWardrobe> crates;
     [Header("File")]
@@ -28,6 +27,7 @@ public class Wardrobe : MonoBehaviour
     [SerializeField] List<Cosmetic> trails;
     [SerializeField] Transform collectionPanel;
     [SerializeField] Image previewSprite;
+    [SerializeField] RectTransform scrollPanel;
     [Header("State Transitions")]
     [SerializeField] WardrobeState wardrobeState;
     [SerializeField] GameObject rollCanvas;
@@ -54,8 +54,9 @@ public class Wardrobe : MonoBehaviour
         }
         foreach (var v in crates) v.Load(data);
         previewSprite.sprite = MatchIdToSprite(data.selectedId)[0];
-
+        costumes = data.costumes;
         SwitchWardrobeState(WardrobeState.menu);
+        UpdatePanel();
     }
 
     void Update()
@@ -63,7 +64,14 @@ public class Wardrobe : MonoBehaviour
         costumes = data.costumes;
         trails = data.trails;
     }
-
+    public void UpdatePanel()
+    {
+        int rows = (int)(Math.Ceiling(costumes.Count / 4f));
+        float posY = 20 - (20 * (rows - 1));
+        float height = 40 * rows;
+        scrollPanel.sizeDelta = new Vector2(scrollPanel.sizeDelta.x, height);
+        scrollPanel.anchoredPosition = Vector2.up * posY;
+    }
     private void OnApplicationQuit()
     {
         fileHandler.Save(data);
