@@ -6,6 +6,7 @@ using Touch = UnityEngine.InputSystem.EnhancedTouch.Touch;
 using TouchPhase = UnityEngine.InputSystem.TouchPhase;
 using Random = UnityEngine.Random;
 using TMPro;
+using UnityEngine.InputSystem.EnhancedTouch;
 public class CollectibleManager : MonoBehaviour
 {
     [SerializeField] int layer;
@@ -18,6 +19,9 @@ public class CollectibleManager : MonoBehaviour
     [SerializeField] float maxDistanceFromPoint;
     [SerializeField] LineRenderer lineRenderer;
     [SerializeField] TextMeshProUGUI text;
+
+    //if this is on just use raycasts instead of touch!
+    [SerializeField] bool windowsBuild;
     private void Start()
     {
         layer = 1 << layer;
@@ -29,17 +33,30 @@ public class CollectibleManager : MonoBehaviour
     }
     void Update()
     {
-        var activeTouches = Touch.activeTouches;
-
-        foreach (Touch touch in activeTouches)
+        if (!windowsBuild)
         {
-            RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(touch.screenPosition), Vector2.zero, Mathf.Infinity, layer);
+            var activeTouches = Touch.activeTouches;
+
+            foreach (Touch touch in activeTouches)
+            {
+                RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(touch.screenPosition), Vector2.zero, Mathf.Infinity, layer);
+                if (hit.collider)
+                {
+                    collectibles++;
+                    Destroy(hit.collider.gameObject);
+                }
+            }
+        }
+        else if (Input.GetMouseButton(0))
+        {
+            RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero, Mathf.Infinity, layer);
             if (hit.collider)
             {
                 collectibles++;
                 Destroy(hit.collider.gameObject);
             }
         }
+        
         text.text = $"{collectibles}";
     }
 

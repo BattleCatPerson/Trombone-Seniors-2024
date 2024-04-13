@@ -51,6 +51,7 @@ public class CosmeticShop : MonoBehaviour, IWardrobe
     [SerializeField] Vector3 originalPosition;
     [SerializeField] bool waitingForLaunchInput;
     [SerializeField] Animator animator;
+    [SerializeField] bool windowsBuild;
     List<Rarity> chances;
 
     const int COMMON_PERCENT = 70;
@@ -106,7 +107,7 @@ public class CosmeticShop : MonoBehaviour, IWardrobe
 
     public void Update()
     {
-        if (waitingForLaunchInput && Touch.activeTouches.Count > 0)
+        if (waitingForLaunchInput && ((Touch.activeTouches.Count > 0 && !windowsBuild) || (Input.GetMouseButtonDown(0) && windowsBuild)))
         {
             //disable waiting
             waitingForLaunchInput = false;
