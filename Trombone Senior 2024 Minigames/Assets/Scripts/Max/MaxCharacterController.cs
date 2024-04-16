@@ -6,6 +6,7 @@ using Touch = UnityEngine.InputSystem.EnhancedTouch.Touch;
 using TouchPhase = UnityEngine.InputSystem.TouchPhase;
 using Random = UnityEngine.Random;
 using Mathf = UnityEngine.Mathf;
+using IEnumerator = System.Collections.IEnumerator; 
 using Cinemachine;
 using UnityEngine.UI;
 using TMPro;
@@ -62,6 +63,8 @@ public class MaxCharacterController : MonoBehaviour
     [Header("Game Over")]
     [SerializeField] float angleDeviation;
     [SerializeField] bool gameOver;
+    [SerializeField] float panelDelay;
+    [SerializeField] AnimatorSetTrigger gameOverAnimator;
     [Header("Ragdoll")]
     [SerializeField] Rigidbody2D maxRb;
     [SerializeField] float launchForce;
@@ -322,7 +325,7 @@ public class MaxCharacterController : MonoBehaviour
         maxRb.AddTorque(-launchForce);
         SetSprites(false);
         rampSource.PlayOneShot(deathClip);
-        gameOverPanel.SetActive(true);
+        StartCoroutine(EnableGameOverPanel());
         if (score > PlayerPrefs.GetInt("Max High Score"))
         {
             newHighScoreText.SetActive(true);
@@ -330,5 +333,12 @@ public class MaxCharacterController : MonoBehaviour
         }
 
         collectibleManager.UpdateCollectibles();
+    }
+
+    public IEnumerator EnableGameOverPanel()
+    {
+        yield return new WaitForSeconds(panelDelay);
+        gameOverPanel.SetActive(true);
+        gameOverAnimator.SetTrigger();
     }
 }
