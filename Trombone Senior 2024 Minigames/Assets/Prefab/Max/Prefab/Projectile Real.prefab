@@ -330,7 +330,7 @@ MonoBehaviour:
   cannon: {fileID: 4732981842730715466}
   mask:
     serializedVersion: 2
-    m_Bits: 6144
+    m_Bits: 2048
   shot: 0
   countdownRenderer: {fileID: 1244439816154569266}
   countdownSprites:

@@ -14,6 +14,7 @@ public class ProjectileSpawner : MonoBehaviour
     [SerializeField] Transform spawnPosition;
     [SerializeField] Transform spawnParent;
     [SerializeField] Rigidbody2D playerRb;
+    [SerializeField] MaxCharacterController controller;
     //get bounds
     //get random direction
     void Update()
@@ -61,6 +62,8 @@ public class ProjectileSpawner : MonoBehaviour
         float angle = Random.Range(0, 2 * Mathf.PI);
         Vector3 position = new Vector3(Mathf.Cos(angle), Mathf.Sin(angle)).normalized;
         p.position = position;
+
+        p.controller = controller;
     }
 
 }

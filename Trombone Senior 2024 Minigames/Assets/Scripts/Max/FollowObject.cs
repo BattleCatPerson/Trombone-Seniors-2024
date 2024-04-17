@@ -22,7 +22,7 @@ public class FollowObject : MonoBehaviour
         layer = 1 << layer;
         rb = target.GetComponent<Rigidbody2D>();
     }
-    void Update()
+    void FixedUpdate()
     {
         //raycast ground, make y level yOffset from that raycast point! eASTY!
         transform.position = target.position + Vector3.right * offset.x + Vector3.up * 10f;
@@ -31,7 +31,7 @@ public class FollowObject : MonoBehaviour
         if (spriteFollowActive)
         {
             Vector2 newPoint = point + Vector2.up * offset.y;
-            if (Vector3.Distance(sprite.position, newPoint) > 0.5f && moving) sprite.position = Vector3.MoveTowards(sprite.position, newPoint, transitionSpeed * Time.deltaTime);
+            if (Vector3.Distance(sprite.position, newPoint) > 0.5f && moving) sprite.position = Vector3.MoveTowards(sprite.position, newPoint, transitionSpeed * Time.fixedDeltaTime);
             else
             {
                 sprite.position = newPoint;
@@ -42,7 +42,7 @@ public class FollowObject : MonoBehaviour
         {
             Vector2 newPoint = (Vector2)target.position + offsetOnScreen;
 
-            if (Vector3.Distance(sprite.position, newPoint) > 0.5f && moving) sprite.position = Vector3.MoveTowards(sprite.position, newPoint, transitionSpeed * Time.deltaTime);
+            if (Vector3.Distance(sprite.position, newPoint) > 0.5f && moving) sprite.position = Vector3.MoveTowards(sprite.position, newPoint, transitionSpeed * Time.fixedDeltaTime);
             else
             {
                 sprite.position = newPoint;

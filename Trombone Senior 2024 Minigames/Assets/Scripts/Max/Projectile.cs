@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Linq;
 using UnityEngine;
 
 public class Projectile : MonoBehaviour
@@ -26,6 +27,7 @@ public class Projectile : MonoBehaviour
     [SerializeField] float moveSpeed;
     public Vector3 position;
     public Rigidbody2D playerRb;
+    public MaxCharacterController controller;
     SpriteRenderer renderer;
     private void Start()
     {
@@ -43,27 +45,27 @@ public class Projectile : MonoBehaviour
     //    rb.velocity = velocity;
     //    spriteRenderer.sprite = sprite;
     //}
-    private void Update()
-    {
+    private void FixedUpdate()
+    { 
         if (MaxGameManager.gameOver) return;
-        transform.right = (playerRb.position - (Vector2)transform.position).normalized;
         if (moving)
         {
             if (!shot)
             {
-                moveSpeed += (moveSpeed * 1.1f * Time.deltaTime);
+                moveSpeed += (moveSpeed * 1.1f * Time.fixedDeltaTime);
                 Vector2 newPos = playerRb.transform.position + position * offset;
-                if (Vector2.Distance(transform.position, newPos) > 0.5) transform.position = Vector2.MoveTowards(transform.position, newPos, moveSpeed * Time.deltaTime);
+                if (Vector2.Distance(transform.position, newPos) > 0.5) transform.position = Vector2.MoveTowards(transform.position, newPos, moveSpeed * Time.fixedDeltaTime);
                 else
                 {
                     transform.position = newPos;
+                    transform.right = (playerRb.position - (Vector2)transform.position).normalized;
                     moving = false;
                 }
             }
             else
             {
                 Vector2 newPos = (Vector2) playerRb.transform.position + initialPosition;
-                if (Vector2.Distance(transform.position, newPos) > 0.5) transform.position = Vector2.MoveTowards(transform.position, newPos, moveSpeed * Time.deltaTime);
+                if (Vector2.Distance(transform.position, newPos) > 0.5) transform.position = Vector2.MoveTowards(transform.position, newPos, moveSpeed * Time.fixedDeltaTime);
                 else
                 {
                     Destroy(gameObject);
@@ -74,7 +76,7 @@ public class Projectile : MonoBehaviour
 
         if (shot && duration >= 0)
         {
-            duration -= Time.deltaTime;
+            duration -= Time.fixedDeltaTime;
             if (duration <= 0)
             {
                 moving = true;
@@ -85,7 +87,7 @@ public class Projectile : MonoBehaviour
 
         if (accumulated < currentTime)
         {
-            accumulated += Time.deltaTime;
+            accumulated += Time.fixedDeltaTime;
             int ind = 0;
             if (accumulated >= 2 * currentTime / 3) ind = 2;
             else if (accumulated >= currentTime / 3) ind = 1;
@@ -95,22 +97,32 @@ public class Projectile : MonoBehaviour
         }
         else if (!shot)
         {
-            RaycastHit2D p = Physics2D.Raycast(transform.position, transform.right, Mathf.Infinity, mask);
-            if (!p.collider) return;
-
-            if (LayerMask.LayerToName(p.collider.gameObject.layer) == "Player")
-            {
-                Debug.Log("DIE");
-                p.collider.transform.root.GetComponent<MaxCharacterController>().StopGame();
-            }
-            else
-            {
-                Debug.Log("BLOCK");
-            }
+            Physics2D.SyncTransforms();
+            RaycastHit2D p = Physics2D.Raycast(transform.position, transform.right, offset, mask);
+            RaycastHit2D[] hits = Physics2D.RaycastAll(transform.position, transform.right, offset, mask);
             countdownRenderer.enabled = false;
             renderer.enabled = true;
             shot = true;
-            Vector2 point = p.point;
+            //if (!p.collider) return;
+            //if (LayerMask.LayerToName(p.collider.gameObject.layer) == "Player")
+            //{
+            //    Debug.Log("DIE");
+            //    p.collider.transform.root.GetComponent<MaxCharacterController>().StopGame();
+            //}
+            Vector2 point = new Vector2();
+
+            if (!p.collider)
+            {
+                Debug.Log("DIE");
+                controller.StopGame();
+                point = controller.transform.position;
+            }
+            else
+            {
+                point = p.point;
+                Debug.Log("BLOCK");
+            }
+            
             laserPoint.gameObject.SetActive(true);
             laserPoint.position = point;
             Debug.Log(point);
@@ -123,10 +135,17 @@ public class Projectile : MonoBehaviour
 
         }
 
+        RaycastHit2D[] p1 = Physics2D.RaycastAll(transform.position, transform.right, offset, mask);
+        Debug.Log($"DEBU G COUNT {p1.Length}");
     }
 
     public static void UpdateTime(int thousands)
     {
         currentTime = time * Mathf.Pow(MULT, thousands);
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.DrawRay(transform.position, transform.right * offset);
     }
 }
