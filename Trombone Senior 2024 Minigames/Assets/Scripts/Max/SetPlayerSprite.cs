@@ -4,11 +4,13 @@ using System.Collections.Generic;
 using System.IO;
 using Unity.IO.LowLevel.Unsafe;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class SetPlayerSprite : MonoBehaviour
 {
     [SerializeField] SpriteRenderer playerSprite;
     [SerializeField] SpriteRenderer boardSprite;
+    [SerializeField] Image gameOverImage;
     [SerializeField] ListOfIdsToSprites pairs;
     [SerializeField] int currentId;
     [SerializeField] string fileName;
@@ -24,6 +26,7 @@ public class SetPlayerSprite : MonoBehaviour
             if (i.id == currentId)
             {
                 playerSprite.sprite = i.sprites[0];
+                gameOverImage.sprite = i.sprites[0];
                 boardSprite.sprite = i.sprites[1];
                 break;
             }
