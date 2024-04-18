@@ -109,7 +109,7 @@ public class MapGeneration : MonoBehaviour
     public void MoveFloors()
     {
         Transform temp = currentFloor;
-        standbyFloor.localPosition = Vector3.right * (temp.localPosition.x + floorLength);
+        standbyFloor.localPosition = new Vector3(temp.localPosition.x + floorLength, 0);
         currentFloor = standbyFloor;
         standbyFloor = temp;
     }

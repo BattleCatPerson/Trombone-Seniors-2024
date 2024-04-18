@@ -8,6 +8,7 @@ public class PositionReset : MonoBehaviour
     [SerializeField] Transform resetPostion;
     [SerializeField] Transform tracker;
     [SerializeField] List<Transform> affectedTransforms;
+    [SerializeField] Altimeter altimeter;
     void Start()
     {
 
@@ -16,14 +17,15 @@ public class PositionReset : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (tracker.position.x > limit.x || tracker.position.y > limit.y)
+        if (tracker.position.x > limit.x)
         {
+            Vector3 newPos = resetPostion.position + Vector3.up * altimeter.floatHeight;
             foreach (Transform t in affectedTransforms)
             {
                 Vector3 offset = t.position - tracker.position;
-                t.position = resetPostion.position + offset;
+                t.position = newPos + offset;
             }
-            tracker.position = resetPostion.position;
+            tracker.position = newPos;
         }
     }
 }

@@ -16621,7 +16621,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 934390609}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 12.1, y: 5.6, z: -0.19130887}
+  m_LocalPosition: {x: 31.8, y: 25.1, z: -0.19130887}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -16640,19 +16640,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61e66d43c07d62c4e8488d5936dce9f1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  limit: {x: 100, y: 100, z: 0}
+  limit: {x: 10000, y: 10000, z: 0}
   resetPostion: {fileID: 934390610}
   tracker: {fileID: 2137725486}
   affectedTransforms:
-  - {fileID: 925732131}
-  - {fileID: 440768620}
-  - {fileID: 1378113694}
-  - {fileID: 2056029468}
-  - {fileID: 404038073}
-  - {fileID: 2121993716}
   - {fileID: 151143233}
   - {fileID: 1875567655}
   - {fileID: 410702992}
+  - {fileID: 1900620851}
+  altimeter: {fileID: 2115189026}
 --- !u!1 &939413272
 GameObject:
   m_ObjectHideFlags: 0
