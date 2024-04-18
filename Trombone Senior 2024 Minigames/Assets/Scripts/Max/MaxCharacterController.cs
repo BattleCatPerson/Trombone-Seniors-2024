@@ -91,6 +91,7 @@ public class MaxCharacterController : MonoBehaviour
     [SerializeField] float pitch;
     [SerializeField] float pitchIncrease;
     [SerializeField] float pitchFloor;
+    [SerializeField] float pitchMax;
     [SerializeField] AudioSource rampSource;
     [SerializeField] AudioClip rampClip;
     [SerializeField] AudioClip deathClip;
@@ -155,6 +156,7 @@ public class MaxCharacterController : MonoBehaviour
                 Debug.Log("PLAY SOUND");
                 audioSource.PlayOneShot(clip);
                 audioSource.pitch += pitchIncrease;
+                audioSource.pitch = Mathf.Clamp(audioSource.pitch, pitchFloor, pitchMax);
                 accumulatedAngle = 0;
                 SetSprites(true);
             }

@@ -39589,6 +39589,7 @@ MonoBehaviour:
   pitch: 0
   pitchIncrease: 0.1
   pitchFloor: 0
+  pitchMax: 11
   rampSource: {fileID: 220080943}
   rampClip: {fileID: 8300000, guid: 38656e633a592f540aa3d4d8409cf89e, type: 3}
   deathClip: {fileID: 8300000, guid: 513b1efde61ca5d47983b035a25ac4bd, type: 3}

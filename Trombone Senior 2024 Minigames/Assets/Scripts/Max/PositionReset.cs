@@ -15,11 +15,11 @@ public class PositionReset : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
-        if (tracker.position.x > limit.x)
+        if (tracker.position.x > limit.x || tracker.position.y > limit.y)
         {
-            Vector3 newPos = resetPostion.position + Vector3.up * altimeter.floatHeight;
+            Vector3 newPos = resetPostion.position;
             foreach (Transform t in affectedTransforms)
             {
                 Vector3 offset = t.position - tracker.position;
