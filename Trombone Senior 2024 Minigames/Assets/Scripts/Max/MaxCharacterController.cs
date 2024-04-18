@@ -71,6 +71,7 @@ public class MaxCharacterController : MonoBehaviour
     [Header("Score Text")]
     [SerializeField] SpriteRenderer oneSprite;
     [SerializeField] SpriteRenderer tenSprite;
+    [SerializeField] GameObject plus;
     [SerializeField] List<CharToSpriteDictionary> dictionary;
     [SerializeField] List<GameObject> comboTexts;
     [SerializeField] int bonusActive;
@@ -265,6 +266,11 @@ public class MaxCharacterController : MonoBehaviour
             string str = flips.ToString();
             char ones;
             char tens;
+            if (flips > 99)
+            {
+                if (plus.active == false) plus.SetActive(true);
+                return;
+            }
             if (flips >= 10)
             {
                 ones = str[1];
@@ -286,6 +292,7 @@ public class MaxCharacterController : MonoBehaviour
         }
         oneSprite.sprite = null;
         tenSprite.sprite = null;
+        plus.SetActive(false);
         Combos(false);
     }
 
