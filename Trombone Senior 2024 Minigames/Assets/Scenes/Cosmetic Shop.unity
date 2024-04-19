@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028346, g: 0.22571373, b: 0.30692244, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -5432,6 +5432,45 @@ MonoBehaviour:
   - id: 14
     rarity: 1
     name: Pirate
+  - id: 15
+    rarity: 0
+    name: Ashen
+  - id: 16
+    rarity: 0
+    name: Cloudy
+  - id: 17
+    rarity: 0
+    name: Lime
+  - id: 18
+    rarity: 0
+    name: Melon
+  - id: 19
+    rarity: 0
+    name: Mint
+  - id: 20
+    rarity: 0
+    name: Missing
+  - id: 21
+    rarity: 0
+    name: Neopolitan
+  - id: 22
+    rarity: 0
+    name: Patriotic
+  - id: 23
+    rarity: 0
+    name: Petrified
+  - id: 24
+    rarity: 0
+    name: Strawberry
+  - id: 25
+    rarity: 0
+    name: Tangerine
+  - id: 26
+    rarity: 0
+    name: Green Screen
+  - id: 27
+    rarity: 0
+    name: Night
   unlocked: []
   wardrobe: {fileID: 1707957481}
   rollPanel: {fileID: 213840297}

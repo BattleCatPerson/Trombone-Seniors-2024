@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: cc747dfbeb04dd048bb657347e9569f3
+guid: cbf6f9ea82cb7884bbe0ab238c036da8
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -117,7 +117,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Petrified_0
+      name: Patriotic_0
       rect:
         serializedVersion: 2
         x: 148
@@ -131,14 +131,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ef9b67b2ace60064fb04a1c9178b8781
-      internalID: -1802877098
+      spriteID: 00a72cc171d347d48b2f393291bbf077
+      internalID: -1048503698
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Petrified_1
+      name: Patriotic_1
       rect:
         serializedVersion: 2
         x: 138
@@ -152,8 +152,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7371c8c4fedbc4e4bba7e7cbfc7081c6
-      internalID: 1445887084
+      spriteID: b33bff75875b30f4c8d7a0c10df8fe6e
+      internalID: -260280005
       vertices: []
       indices: 
       edges: []
@@ -161,7 +161,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 020ed1b83244be64ba41e1a4b507e5ba
+    spriteID: 46b9e0508b358f04083b87053f62ac9e
     internalID: 0
     vertices: []
     indices: 
@@ -169,8 +169,8 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Petrified_0: -1802877098
-      Petrified_1: 1445887084
+      Patriotic_0: -1048503698
+      Patriotic_1: -260280005
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

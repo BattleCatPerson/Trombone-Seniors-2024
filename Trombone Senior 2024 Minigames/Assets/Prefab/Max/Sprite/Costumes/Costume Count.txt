@@ -1,3 +1,3 @@
-Commons: 14
+Commons: 20
 Rares: 7
 Super Rares: 4

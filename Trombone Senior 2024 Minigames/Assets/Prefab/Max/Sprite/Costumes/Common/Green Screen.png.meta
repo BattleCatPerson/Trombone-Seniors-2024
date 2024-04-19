@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: cc747dfbeb04dd048bb657347e9569f3
+guid: 107a529ef80dccd4581126b5f1d0d218
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -117,7 +117,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Petrified_0
+      name: Green Screen_0
       rect:
         serializedVersion: 2
         x: 148
@@ -131,14 +131,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ef9b67b2ace60064fb04a1c9178b8781
-      internalID: -1802877098
+      spriteID: 7c11ab5d345fc0643b36655e81ffc635
+      internalID: 1511652951
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Petrified_1
+      name: Green Screen_1
       rect:
         serializedVersion: 2
         x: 138
@@ -152,8 +152,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7371c8c4fedbc4e4bba7e7cbfc7081c6
-      internalID: 1445887084
+      spriteID: 4d209b1f9d686ec4fa434b197d2439a3
+      internalID: -19289207
       vertices: []
       indices: 
       edges: []
@@ -161,7 +161,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 020ed1b83244be64ba41e1a4b507e5ba
+    spriteID: 5e97eb03825dee720800000000000000
     internalID: 0
     vertices: []
     indices: 
@@ -169,8 +169,8 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Petrified_0: -1802877098
-      Petrified_1: 1445887084
+      Green Screen_0: 1511652951
+      Green Screen_1: -19289207
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
