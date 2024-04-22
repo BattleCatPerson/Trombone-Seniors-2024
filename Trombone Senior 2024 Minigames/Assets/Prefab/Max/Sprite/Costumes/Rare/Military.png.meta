@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 830185db658969a43bf9bdd3c4857740
+guid: 5ec726af41406da4b9edac0d9d9af5da
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -117,7 +117,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Nerd_0
+      name: Military_0
       rect:
         serializedVersion: 2
         x: 148
@@ -131,29 +131,29 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 75476d3046ce4f44683002f8a767c7da
-      internalID: -1439267461
+      spriteID: 1e4f9310d8be0d048af5d88bbc857443
+      internalID: 1410761571
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Nerd_1
+      name: Military_1
       rect:
         serializedVersion: 2
-        x: 138
-        y: 294
-        width: 240
-        height: 184
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 144
+        y: 281
+        width: 225
+        height: 188
+      alignment: 9
+      pivot: {x: 0.49805772, y: 0.516272}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 097670ddde5296647bc15cfd942d4f27
-      internalID: -423865441
+      spriteID: a8af3835caf2dde49b1531a23961d5c6
+      internalID: -977623120
       vertices: []
       indices: 
       edges: []
@@ -161,7 +161,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 028e9418472de724eaff525a8956175a
+    spriteID: 67c2fc66e2589874b93294343e9549a7
     internalID: 0
     vertices: []
     indices: 
@@ -169,8 +169,8 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Nerd_0: -1439267461
-      Nerd_1: -423865441
+      Military_0: 1410761571
+      Military_1: -977623120
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

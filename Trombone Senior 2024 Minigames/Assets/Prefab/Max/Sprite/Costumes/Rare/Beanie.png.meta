@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 830185db658969a43bf9bdd3c4857740
+guid: 07921ea92c1ce3a43bca24df4295e464
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -117,13 +117,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Nerd_0
+      name: Beanie_0
       rect:
         serializedVersion: 2
         x: 148
         y: 513
         width: 226
-        height: 57
+        height: 56
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -131,29 +131,29 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 75476d3046ce4f44683002f8a767c7da
-      internalID: -1439267461
+      spriteID: 4c702026f69ce2e40bf27df9fdaa69dd
+      internalID: 1064116348
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Nerd_1
+      name: Beanie_1
       rect:
         serializedVersion: 2
-        x: 138
+        x: 144
         y: 294
-        width: 240
-        height: 184
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        width: 224
+        height: 199
+      alignment: 9
+      pivot: {x: 0.49999994, y: 0.4317667}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 097670ddde5296647bc15cfd942d4f27
-      internalID: -423865441
+      spriteID: d0e8ef0599a1c0b4b95d2567dd14b7f8
+      internalID: -1840064718
       vertices: []
       indices: 
       edges: []
@@ -161,7 +161,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 028e9418472de724eaff525a8956175a
+    spriteID: 3a9bbb7f72dad8c4896e30174ff5cf90
     internalID: 0
     vertices: []
     indices: 
@@ -169,8 +169,8 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Nerd_0: -1439267461
-      Nerd_1: -423865441
+      Beanie_0: 1064116348
+      Beanie_1: -1840064718
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

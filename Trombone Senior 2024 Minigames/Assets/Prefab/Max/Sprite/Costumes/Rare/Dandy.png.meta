@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 830185db658969a43bf9bdd3c4857740
+guid: c92a772462b16ad42a12262cb418c54f
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -117,13 +117,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Nerd_0
+      name: Dandy_0
       rect:
         serializedVersion: 2
-        x: 148
-        y: 513
+        x: 158
+        y: 636
         width: 226
-        height: 57
+        height: 56
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -131,29 +131,29 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 75476d3046ce4f44683002f8a767c7da
-      internalID: -1439267461
+      spriteID: a7b57494154ab4e4a8722db34551e1d3
+      internalID: -180246659
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Nerd_1
+      name: Dandy_1
       rect:
         serializedVersion: 2
-        x: 138
+        x: 111
         y: 294
-        width: 240
-        height: 184
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        width: 291
+        height: 282
+      alignment: 9
+      pivot: {x: 0.49257663, y: 0.30302137}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 097670ddde5296647bc15cfd942d4f27
-      internalID: -423865441
+      spriteID: d245b50400fddce4dbed4e3fb04d3720
+      internalID: 1934724963
       vertices: []
       indices: 
       edges: []
@@ -161,7 +161,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 028e9418472de724eaff525a8956175a
+    spriteID: 11b35d98a00616e4daa6c62dfd805a9e
     internalID: 0
     vertices: []
     indices: 
@@ -169,8 +169,8 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Nerd_0: -1439267461
-      Nerd_1: -423865441
+      Dandy_0: -180246659
+      Dandy_1: 1934724963
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

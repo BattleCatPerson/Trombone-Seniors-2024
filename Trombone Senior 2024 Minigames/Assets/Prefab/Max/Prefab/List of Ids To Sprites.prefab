@@ -161,3 +161,47 @@ MonoBehaviour:
     sprites:
     - {fileID: -1719237762, guid: c95a38bb5c6707a4eb291c796abcf516, type: 3}
     - {fileID: -1756087828, guid: c95a38bb5c6707a4eb291c796abcf516, type: 3}
+  - id: 28
+    sprites:
+    - {fileID: -1840064718, guid: 07921ea92c1ce3a43bca24df4295e464, type: 3}
+    - {fileID: 1064116348, guid: 07921ea92c1ce3a43bca24df4295e464, type: 3}
+  - id: 29
+    sprites:
+    - {fileID: 937903060, guid: 14cc7ac2e4f9c504494ade03c97835f8, type: 3}
+    - {fileID: 2132969205, guid: 14cc7ac2e4f9c504494ade03c97835f8, type: 3}
+  - id: 30
+    sprites:
+    - {fileID: 1749016617, guid: a1f111b39b8df7249a18f65db27b65a0, type: 3}
+    - {fileID: 1024533707, guid: a1f111b39b8df7249a18f65db27b65a0, type: 3}
+  - id: 31
+    sprites:
+    - {fileID: 1934724963, guid: c92a772462b16ad42a12262cb418c54f, type: 3}
+    - {fileID: -180246659, guid: c92a772462b16ad42a12262cb418c54f, type: 3}
+  - id: 32
+    sprites:
+    - {fileID: 987846345, guid: e472233b17b27314f912101dabd2afa9, type: 3}
+    - {fileID: -526297600, guid: e472233b17b27314f912101dabd2afa9, type: 3}
+  - id: 33
+    sprites:
+    - {fileID: -977623120, guid: 5ec726af41406da4b9edac0d9d9af5da, type: 3}
+    - {fileID: 1410761571, guid: 5ec726af41406da4b9edac0d9d9af5da, type: 3}
+  - id: 34
+    sprites:
+    - {fileID: -128464648, guid: e559f67025b52ed4cb288342894e3d32, type: 3}
+    - {fileID: 827888008, guid: e559f67025b52ed4cb288342894e3d32, type: 3}
+  - id: 35
+    sprites:
+    - {fileID: 1110699396, guid: 5d4f9cee2ec634f429ed5bf6e1326f3f, type: 3}
+    - {fileID: 655117232, guid: 5d4f9cee2ec634f429ed5bf6e1326f3f, type: 3}
+  - id: 36
+    sprites:
+    - {fileID: -239034244, guid: ad1ce092e2eac3e459fd4ccf2149d769, type: 3}
+    - {fileID: 935528998, guid: ad1ce092e2eac3e459fd4ccf2149d769, type: 3}
+  - id: 37
+    sprites:
+    - {fileID: -111092990, guid: f0ca8dbd3a712a744afe94feb4b2e723, type: 3}
+    - {fileID: -1981561989, guid: f0ca8dbd3a712a744afe94feb4b2e723, type: 3}
+  - id: 38
+    sprites:
+    - {fileID: -423865441, guid: 830185db658969a43bf9bdd3c4857740, type: 3}
+    - {fileID: -1439267461, guid: 830185db658969a43bf9bdd3c4857740, type: 3}

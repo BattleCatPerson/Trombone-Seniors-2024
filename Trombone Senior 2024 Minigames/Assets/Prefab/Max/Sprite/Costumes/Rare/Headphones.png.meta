@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 830185db658969a43bf9bdd3c4857740
+guid: e472233b17b27314f912101dabd2afa9
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -117,7 +117,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Nerd_0
+      name: Headphones_0
       rect:
         serializedVersion: 2
         x: 148
@@ -131,29 +131,29 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 75476d3046ce4f44683002f8a767c7da
-      internalID: -1439267461
+      spriteID: 62e83ac271112b8418836ac845f39dff
+      internalID: -526297600
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Nerd_1
+      name: Headphones_1
       rect:
         serializedVersion: 2
-        x: 138
-        y: 294
-        width: 240
-        height: 184
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 124
+        y: 295
+        width: 269
+        height: 193
+      alignment: 9
+      pivot: {x: 0.49291685, y: 0.4321267}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 097670ddde5296647bc15cfd942d4f27
-      internalID: -423865441
+      spriteID: 63ebcf519ccabc846aee71860065760b
+      internalID: 987846345
       vertices: []
       indices: 
       edges: []
@@ -161,7 +161,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 028e9418472de724eaff525a8956175a
+    spriteID: 327435843f67a2541a9ec255fc317e50
     internalID: 0
     vertices: []
     indices: 
@@ -169,8 +169,8 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Nerd_0: -1439267461
-      Nerd_1: -423865441
+      Headphones_0: -526297600
+      Headphones_1: 987846345
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

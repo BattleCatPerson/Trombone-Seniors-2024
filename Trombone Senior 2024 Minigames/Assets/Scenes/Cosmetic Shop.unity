@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028346, g: 0.22571373, b: 0.30692244, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -5471,6 +5471,39 @@ MonoBehaviour:
   - id: 27
     rarity: 0
     name: Night
+  - id: 28
+    rarity: 1
+    name: Beanie
+  - id: 29
+    rarity: 1
+    name: Chef
+  - id: 30
+    rarity: 1
+    name: Conehead
+  - id: 31
+    rarity: 1
+    name: Dandy
+  - id: 32
+    rarity: 1
+    name: Headphones
+  - id: 33
+    rarity: 1
+    name: Military
+  - id: 34
+    rarity: 1
+    name: Ninja
+  - id: 35
+    rarity: 1
+    name: Scuba
+  - id: 36
+    rarity: 1
+    name: Doctor
+  - id: 37
+    rarity: 1
+    name: Engineer
+  - id: 38
+    rarity: 1
+    name: Nerd
   unlocked: []
   wardrobe: {fileID: 1707957481}
   rollPanel: {fileID: 213840297}
