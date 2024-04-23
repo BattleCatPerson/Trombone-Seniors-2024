@@ -19,8 +19,12 @@ public class MaxGameManager : MonoBehaviour
     public static bool autoStart = false;
     [Header("Camera")]
     [SerializeField] CinemachineVirtualCamera cam;
+    [SerializeField] CinemachineVirtualCamera gameCam;
+    [SerializeField] Transform mainCam;
+    float camSizeInitial;
     [SerializeField] float shrinkRate;
     [SerializeField] float startDelay;
+    float startDelayInitial;
     [Header("UI")]
     [SerializeField] CanvasGroup canvasGroup;
     [SerializeField] float canvasAppearTime;
@@ -30,13 +34,23 @@ public class MaxGameManager : MonoBehaviour
     [SerializeField] Animator tutorialAnimator;
     [Header("Pause")]
     [SerializeField] GameObject pauseMenu;
+    [Header("Restart")]
+    [SerializeField] List<Transform> movingObjects;
+    [SerializeField] bool restarting;
+    [SerializeField] PoliceCarFollow policeCar;
+    [SerializeField] MapGeneration mapGeneration;
+    public Dictionary<Transform, Vector3> initialPositions;
+
     private float accumulated = 0;
     void Start()
     {
+        initialPositions = new();
         started = false;
         gameOver = false;
+        startDelayInitial = startDelay;
         foreach (SpriteRenderer sprite in sprites) sprite.enabled = false;
         foreach (var v in startObjects) v.SetActive(false);
+        foreach (Transform t in movingObjects) initialPositions.Add(t, t.position);
         canvasGroup.alpha = 0;
         if (!PlayerPrefs.HasKey("Played Tutorial") || PlayerPrefs.GetInt("Played Tutorial") == 0) PlayerPrefs.SetInt("Played Tutorial", 0);
         else playedTutorial = true;
@@ -47,6 +61,7 @@ public class MaxGameManager : MonoBehaviour
             StartGameInitial();
             autoStart = false;
         }
+        camSizeInitial = cam.m_Lens.OrthographicSize;
     }
 
     void Update()
@@ -80,6 +95,13 @@ public class MaxGameManager : MonoBehaviour
             if (startDelay <= 0) StartGame();
             return;
         }
+        if (restarting && Vector3.Distance(mainCam.position, cam.transform.position) < 0.01f)
+        {
+            restarting = false;
+            gameCam.Follow = controller.transform;
+            mapGeneration.ResetPermaFloor();
+            StartGameInitial();
+        }
     }
     public void StartGameInitial()
     {
@@ -111,5 +133,27 @@ public class MaxGameManager : MonoBehaviour
     {
         pauseMenu.SetActive(false);
         UnpauseGame();
+    }
+
+    public void Restart()
+    {
+        cam.m_Lens.OrthographicSize = camSizeInitial;
+        cam.Priority = 11;
+        gameCam.Follow = null;
+        restarting = true;
+        started = false;
+        gameOver = false;
+        startedInitial = false;
+        startDelay = startDelayInitial;
+        policeCar.Disable();
+
+        controller.ResetGame();
+        foreach (SpriteRenderer sprite in sprites) sprite.enabled = false;
+        foreach (var v in startObjects) v.SetActive(false);
+        foreach (AnimatorSetTrigger a in animators) a.ResetTrigger();
+
+        canvasGroup.alpha = 0;
+
+        foreach (Transform t in initialPositions.Keys) t.position = initialPositions[t];
     }
 }

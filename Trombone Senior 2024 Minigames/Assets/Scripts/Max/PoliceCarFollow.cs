@@ -11,6 +11,7 @@ public class PoliceCarFollow : MonoBehaviour
     [SerializeField] Vector3 offset;
     private bool started = false;
     public void Enable() => started = true;
+    public void Disable() => started = false;
 
     void FixedUpdate()
     {

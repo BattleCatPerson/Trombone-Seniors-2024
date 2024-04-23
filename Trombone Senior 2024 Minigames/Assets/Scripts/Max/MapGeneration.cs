@@ -41,7 +41,7 @@ public class MapGeneration : MonoBehaviour
     [SerializeField] float floorAngle;
     [SerializeField] Transform playerTracker;
     [SerializeField] Transform player;
-
+    [SerializeField] Vector3 initialPos;
     [SerializeField] Transform spriteTracker;
     [SerializeField] Transform sprite;
 
@@ -55,13 +55,14 @@ public class MapGeneration : MonoBehaviour
 
     [SerializeField] Transform currentFloor;
     [SerializeField] Transform standbyFloor;
+    [SerializeField] Transform permanentFloor; //use this to create a floor at the end that travels all the way to the death point.
 
     [SerializeField] List<ObjectActive> skySprites;
     [SerializeField] float zOffset;
-
     private void Start()
     {
         //use renderer.isvisible;
+        initialPos = currentFloor.position;
         floorAngle = floor.eulerAngles.z;
         ObjectActive.standbyObjects.Clear();
         ObjectActive.activeObjects.Clear();
@@ -112,5 +113,23 @@ public class MapGeneration : MonoBehaviour
         standbyFloor.localPosition = new Vector3(temp.localPosition.x + floorLength, 0);
         currentFloor = standbyFloor;
         standbyFloor = temp;
+    }
+
+    public void SetPermaFloor() => permanentFloor.localScale = new Vector3(currentFloor.localPosition.x * 2, 1, 1);
+    public void ResetPermaFloor() => permanentFloor.localScale = Vector3.one;
+
+    public void Restart()
+    {
+        Debug.Log("Map gen restart");
+        ObjectActive.standbyObjects.Clear();
+        ObjectActive.activeObjects.Clear();
+        foreach (ObjectActive o in objects)
+        {
+            ObjectActive.standbyObjects.Add(o);
+            o.Move(holdPoint.position);
+        }
+
+        currentFloor.position = initialPos;
+        standbyFloor.position = initialPos;
     }
 }

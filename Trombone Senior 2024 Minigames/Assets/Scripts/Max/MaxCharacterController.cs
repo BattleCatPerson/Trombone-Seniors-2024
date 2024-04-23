@@ -65,6 +65,9 @@ public class MaxCharacterController : MonoBehaviour
     [SerializeField] bool gameOver;
     [SerializeField] float panelDelay;
     [SerializeField] AnimatorSetTrigger gameOverAnimator;
+    [SerializeField] MapGeneration mapGeneration;
+    private Vector3 initialPos;
+    private Vector3 initialEulerAngles;
     [Header("Ragdoll")]
     [SerializeField] Rigidbody2D maxRb;
     [SerializeField] float launchForce;
@@ -95,20 +98,42 @@ public class MaxCharacterController : MonoBehaviour
     [SerializeField] AudioSource rampSource;
     [SerializeField] AudioClip rampClip;
     [SerializeField] AudioClip deathClip;
+
     private void Start()
     {
+        if (!PlayerPrefs.HasKey("Max High Score")) PlayerPrefs.SetInt("Max High Score", 0);
+        pitch = audioSource.pitch;
+        pitchFloor = pitch;
+        initialPos = transform.position;
+        initialEulerAngles = transform.eulerAngles;
         rb.isKinematic = true;
+        rb.velocity = Vector3.zero;
         maxRb.isKinematic = true;
+        ResetGame();
+    }
+    public void ResetGame()
+    {
+        transform.position = initialPos;
+        transform.eulerAngles = initialEulerAngles;
+        colliding = false;
+        GetComponent<Collider2D>().enabled = true;
+        maxRb.isKinematic = true;
+        maxRb.velocity = Vector3.zero;
+        maxRb.angularVelocity = 0f;
+        maxRb.transform.localPosition = Vector3.zero;
+        maxRb.transform.localEulerAngles = Vector3.zero;
+        maxRb.GetComponent<Collider2D>().enabled = false;
+
         SetSprites(false);
         Combos(false);
         bonusActive = -1;
         scoreTextGroup.alpha = 0;
         gameOverPanel.SetActive(false);
         newHighScoreText.SetActive(false);
-        if (!PlayerPrefs.HasKey("Max High Score")) PlayerPrefs.SetInt("Max High Score", 0);
         canFlip = false;
-        pitch = audioSource.pitch;
-        pitchFloor = pitch;
+        mapGeneration.Restart();
+        collectibleManager.DestroyAllActive();
+        gameOver = false;
     }
     public void StartGame()
     {
@@ -340,8 +365,10 @@ public class MaxCharacterController : MonoBehaviour
             newHighScoreText.SetActive(true);
             PlayerPrefs.SetInt("Max High Score", (int)score);
         }
-
+        score = 0f;
+        flips = 0;
         collectibleManager.UpdateCollectibles();
+        mapGeneration.SetPermaFloor();
     }
 
     public IEnumerator EnableGameOverPanel()

@@ -19,6 +19,7 @@ public class CollectibleManager : MonoBehaviour
     [SerializeField] float maxDistanceFromPoint;
     [SerializeField] LineRenderer lineRenderer;
     [SerializeField] TextMeshProUGUI text;
+    [SerializeField] List<GameObject> collectiblesSpawned;
 
     //if this is on just use raycasts instead of touch!
     [SerializeField] bool windowsBuild;
@@ -109,7 +110,7 @@ public class CollectibleManager : MonoBehaviour
             }
 
             Vector2 dir = (new Vector2(Mathf.Cos(r), Mathf.Sin(r))).normalized;
-            Instantiate(collectiblePrefab, pos + dir * distance, transform.rotation);
+            collectiblesSpawned.Add(Instantiate(collectiblePrefab, pos + dir * distance, transform.rotation));
             dict.Add(distance, r);
         }
     }
@@ -118,5 +119,11 @@ public class CollectibleManager : MonoBehaviour
     {
         if (d.ContainsKey(distance) && d.ContainsValue(rotation)) return true;
         return false;
+    }
+
+    public void DestroyAllActive()
+    {
+        foreach(var c in collectiblesSpawned) Destroy(c);
+        collectiblesSpawned.Clear();
     }
 }
