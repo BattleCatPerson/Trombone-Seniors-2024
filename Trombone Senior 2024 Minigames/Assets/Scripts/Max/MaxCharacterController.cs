@@ -86,6 +86,7 @@ public class MaxCharacterController : MonoBehaviour
     [SerializeField] CanvasGroup scoreTextGroup;
     [SerializeField] float fadeRate;
     [SerializeField] List<UnityEvent> comboEvents;
+    [SerializeField] List<UnityEvent> resetEvents;
     [SerializeField] CollectibleManager collectibleManager;
     [Header("Sound")]
     [SerializeField] AudioSource audioSource;
@@ -134,6 +135,7 @@ public class MaxCharacterController : MonoBehaviour
         mapGeneration.Restart();
         collectibleManager.DestroyAllActive();
         gameOver = false;
+        slider.value = 0;
     }
     public void StartGame()
     {
@@ -342,6 +344,7 @@ public class MaxCharacterController : MonoBehaviour
         else
         {
             foreach (GameObject g in comboTexts) g.SetActive(false);
+            foreach (var e in resetEvents) e?.Invoke();
         }
 
     }
