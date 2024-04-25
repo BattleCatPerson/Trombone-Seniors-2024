@@ -2723,82 +2723,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 279131656}
   m_CullTransparentMesh: 1
---- !u!1 &319886303
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 319886304}
-  - component: {fileID: 319886306}
-  - component: {fileID: 319886305}
-  m_Layer: 5
-  m_Name: Board
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!224 &319886304
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 319886303}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1589499171}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -7.4977}
-  m_SizeDelta: {x: 20, y: 5}
-  m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &319886305
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 319886303}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  m_Sprite: {fileID: -1489220490, guid: f6bb9be115f14fc46a1a8178020d0944, type: 3}
-  m_Type: 0
-  m_PreserveAspect: 1
-  m_FillCenter: 1
-  m_FillMethod: 4
-  m_FillAmount: 1
-  m_FillClockwise: 1
-  m_FillOrigin: 0
-  m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 1
---- !u!222 &319886306
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 319886303}
-  m_CullTransparentMesh: 1
 --- !u!1 &328103873
 GameObject:
   m_ObjectHideFlags: 0
@@ -3973,7 +3897,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1589499171}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -5504,12 +5428,32 @@ MonoBehaviour:
   - id: 38
     rarity: 1
     name: Nerd
+  - id: 39
+    rarity: 2
+    name: Ascended
+  - id: 40
+    rarity: 2
+    name: Clown
+  - id: 41
+    rarity: 2
+    name: Egg
+  - id: 42
+    rarity: 2
+    name: Goldfish
+  - id: 43
+    rarity: 2
+    name: Paper Bag
+  - id: 44
+    rarity: 2
+    name: Pilot
+  - id: 45
+    rarity: 2
+    name: Slime
   unlocked: []
   wardrobe: {fileID: 1707957481}
   rollPanel: {fileID: 213840297}
   resultsPanel: {fileID: 1589499174}
   resultPlayerImage: {fileID: 1830387670}
-  resultBoardImage: {fileID: 319886305}
   resultText: {fileID: 801380919}
   rarityText: {fileID: 419524369}
   resultPanelActive: 0
@@ -5539,6 +5483,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   animator: {fileID: 548401897}
   trigger: Drop Crate
+  resetTrigger: 
 --- !u!114 &548401900
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6553,7 +6498,7 @@ RectTransform:
   m_Children:
   - {fileID: 175709863}
   m_Father: {fileID: 1589499171}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -7285,7 +7230,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1589499171}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -12907,7 +12852,6 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 319886304}
   - {fileID: 1830387669}
   - {fileID: 419524368}
   - {fileID: 801380918}
@@ -13418,6 +13362,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   animator: {fileID: 1635364161}
   trigger: Switch
+  resetTrigger: 
 --- !u!114 &1635364163
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14017,6 +13962,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   animator: {fileID: 1712585377}
   trigger: Out
+  resetTrigger: 
 --- !u!1 &1721757882
 GameObject:
   m_ObjectHideFlags: 0
@@ -14993,7 +14939,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1589499171}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -15937,7 +15883,6 @@ MonoBehaviour:
   rollPanel: {fileID: 0}
   resultsPanel: {fileID: 0}
   resultPlayerImage: {fileID: 0}
-  resultBoardImage: {fileID: 0}
   resultText: {fileID: 0}
   rarityText: {fileID: 0}
   resultPanelActive: 0

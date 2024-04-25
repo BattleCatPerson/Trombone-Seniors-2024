@@ -34,7 +34,6 @@ public class CosmeticShop : MonoBehaviour, IWardrobe
     [Header("Results")]
     [SerializeField] CanvasGroup resultsPanel;
     [SerializeField] Image resultPlayerImage;
-    [SerializeField] Image resultBoardImage;
     [SerializeField] TextMeshProUGUI resultText;
     [SerializeField] TextMeshProUGUI rarityText;
     [SerializeField] bool resultPanelActive;
@@ -82,7 +81,6 @@ public class CosmeticShop : MonoBehaviour, IWardrobe
         resultText.text = final.name;
         rarityText.text = ReturnRarityString(final.rarity);
         resultPlayerImage.sprite = wardrobe.MatchIdToSprite(final.id)[0];
-        resultBoardImage.sprite = wardrobe.MatchIdToSprite(final.id)[1];
         List<int> ids = new();
         foreach (Cosmetic c in unlocked) ids.Add(c.id);
         if (!ids.Contains(final.id))
@@ -142,7 +140,6 @@ public class CosmeticShop : MonoBehaviour, IWardrobe
         resultText.text = "";
         rarityText.text = "";
         resultPlayerImage.sprite = null;
-        resultBoardImage.sprite = null;
         resultsPanel.blocksRaycasts = false;
         continueButton.SetActive(false);
     }

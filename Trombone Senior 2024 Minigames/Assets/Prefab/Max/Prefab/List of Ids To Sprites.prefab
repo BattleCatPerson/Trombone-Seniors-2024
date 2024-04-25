@@ -205,3 +205,31 @@ MonoBehaviour:
     sprites:
     - {fileID: -423865441, guid: 830185db658969a43bf9bdd3c4857740, type: 3}
     - {fileID: -1439267461, guid: 830185db658969a43bf9bdd3c4857740, type: 3}
+  - id: 39
+    sprites:
+    - {fileID: 432191546, guid: a5693bf24d3edd341a110e61dabc09fb, type: 3}
+    - {fileID: 1977044817, guid: a5693bf24d3edd341a110e61dabc09fb, type: 3}
+  - id: 40
+    sprites:
+    - {fileID: 1904441173, guid: 2e16df9c675b15d4ba4441ee89641a93, type: 3}
+    - {fileID: -975374345, guid: 2e16df9c675b15d4ba4441ee89641a93, type: 3}
+  - id: 41
+    sprites:
+    - {fileID: -1697288261, guid: 9b7247d182fcacb47bf00e9dd22c5608, type: 3}
+    - {fileID: -2015175222, guid: 9b7247d182fcacb47bf00e9dd22c5608, type: 3}
+  - id: 42
+    sprites:
+    - {fileID: -361182188, guid: 581426f2586a6c7419c25734d3a28f54, type: 3}
+    - {fileID: -1914387406, guid: 581426f2586a6c7419c25734d3a28f54, type: 3}
+  - id: 43
+    sprites:
+    - {fileID: -393984041, guid: f03f33b2375ca3d41b95801662574f80, type: 3}
+    - {fileID: -1008664553, guid: f03f33b2375ca3d41b95801662574f80, type: 3}
+  - id: 44
+    sprites:
+    - {fileID: -1412429261, guid: 74c737b3d631c9145abeca39e140bf3f, type: 3}
+    - {fileID: -1291538020, guid: 74c737b3d631c9145abeca39e140bf3f, type: 3}
+  - id: 45
+    sprites:
+    - {fileID: -791071308, guid: ef4e650b9b14d95499ae379090752528, type: 3}
+    - {fileID: -570781788, guid: ef4e650b9b14d95499ae379090752528, type: 3}
