@@ -13,12 +13,14 @@ public class CollectibleManager : MonoBehaviour
     [SerializeField] int floorLayer;
     [SerializeField] GameObject collectiblePrefab;
     [SerializeField] int collectibles;
+    [SerializeField] int collectiblesCollected;
 
     [SerializeField] int minSpawn;
     [SerializeField] int maxSpawn;
     [SerializeField] float maxDistanceFromPoint;
     [SerializeField] LineRenderer lineRenderer;
     [SerializeField] TextMeshProUGUI text;
+    [SerializeField] TextMeshProUGUI gameOverText;
     [SerializeField] List<GameObject> collectiblesSpawned;
 
     //if this is on just use raycasts instead of touch!
@@ -44,6 +46,7 @@ public class CollectibleManager : MonoBehaviour
                 if (hit.collider)
                 {
                     collectibles++;
+                    collectiblesCollected++;
                     Destroy(hit.collider.gameObject);
                 }
             }
@@ -54,11 +57,13 @@ public class CollectibleManager : MonoBehaviour
             if (hit.collider)
             {
                 collectibles++;
+                collectiblesCollected++;
                 Destroy(hit.collider.gameObject);
             }
         }
         
         text.text = $"{collectibles}";
+        gameOverText.text = $"{collectiblesCollected}";
     }
 
     public void UpdateCollectibles() => PlayerPrefs.SetInt("Max Collectibles", collectibles);
@@ -125,5 +130,6 @@ public class CollectibleManager : MonoBehaviour
     {
         foreach(var c in collectiblesSpawned) Destroy(c);
         collectiblesSpawned.Clear();
+        collectiblesCollected = 0;
     }
 }

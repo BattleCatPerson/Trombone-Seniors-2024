@@ -5,6 +5,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using System;
 using Cinemachine;
+using TMPro;
 public enum WardrobeState
 {
     menu, rolling, wardrobe
@@ -28,6 +29,7 @@ public class Wardrobe : MonoBehaviour
     [SerializeField] Cosmetic initialCosmetic;
     [SerializeField] Transform collectionPanel;
     [SerializeField] Image previewSprite;
+    [SerializeField] TextMeshProUGUI previewName;
     [SerializeField] RectTransform scrollPanel;
     [Header("State Transitions")]
     [SerializeField] WardrobeState wardrobeState;
@@ -54,7 +56,7 @@ public class Wardrobe : MonoBehaviour
         }
         foreach (var v in crates) v.Load(data);
         previewSprite.sprite = MatchIdToSprite(data.selectedId)[0];
-
+        previewName.text = MatchIdToName(data.selectedId);
         costumes.AddRange(data.costumes);
         SwitchWardrobeState(WardrobeState.menu);
         UpdatePanel();
@@ -155,9 +157,16 @@ public class Wardrobe : MonoBehaviour
         return null;
     }
 
+    public string MatchIdToName(int id)
+    {
+        foreach (Cosmetic c in data.costumes) if (id == c.id) return c.name;
+        return "ERROR NOT GOOD";
+    }
+
     public void SelectId(int id)
     {
         data.selectedId = id;
         previewSprite.sprite = MatchIdToSprite(id)[0];
+        previewName.text = MatchIdToName(data.selectedId);
     }
 }
