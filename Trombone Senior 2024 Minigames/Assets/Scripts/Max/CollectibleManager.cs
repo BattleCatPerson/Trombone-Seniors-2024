@@ -20,7 +20,7 @@ public class CollectibleManager : MonoBehaviour
     [SerializeField] float maxDistanceFromPoint;
     [SerializeField] LineRenderer lineRenderer;
     [SerializeField] TextMeshProUGUI text;
-    [SerializeField] TextMeshProUGUI gameOverText;
+    [SerializeField] List<TextMeshProUGUI> currentRunText;
     [SerializeField] List<GameObject> collectiblesSpawned;
 
     //if this is on just use raycasts instead of touch!
@@ -33,6 +33,9 @@ public class CollectibleManager : MonoBehaviour
         else collectibles = PlayerPrefs.GetInt("Max Collectibles");
 
         lineRenderer.positionCount = 0;
+
+        text.text = $"{collectibles}";
+        foreach (TextMeshProUGUI t in currentRunText) t.text = $"{collectiblesCollected}";
     }
     void Update()
     {
@@ -45,9 +48,7 @@ public class CollectibleManager : MonoBehaviour
                 RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(touch.screenPosition), Vector2.zero, Mathf.Infinity, layer);
                 if (hit.collider)
                 {
-                    collectibles++;
-                    collectiblesCollected++;
-                    Destroy(hit.collider.gameObject);
+                    Collect(hit.collider.gameObject);
                 }
             }
         }
@@ -56,14 +57,11 @@ public class CollectibleManager : MonoBehaviour
             RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero, Mathf.Infinity, layer);
             if (hit.collider)
             {
-                collectibles++;
-                collectiblesCollected++;
-                Destroy(hit.collider.gameObject);
+                Collect(hit.collider.gameObject);
             }
         }
         
-        text.text = $"{collectibles}";
-        gameOverText.text = $"{collectiblesCollected}";
+        
     }
 
     public void UpdateCollectibles() => PlayerPrefs.SetInt("Max Collectibles", collectibles);
@@ -131,5 +129,14 @@ public class CollectibleManager : MonoBehaviour
         foreach(var c in collectiblesSpawned) Destroy(c);
         collectiblesSpawned.Clear();
         collectiblesCollected = 0;
+    }
+
+    public void Collect(GameObject g)
+    {
+        collectibles++;
+        collectiblesCollected++;
+        Destroy(g);
+        text.text = $"{collectibles}";
+        foreach(TextMeshProUGUI t in currentRunText) t.text = $"{collectiblesCollected}";
     }
 }
