@@ -169,4 +169,28 @@ public class Wardrobe : MonoBehaviour
         previewSprite.sprite = MatchIdToSprite(id)[0];
         previewName.text = MatchIdToName(data.selectedId);
     }
+
+    public void SortAlphabetically(bool reverse)
+    {
+        //delete all current buttons
+        //dictionary: string to cosmetic. one list of names.
+        //go through all obtained cosmetics, add names to list of names.
+        //sort list of names.
+        //add cosmetic buttons in the order of list of names.
+        for (int i = 0; i < collectionPanel.childCount; i++)
+        {
+            Destroy(collectionPanel.GetChild(i).gameObject);
+        }
+
+        Dictionary<string, int> dict = new();
+        List<string> nameOrder = new();
+
+        foreach (Cosmetic c in data.costumes)
+        {
+            dict[c.name] = c.id;
+            nameOrder.Add(c.name);
+        }
+        nameOrder.Sort();
+        foreach (string s in nameOrder) AddToPanel(dict[s]);
+    }   
 }
