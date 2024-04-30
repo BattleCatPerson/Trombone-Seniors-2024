@@ -13,7 +13,7 @@ public enum WardrobeState
 }
 public enum SortState
 {
-    Time, TimeRev, Alphabetical, AlphaRev
+    Newest, Oldest, Alphabetical, AlphaRev
 }
 
 [Serializable]
@@ -246,8 +246,8 @@ public class Wardrobe : MonoBehaviour
             data.sortId++;
             data.sortId = data.sortId % sortStates.Count;
         }
-        if (sortStates[data.sortId] == SortState.Time) SortByTime(false);
-        else if (sortStates[data.sortId] == SortState.TimeRev) SortByTime(true);
+        if (sortStates[data.sortId] == SortState.Newest) SortByTime(true);
+        else if (sortStates[data.sortId] == SortState.Oldest) SortByTime(false);
         else if (sortStates[data.sortId] == SortState.Alphabetical) SortAlphabetically(false);
         else if (sortStates[data.sortId] == SortState.AlphaRev) SortAlphabetically(true);
 
@@ -258,7 +258,6 @@ public class Wardrobe : MonoBehaviour
 
     public string ReturnStringSort(SortState sortState)
     {
-        if (sortState == SortState.TimeRev) return "Time (Reverse)";
         if (sortState == SortState.AlphaRev) return "Alphabetical (Reverse)";
         return sortState.ToString();
     }
