@@ -6,7 +6,8 @@ public class CosmeticData
 {
     public List<Cosmetic> costumes;
     public List<Cosmetic> trails;
-    public int selectedId;
+    public int selectedId = -1;
+    public int sortId = 0;
     public List<Cosmetic> ReturnList(CosmeticType type)
     {
         if (type == CosmeticType.costume) return costumes;
@@ -19,6 +20,7 @@ public class CosmeticData
         costumes = new();
         trails = new();
         selectedId = -1;
+        sortId = 0;
     }
 
     public CosmeticData(Cosmetic initialCosmetic)
@@ -27,5 +29,6 @@ public class CosmeticData
         costumes.Add(initialCosmetic);
         trails = new();
         selectedId = -1;
+        sortId = 0;
     }
 }

@@ -6,10 +6,16 @@ using UnityEngine.UI;
 using System;
 using Cinemachine;
 using TMPro;
+using Unity.VisualScripting;
 public enum WardrobeState
 {
     menu, rolling, wardrobe
 }
+public enum SortState
+{
+    Time, TimeRev, Alphabetical, AlphaRev
+}
+
 [Serializable]
 public class IdSpritePair
 {
@@ -43,20 +49,25 @@ public class Wardrobe : MonoBehaviour
     [SerializeField] CinemachineVirtualCamera menuCam;
     [SerializeField] CinemachineVirtualCamera lootboxCam;
     [SerializeField] CinemachineVirtualCamera wardrobeCam;
+    [Header("Costume Sorting")]
+    [SerializeField] List<SortState> sortStates;
+    [SerializeField] SortState currentState;
+    [SerializeField] TextMeshProUGUI sortText;
 
     void Start()
     {
         fileHandler = new FileHandler(Application.persistentDataPath, fileName);
         data = fileHandler.Load();
         if (data == null) data = new CosmeticData(initialCosmetic);
+
         crates = Initialize();
-        foreach (Cosmetic c in data.costumes)
-        {
-            AddToPanel(c.id);
-        }
+
+        SortPanel(true);
         foreach (var v in crates) v.Load(data);
+
         previewSprite.sprite = MatchIdToSprite(data.selectedId)[0];
         previewName.text = MatchIdToName(data.selectedId);
+
         costumes.AddRange(data.costumes);
         SwitchWardrobeState(WardrobeState.menu);
         UpdatePanel();
@@ -79,7 +90,10 @@ public class Wardrobe : MonoBehaviour
     {
         fileHandler.Save(data);
     }
-    public void SaveData() => fileHandler.Save(data);
+    public void SaveData()
+    {
+        fileHandler.Save(data);
+    }
 
     public List<IWardrobe> Initialize()
     {
@@ -177,10 +191,7 @@ public class Wardrobe : MonoBehaviour
         //go through all obtained cosmetics, add names to list of names.
         //sort list of names.
         //add cosmetic buttons in the order of list of names.
-        for (int i = 0; i < collectionPanel.childCount; i++)
-        {
-            Destroy(collectionPanel.GetChild(i).gameObject);
-        }
+        ResetPanel();
 
         Dictionary<string, int> dict = new();
         List<string> nameOrder = new();
@@ -191,6 +202,64 @@ public class Wardrobe : MonoBehaviour
             nameOrder.Add(c.name);
         }
         nameOrder.Sort();
+
+        if (!reverse)
+        {
+            foreach (string s in nameOrder) AddToPanel(dict[s]);
+            return;
+        }
+
+        nameOrder.Reverse();
         foreach (string s in nameOrder) AddToPanel(dict[s]);
-    }   
+    }
+
+    public void SortByTime(bool reverse)
+    {
+        ResetPanel();
+        if (!reverse)
+        {
+            foreach (Cosmetic c in data.costumes)
+            {
+                AddToPanel(c.id);
+            }
+            return;
+        }
+
+        List<Cosmetic> temp = new();
+        foreach (Cosmetic c in data.costumes) temp.Add(c);
+        temp.Reverse();
+        foreach (Cosmetic c in temp) AddToPanel(c.id);
+    }
+
+    public void ResetPanel()
+    {
+        for (int i = 0; i < collectionPanel.childCount; i++)
+        {
+            Destroy(collectionPanel.GetChild(i).gameObject);
+        }
+    }
+
+    public void SortPanel(bool initial = false)
+    {
+        if (!initial)
+        {
+            data.sortId++;
+            data.sortId = data.sortId % sortStates.Count;
+        }
+        if (sortStates[data.sortId] == SortState.Time) SortByTime(false);
+        else if (sortStates[data.sortId] == SortState.TimeRev) SortByTime(true);
+        else if (sortStates[data.sortId] == SortState.Alphabetical) SortAlphabetically(false);
+        else if (sortStates[data.sortId] == SortState.AlphaRev) SortAlphabetically(true);
+
+        currentState = sortStates[data.sortId];
+
+        sortText.text = "Sort By: " + ReturnStringSort(sortStates[data.sortId]);
+    }
+
+    public string ReturnStringSort(SortState sortState)
+    {
+        if (sortState == SortState.TimeRev) return "Time (Reverse)";
+        if (sortState == SortState.AlphaRev) return "Alphabetical (Reverse)";
+        return sortState.ToString();
+    }
 }
