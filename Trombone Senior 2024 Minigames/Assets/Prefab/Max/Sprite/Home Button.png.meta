@@ -120,18 +120,18 @@ TextureImporter:
       name: Home Button_0
       rect:
         serializedVersion: 2
-        x: 63
-        y: 264
-        width: 458
-        height: 457
+        x: 93
+        y: 372
+        width: 645
+        height: 646
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 736b8d0098a31c24eb0ea900a7fe2a55
+      spriteID: ec4b6db7f4974df4cb27362a1b417660
       internalID: -588470418
       vertices: []
       indices: 
@@ -153,6 +153,10 @@ TextureImporter:
       Home Button_2: -259992428
       Home Button_3: 1621471009
       Home Button_4: 813534429
+      Home Button_5: 1187093157
+      Home Button_7: 615630648
+      Home Button_8: 1481222708
+      Home Button_9: 756483003
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

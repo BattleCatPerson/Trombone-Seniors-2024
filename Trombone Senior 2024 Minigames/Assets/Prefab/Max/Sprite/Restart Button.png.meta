@@ -117,13 +117,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Restart Button_5
+      name: Restart Button_0
       rect:
         serializedVersion: 2
-        x: 66
-        y: 264
-        width: 455
-        height: 456
+        x: 90
+        y: 372
+        width: 648
+        height: 645
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -131,8 +131,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 30a620f943a99d8429e1054070c58967
-      internalID: 1432700326
+      spriteID: 0059d1fbd6cb7854f90a8bc6b4e9c1f2
+      internalID: -2126686727
       vertices: []
       indices: 
       edges: []
@@ -148,21 +148,12 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Restart Button_0: -2126686727
+      Restart Button_0: 656174275
       Restart Button_1: -647544612
-      Restart Button_10: -2045005288
-      Restart Button_11: 782844905
-      Restart Button_12: 987292764
-      Restart Button_13: -1167335335
-      Restart Button_14: -604657392
       Restart Button_2: 1002275377
       Restart Button_3: 1044190364
-      Restart Button_4: 656174275
       Restart Button_5: 1432700326
       Restart Button_6: -2076634173
-      Restart Button_7: 499905237
-      Restart Button_8: -331147343
-      Restart Button_9: 510854201
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

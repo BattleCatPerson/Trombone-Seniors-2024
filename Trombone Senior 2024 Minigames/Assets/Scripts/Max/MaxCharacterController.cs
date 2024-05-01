@@ -34,6 +34,7 @@ public class MaxCharacterController : MonoBehaviour
     [SerializeField] int collidersTouching;
     [SerializeField] List<GameObject> colliders;
     [SerializeField] float rampImpulse;
+    private float defaultRampImpulse;
     [SerializeField] float rampImpulseIncrease;
     [SerializeField, Tooltip("On Ground Hit: reset background and get rid of sun")] UnityEvent hitFloorEvent;
     [Header("Rotation")]
@@ -110,6 +111,7 @@ public class MaxCharacterController : MonoBehaviour
         rb.isKinematic = true;
         rb.velocity = Vector3.zero;
         maxRb.isKinematic = true;
+        defaultRampImpulse = rampImpulse;
         ResetGame();
     }
     public void ResetGame()
@@ -136,6 +138,7 @@ public class MaxCharacterController : MonoBehaviour
         collectibleManager.DestroyAllActive();
         gameOver = false;
         slider.value = 0;
+        rampImpulse = defaultRampImpulse;
     }
     public void StartGame()
     {

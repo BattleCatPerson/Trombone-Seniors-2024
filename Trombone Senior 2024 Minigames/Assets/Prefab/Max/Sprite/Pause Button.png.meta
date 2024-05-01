@@ -117,22 +117,22 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Pause Button_5
+      name: Pause Button_0
       rect:
         serializedVersion: 2
-        x: 66
-        y: 264
-        width: 455
-        height: 456
+        x: 90
+        y: 372
+        width: 648
+        height: 648
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 39e6a15080c7ce540aca1a34b9715d7a
-      internalID: -517820244
+      spriteID: 139bda748e34bdf46a069d037233786b
+      internalID: 2090630756
       vertices: []
       indices: 
       edges: []
@@ -148,21 +148,11 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Pause Button_0: 1253601757
+      Pause Button_0: 2090630756
       Pause Button_1: 207754746
-      Pause Button_10: 1419800060
-      Pause Button_11: 1625630130
-      Pause Button_12: 1638889084
-      Pause Button_13: 952946084
-      Pause Button_14: -1726493889
       Pause Button_2: 1021733776
-      Pause Button_3: 2090630756
       Pause Button_4: 643135762
       Pause Button_5: -517820244
-      Pause Button_6: 278886341
-      Pause Button_7: 1895034366
-      Pause Button_8: -1923905927
-      Pause Button_9: 1176716951
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

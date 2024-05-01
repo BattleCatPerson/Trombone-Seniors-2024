@@ -117,13 +117,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Sound Button_5
+      name: Sound Button_0
       rect:
         serializedVersion: 2
-        x: 66
-        y: 264
-        width: 455
-        height: 456
+        x: 90
+        y: 372
+        width: 648
+        height: 648
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -131,8 +131,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 11d0d5d382e421f4d8c9a9e6ea8fa981
-      internalID: -212199326
+      spriteID: 025581a4c138cb44f8e49c50160dc73d
+      internalID: -740062655
       vertices: []
       indices: 
       edges: []
@@ -148,21 +148,11 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Sound Button_0: -740062655
+      Sound Button_0: 490996078
       Sound Button_1: 2022035748
-      Sound Button_10: -1300316263
-      Sound Button_11: -458362100
-      Sound Button_12: 663578321
-      Sound Button_13: 1379290639
-      Sound Button_14: -2134193660
       Sound Button_2: 492928235
-      Sound Button_3: 490996078
       Sound Button_4: 2073019144
       Sound Button_5: -212199326
-      Sound Button_6: 534137297
-      Sound Button_7: 15953074
-      Sound Button_8: -1289849674
-      Sound Button_9: 1380817476
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
