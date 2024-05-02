@@ -146,6 +146,7 @@ public class MaxGameManager : MonoBehaviour
         startedInitial = false;
         startDelay = startDelayInitial;
         policeCar.Disable();
+        accumulated = 0;
 
         controller.ResetGame();
         foreach (SpriteRenderer sprite in sprites) sprite.enabled = false;
