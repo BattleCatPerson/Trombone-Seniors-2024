@@ -6,6 +6,7 @@ public class LockOnPointerUp : MonoBehaviour
 {
     [SerializeField] Slider slider;
     [SerializeField] Vector2 maxDistanceFromSlider;
+    [SerializeField] Vector2 difference;
     [SerializeField] bool withinBounds;
     [SerializeField] float sliderDecayRate;
     public void ResetValue() => slider.value = 0;
@@ -27,13 +28,14 @@ public class LockOnPointerUp : MonoBehaviour
     {
         Debug.Log($"{Input.mousePosition} {slider.transform.position}");
 
-        Vector2 difference = Input.mousePosition - slider.transform.position;
+        difference = Input.mousePosition - slider.transform.position;
         difference = new Vector2(Mathf.Abs(difference.x), Mathf.Abs(difference.y));
 
         withinBounds = !(difference.x > maxDistanceFromSlider.x || difference.y > maxDistanceFromSlider.y);
 
         if (!withinBounds)
         {
+            if (slider.interactable) LockSlider();
             if (slider.value != 0)
             {
                 int direction = slider.value > 0 ? -1 : 1;
@@ -42,5 +44,7 @@ public class LockOnPointerUp : MonoBehaviour
                 if (Mathf.Abs(slider.value - 0) <= 0.05f) slider.value = 0;
             }
         }
+
+        if (withinBounds && !slider.interactable) UnlockSlider();
     }
 }
