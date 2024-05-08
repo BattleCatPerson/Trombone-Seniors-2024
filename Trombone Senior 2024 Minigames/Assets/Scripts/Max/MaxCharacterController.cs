@@ -113,6 +113,8 @@ public class MaxCharacterController : MonoBehaviour
         maxRb.isKinematic = true;
         defaultRampImpulse = rampImpulse;
         ResetGame();
+
+        MaxGameManager.instance.restartEvent.AddListener(ResetGame);
     }
     public void ResetGame()
     {

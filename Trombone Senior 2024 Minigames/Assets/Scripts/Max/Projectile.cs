@@ -39,6 +39,8 @@ public class Projectile : MonoBehaviour
         countdownRenderer.sprite = countdownSprites[0];
         laserPoint.gameObject.SetActive(false);
         moveSpeed = playerRb.velocity.magnitude;
+
+        MaxGameManager.instance.restartEvent.AddListener(DestroyOnRestart);
     }
     //public void Assign(Vector2 velocity, Sprite sprite)
     //{
@@ -68,6 +70,7 @@ public class Projectile : MonoBehaviour
                 if (Vector2.Distance(transform.position, newPos) > 0.5) transform.position = Vector2.MoveTowards(transform.position, newPos, moveSpeed * Time.fixedDeltaTime);
                 else
                 {
+                    MaxGameManager.instance.restartEvent.RemoveListener(DestroyOnRestart);
                     Destroy(gameObject);
                 }
             }
@@ -148,4 +151,6 @@ public class Projectile : MonoBehaviour
     {
         Gizmos.DrawRay(transform.position, transform.right * offset);
     }
+
+    public void DestroyOnRestart() => Destroy(gameObject);
 }

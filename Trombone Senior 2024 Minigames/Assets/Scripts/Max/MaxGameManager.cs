@@ -1,11 +1,13 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using Cinemachine;
 using System.Collections;
 using UnityEngine.EventSystems;
 
 public class MaxGameManager : MonoBehaviour
 {
+    public static MaxGameManager instance;
     [Header("Enabling")]
     [SerializeField] MaxCharacterController controller;
     [SerializeField] List<SpriteRenderer> sprites;
@@ -39,9 +41,18 @@ public class MaxGameManager : MonoBehaviour
     [SerializeField] bool restarting;
     [SerializeField] PoliceCarFollow policeCar;
     [SerializeField] MapGeneration mapGeneration;
+    [SerializeField] CinemachineBrain brain;
+    [SerializeField] float restartCameraTime;
+    [SerializeField] float defaultTransitionTime;
+    public UnityEvent restartEvent;
     public Dictionary<Transform, Vector3> initialPositions;
 
     private float accumulated = 0;
+    private void Awake()
+    {
+        instance = this;
+        restartEvent = new();
+    }
     void Start()
     {
         initialPositions = new();
@@ -62,6 +73,9 @@ public class MaxGameManager : MonoBehaviour
             autoStart = false;
         }
         camSizeInitial = cam.m_Lens.OrthographicSize;
+
+        restartEvent.AddListener(ResetGame);
+        defaultTransitionTime = brain.m_DefaultBlend.m_Time;
     }
 
     void Update()
@@ -101,6 +115,7 @@ public class MaxGameManager : MonoBehaviour
             gameCam.Follow = controller.transform;
             mapGeneration.ResetPermaFloor();
             StartGameInitial();
+            brain.m_DefaultBlend.m_Time = defaultTransitionTime;
         }
     }
     public void StartGameInitial()
@@ -137,6 +152,15 @@ public class MaxGameManager : MonoBehaviour
 
     public void Restart()
     {
+        restartEvent?.Invoke();
+        //policeCar.Disable();
+        //controller.ResetGame();
+        //reset drones
+    }
+
+    public void ResetGame()
+    {
+        brain.m_DefaultBlend.m_Time = restartCameraTime;
         cam.m_Lens.OrthographicSize = camSizeInitial;
         cam.Priority = 11;
         gameCam.Follow = null;
@@ -145,16 +169,12 @@ public class MaxGameManager : MonoBehaviour
         gameOver = false;
         startedInitial = false;
         startDelay = startDelayInitial;
-        policeCar.Disable();
+        canvasGroup.alpha = 0;
+        foreach (Transform t in initialPositions.Keys) t.position = initialPositions[t];
         accumulated = 0;
 
-        controller.ResetGame();
         foreach (SpriteRenderer sprite in sprites) sprite.enabled = false;
         foreach (var v in startObjects) v.SetActive(false);
         foreach (AnimatorSetTrigger a in animators) a.ResetTrigger();
-
-        canvasGroup.alpha = 0;
-
-        foreach (Transform t in initialPositions.Keys) t.position = initialPositions[t];
     }
 }

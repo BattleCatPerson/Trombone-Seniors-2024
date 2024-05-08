@@ -10,6 +10,10 @@ public class PoliceCarFollow : MonoBehaviour
     private Vector3 currentVelocity = Vector3.zero;
     [SerializeField] Vector3 offset;
     private bool started = false;
+    private void Start()
+    {
+        MaxGameManager.instance.restartEvent.AddListener(Disable);
+    }
     public void Enable() => started = true;
     public void Disable() => started = false;
 
