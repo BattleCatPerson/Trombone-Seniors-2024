@@ -7897,7 +7897,7 @@ MonoBehaviour:
   m_Follow: {fileID: 2137725486}
   m_Lens:
     FieldOfView: 40
-    OrthographicSize: 5
+    OrthographicSize: 3
     NearClipPlane: 0.1
     FarClipPlane: 5000
     Dutch: 0
@@ -40374,8 +40374,8 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 16640
   layerInt: 8
-  baseCameraSize: 7
-  maxCameraSize: 15
+  baseCameraSize: 4.5
+  maxCameraSize: 12
   altimeter: {fileID: 2115189026}
   flips: 0
   accumulatedAngle: 0

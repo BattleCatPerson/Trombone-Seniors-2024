@@ -43,6 +43,8 @@ public class CosmeticShop : MonoBehaviour, IWardrobe
     [SerializeField] int cost;
     [SerializeField] int currency;
     [SerializeField] Button rollButton;
+    [SerializeField] TextMeshProUGUI currencyText;
+    [SerializeField] TextMeshProUGUI costText;
     [Header("Box Launching")]
     [SerializeField] float launchForce;
     [SerializeField] float torque;
@@ -101,6 +103,8 @@ public class CosmeticShop : MonoBehaviour, IWardrobe
 
         lid.isKinematic = true;
         originalPosition = lid.transform.localPosition;
+        currencyText.text = currency.ToString();
+        costText.text = $"x{cost}";
     }
 
     public void Update()
@@ -131,6 +135,7 @@ public class CosmeticShop : MonoBehaviour, IWardrobe
             }
         }
         rollButton.interactable = currency >= cost;
+        currencyText.text = currency.ToString();
     }
 
     public void SetPanelActive() => resultPanelActive = true;
