@@ -5,6 +5,7 @@ using UnityEngine;
 public class BubbleSpawner : MonoBehaviour
 {
     [SerializeField] RectTransform rectTransform;
+    [SerializeField] Transform parent;
     [SerializeField] ExpandingBubble bubble;
     [SerializeField] UnityEngine.Color color1;
     [SerializeField] UnityEngine.Color color2;
@@ -26,7 +27,8 @@ public class BubbleSpawner : MonoBehaviour
 
     public void SpawnBubble()
     {
-        ExpandingBubble b = Instantiate(bubble, transform);
+        ExpandingBubble b = Instantiate(bubble, parent);
+        b.transform.SetAsFirstSibling();
         float width = rectTransform.rect.width / 2;
         float height = rectTransform.rect.height / 2;
         float randX = Random.Range(-width, width);
