@@ -7,7 +7,7 @@ public class AnimatorSetTrigger : MonoBehaviour
     [SerializeField] Animator animator;
     [SerializeField] string trigger;
     [SerializeField] string resetTrigger;
-    private void Start()
+    private void Awake()
     {
         if (animator == null) animator = GetComponent<Animator>();
     }

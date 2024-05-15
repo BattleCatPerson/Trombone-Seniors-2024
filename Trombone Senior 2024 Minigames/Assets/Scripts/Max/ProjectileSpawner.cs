@@ -17,6 +17,10 @@ public class ProjectileSpawner : MonoBehaviour
     [SerializeField] MaxCharacterController controller;
     //get bounds
     //get random direction
+    private void Start()
+    {
+        Projectile.projectileAmount = 0;
+    }
     void Update()
     {
         if (!MaxGameManager.started || MaxGameManager.gameOver) return;

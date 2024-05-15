@@ -46,6 +46,8 @@ public class MaxGameManager : MonoBehaviour
     [SerializeField] float defaultTransitionTime;
     public UnityEvent restartEvent;
     public Dictionary<Transform, Vector3> initialPositions;
+    [Header("Shield Active")]
+    [SerializeField] AnimatorSetTrigger shieldAnimator;
 
     private float accumulated = 0;
     private void Awake()
@@ -176,5 +178,11 @@ public class MaxGameManager : MonoBehaviour
         foreach (SpriteRenderer sprite in sprites) sprite.enabled = false;
         foreach (var v in startObjects) v.SetActive(false);
         foreach (AnimatorSetTrigger a in animators) a.ResetTrigger();
+    }
+
+    public void ShieldActive(bool active)
+    {
+        if (active) shieldAnimator.SetTrigger();
+        else shieldAnimator.ResetTrigger();
     }
 }

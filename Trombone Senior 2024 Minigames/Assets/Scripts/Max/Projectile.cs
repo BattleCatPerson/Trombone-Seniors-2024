@@ -12,6 +12,7 @@ public class Projectile : MonoBehaviour
     const float MULT = 0.9f;
     public static float time = 3f;
     public static float currentTime = -1f;
+    public static int projectileAmount = 0;
     [SerializeField] float accumulated;
     [SerializeField] Transform laser;
     [SerializeField] Transform cannon;
@@ -32,6 +33,8 @@ public class Projectile : MonoBehaviour
     private void Start()
     {
         //Destroy(gameObject, lifeTime);
+        if (projectileAmount == 0) MaxGameManager.instance.ShieldActive(true);
+        projectileAmount++;
         if (currentTime == -1) currentTime = time;
         moving = true;
         renderer = laser.GetComponent<SpriteRenderer>();
@@ -71,7 +74,7 @@ public class Projectile : MonoBehaviour
                 else
                 {
                     MaxGameManager.instance.restartEvent.RemoveListener(DestroyOnRestart);
-                    Destroy(gameObject);
+                    DestroyOnRestart();
                 }
             }
             return;
@@ -152,5 +155,10 @@ public class Projectile : MonoBehaviour
         Gizmos.DrawRay(transform.position, transform.right * offset);
     }
 
-    public void DestroyOnRestart() => Destroy(gameObject);
+    public void DestroyOnRestart()
+    {
+        projectileAmount--;
+        if (projectileAmount == 0) MaxGameManager.instance.ShieldActive(false);
+        Destroy(gameObject);
+    }
 }
