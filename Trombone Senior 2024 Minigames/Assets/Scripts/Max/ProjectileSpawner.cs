@@ -5,6 +5,7 @@ using UnityEngine;
 public class ProjectileSpawner : MonoBehaviour
 {
     [SerializeField] float frequency;
+    private float baseFrequency;
     [SerializeField] float timer;
     [SerializeField] float speed;
     [SerializeField] float sideLength;
@@ -15,11 +16,13 @@ public class ProjectileSpawner : MonoBehaviour
     [SerializeField] Transform spawnParent;
     [SerializeField] Rigidbody2D playerRb;
     [SerializeField] MaxCharacterController controller;
+    [SerializeField] float fractionFrequencyAfterThousand;
     //get bounds
     //get random direction
     private void Start()
     {
         Projectile.projectileAmount = 0;
+        baseFrequency = frequency;
     }
     void Update()
     {
@@ -70,4 +73,9 @@ public class ProjectileSpawner : MonoBehaviour
         p.controller = controller;
     }
 
+    public void UpdateFrequency(int thousands)
+    {
+        frequency = baseFrequency * Mathf.Pow(fractionFrequencyAfterThousand, thousands);
+        frequency = Mathf.Clamp(frequency, Projectile.currentTime, frequency);
+    }
 }

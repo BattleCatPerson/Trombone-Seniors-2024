@@ -34,6 +34,7 @@ public class MaxCharacterController : MonoBehaviour
     [SerializeField] int collidersTouching;
     [SerializeField] List<GameObject> colliders;
     [SerializeField] float rampImpulse;
+    [SerializeField] float rampRandomRange;
     private float defaultRampImpulse;
     [SerializeField] float rampImpulseIncrease;
     [SerializeField, Tooltip("On Ground Hit: reset background and get rid of sun")] UnityEvent hitFloorEvent;
@@ -61,6 +62,7 @@ public class MaxCharacterController : MonoBehaviour
     [SerializeField] GameObject gameOverPanel;
     [SerializeField] TextMeshProUGUI finalScoreText;
     [SerializeField] GameObject newHighScoreText;
+    [SerializeField] ProjectileSpawner laserSpawner;
     [Header("Game Over")]
     [SerializeField] float angleDeviation;
     [SerializeField] bool gameOver;
@@ -205,7 +207,7 @@ public class MaxCharacterController : MonoBehaviour
             if (!touchingRamp && !canFlip)
             {
                 touchingRamp = true;
-                rb.velocity = direction * rampImpulse;
+                rb.velocity = direction * (rampImpulse + Random.Range(-rampRandomRange, rampRandomRange));
                 rampSource.PlayOneShot(rampClip);
                 Debug.Log($"Impulse {rampImpulse}");
             }
@@ -256,7 +258,7 @@ public class MaxCharacterController : MonoBehaviour
                 {
                     bonusScoreText.text = "";
                 }
-                rampImpulse += rampImpulseIncrease;
+                //rampImpulse += rampImpulseIncrease;
                 audioSource.PlayOneShot(confirmClip);
             }
             flips = 0;
@@ -264,6 +266,7 @@ public class MaxCharacterController : MonoBehaviour
             bonusActive = -1;
 
             Projectile.UpdateTime((int)score / 1000);
+            laserSpawner.UpdateFrequency((int)score / 1000);
         }
         Vector2 v = Vector2.Perpendicular(-collision.GetContact(0).normal);
         rb.velocity = v * rb.velocity.magnitude;
