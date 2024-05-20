@@ -55,8 +55,8 @@ public class RadialSlider : MonoBehaviour
                 Vector2 touchDifference = touchPos - parent.transform.position;
                 float touchAngle = Mathf.Atan(touchDifference.y / touchDifference.x) * 180 / Mathf.PI;
 
-                bool right = touchPos.x - parent.position.x > 0;
-                bool up = touchPos.y - parent.position.y > 0;
+                bool right = touchPos.x - parent.position.x >= 0;
+                bool up = touchPos.y - parent.position.y >= 0;
                 if (right && !up) touchAngle = 360f + touchAngle;
                 else if ((!right && up) || (!right && !up)) touchAngle = 180f + touchAngle;
 
