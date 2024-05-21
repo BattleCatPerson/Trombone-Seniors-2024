@@ -38,6 +38,7 @@ public class MaxCharacterController : MonoBehaviour
     private float defaultRampImpulse;
     [SerializeField] float rampImpulseIncrease;
     [SerializeField, Tooltip("On Ground Hit: reset background and get rid of sun")] UnityEvent hitFloorEvent;
+    [SerializeField] UnityEvent hitRampEvent;
     [Header("Rotation")]
     [SerializeField] Slider slider;
     [SerializeField] float acceleration;
@@ -210,6 +211,7 @@ public class MaxCharacterController : MonoBehaviour
                 rb.velocity = direction * (rampImpulse + Random.Range(-rampRandomRange, rampRandomRange));
                 rampSource.PlayOneShot(rampClip);
                 Debug.Log($"Impulse {rampImpulse}");
+                hitRampEvent?.Invoke();
             }
         }
         else if ((!hit.collider || (layer == (layer | (1 << hit.collider.gameObject.layer)))) && touchingRamp)

@@ -22,6 +22,9 @@ public class Altimeter : MonoBehaviour
     [SerializeField] List<RectTransform> texts;
     [SerializeField] Image pointerImage;
     [SerializeField] TextMeshProUGUI title;
+    [SerializeField] AnimatorSetTrigger meterAnimator;
+    [SerializeField] bool meterEnabled;
+    [SerializeField] bool started;
     float min;
     float max;
     private void Start()
@@ -44,6 +47,9 @@ public class Altimeter : MonoBehaviour
         //    max = minAndMaxAngles[1];
         //    min = minAndMaxAngles[0];
         //}
+        meterAnimator.SetTrigger();
+        meterEnabled = false;
+        started = false;
     }
     void FixedUpdate()
     {
@@ -59,7 +65,7 @@ public class Altimeter : MonoBehaviour
             //player.GetComponent<Rigidbody2D>().isKinematic = true;
             //player.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
         }
-        text.text = $"Altitude\n{height}";
+        //text.text = $"Altitude\n{height}";
 
         //set rotation of the pointer based off height / maxMeterHeight. If height > maxMeterHeight, just make the pointer stay at the max angle.
         // multiply the fraction by the different between the min and max angles and then add that value to the min value in order to get the right angle.
@@ -70,5 +76,24 @@ public class Altimeter : MonoBehaviour
         pointer.anchoredPosition = new Vector3(Mathf.Lerp(-areaWidth, areaWidth, floatHeight / maxMeterHeight), pointer.anchoredPosition.y);
         pointerImage.color = UnityEngine.Color.Lerp(color1, color2, floatHeight / maxMeterHeight);
         title.color = pointerImage.color;
+
+        if (started)
+        {
+            if (height == 0 && meterEnabled)
+            {
+                meterAnimator.SetTrigger();
+                meterEnabled = false;
+            }
+            else if (height > 0 && !meterEnabled)
+            {
+                meterAnimator.ResetTrigger();
+                meterEnabled = true;
+            }
+        }
+    }
+
+    public void Enable()
+    {
+        if (!started) started = true;
     }
 }

@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.12731749, g: 0.13414757, b: 0.1210787, a: 1}
+  m_IndirectSpecularColor: {r: 0.12731713, g: 0.13414735, b: 0.1210785, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -8709,9 +8709,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: '150
-
-'
+  m_text: 125
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 05c5143d95d91ec42a4220fa7da514c7, type: 2}
   m_sharedMaterial: {fileID: -4828740563713195150, guid: 05c5143d95d91ec42a4220fa7da514c7,
@@ -9730,7 +9728,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 90
+  m_text: 75
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 05c5143d95d91ec42a4220fa7da514c7, type: 2}
   m_sharedMaterial: {fileID: -4828740563713195150, guid: 05c5143d95d91ec42a4220fa7da514c7,
@@ -10415,6 +10413,9 @@ GameObject:
   - component: {fileID: 602215805}
   - component: {fileID: 602215807}
   - component: {fileID: 602215806}
+  - component: {fileID: 602215808}
+  - component: {fileID: 602215810}
+  - component: {fileID: 602215809}
   m_Layer: 5
   m_Name: Alitmeter 2
   m_TagString: Untagged
@@ -10483,6 +10484,54 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 602215804}
   m_CullTransparentMesh: 1
+--- !u!225 &602215808
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 602215804}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 0
+  m_BlocksRaycasts: 0
+  m_IgnoreParentGroups: 0
+--- !u!114 &602215809
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 602215804}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a5bb3ffd80dd39849816a412e3ec45a3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animator: {fileID: 602215810}
+  trigger: Disable
+  resetTrigger: Enable
+--- !u!95 &602215810
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 602215804}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 1561f5d057e8f424989dfcb3f8680ce5, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &636690303
 GameObject:
   m_ObjectHideFlags: 0
@@ -11758,7 +11807,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 120
+  m_text: 100
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 05c5143d95d91ec42a4220fa7da514c7, type: 2}
   m_sharedMaterial: {fileID: -4828740563713195150, guid: 05c5143d95d91ec42a4220fa7da514c7,
@@ -17150,7 +17199,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &823108124
 RectTransform:
   m_ObjectHideFlags: 0
@@ -17663,7 +17712,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 30
+  m_text: 25
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 05c5143d95d91ec42a4220fa7da514c7, type: 2}
   m_sharedMaterial: {fileID: -4828740563713195150, guid: 05c5143d95d91ec42a4220fa7da514c7,
@@ -17873,7 +17922,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 60
+  m_text: 50
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 05c5143d95d91ec42a4220fa7da514c7, type: 2}
   m_sharedMaterial: {fileID: -4828740563713195150, guid: 05c5143d95d91ec42a4220fa7da514c7,
@@ -26504,7 +26553,7 @@ MonoBehaviour:
   timer: 0
   speed: 10
   sideLength: 25
-  minHeight: 20
+  minHeight: 180
   anim: {fileID: 1225280442}
   projectilePrefab: {fileID: 4732981841494436536, guid: 14fde38d7ed56ca4180e37713329d0de,
     type: 3}
@@ -42261,7 +42310,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   height: 0
   floatHeight: 0
-  maxMeterHeight: 180
+  maxMeterHeight: 150
   floorLayer: 8
   player: {fileID: 2137725486}
   text: {fileID: 645286823}
@@ -42280,6 +42329,9 @@ MonoBehaviour:
   - {fileID: 467274459}
   pointerImage: {fileID: 180526829}
   title: {fileID: 1789340676}
+  meterAnimator: {fileID: 602215809}
+  meterEnabled: 0
+  started: 0
 --- !u!4 &2115189027
 Transform:
   m_ObjectHideFlags: 0
@@ -42680,6 +42732,21 @@ MonoBehaviour:
       - m_Target: {fileID: 1972380271}
         m_TargetAssemblyTypeName: FollowObject, Assembly-CSharp
         m_MethodName: SetFollowActive
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  hitRampEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2115189026}
+        m_TargetAssemblyTypeName: Altimeter, Assembly-CSharp
+        m_MethodName: Enable
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
