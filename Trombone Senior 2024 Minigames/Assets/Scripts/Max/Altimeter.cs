@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.UI;
 public class Altimeter : MonoBehaviour
 {
     [SerializeField] float height;
@@ -15,12 +16,21 @@ public class Altimeter : MonoBehaviour
     [SerializeField] RectTransform pointer;
     [SerializeField] float areaWidth;
     [SerializeField] int multiplier;
-
+    [Header("Color")]
+    [SerializeField] UnityEngine.Color color1;
+    [SerializeField] UnityEngine.Color color2;
+    [SerializeField] List<RectTransform> texts;
+    [SerializeField] Image pointerImage;
+    [SerializeField] TextMeshProUGUI title;
     float min;
     float max;
     private void Start()
     {
         floorLayer = 1 << floorLayer;
+        foreach (var t in texts)
+        {
+            t.GetComponent<TextMeshProUGUI>().color = UnityEngine.Color.Lerp(color1, color2, (t.anchoredPosition.x + areaWidth) / (areaWidth * 2));
+        }
         //currentAngle = minAndMaxAngles[0];
         //multiplier = minAndMaxAngles[1] > minAndMaxAngles[0] ? 1 : -1;
 
@@ -57,6 +67,8 @@ public class Altimeter : MonoBehaviour
         //float delta = (height / maxMeterHeight) * Mathf.Abs(minAndMaxAngles[1] - minAndMaxAngles[0]);
         //pointer.transform.eulerAngles = Vector3.forward * Mathf.Clamp((minAndMaxAngles[0] + multiplier * delta), min, max);
 
-        pointer.anchoredPosition = Vector3.right * Mathf.Lerp(-areaWidth, areaWidth, floatHeight / maxMeterHeight);
+        pointer.anchoredPosition = new Vector3(Mathf.Lerp(-areaWidth, areaWidth, floatHeight / maxMeterHeight), pointer.anchoredPosition.y);
+        pointerImage.color = UnityEngine.Color.Lerp(color1, color2, floatHeight / maxMeterHeight);
+        title.color = pointerImage.color;
     }
 }
