@@ -138,7 +138,11 @@ public class MaxGameManager : MonoBehaviour
     public void UnpauseGame() => Time.timeScale = 1f;
 
     public void EnablePanel() => tutorialAnimator.SetTrigger("Rise");
-    public void DisablePanel() => tutorialAnimator.SetTrigger("Fall");
+    public void DisablePanel()
+    {
+        tutorialAnimator.SetTrigger("Fall");
+        if (!pauseMenu.active) UnpauseGame();
+    }
     public void SetAutoStart() => autoStart = true;
     public void EnablePauseMenu()
     {
