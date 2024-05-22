@@ -103,6 +103,8 @@ public class MaxCharacterController : MonoBehaviour
     [SerializeField] AudioSource rampSource;
     [SerializeField] AudioClip rampClip;
     [SerializeField] AudioClip deathClip;
+    [Header("Trail")]
+    [SerializeField] TrailRenderer trail;
 
     private void Start()
     {
@@ -144,11 +146,14 @@ public class MaxCharacterController : MonoBehaviour
         gameOver = false;
         slider.value = 0;
         rampImpulse = defaultRampImpulse;
+
+        trail.gameObject.SetActive(false);
     }
     public void StartGame()
     {
         rb.isKinematic = false;
         rb.velocity = Vector2.right * initialForce;
+        trail.gameObject.SetActive(true);
     }
 
     void FixedUpdate()
