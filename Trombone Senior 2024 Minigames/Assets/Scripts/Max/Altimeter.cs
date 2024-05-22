@@ -29,6 +29,7 @@ public class Altimeter : MonoBehaviour
     float max;
     private void Start()
     {
+        MaxGameManager.instance.restartEvent.AddListener(Restart);
         floorLayer = 1 << floorLayer;
         foreach (var t in texts)
         {
@@ -95,5 +96,10 @@ public class Altimeter : MonoBehaviour
     public void Enable()
     {
         if (!started) started = true;
+    }
+    public void Restart()
+    {
+        started = false;
+        meterEnabled = false;
     }
 }
