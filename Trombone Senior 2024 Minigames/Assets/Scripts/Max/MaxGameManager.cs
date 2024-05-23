@@ -14,7 +14,7 @@ public class MaxGameManager : MonoBehaviour
     [SerializeField] GameObject startPanel;
     [SerializeField] List<GameObject> startObjects;
     [SerializeField] List<AnimatorSetTrigger> animators;
-    [SerializeField] bool startedInitial;
+    public bool startedInitial;
     [SerializeField] 
     public static bool started;
     public static bool gameOver;
@@ -34,8 +34,10 @@ public class MaxGameManager : MonoBehaviour
     [SerializeField] bool playedTutorial;
     [SerializeField] float tutorialPopupDelay;
     [SerializeField] Animator tutorialAnimator;
+    public bool tutorialActive;
     [Header("Pause")]
     [SerializeField] GameObject pauseMenu;
+    public bool pauseActive;
     [Header("Restart")]
     [SerializeField] List<Transform> movingObjects;
     [SerializeField] bool restarting;
@@ -96,10 +98,8 @@ public class MaxGameManager : MonoBehaviour
             if (accumulated >= tutorialPopupDelay && playedTutorial == false)
             {
                 playedTutorial = true;
+                PlayTutorial();
                 PlayerPrefs.SetInt("Played Tutorial", 1);
-                //go tutorial panel
-                PauseGame();
-                EnablePanel();
             }
             return;
         }
@@ -134,12 +134,21 @@ public class MaxGameManager : MonoBehaviour
         foreach (var v in startObjects) v.SetActive(true);
     }
 
-    public void PauseGame() => Time.timeScale = 0f;
-    public void UnpauseGame() => Time.timeScale = 1f;
+    public void PauseGame()
+    {
+        Time.timeScale = 0f;
+        pauseActive = true;
+    }
+    public void UnpauseGame()
+    {
+        Time.timeScale = 1f;
+        pauseActive = false;
+    }
 
     public void EnablePanel() => tutorialAnimator.SetTrigger("Rise");
     public void DisablePanel()
     {
+        tutorialActive = false;
         tutorialAnimator.SetTrigger("Fall");
         if (!pauseMenu.active) UnpauseGame();
     }
@@ -188,5 +197,12 @@ public class MaxGameManager : MonoBehaviour
     {
         if (active) shieldAnimator.SetTrigger();
         else shieldAnimator.ResetTrigger();
+    }
+
+    public void PlayTutorial()
+    {
+        tutorialActive = true;
+        PauseGame();
+        EnablePanel();
     }
 }

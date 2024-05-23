@@ -129,6 +129,7 @@ public class CollectibleManager : MonoBehaviour
         foreach(var c in collectiblesSpawned) Destroy(c);
         collectiblesSpawned.Clear();
         collectiblesCollected = 0;
+        foreach (TextMeshProUGUI t in currentRunText) t.text = $"{collectiblesCollected}";
     }
 
     public void Collect(GameObject g)

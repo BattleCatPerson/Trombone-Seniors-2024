@@ -11736,7 +11736,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1168702154}
         m_TargetAssemblyTypeName: MaxGameManager, Assembly-CSharp
-        m_MethodName: EnablePanel
+        m_MethodName: PlayTutorial
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -26433,7 +26433,9 @@ MonoBehaviour:
   playedTutorial: 0
   tutorialPopupDelay: 2.5
   tutorialAnimator: {fileID: 1666676474}
+  tutorialActive: 0
   pauseMenu: {fileID: 1804922961}
+  pauseActive: 0
   movingObjects:
   - {fileID: 1875567655}
   - {fileID: 151143233}
@@ -28447,8 +28449,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: When laser drones show up, use the arrows in the bottom left to block it
-    with your shield!
+  m_text: When laser drones show up, move the icon in the bottom left to angle the
+    shield and block the laser
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: b2bac7e40e47b3d48b37c5d07eda4725, type: 2}
   m_sharedMaterial: {fileID: -4828740563713195150, guid: b2bac7e40e47b3d48b37c5d07eda4725,
