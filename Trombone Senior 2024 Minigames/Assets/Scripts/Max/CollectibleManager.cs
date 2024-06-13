@@ -14,6 +14,7 @@ public class CollectibleManager : MonoBehaviour
     [SerializeField] GameObject collectiblePrefab;
     [SerializeField] int collectibles;
     [SerializeField] int collectiblesCollected;
+    public int CollectiblesCollected => collectiblesCollected;
 
     [SerializeField] int minSpawn;
     [SerializeField] int maxSpawn;

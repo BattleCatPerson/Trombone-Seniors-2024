@@ -16,10 +16,15 @@ public class SetPlayerSprite : MonoBehaviour
     [SerializeField] string fileName;
     [SerializeField] TrailRenderer trailRenderer;
     [SerializeField] ListOfIdsToTrailColor pairs2;
+    [Header("Saving")]
+    [SerializeField] MaxCharacterController characterController;
+    [SerializeField] CollectibleManager collectibleManager;
+    FileHandler fileHandler;
+    CosmeticData data;
     void Start()
     {
-        FileHandler fileHandler = new FileHandler(Application.persistentDataPath, fileName);
-        CosmeticData data = fileHandler.Load();
+        fileHandler = new FileHandler(Application.persistentDataPath, fileName);
+        data = fileHandler.Load();
         if (data != null) currentId = data.selectedId;
         else currentId = -1;
 
@@ -32,7 +37,7 @@ public class SetPlayerSprite : MonoBehaviour
                 boardSprite.sprite = i.sprites[1];
                 break;
             }
-        } 
+        }
 
         foreach (IdToColorPair i in pairs2.pairs)
         {
@@ -44,5 +49,38 @@ public class SetPlayerSprite : MonoBehaviour
                 break;
             }
         }
+    }
+
+    public void UpdateSkinStats()
+    {
+        int id = data.selectedId;
+        List<float> stats = new List<float>() { 1, characterController.Score, collectibleManager.CollectiblesCollected };
+        bool found = false;
+        int ind = -1;
+        for (int i = 0; i < data.skinStats.Count; i++)
+        {
+            if (data.skinStats[i].id == id)
+            {
+                found = true;
+                ind = i;
+                break;
+            }
+        }
+        if (!found)
+        {
+            CosmeticData.IdToStats c = new();
+            c.id = id;
+            c.stats = stats;
+            data.skinStats.Add(c);
+        }
+        else
+        {
+            for (int i = 0; i < stats.Count; i++)
+            {
+                data.skinStats[ind].stats[i] += stats[i];
+            }
+        }
+
+        fileHandler.Save(data);
     }
 }

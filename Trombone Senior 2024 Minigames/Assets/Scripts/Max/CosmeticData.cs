@@ -1,13 +1,22 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class CosmeticData
 {
+    [Serializable]
+    public class IdToStats
+    {
+        public int id;
+        public List<float> stats;
+    }
+
     public List<Cosmetic> costumes;
     public List<Cosmetic> trails;
     public int selectedId = -1;
     public int sortId = 0;
+    public List<IdToStats> skinStats; 
     public List<Cosmetic> ReturnList(CosmeticType type)
     {
         if (type == CosmeticType.costume) return costumes;
@@ -21,6 +30,7 @@ public class CosmeticData
         trails = new();
         selectedId = -1;
         sortId = 0;
+        skinStats = new();
     }
 
     public CosmeticData(Cosmetic initialCosmetic)
@@ -30,5 +40,6 @@ public class CosmeticData
         trails = new();
         selectedId = -1;
         sortId = 0;
+        skinStats = new();
     }
 }

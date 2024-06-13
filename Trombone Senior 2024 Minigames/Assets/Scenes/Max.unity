@@ -17869,12 +17869,12 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1712481024}
   - {fileID: 355380201}
   - {fileID: 496929601}
   - {fileID: 843067734}
   - {fileID: 1729404248}
   - {fileID: 202743552}
+  - {fileID: 1712481024}
   m_Father: {fileID: 1666676471}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
@@ -44021,6 +44021,7 @@ MonoBehaviour:
   panelDelay: 2
   gameOverAnimator: {fileID: 1410668511}
   mapGeneration: {fileID: 1900620850}
+  setPlayerSprites: {fileID: 2137725489}
   maxRb: {fileID: 915824891}
   launchForce: 400
   oneSprite: {fileID: 307089869}
@@ -44176,6 +44177,8 @@ MonoBehaviour:
   fileName: GOOB.txt
   trailRenderer: {fileID: 802572493}
   pairs2: {fileID: 8926486792580659431}
+  characterController: {fileID: 2137725487}
+  collectibleManager: {fileID: 71768894}
 --- !u!1 &2142114254
 GameObject:
   m_ObjectHideFlags: 0

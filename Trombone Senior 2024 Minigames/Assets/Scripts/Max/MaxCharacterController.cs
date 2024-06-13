@@ -58,6 +58,7 @@ public class MaxCharacterController : MonoBehaviour
     [SerializeField] int flips;
     [SerializeField] float accumulatedAngle;
     [SerializeField] float score;
+    public float Score => score;
     [SerializeField] float scorePerFlip;
     [SerializeField] TextMeshProUGUI scoreText;
     [SerializeField] GameObject gameOverPanel;
@@ -70,6 +71,7 @@ public class MaxCharacterController : MonoBehaviour
     [SerializeField] float panelDelay;
     [SerializeField] AnimatorSetTrigger gameOverAnimator;
     [SerializeField] MapGeneration mapGeneration;
+    [SerializeField] SetPlayerSprite setPlayerSprites;
     private Vector3 initialPos;
     private Vector3 initialEulerAngles;
     [Header("Ragdoll")]
@@ -367,6 +369,7 @@ public class MaxCharacterController : MonoBehaviour
     public void StopGame()
     {
         gameOver = true;
+        setPlayerSprites.UpdateSkinStats();
         MaxGameManager.gameOver = true;
         colliding = true;
         rb.isKinematic = true;
