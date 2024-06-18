@@ -6,6 +6,7 @@ using UnityEngine.UI;
 
 public class SkinInfoPanel : MonoBehaviour
 {
+    public static SkinInfoPanel instance;
     [SerializeField] Wardrobe wardrobe;
     [SerializeField] ListOfIdsToSprites sprites;
     [SerializeField] Image skinImage;
@@ -13,10 +14,15 @@ public class SkinInfoPanel : MonoBehaviour
     [SerializeField] TextMeshProUGUI skinTotalRuns;
     [SerializeField] TextMeshProUGUI skinTotalPoints;
     [SerializeField] TextMeshProUGUI skinTotalMoney;
+    [SerializeField] CanvasGroup canvasGroup;
 
+    private void Awake()
+    {
+        instance = this;
+    }
     private void Start()
     {
-        UpdatePanel(-1);
+        DisablePanel();
     }
     public void UpdatePanel(int id)
     {
@@ -40,5 +46,18 @@ public class SkinInfoPanel : MonoBehaviour
         skinTotalRuns.text = $"Total Runs: {stats[0]}";
         skinTotalPoints.text = $"Total Points: {stats[1]}";
         skinTotalMoney.text = $"Total: {stats[2]}";
+    }
+
+    public void EnablePanel(int id)
+    {
+        UpdatePanel(id);
+        canvasGroup.alpha = 1;
+        canvasGroup.blocksRaycasts = true;
+    }
+
+    public void DisablePanel()
+    {
+        canvasGroup.alpha = 0;
+        canvasGroup.blocksRaycasts = false;
     }
 }

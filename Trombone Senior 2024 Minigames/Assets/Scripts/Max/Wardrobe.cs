@@ -53,7 +53,9 @@ public class Wardrobe : MonoBehaviour
     [SerializeField] List<SortState> sortStates;
     [SerializeField] SortState currentState;
     [SerializeField] TextMeshProUGUI sortText;
-
+    [Header("Compendium")]
+    [SerializeField] List<CompendiumButton> compendiumButtons;
+    Dictionary<int, CompendiumButton> idCompendiumButtonPairs = new();
     void Start()
     {
         fileHandler = new FileHandler(Application.persistentDataPath, fileName);
@@ -71,6 +73,8 @@ public class Wardrobe : MonoBehaviour
         costumes.AddRange(data.costumes);
         SwitchWardrobeState(WardrobeState.menu);
         UpdatePanel();
+
+        EnableCompendiumButtons();
     }
 
     void Update()
@@ -260,5 +264,14 @@ public class Wardrobe : MonoBehaviour
     {
         if (sortState == SortState.AlphaRev) return "Alphabetical (Reverse)";
         return sortState.ToString();
+    }
+
+    public void EnableCompendiumButtons()
+    {
+        foreach (var button in compendiumButtons) idCompendiumButtonPairs[button.id] = button;
+        foreach (Cosmetic c in data.costumes)
+        {
+            if (idCompendiumButtonPairs.ContainsKey(c.id)) idCompendiumButtonPairs[c.id].EnableButton();
+        }
     }
 }
