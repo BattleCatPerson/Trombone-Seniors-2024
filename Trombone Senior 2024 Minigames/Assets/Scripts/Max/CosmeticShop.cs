@@ -31,6 +31,9 @@ public class CosmeticShop : MonoBehaviour, IWardrobe
     [SerializeField] List<Cosmetic> unlocked;
     [SerializeField] Wardrobe wardrobe;
     [SerializeField] GameObject rollPanel;
+    int commonCount = 1;
+    int rareCount = 0;
+    int superRareCount = 0;
     [Header("Results")]
     [SerializeField] CanvasGroup resultsPanel;
     [SerializeField] Image resultPlayerImage;
@@ -90,9 +93,18 @@ public class CosmeticShop : MonoBehaviour, IWardrobe
             unlocked.Add(final);
             wardrobe.AddToPanel(final.id);
             wardrobe.UpdatePanel();
+            wardrobe.SetCompendiumTexts(commonCount, rareCount, superRareCount);
         }
     }
-
+    private void Awake()
+    {
+        foreach (var v in cosmetics)
+        {
+            if (v.rarity == Rarity.Common) commonCount++;
+            else if (v.rarity == Rarity.Rare) rareCount++;
+            else superRareCount++;
+        }
+    }
     public void Start()
     {
         chances = new();
@@ -168,5 +180,10 @@ public class CosmeticShop : MonoBehaviour, IWardrobe
     {
         if (r == Rarity.SuperRare) return "Super Rare";
         else return r.ToString();
+    }
+
+    public List<int> ReturnRarityNumbers()
+    {
+        return new() { commonCount, rareCount, superRareCount};
     }
 }

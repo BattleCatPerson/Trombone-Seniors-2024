@@ -18199,6 +18199,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d42cfbc51745a0e4099a731b85c06a5d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  tutorial: 1
   button: {fileID: 843067735}
   animator: {fileID: 832587194}
   stepCounter: {fileID: 496929602}
@@ -31212,6 +31213,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d42cfbc51745a0e4099a731b85c06a5d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  tutorial: 1
   button: {fileID: 1729404249}
   animator: {fileID: 832587194}
   stepCounter: {fileID: 496929602}

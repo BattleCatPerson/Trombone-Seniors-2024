@@ -5,12 +5,14 @@ using UnityEngine.UI;
 
 public class DisableButtonOnTransition : MonoBehaviour
 {
+    [SerializeField] bool tutorial;
     [SerializeField] Button button;
     [SerializeField] Animator animator;
     [SerializeField] TutorialStepCounter stepCounter;
     [SerializeField] bool forward;
     void Update()
     {
-        button.interactable = !animator.IsInTransition(0) && !((forward && stepCounter.step == 4) || (!forward && stepCounter.step == 1));
+        if (tutorial) button.interactable = !animator.IsInTransition(0) && !((forward && stepCounter.step == 4) || (!forward && stepCounter.step == 1));
+        else button.interactable = !animator.IsInTransition(0);
     }
 }

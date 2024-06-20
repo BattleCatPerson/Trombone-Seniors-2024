@@ -9,11 +9,11 @@ using TMPro;
 using Unity.VisualScripting;
 public enum WardrobeState
 {
-    menu, rolling, wardrobe
+    menu, rolling, wardrobe, compendium
 }
 public enum SortState
 {
-    Newest, Oldest, Alphabetical, AlphaRev
+    Newest, Oldest, Alphabetical, AlphaRev, Rarity, RarityRev
 }
 
 [Serializable]
@@ -36,7 +36,12 @@ public class Wardrobe : MonoBehaviour
     [SerializeField] Transform collectionPanel;
     [SerializeField] Image previewSprite;
     [SerializeField] TextMeshProUGUI previewName;
+    [SerializeField] TextMeshProUGUI previewRarity;
     [SerializeField] RectTransform scrollPanel;
+    [SerializeField] TextMeshProUGUI commonCount;
+    [SerializeField] TextMeshProUGUI rareCount;
+    [SerializeField] TextMeshProUGUI superRareCount;
+    [SerializeField] CosmeticShop cosmeticShop;
     [Header("State Transitions")]
     [SerializeField] WardrobeState wardrobeState;
     [SerializeField] GameObject rollCanvas;
@@ -49,6 +54,7 @@ public class Wardrobe : MonoBehaviour
     [SerializeField] CinemachineVirtualCamera menuCam;
     [SerializeField] CinemachineVirtualCamera lootboxCam;
     [SerializeField] CinemachineVirtualCamera wardrobeCam;
+    [SerializeField] CinemachineVirtualCamera compendiumCam;
     [Header("Costume Sorting")]
     [SerializeField] List<SortState> sortStates;
     [SerializeField] SortState currentState;
@@ -75,6 +81,9 @@ public class Wardrobe : MonoBehaviour
         UpdatePanel();
 
         EnableCompendiumButtons();
+
+        var r = cosmeticShop.ReturnRarityNumbers();
+        SetCompendiumTexts(r[0], r[1], r[2]);
     }
 
     void Update()
@@ -89,6 +98,23 @@ public class Wardrobe : MonoBehaviour
         float height = 40 * rows;
         scrollPanel.sizeDelta = new Vector2(scrollPanel.sizeDelta.x, height);
         scrollPanel.anchoredPosition = Vector2.up * posY;
+    }
+    public void SetCompendiumTexts(int cCount, int rCount, int sCount)
+    {
+        int c = 0;
+        int r = 0;
+        int s = 0;
+
+        foreach (var v in data.costumes)
+        {
+            if (v.rarity == Rarity.Common) c++;
+            else if (v.rarity == Rarity.Rare) r++;
+            else s++;
+        }
+
+        commonCount.text = $"{c}/{cCount}";
+        rareCount.text = $"{r}/{rCount}";
+        superRareCount.text = $"{s}/{sCount}";
     }
     private void OnApplicationQuit()
     {
@@ -142,6 +168,7 @@ public class Wardrobe : MonoBehaviour
             lootboxCam.Priority = 2;
             wardrobeCam.Priority = 1;
             menuCam.Priority = 0;
+            compendiumCam.Priority = 0;
         }
         else if (state == WardrobeState.wardrobe)
         {
@@ -152,6 +179,7 @@ public class Wardrobe : MonoBehaviour
             lootboxCam.Priority = 1;
             wardrobeCam.Priority = 2;
             menuCam.Priority = 0;
+            compendiumCam.Priority = 0;
         }
         else if (state == WardrobeState.menu)
         {
@@ -162,6 +190,14 @@ public class Wardrobe : MonoBehaviour
             lootboxCam.Priority = 0;
             wardrobeCam.Priority = 1;
             menuCam.Priority = 2;
+            compendiumCam.Priority = 0;
+        }
+        else if (state == WardrobeState.compendium)
+        {
+            compendiumCam.Priority = 2;
+            lootboxCam.Priority = 0;
+            wardrobeCam.Priority = 0;
+            menuCam.Priority = 0;
         }
     }
 
@@ -181,11 +217,21 @@ public class Wardrobe : MonoBehaviour
         return "ERROR NOT GOOD";
     }
 
+    public string MatchIdToRarity(int id)
+    {
+        string r = "";
+        foreach (Cosmetic c in data.costumes) if (id == c.id) r = c.rarity.ToString();
+        if (r == "SuperRare") return "Super Rare";
+        else if (r.Length > 0) return r;
+        return "ERROR NOT GOOD";
+    }
+
     public void SelectId(int id)
     {
         data.selectedId = id;
         previewSprite.sprite = MatchIdToSprite(id)[0];
         previewName.text = MatchIdToName(data.selectedId);
+        previewRarity.text = MatchIdToRarity(data.selectedId);
     }
 
     public void SortAlphabetically(bool reverse)
@@ -235,6 +281,43 @@ public class Wardrobe : MonoBehaviour
         foreach (Cosmetic c in temp) AddToPanel(c.id);
     }
 
+    public void SortByRarity(bool reverse)
+    {
+        ResetPanel();
+        Dictionary<string, int> nameToId = new();
+        List<string> commons = new();
+        List<string> rares = new();
+        List<string> superRares = new();
+        foreach (Cosmetic c in data.costumes)
+        {
+            if (c.rarity == Rarity.Common) commons.Add(c.name);
+            if (c.rarity == Rarity.Rare) rares.Add(c.name);
+            if (c.rarity == Rarity.SuperRare) superRares.Add(c.name);
+
+            nameToId[c.name] = c.id;
+        }
+
+        commons.Sort();
+        rares.Sort();
+        superRares.Sort();
+        
+        if (reverse)
+        {
+            commons.Reverse();
+            rares.Reverse();
+            superRares.Reverse();
+            
+            foreach (string name in commons) AddToPanel(nameToId[name]);
+            foreach (string name in rares) AddToPanel(nameToId[name]);
+            foreach (string name in superRares) AddToPanel(nameToId[name]);
+
+            return;
+        }
+        foreach (string name in superRares) AddToPanel(nameToId[name]); 
+        foreach (string name in rares) AddToPanel(nameToId[name]); 
+        foreach (string name in commons) AddToPanel(nameToId[name]); 
+    }
+
     public void ResetPanel()
     {
         for (int i = 0; i < collectionPanel.childCount; i++)
@@ -254,6 +337,8 @@ public class Wardrobe : MonoBehaviour
         else if (sortStates[data.sortId] == SortState.Oldest) SortByTime(false);
         else if (sortStates[data.sortId] == SortState.Alphabetical) SortAlphabetically(false);
         else if (sortStates[data.sortId] == SortState.AlphaRev) SortAlphabetically(true);
+        else if (sortStates[data.sortId] == SortState.Rarity) SortByRarity(false);
+        else if (sortStates[data.sortId] == SortState.RarityRev) SortByRarity(true);
 
         currentState = sortStates[data.sortId];
 
@@ -263,6 +348,7 @@ public class Wardrobe : MonoBehaviour
     public string ReturnStringSort(SortState sortState)
     {
         if (sortState == SortState.AlphaRev) return "Alphabetical (Reverse)";
+        if (sortState == SortState.RarityRev) return "Rarity (Reverse)";
         return sortState.ToString();
     }
 
