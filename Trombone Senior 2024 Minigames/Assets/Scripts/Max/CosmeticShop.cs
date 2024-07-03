@@ -94,6 +94,7 @@ public class CosmeticShop : MonoBehaviour, IWardrobe
             wardrobe.AddToPanel(final.id);
             wardrobe.UpdatePanel();
             wardrobe.SetCompendiumTexts(commonCount, rareCount, superRareCount);
+            wardrobe.EnableCompendiumButton(final.id);
         }
     }
     private void Awake()

@@ -360,4 +360,9 @@ public class Wardrobe : MonoBehaviour
             if (idCompendiumButtonPairs.ContainsKey(c.id)) idCompendiumButtonPairs[c.id].EnableButton();
         }
     }
+
+    public void EnableCompendiumButton(int id)
+    {
+        idCompendiumButtonPairs[id].EnableButton();
+    }
 }
