@@ -72,6 +72,7 @@ public class MaxCharacterController : MonoBehaviour
     [SerializeField] AnimatorSetTrigger gameOverAnimator;
     [SerializeField] MapGeneration mapGeneration;
     [SerializeField] SetPlayerSprite setPlayerSprites;
+    [SerializeField] PoliceCarFollow policeCarFollow;
     private Vector3 initialPos;
     private Vector3 initialEulerAngles;
     [Header("Ragdoll")]
@@ -390,6 +391,7 @@ public class MaxCharacterController : MonoBehaviour
         flips = 0;
         collectibleManager.UpdateCollectibles();
         mapGeneration.SetPermaFloor();
+        policeCarFollow.ResetOnGameOver();
     }
 
     public IEnumerator EnableGameOverPanel()

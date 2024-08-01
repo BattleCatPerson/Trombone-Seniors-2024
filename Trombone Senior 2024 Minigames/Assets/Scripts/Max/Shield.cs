@@ -96,7 +96,11 @@ public class Shield : MonoBehaviour
             //disable laser shooting
             p.collider.GetComponentInChildren<ProjectileSpawner>().DisableShooting();
         }
-        
+        else
+        {
+            laserRenderer.SetPosition(1, Vector3.right * 20);
+        }
+
     }
     
     public void ResetShield()
@@ -110,5 +114,8 @@ public class Shield : MonoBehaviour
         laserLine.SetActive(false);
         laserRenderer.gameObject.SetActive(false);
     }
-    public void ResetShieldAnimation() => policeCarTrigger.ResetTrigger();
+    public void ResetShieldAnimation()
+    {
+        policeCarTrigger.ResetTrigger();
+    }
 }

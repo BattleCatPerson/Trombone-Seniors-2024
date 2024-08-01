@@ -26,9 +26,20 @@ public class PoliceCarFollow : MonoBehaviour
     private void Start()
     {
         MaxGameManager.instance.restartEvent.AddListener(Disable);
+        MaxGameManager.instance.restartEvent.AddListener(ResetSprite);
     }
     public void Enable() => started = true;
     public void Disable() => started = false;
+    public void ResetSprite()
+    {
+        //reset to default
+        animator.runtimeAnimatorController = carAnimators[0];
+    }
+    public void ResetOnGameOver()
+    {
+        policeCam.Priority = 0;
+        Time.timeScale = 1f;
+    }
 
     void FixedUpdate()
     {
@@ -48,7 +59,7 @@ public class PoliceCarFollow : MonoBehaviour
         RuntimeAnimatorController anim = animator.runtimeAnimatorController;
         RuntimeAnimatorController random = carAnimators[Random.Range(0, carAnimators.Count)];
 
-        while (random == animator)
+        while (random.name.Equals(anim.name))
         {
             random = carAnimators[Random.Range(0, carAnimators.Count)];
         }
