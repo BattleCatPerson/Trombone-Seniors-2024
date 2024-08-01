@@ -1,20 +1,114 @@
+using Cinemachine;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem.XR;
+using UnityEngine.UI;
 
 public class Shield : MonoBehaviour
 {
     public float rotation;
+    [SerializeField] bool canRotate;
+
+    [Header("Laser")]
+    [SerializeField] LayerMask mask;
+    [SerializeField] int hits;
+    [SerializeField] int hitsToShoot;
+    [SerializeField] bool shooting;
+    public bool Shooting => shooting;
+    [SerializeField] AnimatorSetTrigger setTrigger;
+    [SerializeField] Transform laserOrigin;
+    [SerializeField] GameObject laserLine;
+    [SerializeField] LineRenderer laserRenderer;
+    [SerializeField] Transform laserPoint;
+    [SerializeField] bool hitting;
+    [Header("Camera")]
+    [SerializeField] CinemachineVirtualCamera policeCam;
+    [SerializeField] CinemachineBrain brain;
+    [SerializeField] Transform mainCamera;
+    [SerializeField] bool cameraMoving;
+    [SerializeField] AnimatorSetTrigger policeCarTrigger;
+    
+
     void Start()
     {
-        
+        MaxGameManager.instance.restartEvent.AddListener(ResetShieldAnimation);
     }
 
     void Update()
     {
+        //if (hitting)
+        //{
+        //    RaycastHit2D p = Physics2D.Raycast(transform.position, transform.right, Mathf.Infinity, mask);
+        //}
+        if (cameraMoving && mainCamera.position == policeCam.transform.position)
+        {
+            policeCarTrigger.SetTrigger();
+            cameraMoving = false;
+        }
+        if (!canRotate) return;
         transform.eulerAngles = Vector3.forward * rotation;
 
         if (Input.GetKey(KeyCode.Q)) rotation += 180 * Time.deltaTime;
         if (Input.GetKey(KeyCode.E)) rotation -= 180 * Time.deltaTime;
+
     }
+
+    public void ChargeShield()
+    {
+        hits++;
+        if (hits == hitsToShoot) SwitchToShooting();
+    }
+
+    public void SwitchToShooting()
+    {
+        shooting = true;
+        hits = 0;
+        setTrigger.SetTrigger();
+
+        //disable laser production of police car
+    }
+
+    public void Shoot()
+    {
+        Physics2D.SyncTransforms();
+        RaycastHit2D p = Physics2D.Raycast(transform.position, transform.right, Mathf.Infinity, mask);
+     
+        //freeze the shield rotation
+        canRotate = false;
+        if (p.collider)
+        {
+            hitting = true;
+            //destroy the police car, play animation or something liek that
+            Debug.Log("LASER HIT POLICE CAR");
+            float distance = Vector3.Distance(p.point, laserOrigin.position);
+            Debug.Log("Distance " + distance);
+            //laserOrigin.position = p.point;
+            laserPoint.position = p.point;
+            laserRenderer.SetPosition(1, Vector3.right * (laserPoint.localPosition.x));
+            laserRenderer.gameObject.SetActive(true);
+            //laserPoint.localPosition = Vector3.right * distance;
+            policeCam.Priority = 12;
+            cameraMoving = true;
+            Time.timeScale = 0.5f;
+            brain.m_DefaultBlend.m_Time = 0.25f;
+
+            //disable laser shooting
+            p.collider.GetComponentInChildren<ProjectileSpawner>().DisableShooting();
+        }
+        
+    }
+    
+    public void ResetShield()
+    {
+        canRotate = true;
+    }
+
+    public void EnableParticle() => laserLine.SetActive(true);
+    public void DisableLaser()
+    {
+        laserLine.SetActive(false);
+        laserRenderer.gameObject.SetActive(false);
+    }
+    public void ResetShieldAnimation() => policeCarTrigger.ResetTrigger();
 }

@@ -17,6 +17,7 @@ public class ProjectileSpawner : MonoBehaviour
     [SerializeField] Rigidbody2D playerRb;
     [SerializeField] MaxCharacterController controller;
     [SerializeField] float fractionFrequencyAfterThousand;
+    [SerializeField] bool canShoot;
     //get bounds
     //get random direction
     private void Start()
@@ -26,7 +27,7 @@ public class ProjectileSpawner : MonoBehaviour
     }
     void Update()
     {
-        if (!MaxGameManager.started || MaxGameManager.gameOver) return;
+        if (!MaxGameManager.started || MaxGameManager.gameOver || !canShoot) return;
         if (timer <= 0)
         {
             Vector2 point = (Physics2D.Raycast(playerRb.transform.position, Vector2.down, Mathf.Infinity, 1 << 8).point);
@@ -78,4 +79,7 @@ public class ProjectileSpawner : MonoBehaviour
         frequency = baseFrequency * Mathf.Pow(fractionFrequencyAfterThousand, thousands);
         frequency = Mathf.Clamp(frequency, Projectile.currentTime, frequency);
     }
+
+    public void DisableShooting() => canShoot = false;
+    public void EnableShooting() => canShoot = true;
 }

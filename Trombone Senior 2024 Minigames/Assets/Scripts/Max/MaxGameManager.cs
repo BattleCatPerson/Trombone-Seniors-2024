@@ -50,6 +50,7 @@ public class MaxGameManager : MonoBehaviour
     public Dictionary<Transform, Vector3> initialPositions;
     [Header("Shield Active")]
     [SerializeField] AnimatorSetTrigger shieldAnimator;
+    [SerializeField] Shield shield;
 
     private float accumulated = 0;
     private void Awake()
@@ -196,7 +197,7 @@ public class MaxGameManager : MonoBehaviour
     public void ShieldActive(bool active)
     {
         if (active) shieldAnimator.SetTrigger();
-        else shieldAnimator.ResetTrigger();
+        else if (!shield.Shooting) shieldAnimator.ResetTrigger();
     }
 
     public void PlayTutorial()
