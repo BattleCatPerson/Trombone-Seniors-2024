@@ -5,6 +5,7 @@ using Touch = UnityEngine.InputSystem.EnhancedTouch.Touch;
 using TouchPhase = UnityEngine.InputSystem.TouchPhase;
 using Random = UnityEngine.Random;
 using Mathf = UnityEngine.Mathf;
+using UnityEngine.UI;
 public class RadialSlider : MonoBehaviour
 {
     [SerializeField] float value;
@@ -18,6 +19,7 @@ public class RadialSlider : MonoBehaviour
     [SerializeField] float enterMultiplier;
     [SerializeField] RectTransform top;
     [SerializeField] Shield shield;
+    [SerializeField] bool canRotate;
     void Start()
     {
         float y = top.position.y - handle.transform.position.y;
@@ -30,7 +32,7 @@ public class RadialSlider : MonoBehaviour
         // if pressing down and within enterDistance, set onHandle to true
         // once onHandle is true, you can be within the movedistance to move the handle
         // if you release or you move past moveDistance, set onHandle to false
-
+        if (!canRotate) return;
         if (Touch.activeTouches.Count > 0)
         {
             Dictionary<float, Touch> touches = new();
@@ -77,5 +79,10 @@ public class RadialSlider : MonoBehaviour
     public Vector2 ReturnPosition(float v)
     {
         return new Vector2(radius * Mathf.Cos(v * Mathf.PI / 180), radius * Mathf.Sin(v * Mathf.PI / 180));
+    }
+
+    public void EnableRotation(bool b)
+    {
+        canRotate = b;
     }
 }

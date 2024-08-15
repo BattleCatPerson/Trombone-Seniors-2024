@@ -22,6 +22,7 @@ public class Shield : MonoBehaviour
     [SerializeField] LineRenderer laserRenderer;
     [SerializeField] Transform laserPoint;
     [SerializeField] bool hitting;
+    [SerializeField] RadialSlider shieldSlider;
     [Header("Camera")]
     [SerializeField] CinemachineVirtualCamera policeCam;
     [SerializeField] CinemachineBrain brain;
@@ -76,6 +77,7 @@ public class Shield : MonoBehaviour
      
         //freeze the shield rotation
         canRotate = false;
+        shieldSlider.EnableRotation(false);
         if (p.collider)
         {
             hitting = true;
@@ -106,6 +108,7 @@ public class Shield : MonoBehaviour
     public void ResetShield()
     {
         canRotate = true;
+        shieldSlider.EnableRotation(true);
     }
 
     public void EnableParticle() => laserLine.SetActive(true);
