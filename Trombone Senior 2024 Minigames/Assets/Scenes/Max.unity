@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.12731749, g: 0.13414757, b: 0.1210787, a: 1}
+  m_IndirectSpecularColor: {r: 0.12731713, g: 0.13414735, b: 0.1210785, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -48005,6 +48005,8 @@ MonoBehaviour:
   - {fileID: 9100000, guid: 6978403190fb3dd46b943361e8ca2910, type: 2}
   - {fileID: 9100000, guid: 7545ef574b702f7419adcdba402d2abd, type: 2}
   - {fileID: 9100000, guid: f148ae230521caf449057d4193f2306f, type: 2}
+  - {fileID: 9100000, guid: 02371b68ac85298458d15d5f0dc76d27, type: 2}
+  - {fileID: 9100000, guid: a40feaa2234873549aa6d340acd3fa09, type: 2}
   animator: {fileID: 1038797937}
   policeCam: {fileID: 402741433}
   mainCam: {fileID: 1714497867}
