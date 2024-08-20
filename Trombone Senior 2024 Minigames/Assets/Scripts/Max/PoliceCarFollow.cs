@@ -8,6 +8,13 @@ using Random = UnityEngine.Random;
 
 public class PoliceCarFollow : MonoBehaviour
 {
+    [Serializable]
+    public class AnimatorToSprite
+    {
+        public RuntimeAnimatorController animator;
+        public Sprite sprite;
+    }
+
     [SerializeField] Transform target;
     [SerializeField] Rigidbody2D rb;
     [SerializeField] float smoothTime;
@@ -15,7 +22,7 @@ public class PoliceCarFollow : MonoBehaviour
     [SerializeField] Vector3 offset;
     private bool started = false;
     [Header("Replace Sprite")]
-    [SerializeField] List<RuntimeAnimatorController> carAnimators;
+    [SerializeField] List<AnimatorToSprite> carAnimators;
     [SerializeField] Animator animator;
     [SerializeField] CinemachineVirtualCamera policeCam;
     [SerializeField] Transform mainCam;
@@ -23,6 +30,7 @@ public class PoliceCarFollow : MonoBehaviour
     [SerializeField] bool camMoving;
     [SerializeField] CinemachineBrain brain;
     [SerializeField] ProjectileSpawner spawner;
+    [SerializeField] SwitchBackground switchBackground;
     private void Start()
     {
         MaxGameManager.instance.restartEvent.AddListener(Disable);
@@ -33,7 +41,7 @@ public class PoliceCarFollow : MonoBehaviour
     public void ResetSprite()
     {
         //reset to default
-        animator.runtimeAnimatorController = carAnimators[0];
+        animator.runtimeAnimatorController = carAnimators[0].animator;
     }
     public void ResetOnGameOver()
     {
@@ -57,13 +65,15 @@ public class PoliceCarFollow : MonoBehaviour
     {
         Console.WriteLine("CHANG ECHANGE CHANGE!");
         RuntimeAnimatorController anim = animator.runtimeAnimatorController;
-        RuntimeAnimatorController random = carAnimators[Random.Range(0, carAnimators.Count)];
+        AnimatorToSprite animToSprite = carAnimators[Random.Range(0, carAnimators.Count)];
+        RuntimeAnimatorController random = animToSprite.animator;
 
         while (random.name.Equals(anim.name))
         {
-            random = carAnimators[Random.Range(0, carAnimators.Count)];
+            random = carAnimators[Random.Range(0, carAnimators.Count)].animator;
         }
         animator.runtimeAnimatorController = random;
+        switchBackground.Switch(animToSprite.sprite);
     }
 
     public void ResetCamAndTime()
