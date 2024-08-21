@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class SwitchBackground : MonoBehaviour
 {
-    [SerializeField] SpriteRenderer currentBackground;
-    [SerializeField] SpriteRenderer replacementBackground;
+    [SerializeField] SpriteRenderer currentOverlay;
+    [SerializeField] SpriteRenderer replacementOverlay;
     [SerializeField] AnimatorSetTrigger animator;
     void Start()
     {
@@ -17,11 +17,11 @@ public class SwitchBackground : MonoBehaviour
     }
     public void Switch(Sprite s)
     {
-        replacementBackground.sprite = s;
+        replacementOverlay.sprite = s;
         animator.SetTrigger();
     }
     public void Set()
     {
-        currentBackground.sprite = replacementBackground.sprite;
+        currentOverlay.sprite = replacementOverlay.sprite;
     }
 }
