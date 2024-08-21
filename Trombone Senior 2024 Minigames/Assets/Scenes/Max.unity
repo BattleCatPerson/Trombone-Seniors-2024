@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.12731713, g: 0.13414735, b: 0.1210785, a: 1}
+  m_IndirectSpecularColor: {r: 0.12731749, g: 0.13414757, b: 0.1210787, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -32172,8 +32172,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: e2cb5ffb534823c43bae536a4e93280c, type: 3}
-  m_Color: {r: 0.3660378, g: 0.3660378, b: 0.3660378, a: 1}
+  m_Sprite: {fileID: 21300000, guid: 71b2874f0da302e44b487871f679a2a2, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -32199,7 +32199,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1153479158
 Transform:
   m_ObjectHideFlags: 0
@@ -39250,7 +39250,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: e2cb5ffb534823c43bae536a4e93280c, type: 3}
-  m_Color: {r: 1, g: 0, b: 0, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -48084,27 +48084,27 @@ MonoBehaviour:
   offset: {x: -2, y: 2, z: 0}
   carAnimators:
   - animator: {fileID: 9100000, guid: 6978403190fb3dd46b943361e8ca2910, type: 2}
-    sprite: {fileID: 0}
+    sprite: {fileID: 21300000, guid: 208397f28b6bbeb4fa5da113ce991631, type: 3}
   - animator: {fileID: 9100000, guid: 5a16b6565b92543438015fe6c3ca0b0e, type: 2}
-    sprite: {fileID: 0}
+    sprite: {fileID: 21300000, guid: 208397f28b6bbeb4fa5da113ce991631, type: 3}
   - animator: {fileID: 9100000, guid: eff5e9a46e3558144a5ad9bf8e047ec2, type: 2}
-    sprite: {fileID: 0}
+    sprite: {fileID: 21300000, guid: 208397f28b6bbeb4fa5da113ce991631, type: 3}
   - animator: {fileID: 9100000, guid: 3a63a8e5791b8094f9880437c8c7fc34, type: 2}
-    sprite: {fileID: 0}
+    sprite: {fileID: 21300000, guid: 208397f28b6bbeb4fa5da113ce991631, type: 3}
   - animator: {fileID: 9100000, guid: a40feaa2234873549aa6d340acd3fa09, type: 2}
-    sprite: {fileID: 0}
+    sprite: {fileID: 21300000, guid: 208397f28b6bbeb4fa5da113ce991631, type: 3}
   - animator: {fileID: 9100000, guid: eae0761c4f8ee3543a4c760afab384fe, type: 2}
-    sprite: {fileID: 0}
+    sprite: {fileID: 21300000, guid: 208397f28b6bbeb4fa5da113ce991631, type: 3}
   - animator: {fileID: 9100000, guid: 7545ef574b702f7419adcdba402d2abd, type: 2}
-    sprite: {fileID: 0}
+    sprite: {fileID: 21300000, guid: 208397f28b6bbeb4fa5da113ce991631, type: 3}
   - animator: {fileID: 9100000, guid: f148ae230521caf449057d4193f2306f, type: 2}
-    sprite: {fileID: 0}
+    sprite: {fileID: 21300000, guid: 208397f28b6bbeb4fa5da113ce991631, type: 3}
   - animator: {fileID: 9100000, guid: 02371b68ac85298458d15d5f0dc76d27, type: 2}
-    sprite: {fileID: 0}
+    sprite: {fileID: 21300000, guid: 208397f28b6bbeb4fa5da113ce991631, type: 3}
   - animator: {fileID: 9100000, guid: d464235c192d9c44bbf819f82a643706, type: 2}
-    sprite: {fileID: 0}
+    sprite: {fileID: 21300000, guid: 208397f28b6bbeb4fa5da113ce991631, type: 3}
   - animator: {fileID: 9100000, guid: f2c304065b501c94cbe55a88403e91bf, type: 2}
-    sprite: {fileID: 0}
+    sprite: {fileID: 21300000, guid: 71b2874f0da302e44b487871f679a2a2, type: 3}
   animator: {fileID: 1038797937}
   policeCam: {fileID: 402741433}
   mainCam: {fileID: 1714497867}
@@ -48112,7 +48112,7 @@ MonoBehaviour:
   camMoving: 0
   brain: {fileID: 1714497869}
   spawner: {fileID: 1225280443}
-  switchBackground: {fileID: 0}
+  switchBackground: {fileID: 2126384501}
 --- !u!95 &1875567657
 Animator:
   serializedVersion: 5
@@ -64489,7 +64489,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 2126384502}
-  trigger: 
+  trigger: Switch
   resetTrigger: 
 --- !u!114 &2126384501
 MonoBehaviour:
