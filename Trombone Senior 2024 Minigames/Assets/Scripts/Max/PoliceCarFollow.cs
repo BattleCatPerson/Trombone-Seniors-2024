@@ -31,6 +31,7 @@ public class PoliceCarFollow : MonoBehaviour
     [SerializeField] CinemachineBrain brain;
     [SerializeField] ProjectileSpawner spawner;
     [SerializeField] SwitchBackground switchBackground;
+    Sprite currentSprite;
     private void Start()
     {
         MaxGameManager.instance.restartEvent.AddListener(Disable);
@@ -73,9 +74,10 @@ public class PoliceCarFollow : MonoBehaviour
             random = carAnimators[Random.Range(0, carAnimators.Count)].animator;
         }
         animator.runtimeAnimatorController = random;
-        switchBackground.Switch(animToSprite.sprite);
+        currentSprite = animToSprite.sprite;
+        //switchBackground.Switch(animToSprite.sprite);
     }
-
+    public void Switch() => switchBackground.Switch(currentSprite);
     public void ResetCamAndTime()
     {
         policeCam.Priority = 0;
