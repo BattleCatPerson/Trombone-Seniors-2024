@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!221 &22100000
+AnimatorOverrideController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Pizza Cannon
+  m_Controller: {fileID: 9100000, guid: 9b6b4077f75fd1e45a40facd992617d6, type: 2}
+  m_Clips:
+  - m_OriginalClip: {fileID: 7400000, guid: dbd3058a27fdba94a97210a3ef080490, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 6418262c83ed5d246afd70096607bda0, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 84408a7b64400dc4482f68449bda33de, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: c51c53066f82c1f41acf7d924a51ca27, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: d71c6886161f804459b082ef00bd98ca, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: d88e01d9e85e95f46a251889540a5d49, type: 2}

@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!221 &22100000
+AnimatorOverrideController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Bee Cannon
+  m_Controller: {fileID: 9100000, guid: 9b6b4077f75fd1e45a40facd992617d6, type: 2}
+  m_Clips:
+  - m_OriginalClip: {fileID: 7400000, guid: dbd3058a27fdba94a97210a3ef080490, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: ee6e46a1e91fbdc44ac3502a8b2c6c86, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 84408a7b64400dc4482f68449bda33de, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: a4db4cf5a343bfe45986c612734caea1, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: d71c6886161f804459b082ef00bd98ca, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: da8c90db11647c747b7feca537ac3ddc, type: 2}

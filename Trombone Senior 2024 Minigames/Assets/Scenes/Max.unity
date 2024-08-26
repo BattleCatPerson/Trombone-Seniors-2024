@@ -33502,8 +33502,8 @@ MonoBehaviour:
   spawnPosition: {fileID: 638647033}
   spawnParent: {fileID: 1995808605}
   playerRb: {fileID: 2137725483}
-  droneAnimator: {fileID: 0}
-  laserMaterial: {fileID: 0}
+  droneAnimator: {fileID: 9100000, guid: 9b6b4077f75fd1e45a40facd992617d6, type: 2}
+  laserMaterial: {fileID: 2100000, guid: 9ea5020f1fc112b4cb0ac9fc7bd3d23b, type: 2}
   controller: {fileID: 2137725487}
   fractionFrequencyAfterThousand: 0.9
   canShoot: 1
@@ -48912,49 +48912,49 @@ MonoBehaviour:
   offset: {x: -2, y: 2, z: 0}
   carAnimators:
   - animator: {fileID: 9100000, guid: 6978403190fb3dd46b943361e8ca2910, type: 2}
-    droneAnimator: {fileID: 0}
+    droneAnimator: {fileID: 22100000, guid: 9bd39faf150c64a4b89b7e170c1916ea, type: 2}
     sprite: {fileID: 21300000, guid: f50a4e964baf16c42b6c31fbdbae0346, type: 3}
-    laserMaterial: {fileID: 0}
+    laserMaterial: {fileID: 2100000, guid: f584a7344bbef4243b24ce139443f549, type: 2}
   - animator: {fileID: 9100000, guid: 5a16b6565b92543438015fe6c3ca0b0e, type: 2}
-    droneAnimator: {fileID: 0}
+    droneAnimator: {fileID: 22100000, guid: 609f9a78e28c29a42aeae80686622a26, type: 2}
     sprite: {fileID: 21300000, guid: d025c4887224653409b561c4f4beee6f, type: 3}
-    laserMaterial: {fileID: 0}
+    laserMaterial: {fileID: 2100000, guid: 9b7f7e73659df434b9dd6db526c99f33, type: 2}
   - animator: {fileID: 9100000, guid: eff5e9a46e3558144a5ad9bf8e047ec2, type: 2}
-    droneAnimator: {fileID: 0}
+    droneAnimator: {fileID: 22100000, guid: 0c64d91b940b1a148ac8c0b8d9575cbe, type: 2}
     sprite: {fileID: 21300000, guid: ebe7224cdba9b814ba9fe9655a49d06c, type: 3}
-    laserMaterial: {fileID: 0}
+    laserMaterial: {fileID: 2100000, guid: e3facdd31350e1c4caf3d70e8737bd9b, type: 2}
   - animator: {fileID: 9100000, guid: 3a63a8e5791b8094f9880437c8c7fc34, type: 2}
-    droneAnimator: {fileID: 0}
+    droneAnimator: {fileID: 22100000, guid: ac42ac4dac0a8ef43b9c416ec7dde7bc, type: 2}
     sprite: {fileID: 21300000, guid: a5ac0868266b15647bdc397332983838, type: 3}
-    laserMaterial: {fileID: 0}
+    laserMaterial: {fileID: 2100000, guid: d664597be67ac0246ac9793c1f3d0c76, type: 2}
   - animator: {fileID: 9100000, guid: a40feaa2234873549aa6d340acd3fa09, type: 2}
-    droneAnimator: {fileID: 0}
+    droneAnimator: {fileID: 22100000, guid: 2d9be97dc5b97704fb80aa9e343bd986, type: 2}
     sprite: {fileID: 0}
-    laserMaterial: {fileID: 0}
+    laserMaterial: {fileID: 2100000, guid: 24406a187c0d53c439869f7a509d99ae, type: 2}
   - animator: {fileID: 9100000, guid: eae0761c4f8ee3543a4c760afab384fe, type: 2}
-    droneAnimator: {fileID: 0}
+    droneAnimator: {fileID: 22100000, guid: a3d79c5128e6af94c883b4619bb9c48f, type: 2}
     sprite: {fileID: 21300000, guid: e4536a86d196bb24181666a387f99e26, type: 3}
-    laserMaterial: {fileID: 0}
+    laserMaterial: {fileID: 2100000, guid: 51f649b0ce57f73479a1ea50c6e6a38a, type: 2}
   - animator: {fileID: 9100000, guid: 7545ef574b702f7419adcdba402d2abd, type: 2}
-    droneAnimator: {fileID: 0}
+    droneAnimator: {fileID: 22100000, guid: 54d2806ab9d0a9048a712e567e1e570a, type: 2}
     sprite: {fileID: 21300000, guid: 7d2ef2e2f165cf149beaa6ad7f765c22, type: 3}
-    laserMaterial: {fileID: 0}
+    laserMaterial: {fileID: 2100000, guid: b786345571c893347b2342a51e17d6c8, type: 2}
   - animator: {fileID: 9100000, guid: f148ae230521caf449057d4193f2306f, type: 2}
-    droneAnimator: {fileID: 0}
+    droneAnimator: {fileID: 22100000, guid: 286bdc86dfae7e24dabff32728f5eedc, type: 2}
     sprite: {fileID: 21300000, guid: 91ce616114c44cb4e8b40820403a8956, type: 3}
-    laserMaterial: {fileID: 0}
+    laserMaterial: {fileID: 2100000, guid: 132be94f9fe857e43b22c0941dd0b0c0, type: 2}
   - animator: {fileID: 9100000, guid: 02371b68ac85298458d15d5f0dc76d27, type: 2}
-    droneAnimator: {fileID: 0}
+    droneAnimator: {fileID: 22100000, guid: bcf9f1745c582f743809b919c05eddc8, type: 2}
     sprite: {fileID: 21300000, guid: b49bb695c100ad14b8efe0151c9edeca, type: 3}
-    laserMaterial: {fileID: 0}
+    laserMaterial: {fileID: 2100000, guid: 70b5ea321a795a142bee2fbe037816d0, type: 2}
   - animator: {fileID: 9100000, guid: d464235c192d9c44bbf819f82a643706, type: 2}
-    droneAnimator: {fileID: 0}
+    droneAnimator: {fileID: 22100000, guid: 711cc99141f2d26499583e1b6feb142b, type: 2}
     sprite: {fileID: 21300000, guid: 49fd837114a13294688294cb387e5b30, type: 3}
-    laserMaterial: {fileID: 0}
+    laserMaterial: {fileID: 2100000, guid: 37618132324db384499fd8faff1efbaa, type: 2}
   - animator: {fileID: 9100000, guid: f2c304065b501c94cbe55a88403e91bf, type: 2}
-    droneAnimator: {fileID: 0}
+    droneAnimator: {fileID: 9100000, guid: 9b6b4077f75fd1e45a40facd992617d6, type: 2}
     sprite: {fileID: 21300000, guid: 4c192e9d6eeccda43988ad23d8f91065, type: 3}
-    laserMaterial: {fileID: 0}
+    laserMaterial: {fileID: 2100000, guid: 9ea5020f1fc112b4cb0ac9fc7bd3d23b, type: 2}
   animator: {fileID: 1038797937}
   policeCam: {fileID: 402741433}
   mainCam: {fileID: 1714497867}
@@ -55297,7 +55297,7 @@ Transform:
   m_GameObject: {fileID: 2076921110}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -28.913004, y: 10.797955, z: 0}
+  m_LocalPosition: {x: -27.56, y: 10.83, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
