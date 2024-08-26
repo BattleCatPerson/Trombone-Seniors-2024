@@ -5063,6 +5063,7 @@ MonoBehaviour:
   offset: 5
   laserPoint: {fileID: 1939363651931824942}
   duration: 1
+  animator: {fileID: 4109915571981799060}
   initialPosition: {x: 0, y: 0}
   moving: 0
   moveSpeed: 0

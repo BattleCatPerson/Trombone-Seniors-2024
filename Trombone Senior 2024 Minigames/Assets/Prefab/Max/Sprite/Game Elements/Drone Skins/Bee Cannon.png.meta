@@ -6,7 +6,7 @@ TextureImporter:
   serializedVersion: 13
   mipmaps:
     mipMapMode: 0
-    enableMipMap: 1
+    enableMipMap: 0
     sRGBTexture: 1
     linearTexture: 0
     fadeOut: 0
@@ -37,13 +37,13 @@ TextureImporter:
     filterMode: 1
     aniso: 1
     mipBias: 0
-    wrapU: 0
-    wrapV: 0
+    wrapU: 1
+    wrapV: 1
     wrapW: 0
-  nPOTScale: 1
+  nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 0
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -52,9 +52,9 @@ TextureImporter:
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
-  alphaIsTransparency: 0
+  alphaIsTransparency: 1
   spriteTessellationDetail: -1
-  textureType: 0
+  textureType: 8
   textureShape: 1
   singleChannelComponent: 0
   flipbookRows: 1
@@ -108,18 +108,172 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: Bee Cannon_0
+      rect:
+        serializedVersion: 2
+        x: 309
+        y: 1826
+        width: 242
+        height: 283
+      alignment: 9
+      pivot: {x: 0.425, y: 0.35}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 77b390e7c46ffe1428ad9a2e45d6c90e
+      internalID: -774887279
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bee Cannon_1
+      rect:
+        serializedVersion: 2
+        x: 1077
+        y: 1826
+        width: 241
+        height: 283
+      alignment: 9
+      pivot: {x: 0.425, y: 0.35}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 695c34ae4c641a74ba3fb73e5886ecbd
+      internalID: 1053538784
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bee Cannon_2
+      rect:
+        serializedVersion: 2
+        x: 1844
+        y: 1826
+        width: 242
+        height: 283
+      alignment: 9
+      pivot: {x: 0.425, y: 0.35}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e82e458b15f57d144bc5064a89d662a9
+      internalID: -1970908453
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bee Cannon_3
+      rect:
+        serializedVersion: 2
+        x: 309
+        y: 1059
+        width: 242
+        height: 283
+      alignment: 9
+      pivot: {x: 0.425, y: 0.35}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3b198f1c3661d4e48b1d322c09817a7d
+      internalID: -561499972
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bee Cannon_4
+      rect:
+        serializedVersion: 2
+        x: 1077
+        y: 1059
+        width: 241
+        height: 283
+      alignment: 9
+      pivot: {x: 0.425, y: 0.35}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cc27adb8c4e516244a4c605cda1477cb
+      internalID: 2060629577
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bee Cannon_5
+      rect:
+        serializedVersion: 2
+        x: 1844
+        y: 1059
+        width: 242
+        height: 283
+      alignment: 9
+      pivot: {x: 0.425, y: 0.35}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: aed9fb2d01099fd4ab926ac6a301376a
+      internalID: -1194737910
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bee Cannon_6
+      rect:
+        serializedVersion: 2
+        x: 309
+        y: 291
+        width: 242
+        height: 282
+      alignment: 9
+      pivot: {x: 0.425, y: 0.35}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c8a1fbc605402f7469ae5a59f2c8db8b
+      internalID: 423358701
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 7c768fe03ef76244f8eb17ac702bd851
     internalID: 0
     vertices: []
     indices: 
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Bee Cannon_0: -774887279
+      Bee Cannon_1: 1053538784
+      Bee Cannon_2: -1970908453
+      Bee Cannon_3: -561499972
+      Bee Cannon_4: 2060629577
+      Bee Cannon_5: -1194737910
+      Bee Cannon_6: 423358701
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

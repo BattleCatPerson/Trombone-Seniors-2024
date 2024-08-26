@@ -15,6 +15,8 @@ public class ProjectileSpawner : MonoBehaviour
     [SerializeField] Transform spawnPosition;
     [SerializeField] Transform spawnParent;
     [SerializeField] Rigidbody2D playerRb;
+    [SerializeField] RuntimeAnimatorController droneAnimator;
+    [SerializeField] Material laserMaterial;
     [SerializeField] MaxCharacterController controller;
     [SerializeField] float fractionFrequencyAfterThousand;
     [SerializeField] bool canShoot;
@@ -66,6 +68,7 @@ public class ProjectileSpawner : MonoBehaviour
         Projectile p = t.GetComponent<Projectile>();
         p.playerRb = playerRb;
         p.initialPosition = offset;
+        p.Assign(droneAnimator, laserMaterial);
 
         float angle = Random.Range(0, 2 * Mathf.PI);
         Vector3 position = new Vector3(Mathf.Cos(angle), Mathf.Sin(angle)).normalized;
@@ -82,4 +85,9 @@ public class ProjectileSpawner : MonoBehaviour
 
     public void DisableShooting() => canShoot = false;
     public void EnableShooting() => canShoot = true;
+    public void Assign(RuntimeAnimatorController a, Material lMaterial)
+    {
+        droneAnimator = a;
+        laserMaterial = lMaterial;
+    }
 }

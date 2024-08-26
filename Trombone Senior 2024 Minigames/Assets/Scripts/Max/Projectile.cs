@@ -23,6 +23,7 @@ public class Projectile : MonoBehaviour
     [SerializeField] float offset;
     [SerializeField] Transform laserPoint;
     [SerializeField] float duration;
+    [SerializeField] Animator animator;
     public Vector2 initialPosition;
     [SerializeField] bool moving;
     [SerializeField] float moveSpeed;
@@ -45,11 +46,11 @@ public class Projectile : MonoBehaviour
 
         MaxGameManager.instance.restartEvent.AddListener(DestroyOnRestart);
     }
-    //public void Assign(Vector2 velocity, Sprite sprite)
-    //{
-    //    rb.velocity = velocity;
-    //    spriteRenderer.sprite = sprite;
-    //}
+    public void Assign(RuntimeAnimatorController anim, Material laserMaterial)
+    {
+        renderer.material = laserMaterial;
+        animator.runtimeAnimatorController = anim;
+    }
     private void FixedUpdate()
     { 
         if (MaxGameManager.gameOver) return;

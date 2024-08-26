@@ -12,7 +12,9 @@ public class PoliceCarFollow : MonoBehaviour
     public class AnimatorToSprite
     {
         public RuntimeAnimatorController animator;
+        public RuntimeAnimatorController droneAnimator;
         public Sprite sprite;
+        public Material laserMaterial;
     }
 
     [SerializeField] Transform target;
@@ -68,13 +70,14 @@ public class PoliceCarFollow : MonoBehaviour
         RuntimeAnimatorController anim = animator.runtimeAnimatorController;
         AnimatorToSprite animToSprite = carAnimators[Random.Range(0, carAnimators.Count)];
         RuntimeAnimatorController random = animToSprite.animator;
-
+        Material m = animToSprite.laserMaterial;
         while (random.name.Equals(anim.name))
         {
             random = carAnimators[Random.Range(0, carAnimators.Count)].animator;
         }
         animator.runtimeAnimatorController = random;
         currentSprite = animToSprite.sprite;
+        spawner.Assign(random, m);
         //switchBackground.Switch(animToSprite.sprite);
     }
     public void Switch() => switchBackground.Switch(currentSprite);
