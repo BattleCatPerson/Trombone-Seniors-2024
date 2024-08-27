@@ -15,8 +15,11 @@ public class ProjectileSpawner : MonoBehaviour
     [SerializeField] Transform spawnPosition;
     [SerializeField] Transform spawnParent;
     [SerializeField] Rigidbody2D playerRb;
-    [SerializeField] RuntimeAnimatorController droneAnimator;
-    [SerializeField] Material laserMaterial;
+    //[SerializeField] RuntimeAnimatorController droneAnimator;
+    //[SerializeField] Material laserMaterial;
+    [SerializeField] PoliceCarFollow.AnimatorToSprite animToSprite;
+    [SerializeField] SpriteRenderer deployer;
+    [SerializeField] SpriteRenderer deployerCannon;
     [SerializeField] MaxCharacterController controller;
     [SerializeField] float fractionFrequencyAfterThousand;
     [SerializeField] bool canShoot;
@@ -68,7 +71,7 @@ public class ProjectileSpawner : MonoBehaviour
         Projectile p = t.GetComponent<Projectile>();
         p.playerRb = playerRb;
         p.initialPosition = offset;
-        p.Assign(droneAnimator, laserMaterial);
+        p.Assign(animToSprite);
 
         float angle = Random.Range(0, 2 * Mathf.PI);
         Vector3 position = new Vector3(Mathf.Cos(angle), Mathf.Sin(angle)).normalized;
@@ -85,9 +88,10 @@ public class ProjectileSpawner : MonoBehaviour
 
     public void DisableShooting() => canShoot = false;
     public void EnableShooting() => canShoot = true;
-    public void Assign(RuntimeAnimatorController a, Material lMaterial)
+    public void Assign(PoliceCarFollow.AnimatorToSprite a)
     {
-        droneAnimator = a;
-        laserMaterial = lMaterial;
+        animToSprite = a;
+        deployer.color = a.deployerColor;
+        deployerCannon.sprite = a.deployerSprite;
     }
 }

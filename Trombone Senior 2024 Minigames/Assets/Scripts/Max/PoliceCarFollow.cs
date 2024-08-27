@@ -15,6 +15,11 @@ public class PoliceCarFollow : MonoBehaviour
         public RuntimeAnimatorController droneAnimator;
         public Sprite sprite;
         public Material laserMaterial;
+        public UnityEngine.Color pointColor;
+        public Gradient flameGradient;
+        public Sprite deployerSprite;
+        public UnityEngine.Color deployerColor;
+        public UnityEngine.Color countdownColor;
     }
 
     [SerializeField] Transform target;
@@ -25,6 +30,7 @@ public class PoliceCarFollow : MonoBehaviour
     private bool started = false;
     [Header("Replace Sprite")]
     [SerializeField] List<AnimatorToSprite> carAnimators;
+    [SerializeField] AnimatorToSprite defaultCar;
     [SerializeField] Animator animator;
     [SerializeField] CinemachineVirtualCamera policeCam;
     [SerializeField] Transform mainCam;
@@ -33,6 +39,7 @@ public class PoliceCarFollow : MonoBehaviour
     [SerializeField] CinemachineBrain brain;
     [SerializeField] ProjectileSpawner spawner;
     [SerializeField] SwitchBackground switchBackground;
+    [SerializeField] List<ParticleSystem> flames;
     Sprite currentSprite;
     private void Start()
     {
@@ -44,7 +51,15 @@ public class PoliceCarFollow : MonoBehaviour
     public void ResetSprite()
     {
         //reset to default
-        animator.runtimeAnimatorController = carAnimators[0].animator;
+        animator.runtimeAnimatorController = defaultCar.animator;
+        spawner.Assign(defaultCar);
+        foreach (ParticleSystem p in flames)
+        {
+            var col = p.colorOverLifetime;
+            col.enabled = true;
+            col.color = defaultCar.flameGradient;
+        }
+        switchBackground.Switch(defaultCar.sprite);
     }
     public void ResetOnGameOver()
     {
@@ -77,7 +92,13 @@ public class PoliceCarFollow : MonoBehaviour
         }
         animator.runtimeAnimatorController = random;
         currentSprite = animToSprite.sprite;
-        spawner.Assign(random, m);
+        spawner.Assign(animToSprite);
+        foreach (ParticleSystem p in flames)
+        {
+            var col = p.colorOverLifetime;
+            col.enabled = true;
+            col.color = animToSprite.flameGradient;
+        }
         //switchBackground.Switch(animToSprite.sprite);
     }
     public void Switch() => switchBackground.Switch(currentSprite);

@@ -24,6 +24,8 @@ public class Projectile : MonoBehaviour
     [SerializeField] Transform laserPoint;
     [SerializeField] float duration;
     [SerializeField] Animator animator;
+    [SerializeField] AnimatorSetTrigger animTrigger;
+    [SerializeField] List<ParticleSystem> laserPointParticles;
     public Vector2 initialPosition;
     [SerializeField] bool moving;
     [SerializeField] float moveSpeed;
@@ -38,7 +40,7 @@ public class Projectile : MonoBehaviour
         projectileAmount++;
         if (currentTime == -1) currentTime = time;
         moving = true;
-        renderer = laser.GetComponent<SpriteRenderer>();
+        //renderer = laser.GetComponent<SpriteRenderer>();
         renderer.enabled = false;
         countdownRenderer.sprite = countdownSprites[0];
         laserPoint.gameObject.SetActive(false);
@@ -46,10 +48,16 @@ public class Projectile : MonoBehaviour
 
         MaxGameManager.instance.restartEvent.AddListener(DestroyOnRestart);
     }
-    public void Assign(RuntimeAnimatorController anim, Material laserMaterial)
+    public void Assign(PoliceCarFollow.AnimatorToSprite a)
     {
-        renderer.material = laserMaterial;
-        animator.runtimeAnimatorController = anim;
+        renderer = laser.GetComponent<SpriteRenderer>();
+        renderer.material = a.laserMaterial;
+        animator.runtimeAnimatorController = a.droneAnimator;
+        foreach (ParticleSystem p in laserPointParticles) 
+        {
+            p.startColor = a.pointColor;
+        }
+        countdownRenderer.color = a.countdownColor;
     }
     private void FixedUpdate()
     { 
@@ -66,6 +74,7 @@ public class Projectile : MonoBehaviour
                     transform.position = newPos;
                     transform.right = (playerRb.position - (Vector2)transform.position).normalized;
                     moving = false;
+                    animTrigger.SetTrigger();
                 }
             }
             else

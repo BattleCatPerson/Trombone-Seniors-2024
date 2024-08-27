@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: fcaa854e46d081d4fb854389f76fa899
+guid: ec0509c36ccd9cc4da78567b9dcb5347
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -48,7 +48,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 150
+  spritePixelsToUnits: 175
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -110,43 +110,64 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Devil Police_0
+      name: Drone Countdown_0
       rect:
         serializedVersion: 2
-        x: 18
-        y: 940
-        width: 986
-        height: 510
-      alignment: 9
-      pivot: {x: 0.5, y: 0.4}
+        x: 47
+        y: 538
+        width: 356
+        height: 417
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 526b1fefa54a8154dbffbde241714ec5
-      internalID: 711140046
+      spriteID: 069859729e20e204f9c4902102e72d0f
+      internalID: 876530242
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Devil Police_1
+      name: Drone Countdown_1
       rect:
         serializedVersion: 2
-        x: 1046
-        y: 940
-        width: 986
-        height: 510
-      alignment: 9
-      pivot: {x: 0.5, y: 0.4}
+        x: 536
+        y: 540
+        width: 422
+        height: 434
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d26ab3b0e5da3654dbdbca637629c51c
-      internalID: -1320401927
+      spriteID: f0c5a8896a211b14b9f5e92400bbdc57
+      internalID: -1784985486
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Drone Countdown_2
+      rect:
+        serializedVersion: 2
+        x: 57
+        y: 15
+        width: 348
+        height: 466
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 647e32e0658137a4d8e1ca1233e850f0
+      internalID: -1352939966
       vertices: []
       indices: 
       edges: []
@@ -154,7 +175,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 5e97eb03825dee720800000000000000
+    spriteID: 43ee119b498aa1c458764b47123276be
     internalID: 0
     vertices: []
     indices: 
@@ -162,8 +183,9 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Devil Police_0: 711140046
-      Devil Police_1: -1320401927
+      Drone Countdown_0: 876530242
+      Drone Countdown_1: -1784985486
+      Drone Countdown_2: -1352939966
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
