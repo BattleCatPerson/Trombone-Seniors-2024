@@ -12,7 +12,7 @@ public class DisableButtonOnTransition : MonoBehaviour
     [SerializeField] bool forward;
     void Update()
     {
-        if (tutorial) button.interactable = !animator.IsInTransition(0) && !((forward && stepCounter.step == 4) || (!forward && stepCounter.step == 1));
+        if (tutorial) button.interactable = !animator.IsInTransition(0) && !((forward && stepCounter.step == 5) || (!forward && stepCounter.step == 1));
         else button.interactable = !animator.IsInTransition(0);
     }
 }

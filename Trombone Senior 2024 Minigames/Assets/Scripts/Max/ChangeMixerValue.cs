@@ -39,13 +39,14 @@ public class ChangeMixerValue : MonoBehaviour
 
     public void UpdateSFXVolume()
     {
-        float v = Mathf.Log10(soundSlider.value) * 20f;
+        float v = Mathf.Log10(soundSlider.value / 10) * 20f;
+        Debug.Log(soundSlider.value);
         mixer.SetFloat(SFX_VOLUME, v);
         PlayerPrefs.SetFloat(SFX_VOLUME, v);
     }
     public void UpdateMusicVolume()
     {
-        float v = Mathf.Log10(musicSlider.value) * 20f;
+        float v = Mathf.Log10(musicSlider.value / 10) * 20f;
         mixer.SetFloat(MUSIC_VOLUME, v);
         PlayerPrefs.SetFloat(MUSIC_VOLUME, v);
     }
