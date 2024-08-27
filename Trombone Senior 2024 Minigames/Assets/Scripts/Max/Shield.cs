@@ -23,6 +23,8 @@ public class Shield : MonoBehaviour
     [SerializeField] Transform laserPoint;
     [SerializeField] bool hitting;
     [SerializeField] RadialSlider shieldSlider;
+    [SerializeField] MaxCharacterController controller;
+    [SerializeField] float points;
     [Header("Camera")]
     [SerializeField] CinemachineVirtualCamera policeCam;
     [SerializeField] CinemachineBrain brain;
@@ -97,6 +99,7 @@ public class Shield : MonoBehaviour
 
             //disable laser shooting
             p.collider.GetComponentInChildren<ProjectileSpawner>().DisableShooting();
+            controller.AddPoints(points);
         }
         else
         {

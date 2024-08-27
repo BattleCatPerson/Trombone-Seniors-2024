@@ -400,4 +400,6 @@ public class MaxCharacterController : MonoBehaviour
         gameOverPanel.SetActive(true);
         gameOverAnimator.SetTrigger();
     }
+
+    public void AddPoints(float points) => score += points;
 }

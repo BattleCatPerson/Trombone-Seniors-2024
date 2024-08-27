@@ -18,35 +18,35 @@ public class ChangeMixerValue : MonoBehaviour
         if (PlayerPrefs.HasKey(SFX_VOLUME))
         {
             float sV = PlayerPrefs.GetFloat(SFX_VOLUME);
-            soundSlider.value = Mathf.Pow(10, sV / 20f);
+            soundSlider.value = Mathf.Pow(10, sV / 20f) * 10;
         }
         else
         {
             PlayerPrefs.SetFloat(SFX_VOLUME, 0f);
-            soundSlider.value = 1f;
+            soundSlider.value = 10f;
         }
         if (PlayerPrefs.HasKey(MUSIC_VOLUME))
         {
             float sV = PlayerPrefs.GetFloat(MUSIC_VOLUME);
-            musicSlider.value = Mathf.Pow(10, sV / 20f);
+            musicSlider.value = Mathf.Pow(10, sV / 20f) * 10;
         }
         else
         {
             PlayerPrefs.SetFloat(MUSIC_VOLUME, 0f);
-            musicSlider.value = 1f;
+            musicSlider.value = 10f;
         }
     }
 
     public void UpdateSFXVolume()
     {
-        float v = Mathf.Log10(soundSlider.value / 10) * 20f;
+        float v = Mathf.Log10(Mathf.Max(0.0001f, soundSlider.value) / 10) * 20f;
         Debug.Log(soundSlider.value);
         mixer.SetFloat(SFX_VOLUME, v);
         PlayerPrefs.SetFloat(SFX_VOLUME, v);
     }
     public void UpdateMusicVolume()
     {
-        float v = Mathf.Log10(musicSlider.value / 10) * 20f;
+        float v = Mathf.Log10(Mathf.Max(0.0001f, musicSlider.value) / 10) * 20f;
         mixer.SetFloat(MUSIC_VOLUME, v);
         PlayerPrefs.SetFloat(MUSIC_VOLUME, v);
     }
