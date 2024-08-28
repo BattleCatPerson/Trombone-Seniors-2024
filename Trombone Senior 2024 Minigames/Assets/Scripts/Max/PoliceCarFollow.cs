@@ -31,6 +31,7 @@ public class PoliceCarFollow : MonoBehaviour
     [Header("Replace Sprite")]
     [SerializeField] List<AnimatorToSprite> carAnimators;
     [SerializeField] AnimatorToSprite defaultCar;
+    [SerializeField] AnimatorToSprite currentCar;
     [SerializeField] Animator animator;
     [SerializeField] CinemachineVirtualCamera policeCam;
     [SerializeField] Transform mainCam;
@@ -45,6 +46,7 @@ public class PoliceCarFollow : MonoBehaviour
     {
         MaxGameManager.instance.restartEvent.AddListener(Disable);
         MaxGameManager.instance.restartEvent.AddListener(ResetSprite);
+        currentCar = defaultCar;
     }
     public void Enable() => started = true;
     public void Disable() => started = false;
@@ -84,12 +86,14 @@ public class PoliceCarFollow : MonoBehaviour
         Console.WriteLine("CHANG ECHANGE CHANGE!");
         RuntimeAnimatorController anim = animator.runtimeAnimatorController;
         AnimatorToSprite animToSprite = carAnimators[Random.Range(0, carAnimators.Count)];
+        while (animToSprite.animator == anim)
+        {
+            animToSprite = carAnimators[Random.Range(0, carAnimators.Count)];
+        }
+        currentCar = animToSprite;
         RuntimeAnimatorController random = animToSprite.animator;
         Material m = animToSprite.laserMaterial;
-        while (random.name.Equals(anim.name))
-        {
-            random = carAnimators[Random.Range(0, carAnimators.Count)].animator;
-        }
+
         animator.runtimeAnimatorController = random;
         currentSprite = animToSprite.sprite;
         spawner.Assign(animToSprite);

@@ -38,6 +38,7 @@ public class MaxGameManager : MonoBehaviour
     [Header("Pause")]
     [SerializeField] GameObject pauseMenu;
     public bool pauseActive;
+    [SerializeField] AudioSource pauseMusic;
     [Header("Restart")]
     [SerializeField] List<Transform> movingObjects;
     [SerializeField] bool restarting;
@@ -139,11 +140,13 @@ public class MaxGameManager : MonoBehaviour
     {
         Time.timeScale = 0f;
         pauseActive = true;
+        pauseMusic.Play();
     }
     public void UnpauseGame()
     {
         Time.timeScale = 1f;
         pauseActive = false;
+        pauseMusic.Stop();
     }
 
     public void EnablePanel() => tutorialAnimator.SetTrigger("Rise");

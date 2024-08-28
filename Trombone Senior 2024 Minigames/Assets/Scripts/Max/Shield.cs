@@ -31,6 +31,7 @@ public class Shield : MonoBehaviour
     [SerializeField] Transform mainCamera;
     [SerializeField] bool cameraMoving;
     [SerializeField] AnimatorSetTrigger policeCarTrigger;
+    [SerializeField] AnimatorSetTrigger policeNumberTrigger;
     
 
     void Start()
@@ -100,6 +101,7 @@ public class Shield : MonoBehaviour
             //disable laser shooting
             p.collider.GetComponentInChildren<ProjectileSpawner>().DisableShooting();
             controller.AddPoints(points);
+            policeNumberTrigger.SetTrigger();
         }
         else
         {
@@ -123,5 +125,6 @@ public class Shield : MonoBehaviour
     public void ResetShieldAnimation()
     {
         policeCarTrigger.ResetTrigger();
+        hits = 0;
     }
 }

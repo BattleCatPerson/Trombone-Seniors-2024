@@ -20,6 +20,7 @@ public class RadialSlider : MonoBehaviour
     [SerializeField] RectTransform top;
     [SerializeField] Shield shield;
     [SerializeField] bool canRotate;
+    [SerializeField] MaxGameManager gameManager;
     void Start()
     {
         float y = top.position.y - handle.transform.position.y;
@@ -32,7 +33,7 @@ public class RadialSlider : MonoBehaviour
         // if pressing down and within enterDistance, set onHandle to true
         // once onHandle is true, you can be within the movedistance to move the handle
         // if you release or you move past moveDistance, set onHandle to false
-        if (!canRotate) return;
+        if (!canRotate || gameManager.pauseActive) return;
         if (Touch.activeTouches.Count > 0)
         {
             Dictionary<float, Touch> touches = new();
