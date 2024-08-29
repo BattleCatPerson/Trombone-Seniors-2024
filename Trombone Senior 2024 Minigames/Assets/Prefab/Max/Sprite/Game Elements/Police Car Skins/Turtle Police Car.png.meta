@@ -113,12 +113,12 @@ TextureImporter:
       name: Turtle Police Car_0
       rect:
         serializedVersion: 2
-        x: 16
-        y: 1538
-        width: 991
-        height: 400
+        x: 17
+        y: 883
+        width: 989
+        height: 398
       alignment: 9
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0.505, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -134,12 +134,12 @@ TextureImporter:
       name: Turtle Police Car_1
       rect:
         serializedVersion: 2
-        x: 16
-        y: 510
-        width: 991
-        height: 400
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        x: 17
+        y: 183
+        width: 989
+        height: 398
+      alignment: 9
+      pivot: {x: 0.505, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []

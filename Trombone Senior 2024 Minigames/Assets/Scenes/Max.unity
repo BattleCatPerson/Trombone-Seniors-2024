@@ -32360,8 +32360,8 @@ PolygonCollider2D:
   m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 6.6000004, y: 2.68}
+    pivot: {x: 0.54, y: 0.5}
+    oldSize: {x: 7.0866666, y: 2.6533334}
     newSize: {x: 6.6000004, y: 2.68}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -51525,6 +51525,45 @@ MonoBehaviour:
     deployerSprite: {fileID: -810490540, guid: 36a2a7eeee7249d41a18b754062bec17, type: 3}
     deployerColor: {r: 1, g: 0, b: 0, a: 1}
     countdownColor: {r: 1, g: 0, b: 0, a: 1}
+  currentCar:
+    animator: {fileID: 0}
+    droneAnimator: {fileID: 0}
+    sprite: {fileID: 0}
+    laserMaterial: {fileID: 0}
+    pointColor: {r: 0, g: 0, b: 0, a: 0}
+    flameGradient:
+      serializedVersion: 2
+      key0: {r: 1, g: 1, b: 1, a: 1}
+      key1: {r: 1, g: 1, b: 1, a: 1}
+      key2: {r: 0, g: 0, b: 0, a: 0}
+      key3: {r: 0, g: 0, b: 0, a: 0}
+      key4: {r: 0, g: 0, b: 0, a: 0}
+      key5: {r: 0, g: 0, b: 0, a: 0}
+      key6: {r: 0, g: 0, b: 0, a: 0}
+      key7: {r: 0, g: 0, b: 0, a: 0}
+      ctime0: 0
+      ctime1: 65535
+      ctime2: 0
+      ctime3: 0
+      ctime4: 0
+      ctime5: 0
+      ctime6: 0
+      ctime7: 0
+      atime0: 0
+      atime1: 65535
+      atime2: 0
+      atime3: 0
+      atime4: 0
+      atime5: 0
+      atime6: 0
+      atime7: 0
+      m_Mode: 0
+      m_ColorSpace: -1
+      m_NumColorKeys: 2
+      m_NumAlphaKeys: 2
+    deployerSprite: {fileID: 0}
+    deployerColor: {r: 0, g: 0, b: 0, a: 0}
+    countdownColor: {r: 0, g: 0, b: 0, a: 0}
   animator: {fileID: 1038797937}
   policeCam: {fileID: 402741433}
   mainCam: {fileID: 1714497867}

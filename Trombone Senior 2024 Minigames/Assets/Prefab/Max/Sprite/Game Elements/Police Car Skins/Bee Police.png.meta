@@ -113,10 +113,10 @@ TextureImporter:
       name: Bee Police_0
       rect:
         serializedVersion: 2
-        x: 178
-        y: 1536
-        width: 1066
-        height: 402
+        x: 179
+        y: 883
+        width: 1063
+        height: 398
       alignment: 9
       pivot: {x: 0.54, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -134,10 +134,10 @@ TextureImporter:
       name: Bee Police_1
       rect:
         serializedVersion: 2
-        x: 178
-        y: 510
-        width: 1065
-        height: 400
+        x: 179
+        y: 183
+        width: 1063
+        height: 398
       alignment: 9
       pivot: {x: 0.54, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
