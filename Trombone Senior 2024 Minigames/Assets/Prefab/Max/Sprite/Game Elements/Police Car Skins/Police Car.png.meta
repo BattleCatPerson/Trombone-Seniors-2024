@@ -113,12 +113,12 @@ TextureImporter:
       name: Police Car_0
       rect:
         serializedVersion: 2
-        x: 21
-        y: 1538
-        width: 986
-        height: 400
-      alignment: 9
-      pivot: {x: 0.5, y: 0.5}
+        x: 18
+        y: 1536
+        width: 990
+        height: 402
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -134,12 +134,12 @@ TextureImporter:
       name: Police Car_1
       rect:
         serializedVersion: 2
-        x: 21
-        y: 510
-        width: 986
-        height: 400
-      alignment: 9
-      pivot: {x: 0.5, y: 0.5}
+        x: 18
+        y: 506
+        width: 990
+        height: 404
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
