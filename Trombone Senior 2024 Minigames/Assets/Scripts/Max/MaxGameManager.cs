@@ -4,6 +4,7 @@ using UnityEngine.Events;
 using Cinemachine;
 using System.Collections;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public class MaxGameManager : MonoBehaviour
 {
@@ -52,6 +53,13 @@ public class MaxGameManager : MonoBehaviour
     [Header("Shield Active")]
     [SerializeField] AnimatorSetTrigger shieldAnimator;
     [SerializeField] Shield shield;
+    [Header("Outline")]
+    [SerializeField] Material defaultMaterial;
+    [SerializeField] Material outlineMaterial;
+    [SerializeField] List<SpriteRenderer> outlineSprites;
+    [SerializeField] SpriteRenderer carOutlineSprite;
+    [SerializeField] ProjectileSpawner projectileSpawner;
+    [SerializeField] Toggle outlineToggle;
 
     private float accumulated = 0;
     private void Awake()
@@ -82,6 +90,9 @@ public class MaxGameManager : MonoBehaviour
 
         restartEvent.AddListener(ResetGame);
         defaultTransitionTime = brain.m_DefaultBlend.m_Time;
+
+        if (!PlayerPrefs.HasKey("Outline")) PlayerPrefs.SetInt("Outline", 0);
+        EnableOutlines();
     }
 
     void Update()
@@ -208,5 +219,33 @@ public class MaxGameManager : MonoBehaviour
         tutorialActive = true;
         PauseGame();
         EnablePanel();
+    }
+
+    public void ToggleOutlines()
+    {
+        bool on = PlayerPrefs.GetInt("Outline") == 1;
+        if (on) PlayerPrefs.SetInt("Outline", 0);
+        else PlayerPrefs.SetInt("Outline", 1);
+        EnableOutlines();
+    }
+    public void EnableOutlines()
+    {
+        bool on = PlayerPrefs.GetInt("Outline") == 1;
+        if (!on)
+        {
+            foreach (var v in outlineSprites) v.material = defaultMaterial;
+            carOutlineSprite.material = defaultMaterial;
+            projectileSpawner.outline = false;
+            policeCar.outline = false;
+            outlineToggle.isOn = false;
+        }
+        else
+        {
+            foreach (var v in outlineSprites) v.material = outlineMaterial;
+            if (policeCar.CurrentCar.outline) carOutlineSprite.material = outlineMaterial;
+            projectileSpawner.outline = true;
+            policeCar.outline = true;
+            outlineToggle.isOn = true;
+        }
     }
 }

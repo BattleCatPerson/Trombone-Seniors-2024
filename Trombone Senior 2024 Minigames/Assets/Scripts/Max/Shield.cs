@@ -37,6 +37,7 @@ public class Shield : MonoBehaviour
     void Start()
     {
         MaxGameManager.instance.restartEvent.AddListener(ResetShieldAnimation);
+        MaxGameManager.instance.restartEvent.AddListener(ResetShield);
     }
 
     void Update()
@@ -114,6 +115,7 @@ public class Shield : MonoBehaviour
     {
         canRotate = true;
         shieldSlider.EnableRotation(true);
+        shooting = false;
     }
 
     public void EnableParticle() => laserLine.SetActive(true);

@@ -5075,6 +5075,7 @@ MonoBehaviour:
   position: {x: 0, y: 0, z: 0}
   playerRb: {fileID: 0}
   controller: {fileID: 0}
+  droneRenderer: {fileID: 4732981842730715467}
 --- !u!114 &1165704972374460856
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5143,7 +5144,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: c312d155d6e5c81459528ded129683a9, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

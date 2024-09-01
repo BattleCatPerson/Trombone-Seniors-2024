@@ -32,6 +32,7 @@ public class Projectile : MonoBehaviour
     public Vector3 position;
     public Rigidbody2D playerRb;
     public MaxCharacterController controller;
+    public SpriteRenderer droneRenderer;
     SpriteRenderer renderer;
     private void Start()
     {

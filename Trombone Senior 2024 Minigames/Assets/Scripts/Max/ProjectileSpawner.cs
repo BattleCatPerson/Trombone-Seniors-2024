@@ -23,6 +23,10 @@ public class ProjectileSpawner : MonoBehaviour
     [SerializeField] MaxCharacterController controller;
     [SerializeField] float fractionFrequencyAfterThousand;
     [SerializeField] bool canShoot;
+    [SerializeField] Shield shield;
+    public bool outline;
+    [SerializeField] Material defaultMaterial;
+    [SerializeField] Material outlineMaterial;
     //get bounds
     //get random direction
     private void Start()
@@ -32,8 +36,8 @@ public class ProjectileSpawner : MonoBehaviour
     }
     void Update()
     {
-        if (!MaxGameManager.started || MaxGameManager.gameOver || !canShoot) return;
-        if (timer <= 0)
+        if (!MaxGameManager.started || MaxGameManager.gameOver) return;
+        if (timer <= 0 && canShoot && !shield.Shooting)
         {
             Vector2 point = (Physics2D.Raycast(playerRb.transform.position, Vector2.down, Mathf.Infinity, 1 << 8).point);
             float height = transform.position.y - point.y;
@@ -78,6 +82,9 @@ public class ProjectileSpawner : MonoBehaviour
         p.position = position;
 
         p.controller = controller;
+
+        if (outline) p.droneRenderer.material = outlineMaterial;
+        else p.droneRenderer.material = defaultMaterial;
     }
 
     public void UpdateFrequency(int thousands)

@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 830185db658969a43bf9bdd3c4857740
+guid: da10dbf35a766b043be50f62300e457d
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -94,19 +94,6 @@ TextureImporter:
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
-    buildTarget: Server
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 3
     buildTarget: iPhone
     maxTextureSize: 2048
     resizeAlgorithm: 0
@@ -123,121 +110,148 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Nerd_0
+      name: Checkmark_0
       rect:
         serializedVersion: 2
-        x: 148
-        y: 513
-        width: 226
-        height: 57
+        x: 29
+        y: 137
+        width: 711
+        height: 715
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: 113, y: -13.5}
-        - {x: 113, y: 5.5}
-        - {x: 104, y: 14.5}
-        - {x: 96, y: 18.5}
-        - {x: 86, y: 21.5}
-        - {x: 69, y: 24.5}
-        - {x: 63, y: 26.5}
-        - {x: 52, y: 27.5}
-        - {x: 49, y: 28.5}
-        - {x: -75, y: 28.5}
-        - {x: -88, y: 24.5}
-        - {x: -100, y: 18.5}
-        - {x: -109, y: 9.5}
-        - {x: -113, y: 3.5}
-        - {x: -113, y: -13.5}
-        - {x: -111, y: -18.5}
-        - {x: -102, y: -26.5}
-        - {x: -95, y: -28.5}
-        - {x: 77, y: -28.5}
-        - {x: 84, y: -27.5}
-        - {x: 93, y: -25.5}
-        - {x: 105, y: -20.5}
+      outline: []
       physicsShape: []
-      tessellationDetail: 0.5
+      tessellationDetail: 0
       bones: []
-      spriteID: 75476d3046ce4f44683002f8a767c7da
-      internalID: -1439267461
+      spriteID: 4ebbe90087ccf9e4c97bf643ab335127
+      internalID: 658745690
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Nerd_1
+      name: Checkmark_1
       rect:
         serializedVersion: 2
-        x: 138
-        y: 294
-        width: 240
-        height: 184
+        x: 654
+        y: 828
+        width: 4
+        height: 30
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: 51, y: -84}
-        - {x: 60, y: -80}
-        - {x: 75, y: -78}
-        - {x: 77, y: -82}
-        - {x: 90, y: -82}
-        - {x: 92, y: -80}
-        - {x: 97, y: -74}
-        - {x: 100, y: -68}
-        - {x: 106, y: -61}
-        - {x: 110, y: -56}
-        - {x: 113, y: -50}
-        - {x: 114, y: -44}
-        - {x: 118, y: -37}
-        - {x: 120, y: -26}
-        - {x: 120, y: 18}
-        - {x: 118, y: 24}
-        - {x: 111, y: 41}
-        - {x: 107, y: 43}
-        - {x: 102, y: 48}
-        - {x: 98, y: 50}
-        - {x: 90, y: 56}
-        - {x: 77, y: 67}
-        - {x: 74, y: 76}
-        - {x: 66, y: 85}
-        - {x: 55, y: 90}
-        - {x: 50, y: 92}
-        - {x: -22, y: 92}
-        - {x: -33, y: 90}
-        - {x: -44, y: 87}
-        - {x: -53, y: 86}
-        - {x: -62, y: 84}
-        - {x: -64, y: 82}
-        - {x: -68, y: 73}
-        - {x: -69, y: 62}
-        - {x: -74, y: 57}
-        - {x: -79, y: 56}
-        - {x: -84, y: 53}
-        - {x: -90, y: 47}
-        - {x: -104, y: 32}
-        - {x: -110, y: 23}
-        - {x: -116, y: 11}
-        - {x: -117, y: 6}
-        - {x: -118, y: -1}
-        - {x: -120, y: -10}
-        - {x: -120, y: -62}
-        - {x: -118, y: -66}
-        - {x: -114, y: -72}
-        - {x: -108, y: -74}
-        - {x: -93, y: -74}
-        - {x: -91, y: -77}
-        - {x: -84, y: -80}
-        - {x: -78, y: -85}
-        - {x: -71, y: -88}
-        - {x: -59, y: -92}
-        - {x: 22, y: -92}
-        - {x: 42, y: -87}
+      outline: []
       physicsShape: []
-      tessellationDetail: 0.5
+      tessellationDetail: 0
       bones: []
-      spriteID: 097670ddde5296647bc15cfd942d4f27
-      internalID: -423865441
+      spriteID: ddce13a9a4b57494b91d9bf6c7910560
+      internalID: 145692832
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Checkmark_2
+      rect:
+        serializedVersion: 2
+        x: 660
+        y: 828
+        width: 11
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9dd6425f0cfdc944d9a8e8cf1191e1c8
+      internalID: 957649405
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Checkmark_3
+      rect:
+        serializedVersion: 2
+        x: 276
+        y: 148
+        width: 12
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 558fb604542706742a391c2f9aabe24d
+      internalID: 929527111
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Checkmark_4
+      rect:
+        serializedVersion: 2
+        x: 307
+        y: 120
+        width: 20
+        height: 37
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bb0a0b80ad6fe5e40a42a0f2371e11ed
+      internalID: -911594946
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Checkmark_5
+      rect:
+        serializedVersion: 2
+        x: 334
+        y: 120
+        width: 15
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8d6db9daaf6c2b841a681c4bacc6b624
+      internalID: -134429643
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Checkmark_6
+      rect:
+        serializedVersion: 2
+        x: 293
+        y: 140
+        width: 7
+        height: 4
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 82ba6d9e7d721834d8166c1c1edc36a8
+      internalID: -1431171545
       vertices: []
       indices: 
       edges: []
@@ -245,7 +259,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 028e9418472de724eaff525a8956175a
+    spriteID: b9136dcc2b1badf4faf222e42ec71c2f
     internalID: 0
     vertices: []
     indices: 
@@ -253,8 +267,13 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Nerd_0: -1439267461
-      Nerd_1: -423865441
+      Checkmark_0: 658745690
+      Checkmark_1: 145692832
+      Checkmark_2: 957649405
+      Checkmark_3: 929527111
+      Checkmark_4: -911594946
+      Checkmark_5: -134429643
+      Checkmark_6: -1431171545
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

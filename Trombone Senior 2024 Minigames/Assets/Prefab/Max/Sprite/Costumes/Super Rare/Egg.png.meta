@@ -3,7 +3,7 @@ guid: 9b7247d182fcacb47bf00e9dd22c5608
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
-  serializedVersion: 12
+  serializedVersion: 13
   mipmaps:
     mipMapMode: 0
     enableMipMap: 0
@@ -20,11 +20,12 @@ TextureImporter:
     externalNormalMap: 0
     heightScale: 0.25
     normalMapFilter: 0
+    flipGreenChannel: 0
   isReadable: 0
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
-  ignoreMasterTextureLimit: 0
+  ignoreMipmapLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -63,6 +64,7 @@ TextureImporter:
   textureFormatSet: 0
   ignorePngGamma: 0
   applyGammaDecoding: 0
+  swizzle: 50462976
   cookieLightType: 0
   platformSettings:
   - serializedVersion: 3
@@ -75,6 +77,7 @@ TextureImporter:
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
+    ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
@@ -87,6 +90,7 @@ TextureImporter:
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
+    ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
@@ -99,6 +103,7 @@ TextureImporter:
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
+    ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
@@ -111,6 +116,7 @@ TextureImporter:
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
+    ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
@@ -127,9 +133,48 @@ TextureImporter:
       alignment: 9
       pivot: {x: 0.58853227, y: 0.49496573}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
+      outline:
+      - - {x: 67, y: -37.5}
+        - {x: 68, y: -34.5}
+        - {x: 79, y: -34.5}
+        - {x: 108, y: -32.5}
+        - {x: 128, y: -32.5}
+        - {x: 135, y: -33.5}
+        - {x: 139, y: -30.5}
+        - {x: 146, y: -23.5}
+        - {x: 149, y: -14.5}
+        - {x: 152, y: -4.5}
+        - {x: 152, y: 37.5}
+        - {x: 150, y: 39.5}
+        - {x: 143, y: 40.5}
+        - {x: 31, y: 40.5}
+        - {x: 17, y: 39.5}
+        - {x: -72, y: 39.5}
+        - {x: -94, y: 38.5}
+        - {x: -96, y: 36.5}
+        - {x: -106, y: 19.5}
+        - {x: -108, y: 21.5}
+        - {x: -114, y: 21.5}
+        - {x: -116, y: 18.5}
+        - {x: -143, y: 21.5}
+        - {x: -150, y: 21.5}
+        - {x: -152, y: 19.5}
+        - {x: -152, y: -3.5}
+        - {x: -143, y: -3.5}
+        - {x: -142, y: -2.5}
+        - {x: -107, y: -2.5}
+        - {x: -96, y: -1.5}
+        - {x: -96, y: -14.5}
+        - {x: -94, y: -22.5}
+        - {x: -85, y: -31.5}
+        - {x: -64, y: -36.5}
+        - {x: -37, y: -40.5}
+        - {x: 24, y: -40.5}
+        - {x: 35, y: -37.5}
+        - {x: 46, y: -36.5}
+        - {x: 58, y: -36.5}
       physicsShape: []
-      tessellationDetail: 0
+      tessellationDetail: 0.5
       bones: []
       spriteID: fbc4d01280e92b148b708d6415b8d241
       internalID: -2015175222
@@ -148,9 +193,78 @@ TextureImporter:
       alignment: 9
       pivot: {x: 0.44943464, y: 0.4345009}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
+      outline:
+      - - {x: 48, y: -89.5}
+        - {x: 69, y: -79.5}
+        - {x: 71, y: -79.5}
+        - {x: 83, y: -67.5}
+        - {x: 87, y: -61.5}
+        - {x: 89, y: -56.5}
+        - {x: 91, y: -44.5}
+        - {x: 92, y: -36.5}
+        - {x: 93, y: -29.5}
+        - {x: 93, y: -23.5}
+        - {x: 103, y: -23.5}
+        - {x: 106, y: -22.5}
+        - {x: 113, y: -19.5}
+        - {x: 120, y: -13.5}
+        - {x: 123, y: -11.5}
+        - {x: 125, y: -6.5}
+        - {x: 125, y: 32.5}
+        - {x: 123, y: 36.5}
+        - {x: 120, y: 41.5}
+        - {x: 112, y: 51.5}
+        - {x: 109, y: 51.5}
+        - {x: 101, y: 58.5}
+        - {x: 92, y: 64.5}
+        - {x: 82, y: 68.5}
+        - {x: 79, y: 69.5}
+        - {x: 65, y: 73.5}
+        - {x: 59, y: 74.5}
+        - {x: 50, y: 74.5}
+        - {x: 46, y: 78.5}
+        - {x: 39, y: 81.5}
+        - {x: 35, y: 88.5}
+        - {x: 33, y: 90.5}
+        - {x: 27, y: 93.5}
+        - {x: 17, y: 96.5}
+        - {x: -15, y: 96.5}
+        - {x: -29, y: 92.5}
+        - {x: -35, y: 89.5}
+        - {x: -45, y: 83.5}
+        - {x: -51, y: 77.5}
+        - {x: -54, y: 73.5}
+        - {x: -60, y: 64.5}
+        - {x: -64, y: 63.5}
+        - {x: -69, y: 62.5}
+        - {x: -77, y: 59.5}
+        - {x: -82, y: 57.5}
+        - {x: -89, y: 54.5}
+        - {x: -104, y: 43.5}
+        - {x: -112, y: 32.5}
+        - {x: -115, y: 26.5}
+        - {x: -117, y: 14.5}
+        - {x: -121, y: 9.5}
+        - {x: -124, y: 1.5}
+        - {x: -125, y: -0.5}
+        - {x: -125, y: -22.5}
+        - {x: -124, y: -23.5}
+        - {x: -116, y: -27.5}
+        - {x: -109, y: -28.5}
+        - {x: -101, y: -31.5}
+        - {x: -102, y: -36.5}
+        - {x: -102, y: -61.5}
+        - {x: -100, y: -69.5}
+        - {x: -96, y: -79.5}
+        - {x: -94, y: -82.5}
+        - {x: -87, y: -85.5}
+        - {x: -81, y: -90.5}
+        - {x: -74, y: -93.5}
+        - {x: -66, y: -96.5}
+        - {x: 23, y: -96.5}
+        - {x: 39, y: -92.5}
       physicsShape: []
-      tessellationDetail: 0
+      tessellationDetail: 0.5
       bones: []
       spriteID: 2efdaf15eccb6ea4fb02cc714ef3ff19
       internalID: -1697288261
@@ -171,9 +285,8 @@ TextureImporter:
     nameFileIdTable:
       Egg_0: -2015175222
       Egg_1: -1697288261
-  spritePackingTag: 
+  mipmapLimitGroupName: 
   pSDRemoveMatte: 0
-  pSDShowRemoveMatteOption: 0
   userData: 
   assetBundleName: 
   assetBundleVariant: 

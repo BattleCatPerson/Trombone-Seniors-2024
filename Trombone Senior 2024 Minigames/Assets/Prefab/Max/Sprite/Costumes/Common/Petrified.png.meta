@@ -3,7 +3,7 @@ guid: cc747dfbeb04dd048bb657347e9569f3
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
-  serializedVersion: 12
+  serializedVersion: 13
   mipmaps:
     mipMapMode: 0
     enableMipMap: 0
@@ -20,11 +20,12 @@ TextureImporter:
     externalNormalMap: 0
     heightScale: 0.25
     normalMapFilter: 0
+    flipGreenChannel: 0
   isReadable: 0
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
-  ignoreMasterTextureLimit: 0
+  ignoreMipmapLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -63,6 +64,7 @@ TextureImporter:
   textureFormatSet: 0
   ignorePngGamma: 0
   applyGammaDecoding: 0
+  swizzle: 50462976
   cookieLightType: 0
   platformSettings:
   - serializedVersion: 3
@@ -75,6 +77,7 @@ TextureImporter:
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
+    ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
@@ -87,6 +90,7 @@ TextureImporter:
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
+    ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
@@ -99,6 +103,7 @@ TextureImporter:
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
+    ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
@@ -111,6 +116,7 @@ TextureImporter:
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
+    ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
@@ -125,11 +131,33 @@ TextureImporter:
         width: 226
         height: 57
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
+      outline:
+      - - {x: 113, y: -13.5}
+        - {x: 113, y: 5.5}
+        - {x: 104, y: 14.5}
+        - {x: 96, y: 18.5}
+        - {x: 86, y: 21.5}
+        - {x: 69, y: 24.5}
+        - {x: 63, y: 26.5}
+        - {x: 52, y: 27.5}
+        - {x: 49, y: 28.5}
+        - {x: -75, y: 28.5}
+        - {x: -88, y: 24.5}
+        - {x: -100, y: 18.5}
+        - {x: -109, y: 9.5}
+        - {x: -113, y: 3.5}
+        - {x: -113, y: -13.5}
+        - {x: -111, y: -18.5}
+        - {x: -102, y: -26.5}
+        - {x: -95, y: -28.5}
+        - {x: 77, y: -28.5}
+        - {x: 84, y: -27.5}
+        - {x: 93, y: -25.5}
+        - {x: 105, y: -20.5}
       physicsShape: []
-      tessellationDetail: 0
+      tessellationDetail: 0.5
       bones: []
       spriteID: ef9b67b2ace60064fb04a1c9178b8781
       internalID: -1802877098
@@ -146,11 +174,11 @@ TextureImporter:
         width: 240
         height: 184
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
-      tessellationDetail: 0
+      tessellationDetail: 0.5
       bones: []
       spriteID: 7371c8c4fedbc4e4bba7e7cbfc7081c6
       internalID: 1445887084
@@ -171,9 +199,8 @@ TextureImporter:
     nameFileIdTable:
       Petrified_0: -1802877098
       Petrified_1: 1445887084
-  spritePackingTag: 
+  mipmapLimitGroupName: 
   pSDRemoveMatte: 0
-  pSDShowRemoveMatteOption: 0
   userData: 
   assetBundleName: 
   assetBundleVariant: 

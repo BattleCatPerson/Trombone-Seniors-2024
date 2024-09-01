@@ -20,6 +20,7 @@ public class PoliceCarFollow : MonoBehaviour
         public Sprite deployerSprite;
         public UnityEngine.Color deployerColor;
         public UnityEngine.Color countdownColor;
+        public bool outline = true;
     }
 
     [SerializeField] Transform target;
@@ -32,6 +33,7 @@ public class PoliceCarFollow : MonoBehaviour
     [SerializeField] List<AnimatorToSprite> carAnimators;
     [SerializeField] AnimatorToSprite defaultCar;
     [SerializeField] AnimatorToSprite currentCar;
+    public AnimatorToSprite CurrentCar => currentCar;
     [SerializeField] Animator animator;
     [SerializeField] CinemachineVirtualCamera policeCam;
     [SerializeField] Transform mainCam;
@@ -41,6 +43,10 @@ public class PoliceCarFollow : MonoBehaviour
     [SerializeField] ProjectileSpawner spawner;
     [SerializeField] SwitchBackground switchBackground;
     [SerializeField] List<ParticleSystem> flames;
+    [SerializeField] SpriteRenderer spriteRenderer;
+    [SerializeField] Material outlineMaterial;
+    [SerializeField] Material defaultMaterial;
+    public bool outline;
     Sprite currentSprite;
     private void Start()
     {
@@ -103,6 +109,9 @@ public class PoliceCarFollow : MonoBehaviour
             col.enabled = true;
             col.color = animToSprite.flameGradient;
         }
+
+        if (animToSprite.outline && outline) spriteRenderer.material = outlineMaterial;
+        else spriteRenderer.material = defaultMaterial;
         //switchBackground.Switch(animToSprite.sprite);
     }
     public void Switch() => switchBackground.Switch(currentSprite);
