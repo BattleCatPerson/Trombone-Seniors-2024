@@ -96,7 +96,8 @@ public class Shield : MonoBehaviour
             //laserPoint.localPosition = Vector3.right * distance;
             policeCam.Priority = 12;
             cameraMoving = true;
-            Time.timeScale = 0.5f;
+            //Time.timeScale = 0.5f;
+            Time.timeScale = 0f;
             brain.m_DefaultBlend.m_Time = 0.25f;
 
             //disable laser shooting

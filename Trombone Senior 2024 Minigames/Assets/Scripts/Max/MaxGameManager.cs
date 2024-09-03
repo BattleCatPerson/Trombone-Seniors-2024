@@ -38,6 +38,7 @@ public class MaxGameManager : MonoBehaviour
     public bool tutorialActive;
     [Header("Pause")]
     [SerializeField] GameObject pauseMenu;
+    [SerializeField] float currentTimeScale;
     public bool pauseActive;
     [SerializeField] AudioSource pauseMusic;
     [Header("Restart")]
@@ -149,13 +150,13 @@ public class MaxGameManager : MonoBehaviour
 
     public void PauseGame()
     {
+        currentTimeScale = Time.timeScale;
         Time.timeScale = 0f;
         pauseActive = true;
-        pauseMusic.Play();
     }
     public void UnpauseGame()
     {
-        Time.timeScale = 1f;
+        Time.timeScale = currentTimeScale;
         pauseActive = false;
         pauseMusic.Stop();
     }
@@ -171,6 +172,7 @@ public class MaxGameManager : MonoBehaviour
     public void EnablePauseMenu()
     {
         pauseMenu.SetActive(true);
+        pauseMusic.Play();
         PauseGame();
     }
 
@@ -214,10 +216,10 @@ public class MaxGameManager : MonoBehaviour
         else if (!shield.Shooting) shieldAnimator.ResetTrigger();
     }
 
-    public void PlayTutorial()
+    public void PlayTutorial(bool inGame = true)
     {
         tutorialActive = true;
-        PauseGame();
+        if (inGame) PauseGame();
         EnablePanel();
     }
 
