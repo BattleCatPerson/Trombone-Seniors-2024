@@ -25,6 +25,7 @@ public class Shield : MonoBehaviour
     [SerializeField] RadialSlider shieldSlider;
     [SerializeField] MaxCharacterController controller;
     [SerializeField] float points;
+    [SerializeField] PoliceCarFollow follow;
     [Header("Camera")]
     [SerializeField] CinemachineVirtualCamera policeCam;
     [SerializeField] CinemachineBrain brain;
@@ -32,6 +33,11 @@ public class Shield : MonoBehaviour
     [SerializeField] bool cameraMoving;
     [SerializeField] AnimatorSetTrigger policeCarTrigger;
     [SerializeField] AnimatorSetTrigger policeNumberTrigger;
+    [Header("Sound")]
+    [SerializeField] AudioSource openSource;
+    [SerializeField] AudioClip open;
+    [SerializeField] AudioClip close;
+    [SerializeField] AudioSource laserSource;
     
 
     void Start()
@@ -96,14 +102,17 @@ public class Shield : MonoBehaviour
             //laserPoint.localPosition = Vector3.right * distance;
             policeCam.Priority = 12;
             cameraMoving = true;
-            //Time.timeScale = 0.5f;
-            Time.timeScale = 0f;
+            Time.timeScale = 0.5f;
+            //Time.timeScale = 0f;
             brain.m_DefaultBlend.m_Time = 0.25f;
 
             //disable laser shooting
             p.collider.GetComponentInChildren<ProjectileSpawner>().DisableShooting();
             controller.AddPoints(points);
+            controller.Freeze(true);
             policeNumberTrigger.SetTrigger();
+            follow.stop = true;
+            laserSource.Play();
         }
         else
         {
@@ -130,4 +139,9 @@ public class Shield : MonoBehaviour
         policeCarTrigger.ResetTrigger();
         hits = 0;
     }
+
+    public void PlayOpenSound() => openSource.PlayOneShot(open);
+    public void PlayCloseSound() => openSource.PlayOneShot(close);
+    public void StopLaserSource() => laserSource.Stop();
+    
 }

@@ -9,7 +9,8 @@ public class PauseManager : MonoBehaviour
     {
         if (pause)
         {
-            currentTimeScale = Time.timeScale;
+            if (Time.timeScale > 0) currentTimeScale = Time.timeScale;
+            else currentTimeScale = 1;
             Time.timeScale = 0f;
         }
         if (!pause)

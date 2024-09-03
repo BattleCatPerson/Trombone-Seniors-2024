@@ -108,7 +108,9 @@ public class MaxCharacterController : MonoBehaviour
     [SerializeField] AudioClip deathClip;
     [Header("Trail")]
     [SerializeField] TrailRenderer trail;
-
+    [SerializeField] float trailTime;
+    float pauseTime;
+    float resumeTime;
     private void Start()
     {
         if (!PlayerPrefs.HasKey("Max High Score")) PlayerPrefs.SetInt("Max High Score", 0);
@@ -402,4 +404,25 @@ public class MaxCharacterController : MonoBehaviour
     }
 
     public void AddPoints(float points) => score += points;
+
+    public void Freeze(bool b)
+    {
+        rb.simulated = !b;
+        if (b)
+        {
+            trail.time = Mathf.Infinity;
+            pauseTime = Time.time;
+        }
+        else
+        {
+            resumeTime = Time.time;
+            trail.time = (resumeTime - pauseTime) + trailTime;
+            Invoke("SetTrailTime", trailTime);
+        }
+    }
+
+    void SetTrailTime()
+    {
+        trail.time = trailTime;
+    }
 }

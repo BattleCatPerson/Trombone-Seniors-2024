@@ -151,6 +151,8 @@ public class MaxGameManager : MonoBehaviour
     public void PauseGame()
     {
         currentTimeScale = Time.timeScale;
+        if (Time.timeScale == 0) currentTimeScale = 1;
+
         Time.timeScale = 0f;
         pauseActive = true;
     }

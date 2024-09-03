@@ -34,6 +34,7 @@ public class Projectile : MonoBehaviour
     public MaxCharacterController controller;
     public SpriteRenderer droneRenderer;
     SpriteRenderer renderer;
+    [SerializeField] AudioSource source;
     private void Start()
     {
         //Destroy(gameObject, lifeTime);
@@ -99,6 +100,7 @@ public class Projectile : MonoBehaviour
                 moving = true;
                 renderer.enabled = false;
                 laserPoint.gameObject.SetActive(false);
+                source.Stop();
             }
         }
 
@@ -110,7 +112,6 @@ public class Projectile : MonoBehaviour
             else if (accumulated >= currentTime / 3) ind = 1;
 
             countdownRenderer.sprite = countdownSprites[ind];
-
         }
         else if (!shot)
         {
@@ -150,7 +151,7 @@ public class Projectile : MonoBehaviour
             //Destroy(gameObject, 2f);
 
             Debug.Log(d);
-
+            source.Play();
         }
 
         RaycastHit2D[] p1 = Physics2D.RaycastAll(transform.position, transform.right, offset, mask);

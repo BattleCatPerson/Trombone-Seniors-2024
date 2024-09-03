@@ -24,6 +24,10 @@ public class CollectibleManager : MonoBehaviour
     [SerializeField] List<TextMeshProUGUI> currentRunText;
     [SerializeField] List<GameObject> collectiblesSpawned;
 
+    [Header("Sound")]
+    [SerializeField] AudioClip clip;
+    [SerializeField] AudioSource source;
+
     //if this is on just use raycasts instead of touch!
     [SerializeField] bool windowsBuild;
     private void Start()
@@ -140,5 +144,6 @@ public class CollectibleManager : MonoBehaviour
         Destroy(g);
         text.text = $"{collectibles}";
         foreach(TextMeshProUGUI t in currentRunText) t.text = $"{collectiblesCollected}";
+        source.PlayOneShot(clip);
     }
 }

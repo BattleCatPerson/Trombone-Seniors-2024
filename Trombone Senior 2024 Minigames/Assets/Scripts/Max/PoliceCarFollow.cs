@@ -28,6 +28,8 @@ public class PoliceCarFollow : MonoBehaviour
     [SerializeField] float smoothTime;
     private Vector3 currentVelocity = Vector3.zero;
     [SerializeField] Vector3 offset;
+    [SerializeField] MaxCharacterController controller;
+    public bool stop;
     private bool started = false;
     [Header("Replace Sprite")]
     [SerializeField] List<AnimatorToSprite> carAnimators;
@@ -83,8 +85,10 @@ public class PoliceCarFollow : MonoBehaviour
             camMoving = false;
             Time.timeScale = 1f;
             brain.m_DefaultBlend.m_Time = 2f;
+            controller.Freeze(false);
+            stop = false;
         }
-        transform.position = Vector3.SmoothDamp(transform.position, target.position + offset, ref currentVelocity, smoothTime);
+        if (!stop) transform.position = Vector3.SmoothDamp(transform.position, target.position + offset, ref currentVelocity, smoothTime);
 
     }
     public void Replace()
