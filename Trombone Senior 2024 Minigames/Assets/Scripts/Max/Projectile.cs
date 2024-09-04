@@ -49,6 +49,7 @@ public class Projectile : MonoBehaviour
         moveSpeed = playerRb.velocity.magnitude;
 
         MaxGameManager.instance.restartEvent.AddListener(DestroyOnRestart);
+        PoliceCarAudio.sourcesStatic.Add(source);
     }
     public void Assign(PoliceCarFollow.AnimatorToSprite a)
     {
@@ -172,6 +173,7 @@ public class Projectile : MonoBehaviour
     {
         projectileAmount--;
         if (projectileAmount == 0) MaxGameManager.instance.ShieldActive(false);
+        PoliceCarAudio.sourcesStatic.Remove(source);
         Destroy(gameObject);
     }
 }

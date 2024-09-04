@@ -7047,7 +7047,7 @@ AudioSource:
     type: 2}
   m_audioClip: {fileID: 8300000, guid: 576145cf12a07ae458530ef82fc64f0a, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.24
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -33820,7 +33820,7 @@ GameObject:
   - component: {fileID: 1094754096}
   - component: {fileID: 1094754095}
   m_Layer: 0
-  m_Name: Music
+  m_Name: Music Source
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -44139,7 +44139,7 @@ AudioSource:
     type: 2}
   m_audioClip: {fileID: 8300000, guid: 04e8ab42f380b8040a2145a3de6d30a4, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.24
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -45081,6 +45081,7 @@ MonoBehaviour:
   controller: {fileID: 2137725487}
   points: 1000
   follow: {fileID: 1875567656}
+  policeCarAudio: {fileID: 1875567659}
   policeCam: {fileID: 402741433}
   brain: {fileID: 1714497869}
   mainCamera: {fileID: 1714497867}
@@ -45571,6 +45572,18 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1875567659}
+        m_TargetAssemblyTypeName: PoliceCarAudio, Assembly-CSharp
+        m_MethodName: PauseSounds
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
         m_CallState: 2
 --- !u!114 &1727179755
 MonoBehaviour:
@@ -52647,6 +52660,14 @@ MonoBehaviour:
   startupSource: {fileID: 189401445}
   loopSource: {fileID: 1680794407}
   sirenSource: {fileID: 1202361401}
+  sources:
+  - {fileID: 189401445}
+  - {fileID: 1680794407}
+  - {fileID: 1202361401}
+  - {fileID: 1891730039}
+  - {fileID: 1094754095}
+  - {fileID: 61840260}
+  - {fileID: 688402367}
   startupPlaying: 0
 --- !u!850595691 &1877614650
 LightingSettings:
@@ -52741,9 +52762,9 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: -3778527233645891301, guid: 5e53da730ac8d8444badba8cf38df0e7,
     type: 2}
   m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
-  m_Pitch: 1
+  m_Pitch: 0
   Loop: 0
   Mute: 0
   Spatialize: 0
@@ -69840,7 +69861,7 @@ MonoBehaviour:
   finalScoreText: {fileID: 7317976404771064564}
   newHighScoreText: {fileID: 769042920}
   laserSpawner: {fileID: 1225280443}
-  angleDeviation: 360
+  angleDeviation: 55
   gameOver: 0
   panelDelay: 2
   gameOverAnimator: {fileID: 1410668511}
@@ -71097,6 +71118,7 @@ SceneRoots:
   - {fileID: 2126384499}
   - {fileID: 475622031}
   - {fileID: 1094754096}
+  - {fileID: 1891730040}
   - {fileID: 2115189027}
   - {fileID: 71768895}
   - {fileID: 1168702155}
@@ -71109,4 +71131,3 @@ SceneRoots:
   - {fileID: 7378136923532616418}
   - {fileID: 740364948}
   - {fileID: 1443131393}
-  - {fileID: 1891730040}

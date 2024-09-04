@@ -155,12 +155,14 @@ public class MaxGameManager : MonoBehaviour
 
         Time.timeScale = 0f;
         pauseActive = true;
+        foreach (var s in PoliceCarAudio.sourcesStatic) s.pitch = Time.timeScale;
     }
     public void UnpauseGame()
     {
         Time.timeScale = currentTimeScale;
         pauseActive = false;
         pauseMusic.Stop();
+        foreach (var s in PoliceCarAudio.sourcesStatic) s.pitch = Time.timeScale;
     }
 
     public void EnablePanel() => tutorialAnimator.SetTrigger("Rise");

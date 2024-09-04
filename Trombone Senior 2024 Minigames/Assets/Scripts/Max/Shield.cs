@@ -26,6 +26,7 @@ public class Shield : MonoBehaviour
     [SerializeField] MaxCharacterController controller;
     [SerializeField] float points;
     [SerializeField] PoliceCarFollow follow;
+    [SerializeField] PoliceCarAudio policeCarAudio;
     [Header("Camera")]
     [SerializeField] CinemachineVirtualCamera policeCam;
     [SerializeField] CinemachineBrain brain;
@@ -113,6 +114,7 @@ public class Shield : MonoBehaviour
             policeNumberTrigger.SetTrigger();
             follow.stop = true;
             laserSource.Play();
+            policeCarAudio.StopAllSounds();
         }
         else
         {
