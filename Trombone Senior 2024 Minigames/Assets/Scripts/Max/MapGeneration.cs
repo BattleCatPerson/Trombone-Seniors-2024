@@ -16,9 +16,10 @@ public class MapGeneration : MonoBehaviour
             transform.localPosition = (Vector2)pos;
             transform.position += Vector3.forward * pos.z;
         }
-        public static void SelectNew(Vector3 pos)
+        public static void SelectNew(Vector3 pos, float min, float max)
         {
             ObjectActive newObj = standbyObjects[Random.Range(0, standbyObjects.Count)];
+            newObj.transform.eulerAngles = Vector3.forward * Random.Range(min, max);
             standbyObjects.Remove(newObj);
             activeObjects.Add(newObj);
 
@@ -38,6 +39,8 @@ public class MapGeneration : MonoBehaviour
     [SerializeField] float floorLength;
     [SerializeField] float floorX;
     [SerializeField] List<ObjectActive> objects;
+    [SerializeField] float minRampAngle;
+    [SerializeField] float maxRampAngle;
     [SerializeField] float floorAngle;
     [SerializeField] Transform playerTracker;
     [SerializeField] Transform player;
@@ -89,14 +92,14 @@ public class MapGeneration : MonoBehaviour
                     if (Mathf.Abs(o.transform.localPosition.x - spriteTracker.localPosition.x) > distance)
                     {
                         ObjectActive.Remove(o, holdPoint.position);
-                        ObjectActive.SelectNew(Vector3.right * (distance + playerTracker.localPosition.x) + Vector3.forward * zOffset);
+                        ObjectActive.SelectNew(Vector3.right * (distance + playerTracker.localPosition.x) + Vector3.forward * zOffset, minRampAngle, maxRampAngle);
                         break;
                     }
                 }
             }
             else
             {
-                ObjectActive.SelectNew(Vector3.right * (distance + playerTracker.localPosition.x) + Vector3.forward * zOffset);
+                ObjectActive.SelectNew(Vector3.right * (distance + playerTracker.localPosition.x) + Vector3.forward * zOffset, minRampAngle, maxRampAngle);
             }
         }
 

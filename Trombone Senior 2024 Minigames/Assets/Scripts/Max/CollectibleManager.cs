@@ -14,6 +14,7 @@ public class CollectibleManager : MonoBehaviour
     [SerializeField] GameObject collectiblePrefab;
     [SerializeField] int collectibles;
     [SerializeField] int collectiblesCollected;
+    
     public int CollectiblesCollected => collectiblesCollected;
 
     [SerializeField] int minSpawn;
@@ -23,27 +24,45 @@ public class CollectibleManager : MonoBehaviour
     [SerializeField] TextMeshProUGUI text;
     [SerializeField] List<TextMeshProUGUI> currentRunText;
     [SerializeField] List<GameObject> collectiblesSpawned;
+    [SerializeField] bool gameOver;
 
     [Header("Sound")]
     [SerializeField] AudioClip clip;
     [SerializeField] AudioSource source;
-
     //if this is on just use raycasts instead of touch!
     [SerializeField] bool windowsBuild;
+
+    [Header("Scrap")]
+    [SerializeField] int minScrap;
+    [SerializeField] int maxScrap;
+    [SerializeField] CollectibleManager collectibleManager;
+    [SerializeField] TextMeshProUGUI scrapText;
+    [SerializeField] List<TextMeshProUGUI> currentScrapText;
+    [SerializeField] int scrap;
+    [SerializeField] int scrapCollected;
+
     private void Start()
     {
         layer = 1 << layer;
         floorLayer = 1 << floorLayer;
         if (!PlayerPrefs.HasKey("Max Collectibles")) PlayerPrefs.SetInt("Max Collectibles", 0);
         else collectibles = PlayerPrefs.GetInt("Max Collectibles");
+        
+        if (!PlayerPrefs.HasKey("Max Collectibles")) PlayerPrefs.SetInt("Scrap", 0);
+        else scrap = PlayerPrefs.GetInt("Scrap");
 
         lineRenderer.positionCount = 0;
 
         text.text = $"{collectibles}";
+        scrapText.text = $"{scrap}";
+
         foreach (TextMeshProUGUI t in currentRunText) t.text = $"{collectiblesCollected}";
+        foreach (TextMeshProUGUI t in currentScrapText) t.text = $"{scrapCollected}";
+        MaxGameManager.instance.restartEvent.AddListener(ResetGame);
     }
     void Update()
     {
+        if (gameOver) return;
         if (!windowsBuild)
         {
             var activeTouches = Touch.activeTouches;
@@ -68,7 +87,11 @@ public class CollectibleManager : MonoBehaviour
         
         
     }
-
+    public void GameOver()
+    {
+        gameOver = true;
+        UpdateCollectibles();
+    }
     public void UpdateCollectibles() => PlayerPrefs.SetInt("Max Collectibles", collectibles);
     public void SpawnCollectibles(Vector2 v0, Vector2 pos, float g)
     {
@@ -134,7 +157,9 @@ public class CollectibleManager : MonoBehaviour
         foreach(var c in collectiblesSpawned) Destroy(c);
         collectiblesSpawned.Clear();
         collectiblesCollected = 0;
+        scrapCollected = 0;
         foreach (TextMeshProUGUI t in currentRunText) t.text = $"{collectiblesCollected}";
+        foreach (TextMeshProUGUI t in currentScrapText) t.text = $"{scrapCollected}";
     }
 
     public void Collect(GameObject g)
@@ -146,4 +171,15 @@ public class CollectibleManager : MonoBehaviour
         foreach(TextMeshProUGUI t in currentRunText) t.text = $"{collectiblesCollected}";
         source.PlayOneShot(clip);
     }
+
+    public void CollectScrap()
+    {
+        int sNum = Random.Range(minScrap, maxScrap + 1);
+        scrap += sNum;
+        scrapCollected += sNum;
+        scrapText.text = $"{scrap}";
+        foreach (TextMeshProUGUI t in currentScrapText) t.text = $"{scrapCollected}";
+    }
+
+    public void ResetGame() => gameOver = false;
 }

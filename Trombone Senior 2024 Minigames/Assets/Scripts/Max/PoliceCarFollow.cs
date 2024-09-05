@@ -50,6 +50,8 @@ public class PoliceCarFollow : MonoBehaviour
     [SerializeField] Material defaultMaterial;
     public bool outline;
     Sprite currentSprite;
+    [Header("Audio")]
+    [SerializeField] PoliceCarAudio pAudio;
     private void Start()
     {
         MaxGameManager.instance.restartEvent.AddListener(Disable);
@@ -75,6 +77,7 @@ public class PoliceCarFollow : MonoBehaviour
     {
         policeCam.Priority = 0;
         Time.timeScale = 1f;
+        pAudio.StopAllSounds();
     }
 
     void FixedUpdate()

@@ -39,7 +39,8 @@ public class Shield : MonoBehaviour
     [SerializeField] AudioClip open;
     [SerializeField] AudioClip close;
     [SerializeField] AudioSource laserSource;
-    
+    [Header("Scrap")]
+    [SerializeField] CollectibleManager collectibleManager;
 
     void Start()
     {
@@ -89,6 +90,7 @@ public class Shield : MonoBehaviour
         //freeze the shield rotation
         canRotate = false;
         shieldSlider.EnableRotation(false);
+        laserSource.Play();
         if (p.collider)
         {
             hitting = true;
@@ -113,8 +115,10 @@ public class Shield : MonoBehaviour
             controller.Freeze(true);
             policeNumberTrigger.SetTrigger();
             follow.stop = true;
-            laserSource.Play();
             policeCarAudio.StopAllSounds();
+
+            //Scrap Collect
+            collectibleManager.CollectScrap();
         }
         else
         {

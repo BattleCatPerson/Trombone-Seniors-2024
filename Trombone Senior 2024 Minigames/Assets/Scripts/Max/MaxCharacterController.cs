@@ -46,6 +46,8 @@ public class MaxCharacterController : MonoBehaviour
     [SerializeField] float rotationSpeed;
     [SerializeField] float maxRotationSpeed;
     [SerializeField] float drag;
+    [SerializeField] float minInitialRotation;
+    [SerializeField] float maxInitialRotation;
     [Header("Camera")]
     [SerializeField] CinemachineVirtualCamera vCam;
     [SerializeField] float verticalDistanceToFloor;
@@ -228,7 +230,7 @@ public class MaxCharacterController : MonoBehaviour
         {
             canFlip = true;
             touchingRamp = false;
-
+            rotationSpeed = Random.Range(minInitialRotation, maxInitialRotation);
             collectibleManager.SpawnCollectibles(rb.velocity, transform.position, -Physics2D.gravity.y * rb.gravityScale);
         }
     }
@@ -391,7 +393,7 @@ public class MaxCharacterController : MonoBehaviour
         }
         score = 0f;
         flips = 0;
-        collectibleManager.UpdateCollectibles();
+        collectibleManager.GameOver();
         mapGeneration.SetPermaFloor();
         policeCarFollow.ResetOnGameOver();
     }

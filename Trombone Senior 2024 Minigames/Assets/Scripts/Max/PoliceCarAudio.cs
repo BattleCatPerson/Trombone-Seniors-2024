@@ -12,6 +12,7 @@ public class PoliceCarAudio : MonoBehaviour
     public static List<AudioSource> sourcesStatic = new();
     private void Awake()
     {
+        sourcesStatic.Clear();
         sourcesStatic.AddRange(sources);
         MaxGameManager.instance.restartEvent.AddListener(StopAllSounds);
     }
