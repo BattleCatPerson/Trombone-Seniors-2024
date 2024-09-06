@@ -35,7 +35,6 @@ public class CollectibleManager : MonoBehaviour
     [Header("Scrap")]
     [SerializeField] int minScrap;
     [SerializeField] int maxScrap;
-    [SerializeField] CollectibleManager collectibleManager;
     [SerializeField] TextMeshProUGUI scrapText;
     [SerializeField] List<TextMeshProUGUI> currentScrapText;
     [SerializeField] int scrap;

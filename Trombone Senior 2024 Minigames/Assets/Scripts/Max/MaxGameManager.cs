@@ -41,6 +41,10 @@ public class MaxGameManager : MonoBehaviour
     [SerializeField] float currentTimeScale;
     public bool pauseActive;
     [SerializeField] AudioSource pauseMusic;
+    [Header("Music")]
+    [SerializeField] AudioClip introClip;
+    [SerializeField] AudioClip menuLoop;
+    [SerializeField] AudioSource menuSource;
     [Header("Restart")]
     [SerializeField] List<Transform> movingObjects;
     [SerializeField] bool restarting;
@@ -94,6 +98,9 @@ public class MaxGameManager : MonoBehaviour
 
         if (!PlayerPrefs.HasKey("Outline")) PlayerPrefs.SetInt("Outline", 0);
         EnableOutlines();
+
+        menuSource.PlayOneShot(introClip);
+        menuSource.PlayDelayed(introClip.length - 0.25f);
     }
 
     void Update()
