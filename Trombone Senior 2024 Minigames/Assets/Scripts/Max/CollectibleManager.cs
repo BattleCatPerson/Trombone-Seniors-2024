@@ -91,7 +91,11 @@ public class CollectibleManager : MonoBehaviour
         gameOver = true;
         UpdateCollectibles();
     }
-    public void UpdateCollectibles() => PlayerPrefs.SetInt("Max Collectibles", collectibles);
+    public void UpdateCollectibles()
+    {
+        PlayerPrefs.SetInt("Max Collectibles", collectibles);
+        PlayerPrefs.SetInt("Scrap", scrap);
+    }
     public void SpawnCollectibles(Vector2 v0, Vector2 pos, float g)
     {
         lineRenderer.positionCount = 0;

@@ -10,4 +10,12 @@ public class RestartAndQuit : MonoBehaviour
 
     public void Restart() => SceneManager.LoadScene(restartScene);
     public void Quit() => SceneManager.LoadScene(quitScene);
+    public void DisableMenuMusicReset()
+    {
+        AudioManager.playOnStart = false;
+    }
+    public void EnableMenuMusicReset()
+    {
+        AudioManager.playOnStart = true;
+    }
 }

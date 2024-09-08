@@ -16,4 +16,5 @@ public class TransitionToMainScene : MonoBehaviour
     }
 
     public void SetTransitionIn() => transitionIn = true;
+
 }

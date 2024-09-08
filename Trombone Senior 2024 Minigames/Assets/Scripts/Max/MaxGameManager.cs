@@ -5,6 +5,7 @@ using Cinemachine;
 using System.Collections;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
+using UnityEngine.Audio;
 
 public class MaxGameManager : MonoBehaviour
 {
@@ -36,15 +37,12 @@ public class MaxGameManager : MonoBehaviour
     [SerializeField] float tutorialPopupDelay;
     [SerializeField] Animator tutorialAnimator;
     public bool tutorialActive;
+    [Header("Audio")]
+    [SerializeField] AudioManager audioManager;
     [Header("Pause")]
     [SerializeField] GameObject pauseMenu;
     [SerializeField] float currentTimeScale;
     public bool pauseActive;
-    [SerializeField] AudioSource pauseMusic;
-    [Header("Music")]
-    [SerializeField] AudioClip introClip;
-    [SerializeField] AudioClip menuLoop;
-    [SerializeField] AudioSource menuSource;
     [Header("Restart")]
     [SerializeField] List<Transform> movingObjects;
     [SerializeField] bool restarting;
@@ -99,8 +97,9 @@ public class MaxGameManager : MonoBehaviour
         if (!PlayerPrefs.HasKey("Outline")) PlayerPrefs.SetInt("Outline", 0);
         EnableOutlines();
 
-        menuSource.PlayOneShot(introClip);
-        menuSource.PlayDelayed(introClip.length - 0.25f);
+        
+
+        //menuSource.PlayDelayed(introClip.length - 0.25f);
     }
 
     void Update()
@@ -144,6 +143,7 @@ public class MaxGameManager : MonoBehaviour
     public void StartGameInitial()
     {
         startedInitial = true;
+        audioManager.SwitchToMainGameMusic();
     }
     public void StartGame()
     {
@@ -168,7 +168,7 @@ public class MaxGameManager : MonoBehaviour
     {
         Time.timeScale = currentTimeScale;
         pauseActive = false;
-        pauseMusic.Stop();
+        audioManager.EnablePauseMusic(false);
         foreach (var s in PoliceCarAudio.sourcesStatic) s.pitch = Time.timeScale;
     }
 
@@ -183,7 +183,7 @@ public class MaxGameManager : MonoBehaviour
     public void EnablePauseMenu()
     {
         pauseMenu.SetActive(true);
-        pauseMusic.Play();
+        audioManager.EnablePauseMusic(true);
         PauseGame();
     }
 

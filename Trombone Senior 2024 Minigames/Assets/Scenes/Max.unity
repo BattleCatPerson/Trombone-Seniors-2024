@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.12731713, g: 0.13414735, b: 0.1210785, a: 1}
+  m_IndirectSpecularColor: {r: 0.12731749, g: 0.13414757, b: 0.1210787, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -21731,6 +21731,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 7867293390773570741}
+        m_TargetAssemblyTypeName: RestartAndQuit, Assembly-CSharp
+        m_MethodName: EnableMenuMusicReset
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &910033178
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -23072,7 +23084,7 @@ ParticleSystem:
     startLifetime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0.75
+      scalar: 1
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -24339,8 +24351,8 @@ ParticleSystem:
         ctime6: 0
         ctime7: 0
         atime0: 0
-        atime1: 65535
-        atime2: 0
+        atime1: 41403
+        atime2: 65535
         atime3: 0
         atime4: 0
         atime5: 0
@@ -24349,7 +24361,7 @@ ParticleSystem:
         m_Mode: 0
         m_ColorSpace: 0
         m_NumColorKeys: 2
-        m_NumAlphaKeys: 2
+        m_NumAlphaKeys: 3
       minGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
@@ -26802,7 +26814,7 @@ ParticleSystem:
         m_PreInfinity: 2
         m_PostInfinity: 2
         m_RotationOrder: 4
-    minKillSpeed: 1000
+    minKillSpeed: 0
     maxKillSpeed: 10000
     radiusScale: 1
     collidesWith:
@@ -34008,7 +34020,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!82 &1094754095
 AudioSource:
   m_ObjectHideFlags: 0
@@ -35643,13 +35655,10 @@ MonoBehaviour:
   tutorialPopupDelay: 2.5
   tutorialAnimator: {fileID: 1666676474}
   tutorialActive: 0
+  audioManager: {fileID: 1323031282}
   pauseMenu: {fileID: 1804922961}
   currentTimeScale: 0
   pauseActive: 0
-  pauseMusic: {fileID: 1725876461}
-  introClip: {fileID: 8300000, guid: 029b349d23ddf634989362169cd25d1a, type: 3}
-  menuLoop: {fileID: 8300000, guid: 3e504082dc2469e46bde489ab93d5d83, type: 3}
-  menuSource: {fileID: 1949346248}
   movingObjects:
   - {fileID: 1875567655}
   - {fileID: 151143233}
@@ -37347,6 +37356,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1323031280}
   - component: {fileID: 1323031281}
+  - component: {fileID: 1323031282}
   m_Layer: 0
   m_Name: Audio Manager
   m_TagString: Untagged
@@ -37384,6 +37394,23 @@ MonoBehaviour:
   soundSlider: {fileID: 311807430}
   musicSlider: {fileID: 1042794911}
   mixer: {fileID: 24100000, guid: 5e53da730ac8d8444badba8cf38df0e7, type: 2}
+--- !u!114 &1323031282
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1323031279}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f0b81cf57fcd5d44acb95102d470a35, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  introClip: {fileID: 8300000, guid: 029b349d23ddf634989362169cd25d1a, type: 3}
+  menuLoop: {fileID: 8300000, guid: 3e504082dc2469e46bde489ab93d5d83, type: 3}
+  mixerGroup: {fileID: -5097335159224112743, guid: 5e53da730ac8d8444badba8cf38df0e7,
+    type: 2}
+  pauseMusic: {fileID: 1725876461}
 --- !u!1 &1323746241
 GameObject:
   m_ObjectHideFlags: 0
@@ -45755,7 +45782,7 @@ MonoBehaviour:
   open: {fileID: 8300000, guid: f1fe19b4044a6994bb778535e28b73b3, type: 3}
   close: {fileID: 8300000, guid: 2f425af161e9deb46b9fc168f2b24dba, type: 3}
   laserSource: {fileID: 688402367}
-  collectibleManager: {fileID: 0}
+  collectibleManager: {fileID: 71768894}
 --- !u!61 &1725492620
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -53799,7 +53826,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: -5097335159224112743, guid: 5e53da730ac8d8444badba8cf38df0e7,
     type: 2}
-  m_audioClip: {fileID: 8300000, guid: 3e504082dc2469e46bde489ab93d5d83, type: 3}
+  m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
@@ -71538,6 +71565,18 @@ MonoBehaviour:
       - m_Target: {fileID: 7867293390773570741}
         m_TargetAssemblyTypeName: RestartAndQuit, Assembly-CSharp
         m_MethodName: Quit
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 7867293390773570741}
+        m_TargetAssemblyTypeName: RestartAndQuit, Assembly-CSharp
+        m_MethodName: EnableMenuMusicReset
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

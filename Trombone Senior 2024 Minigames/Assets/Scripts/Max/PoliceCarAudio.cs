@@ -18,6 +18,10 @@ public class PoliceCarAudio : MonoBehaviour
     }
     void Update()
     {
+        foreach (AudioSource source in sourcesStatic) 
+        {
+            source.volume = MaxGameManager.gameOver ? 0 : 1;
+        }
         if (startupPlaying && !startupSource.isPlaying)
         {
             loopSource.Play();

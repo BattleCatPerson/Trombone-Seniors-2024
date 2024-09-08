@@ -75,6 +75,7 @@ public class Wardrobe : MonoBehaviour
 
         previewSprite.sprite = MatchIdToSprite(data.selectedId)[0];
         previewName.text = MatchIdToName(data.selectedId);
+        previewRarity.text = MatchIdToRarity(data.selectedId);
 
         costumes.AddRange(data.costumes);
         SwitchWardrobeState(WardrobeState.menu);
