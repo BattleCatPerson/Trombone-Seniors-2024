@@ -16,7 +16,8 @@ public class CosmeticData
     public List<Cosmetic> trails;
     public int selectedId = -1;
     public int sortId = 0;
-    public List<IdToStats> skinStats; 
+    public List<IdToStats> skinStats;
+    public List<int> upgrades;
     public List<Cosmetic> ReturnList(CosmeticType type)
     {
         if (type == CosmeticType.costume) return costumes;
@@ -31,6 +32,7 @@ public class CosmeticData
         selectedId = -1;
         sortId = 0;
         skinStats = new();
+        upgrades = new();
     }
 
     public CosmeticData(Cosmetic initialCosmetic)
@@ -41,5 +43,6 @@ public class CosmeticData
         selectedId = -1;
         sortId = 0;
         skinStats = new();
+        upgrades = new();
     }
 }
