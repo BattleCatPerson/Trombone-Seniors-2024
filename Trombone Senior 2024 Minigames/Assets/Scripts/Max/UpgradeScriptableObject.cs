@@ -8,4 +8,5 @@ public class UpgradeScriptableObject : ScriptableObject
     public int cost;
     public int id;
     public string name;
+    public Sprite sprite;
 }

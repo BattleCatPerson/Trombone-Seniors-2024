@@ -1,7 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.UI;
+using TMPro;
 public class UpgradeShop : MonoBehaviour
 {
     [SerializeField] int scrap;
@@ -12,6 +13,13 @@ public class UpgradeShop : MonoBehaviour
     [SerializeField] Cosmetic initialCosmetic;
     [SerializeField] FileHandler fileHandler;
     [SerializeField] CosmeticData data;
+    [Header("Purchase Panel")]
+    [SerializeField] AnimatorSetTrigger panelOpenTrigger;
+    [SerializeField] Image image;
+    [SerializeField] TextMeshProUGUI nameText;
+    [SerializeField] TextMeshProUGUI costText;
+    [SerializeField] Button confirmButton;
+    [SerializeField] UpgradeScriptableObject selectedItem;
     //money booster
     //speed booster
     //arcade game pass
@@ -20,7 +28,7 @@ public class UpgradeShop : MonoBehaviour
     //higher energy gain from lasers
     //increase angle for landing
     //bonus booster (double points from nice cool bonus)
-    void Start()
+    void Awake()
     {
         scrap = PlayerPrefs.GetInt("Scrap");
         fileHandler = new FileHandler(Application.persistentDataPath, fileName);
@@ -35,16 +43,24 @@ public class UpgradeShop : MonoBehaviour
         
     }
 
-    public void Upgrade(UpgradeButton button)
+    public void Upgrade()
     {
-        var obj = button.Upgrade;
-        if (scrap >= obj.cost && !unlockedUpgrades.Contains(obj.id))
+        if (scrap >= selectedItem.cost && !unlockedUpgrades.Contains(selectedItem.id))
         {
-            unlockedUpgrades.Add(obj.id);
+            unlockedUpgrades.Add(selectedItem.id);
             fileHandler.Save(data);
-            scrap -= obj.cost;
+            scrap -= selectedItem.cost;
             //Disable
         }
+    }
+
+    public void OpenPanel(UpgradeScriptableObject obj)
+    {
+        panelOpenTrigger.SetTrigger();
+        nameText.text = obj.name;
+        costText.text = obj.cost.ToString();
+        image.sprite = obj.sprite;
+        selectedItem = obj;
     }
 
     private void OnApplicationQuit()
