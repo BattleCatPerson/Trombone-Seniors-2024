@@ -9,6 +9,7 @@ public class UpgradeShop : MonoBehaviour
     [SerializeField] List<int> unlockedUpgrades;
     [SerializeField] int upgradeLevel;
     [SerializeField] List<UpgradeButton> buttons;
+    [SerializeField] List<string> descriptions;
     [SerializeField] string fileName;
     [SerializeField] Cosmetic initialCosmetic;
     [SerializeField] FileHandler fileHandler;
@@ -18,8 +19,10 @@ public class UpgradeShop : MonoBehaviour
     [SerializeField] Image image;
     [SerializeField] TextMeshProUGUI nameText;
     [SerializeField] TextMeshProUGUI costText;
+    [SerializeField] TextMeshProUGUI descriptionText;
     [SerializeField] Button confirmButton;
     [SerializeField] UpgradeScriptableObject selectedItem;
+    [SerializeField] UpgradeButton upgradeButton;
     //money booster
     //speed booster
     //arcade game pass
@@ -36,6 +39,11 @@ public class UpgradeShop : MonoBehaviour
         if (data == null) data = new CosmeticData(initialCosmetic);
 
         unlockedUpgrades = data.upgrades;
+        unlockedUpgrades.Clear();
+        foreach (var i in unlockedUpgrades)
+        {
+            foreach (UpgradeButton b in buttons) if (b.Upgrade.id == i) b.Purchase();
+        }
     }
 
     void Update()
@@ -50,17 +58,21 @@ public class UpgradeShop : MonoBehaviour
             unlockedUpgrades.Add(selectedItem.id);
             fileHandler.Save(data);
             scrap -= selectedItem.cost;
+            upgradeButton.Purchase();
             //Disable
         }
     }
 
-    public void OpenPanel(UpgradeScriptableObject obj)
+    public void OpenPanel(UpgradeButton button)
     {
+        upgradeButton = button;
+        UpgradeScriptableObject obj = button.Upgrade;
         panelOpenTrigger.SetTrigger();
         nameText.text = obj.name;
         costText.text = obj.cost.ToString();
         image.sprite = obj.sprite;
         selectedItem = obj;
+        descriptionText.text = descriptions[obj.id];
     }
 
     private void OnApplicationQuit()

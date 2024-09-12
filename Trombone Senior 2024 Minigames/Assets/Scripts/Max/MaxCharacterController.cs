@@ -42,12 +42,16 @@ public class MaxCharacterController : MonoBehaviour
     [Header("Rotation")]
     [SerializeField] Slider slider;
     [SerializeField] float acceleration;
+    float defaultAcceleration;
     [SerializeField] float deceleration;
     [SerializeField] float rotationSpeed;
     [SerializeField] float maxRotationSpeed;
+    float defaultMaxRotationSpeed;
     [SerializeField] float drag;
     [SerializeField] float minInitialRotation;
     [SerializeField] float maxInitialRotation;
+    [SerializeField] float speedIncreasePerThousand;
+    [SerializeField] float speedCapIncreasePerThousand;
     [Header("Camera")]
     [SerializeField] CinemachineVirtualCamera vCam;
     [SerializeField] float verticalDistanceToFloor;
@@ -125,7 +129,8 @@ public class MaxCharacterController : MonoBehaviour
         maxRb.isKinematic = true;
         defaultRampImpulse = rampImpulse;
         ResetGame();
-
+        defaultAcceleration = acceleration;
+        defaultMaxRotationSpeed = maxRotationSpeed;
         MaxGameManager.instance.restartEvent.AddListener(ResetGame);
     }
     public void ResetGame()
@@ -426,5 +431,10 @@ public class MaxCharacterController : MonoBehaviour
     void SetTrailTime()
     {
         trail.time = trailTime;
+    }
+
+    public void UpdateSpeed()
+    {
+        
     }
 }

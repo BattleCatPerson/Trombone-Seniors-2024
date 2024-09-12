@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c8582ee7de6d8214d80373d2a17c539c, type: 3}
-  m_Name: Speed Booster
+  m_Name: Luck Booster
   m_EditorClassIdentifier: 
   cost: 0
-  id: 0
-  name: Speed Booster
-  sprite: {fileID: -276300742, guid: cf23a8d8848e42945aee81a05c1ae109, type: 3}
+  id: 2
+  name: Lucky Horseshoe
+  sprite: {fileID: 1815376067, guid: d30a81fac056c0a408800dca33756fd3, type: 3}

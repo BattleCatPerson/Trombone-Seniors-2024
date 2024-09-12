@@ -45759,7 +45759,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 8192
   hits: 0
-  hitsToShoot: 1
+  hitsToShoot: 5
   shooting: 0
   setTrigger: {fileID: 1725492624}
   laserOrigin: {fileID: 1341358770}
@@ -70666,6 +70666,8 @@ MonoBehaviour:
   drag: 180
   minInitialRotation: 160
   maxInitialRotation: 180
+  speedIncreasePerThousand: 0
+  speedCapIncreasePerThousand: 0
   vCam: {fileID: 410702991}
   verticalDistanceToFloor: 0
   layer:
