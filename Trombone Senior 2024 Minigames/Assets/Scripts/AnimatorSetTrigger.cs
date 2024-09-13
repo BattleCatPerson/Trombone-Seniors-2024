@@ -13,4 +13,8 @@ public class AnimatorSetTrigger : MonoBehaviour
     }
     public void SetTrigger() => animator.SetTrigger(trigger);
     public void ResetTrigger() => animator.SetTrigger(resetTrigger);
+    public void SetTriggerDelay()
+    {
+        if (!animator.IsInTransition(0)) animator.SetTrigger(trigger);
+    }
 }

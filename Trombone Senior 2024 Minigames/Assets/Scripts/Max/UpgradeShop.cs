@@ -23,6 +23,9 @@ public class UpgradeShop : MonoBehaviour
     [SerializeField] Button confirmButton;
     [SerializeField] UpgradeScriptableObject selectedItem;
     [SerializeField] UpgradeButton upgradeButton;
+    [SerializeField] AnimatorSetTrigger notEnoughMoneyTrigger;
+    [SerializeField] AnimatorSetTrigger purchaseTrigger;
+    [SerializeField] TextMeshProUGUI yourScrap;
     //money booster
     //speed booster
     //arcade game pass
@@ -44,11 +47,12 @@ public class UpgradeShop : MonoBehaviour
         {
             foreach (UpgradeButton b in buttons) if (b.Upgrade.id == i) b.Purchase();
         }
+        yourScrap.text = scrap.ToString();
     }
 
     void Update()
     {
-        
+        yourScrap.text = scrap.ToString();
     }
 
     public void Upgrade()
@@ -58,8 +62,14 @@ public class UpgradeShop : MonoBehaviour
             unlockedUpgrades.Add(selectedItem.id);
             fileHandler.Save(data);
             scrap -= selectedItem.cost;
+            PlayerPrefs.SetInt("Scrap", scrap);
             upgradeButton.Purchase();
+            purchaseTrigger.SetTrigger();
             //Disable
+        }
+        else
+        {
+            notEnoughMoneyTrigger.SetTriggerDelay();
         }
     }
 
@@ -72,10 +82,11 @@ public class UpgradeShop : MonoBehaviour
         costText.text = obj.cost.ToString();
         image.sprite = obj.sprite;
         selectedItem = obj;
-        descriptionText.text = descriptions[obj.id];
+        descriptionText.text = descriptions[obj.id].Replace("(nL)", "\n");
     }
 
     private void OnApplicationQuit()
     {
     }
+
 }
