@@ -149,5 +149,9 @@ public class Shield : MonoBehaviour
     public void PlayOpenSound() => openSource.PlayOneShot(open);
     public void PlayCloseSound() => openSource.PlayOneShot(close);
     public void StopLaserSource() => laserSource.Stop();
+    public void Upgrade(List<int> upgrades)
+    {
+        if (upgrades.Contains(5)) hitsToShoot = 3;
+    }
     
 }

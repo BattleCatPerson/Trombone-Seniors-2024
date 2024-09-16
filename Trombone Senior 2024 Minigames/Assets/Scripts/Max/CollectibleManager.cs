@@ -14,6 +14,7 @@ public class CollectibleManager : MonoBehaviour
     [SerializeField] GameObject collectiblePrefab;
     [SerializeField] int collectibles;
     [SerializeField] int collectiblesCollected;
+    [SerializeField] int collectiblesPerPickup = 1;
     
     public int CollectiblesCollected => collectiblesCollected;
 
@@ -167,8 +168,8 @@ public class CollectibleManager : MonoBehaviour
 
     public void Collect(GameObject g)
     {
-        collectibles++;
-        collectiblesCollected++;
+        collectibles += collectiblesPerPickup;
+        collectiblesCollected += collectiblesPerPickup;
         Destroy(g);
         text.text = $"{collectibles}";
         foreach(TextMeshProUGUI t in currentRunText) t.text = $"{collectiblesCollected}";
@@ -185,4 +186,8 @@ public class CollectibleManager : MonoBehaviour
     }
 
     public void ResetGame() => gameOver = false;
+    public void Upgrade(List<int> upgrades)
+    {
+        if (upgrades.Contains(1)) collectiblesPerPickup = 2;
+    }
 }

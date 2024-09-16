@@ -63,7 +63,9 @@ public class MaxGameManager : MonoBehaviour
     [SerializeField] SpriteRenderer carOutlineSprite;
     [SerializeField] ProjectileSpawner projectileSpawner;
     [SerializeField] Toggle outlineToggle;
-
+    [Header("Upgrades")]
+    [SerializeField] LoadData loadData;
+    public UnityEvent<List<int>> loadEvent;
     private float accumulated = 0;
     private void Awake()
     {
@@ -96,9 +98,6 @@ public class MaxGameManager : MonoBehaviour
 
         if (!PlayerPrefs.HasKey("Outline")) PlayerPrefs.SetInt("Outline", 0);
         EnableOutlines();
-
-        
-
         //menuSource.PlayDelayed(introClip.length - 0.25f);
     }
 
@@ -142,6 +141,7 @@ public class MaxGameManager : MonoBehaviour
     }
     public void StartGameInitial()
     {
+        loadEvent?.Invoke(loadData.Data.upgrades);
         startedInitial = true;
         audioManager.SwitchToMainGameMusic();
     }

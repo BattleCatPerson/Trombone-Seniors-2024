@@ -46,7 +46,6 @@ public class UpgradeShop : MonoBehaviour
         if (data == null) data = new CosmeticData(initialCosmetic);
 
         unlockedUpgrades = data.upgrades;
-        unlockedUpgrades.Clear();
         foreach (var i in unlockedUpgrades)
         {
             foreach (UpgradeButton b in buttons) if (b.Upgrade.id == i) b.Purchase();

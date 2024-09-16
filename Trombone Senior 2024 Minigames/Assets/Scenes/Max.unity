@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.12731749, g: 0.13414757, b: 0.1210787, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028346, g: 0.22571373, b: 0.30692244, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -35612,6 +35612,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1168702155}
   - component: {fileID: 1168702154}
+  - component: {fileID: 1168702156}
   m_Layer: 0
   m_Name: Game Manager
   m_TagString: Untagged
@@ -35682,6 +35683,10 @@ MonoBehaviour:
   carOutlineSprite: {fileID: 1038797938}
   projectileSpawner: {fileID: 1225280443}
   outlineToggle: {fileID: 209182740}
+  loadData: {fileID: 1168702156}
+  loadEvent:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!4 &1168702155
 Transform:
   m_ObjectHideFlags: 0
@@ -35697,6 +35702,24 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1168702156
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1168702153}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5eb4cff1cf0033f4382614a48466a6f7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  initialCosmetic:
+    id: -1
+    rarity: 0
+    name: Default
+  fileName: GOOB.txt
+  unlockedUpgrades: 
 --- !u!1 &1174356894
 GameObject:
   m_ObjectHideFlags: 0

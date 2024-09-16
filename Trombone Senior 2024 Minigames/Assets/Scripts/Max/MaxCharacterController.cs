@@ -132,6 +132,7 @@ public class MaxCharacterController : MonoBehaviour
         defaultAcceleration = acceleration;
         defaultMaxRotationSpeed = maxRotationSpeed;
         MaxGameManager.instance.restartEvent.AddListener(ResetGame);
+        MaxGameManager.instance.loadEvent.AddListener(Upgrade);
     }
     public void ResetGame()
     {
@@ -436,5 +437,21 @@ public class MaxCharacterController : MonoBehaviour
     public void UpdateSpeed()
     {
         
+    }
+
+    public void Upgrade(List<int> upgrades)
+    {
+        if (upgrades.Contains(0))
+        {
+            acceleration = 720;
+            maxRotationSpeed = 1080;
+        }
+
+        if (upgrades.Contains(3)) rampImpulse = 40;
+        if (upgrades.Contains(4)) angleDeviation = 70;
+        if (upgrades.Contains(6))
+        {
+            statusBonuses = new List<float>{200, 400, 800};
+        }
     }
 }
