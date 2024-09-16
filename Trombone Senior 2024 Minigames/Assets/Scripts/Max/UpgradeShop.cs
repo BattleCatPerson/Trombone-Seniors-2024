@@ -6,7 +6,7 @@ using TMPro;
 public class UpgradeShop : MonoBehaviour
 {
     [SerializeField] int scrap;
-    [SerializeField] List<int> unlockedUpgrades;
+    [SerializeField] List<CosmeticData.Upgrade> unlockedUpgrades;
     [SerializeField] int upgradeLevel;
     [SerializeField] List<UpgradeButton> buttons;
     [SerializeField] List<string> descriptions;
@@ -30,6 +30,8 @@ public class UpgradeShop : MonoBehaviour
     [SerializeField] TextMeshProUGUI yourScrap;
     [SerializeField] Animator openShopScreen;
     [SerializeField] CanvasGroup baseCanvasGroup;
+    [Header("Equip Panel")]
+    [SerializeField] Transform equipPanel;
     //money booster
     //speed booster
     //arcade game pass
@@ -48,7 +50,14 @@ public class UpgradeShop : MonoBehaviour
         unlockedUpgrades = data.upgrades;
         foreach (var i in unlockedUpgrades)
         {
-            foreach (UpgradeButton b in buttons) if (b.Upgrade.id == i) b.Purchase();
+            foreach (UpgradeButton b in buttons)
+            {
+                if (b.Upgrade.id == i)
+                {
+                    b.Purchase();
+                    if (b.canEquip) b.equipButton.SetActive(true);
+                }
+            }
         }
         yourScrap.text = scrap.ToString();
     }
@@ -95,4 +104,8 @@ public class UpgradeShop : MonoBehaviour
 
     public void OpenShop(bool enabled) => openShopScreen.SetBool("Open", enabled);
     public void EnableBaseCanvas(bool enabled) => baseCanvasGroup.interactable = enabled;
+    public void EnableItem(int id, bool status)
+    {
+
+    }
 }

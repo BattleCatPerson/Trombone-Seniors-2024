@@ -11,13 +11,19 @@ public class CosmeticData
         public int id;
         public List<float> stats;
     }
+    [Serializable]
+    public class Upgrade
+    {
+        public int id;
+        public bool enabled;
+    }
 
     public List<Cosmetic> costumes;
     public List<Cosmetic> trails;
     public int selectedId = -1;
     public int sortId = 0;
     public List<IdToStats> skinStats;
-    public List<int> upgrades;
+    public List<Upgrade> upgrades;
     public List<Cosmetic> ReturnList(CosmeticType type)
     {
         if (type == CosmeticType.costume) return costumes;

@@ -13,6 +13,8 @@ public class UpgradeButton : MonoBehaviour
     [SerializeField] bool sold;
     [SerializeField] GameObject soldPicture;
     [SerializeField] Button button;
+    public GameObject equipButton;
+    public bool canEquip;
     void Start()    
     {
         text.text = upgrade.name;

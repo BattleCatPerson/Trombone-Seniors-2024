@@ -439,19 +439,25 @@ public class MaxCharacterController : MonoBehaviour
         
     }
 
-    public void Upgrade(List<int> upgrades)
+    public void Upgrade(List<CosmeticData.Upgrade> upgrades)
     {
-        if (upgrades.Contains(0))
+        foreach (var u in upgrades)
         {
-            acceleration = 720;
-            maxRotationSpeed = 1080;
+            int id = u.id;
+            if (id == 0)
+            {
+                acceleration = 720;
+                maxRotationSpeed = 1080;
+            }
+
+            if (id == 3) rampImpulse = 40;
+            if (id == 4) angleDeviation = 70;
+            if (id == 6)
+            {
+                statusBonuses = new List<float> { 200, 400, 800 };
+            }
         }
 
-        if (upgrades.Contains(3)) rampImpulse = 40;
-        if (upgrades.Contains(4)) angleDeviation = 70;
-        if (upgrades.Contains(6))
-        {
-            statusBonuses = new List<float>{200, 400, 800};
-        }
+        
     }
 }

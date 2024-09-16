@@ -65,7 +65,7 @@ public class MaxGameManager : MonoBehaviour
     [SerializeField] Toggle outlineToggle;
     [Header("Upgrades")]
     [SerializeField] LoadData loadData;
-    public UnityEvent<List<int>> loadEvent;
+    public UnityEvent<List<CosmeticData.Upgrade>> loadEvent;
     private float accumulated = 0;
     private void Awake()
     {

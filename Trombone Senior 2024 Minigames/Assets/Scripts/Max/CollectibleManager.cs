@@ -59,6 +59,7 @@ public class CollectibleManager : MonoBehaviour
         foreach (TextMeshProUGUI t in currentRunText) t.text = $"{collectiblesCollected}";
         foreach (TextMeshProUGUI t in currentScrapText) t.text = $"{scrapCollected}";
         MaxGameManager.instance.restartEvent.AddListener(ResetGame);
+        MaxGameManager.instance.loadEvent.AddListener(Upgrade);
     }
     void Update()
     {
@@ -186,8 +187,8 @@ public class CollectibleManager : MonoBehaviour
     }
 
     public void ResetGame() => gameOver = false;
-    public void Upgrade(List<int> upgrades)
+    public void Upgrade(List<CosmeticData.Upgrade> upgrades)
     {
-        if (upgrades.Contains(1)) collectiblesPerPickup = 2;
+        foreach (var u in upgrades) if (u.id == 1 && u.enabled) collectiblesPerPickup = 2;
     }
 }
