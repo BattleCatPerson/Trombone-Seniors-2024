@@ -14,7 +14,7 @@ public class UpgradeDialogue : MonoBehaviour
     [SerializeField] Animator animator;
     void Start()
     {
-        DisplayMessage("OSDJFSODIFJSDIOFJSDIOFJSDIOFJSOFJSDFOIJSDFIOJSDFIOJSDFIOJSDFIOSDIOFJSDIO");
+        DisplayMessage("welcome to my humble shop");
     }
 
     void FixedUpdate()

@@ -14,6 +14,8 @@ public class UpgradeShop : MonoBehaviour
     [SerializeField] Cosmetic initialCosmetic;
     [SerializeField] FileHandler fileHandler;
     [SerializeField] CosmeticData data;
+    [SerializeField] UpgradeDialogue dialogue;
+    [SerializeField] string purchaseDialogue;
     [Header("Purchase Panel")]
     [SerializeField] AnimatorSetTrigger panelOpenTrigger;
     [SerializeField] Image image;
@@ -26,6 +28,8 @@ public class UpgradeShop : MonoBehaviour
     [SerializeField] AnimatorSetTrigger notEnoughMoneyTrigger;
     [SerializeField] AnimatorSetTrigger purchaseTrigger;
     [SerializeField] TextMeshProUGUI yourScrap;
+    [SerializeField] Animator openShopScreen;
+    [SerializeField] CanvasGroup baseCanvasGroup;
     //money booster
     //speed booster
     //arcade game pass
@@ -65,6 +69,7 @@ public class UpgradeShop : MonoBehaviour
             PlayerPrefs.SetInt("Scrap", scrap);
             upgradeButton.Purchase();
             purchaseTrigger.SetTrigger();
+            dialogue.DisplayMessage(purchaseDialogue);
             //Disable
         }
         else
@@ -89,4 +94,6 @@ public class UpgradeShop : MonoBehaviour
     {
     }
 
+    public void OpenShop(bool enabled) => openShopScreen.SetBool("Open", enabled);
+    public void EnableBaseCanvas(bool enabled) => baseCanvasGroup.interactable = enabled;
 }
