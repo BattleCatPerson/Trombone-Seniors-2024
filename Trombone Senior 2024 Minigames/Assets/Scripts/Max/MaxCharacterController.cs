@@ -444,6 +444,7 @@ public class MaxCharacterController : MonoBehaviour
         foreach (var u in upgrades)
         {
             int id = u.id;
+            if (!u.enabled) return;
             if (id == 0)
             {
                 acceleration = 720;

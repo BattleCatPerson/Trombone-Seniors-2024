@@ -50,7 +50,6 @@ public class UpgradeShop : MonoBehaviour
         if (data == null) data = new CosmeticData(initialCosmetic);
 
         unlockedUpgrades = data.upgrades;
-        unlockedUpgrades.Clear();
         bool equipable = false;
         foreach (var i in unlockedUpgrades)
         {
@@ -127,5 +126,11 @@ public class UpgradeShop : MonoBehaviour
     public void EnableItem(int id, bool status)
     {
         foreach (var u in data.upgrades) if (u.id == id) { u.enabled = status; break; }
+        fileHandler.Save(data);
+    }
+    public bool UpgradeEquipped(int id)
+    {
+        foreach (var u in data.upgrades) if (u.id == id && u.enabled) return true;
+        return false;
     }
 }

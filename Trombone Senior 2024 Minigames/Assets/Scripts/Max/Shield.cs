@@ -46,6 +46,7 @@ public class Shield : MonoBehaviour
     {
         MaxGameManager.instance.restartEvent.AddListener(ResetShieldAnimation);
         MaxGameManager.instance.restartEvent.AddListener(ResetShield);
+        MaxGameManager.instance.loadEvent.AddListener(Upgrade);
     }
 
     void Update()
@@ -149,9 +150,15 @@ public class Shield : MonoBehaviour
     public void PlayOpenSound() => openSource.PlayOneShot(open);
     public void PlayCloseSound() => openSource.PlayOneShot(close);
     public void StopLaserSource() => laserSource.Stop();
-    public void Upgrade(List<int> upgrades)
+    public void Upgrade(List<CosmeticData.Upgrade> upgrades)
     {
-        if (upgrades.Contains(5)) hitsToShoot = 3;
+        foreach (var u in upgrades)
+        {
+            if (u.id == 5 && u.enabled)
+            {
+                hitsToShoot = 3;
+            }
+        }
     }
     
 }

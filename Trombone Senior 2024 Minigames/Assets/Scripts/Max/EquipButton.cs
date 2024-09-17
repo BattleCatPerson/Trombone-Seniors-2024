@@ -7,10 +7,16 @@ public class EquipButton : MonoBehaviour
     [SerializeField] int id;
     [SerializeField] bool upgradeEnabled;
     [SerializeField] UpgradeShop upgradeShop;
-
+    [SerializeField] GameObject enabledImage;
+    private void Start()
+    {
+        upgradeEnabled = upgradeShop.UpgradeEquipped(id);
+        enabledImage.SetActive(upgradeEnabled);
+    }
     public void Toggle()
     {
-        upgradeShop.EnableItem(id, upgradeEnabled);
         upgradeEnabled = !upgradeEnabled;
+        upgradeShop.EnableItem(id, upgradeEnabled);
+        enabledImage.SetActive(upgradeEnabled);
     }
 }
