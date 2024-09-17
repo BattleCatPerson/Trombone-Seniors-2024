@@ -10,6 +10,7 @@ public class EquipButton : MonoBehaviour
 
     public void Toggle()
     {
-
+        upgradeShop.EnableItem(id, upgradeEnabled);
+        upgradeEnabled = !upgradeEnabled;
     }
 }

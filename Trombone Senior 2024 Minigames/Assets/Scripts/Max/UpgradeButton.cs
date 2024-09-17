@@ -19,6 +19,12 @@ public class UpgradeButton : MonoBehaviour
     {
         text.text = upgrade.name;
         image.sprite = upgrade.sprite;
+
+        if (canEquip && sold) equipButton.SetActive(true);
+    }
+    private void Update()
+    {
+        if (canEquip && sold && !equipButton.activeInHierarchy) equipButton.SetActive(true);
     }
     public void Purchase()
     {

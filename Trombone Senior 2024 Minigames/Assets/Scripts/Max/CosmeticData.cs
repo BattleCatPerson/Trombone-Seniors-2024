@@ -16,6 +16,12 @@ public class CosmeticData
     {
         public int id;
         public bool enabled;
+
+        public Upgrade(int id, bool enabled)
+        {
+            this.id = id;
+            this.enabled = enabled;
+        }
     }
 
     public List<Cosmetic> costumes;

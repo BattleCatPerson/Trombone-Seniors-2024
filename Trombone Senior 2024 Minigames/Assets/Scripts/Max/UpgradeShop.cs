@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using System.Linq;
 public class UpgradeShop : MonoBehaviour
 {
     [SerializeField] int scrap;
@@ -29,9 +30,10 @@ public class UpgradeShop : MonoBehaviour
     [SerializeField] AnimatorSetTrigger purchaseTrigger;
     [SerializeField] TextMeshProUGUI yourScrap;
     [SerializeField] Animator openShopScreen;
+    [SerializeField] Animator openEquipScreen;
     [SerializeField] CanvasGroup baseCanvasGroup;
     [Header("Equip Panel")]
-    [SerializeField] Transform equipPanel;
+    [SerializeField] GameObject noEquipText;
     //money booster
     //speed booster
     //arcade game pass
@@ -48,17 +50,20 @@ public class UpgradeShop : MonoBehaviour
         if (data == null) data = new CosmeticData(initialCosmetic);
 
         unlockedUpgrades = data.upgrades;
+        unlockedUpgrades.Clear();
+        bool equipable = false;
         foreach (var i in unlockedUpgrades)
         {
             foreach (UpgradeButton b in buttons)
             {
-                if (b.Upgrade.id == i)
+                if (b.Upgrade.id == i.id)
                 {
                     b.Purchase();
-                    if (b.canEquip) b.equipButton.SetActive(true);
+                    if (b.canEquip) equipable = true;
                 }
             }
         }
+        if (equipable) noEquipText.SetActive(false);
         yourScrap.text = scrap.ToString();
     }
 
@@ -69,15 +74,29 @@ public class UpgradeShop : MonoBehaviour
 
     public void Upgrade()
     {
-        if (scrap >= selectedItem.cost && !unlockedUpgrades.Contains(selectedItem.id))
+        if (scrap >= selectedItem.cost)
         {
-            unlockedUpgrades.Add(selectedItem.id);
+            //&& !unlockedUpgrades.Contains(selectedItem.id)
+            foreach (var u in unlockedUpgrades)
+            {
+                if (u.id == selectedItem.id) return;
+            }
+            unlockedUpgrades.Add(new CosmeticData.Upgrade(selectedItem.id, true));
             fileHandler.Save(data);
             scrap -= selectedItem.cost;
             PlayerPrefs.SetInt("Scrap", scrap);
             upgradeButton.Purchase();
             purchaseTrigger.SetTrigger();
             dialogue.DisplayMessage(purchaseDialogue);
+
+            foreach (UpgradeButton b in buttons)
+            {
+                if (b.Upgrade.id == selectedItem.id)
+                {
+                    b.Purchase();
+                    if (b.canEquip && noEquipText.activeInHierarchy) noEquipText.SetActive(false);
+                }
+            }
             //Disable
         }
         else
@@ -103,9 +122,10 @@ public class UpgradeShop : MonoBehaviour
     }
 
     public void OpenShop(bool enabled) => openShopScreen.SetBool("Open", enabled);
+    public void OpenEquip(bool enabled) => openEquipScreen.SetBool("Open", enabled);
     public void EnableBaseCanvas(bool enabled) => baseCanvasGroup.interactable = enabled;
     public void EnableItem(int id, bool status)
     {
-
+        foreach (var u in data.upgrades) if (u.id == id) { u.enabled = status; break; }
     }
 }
