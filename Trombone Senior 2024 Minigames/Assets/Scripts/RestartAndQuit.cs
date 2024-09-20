@@ -18,4 +18,6 @@ public class RestartAndQuit : MonoBehaviour
     {
         AudioManager.playOnStart = true;
     }
+
+    public void ChangeScene(string s) => restartScene = s;
 }
