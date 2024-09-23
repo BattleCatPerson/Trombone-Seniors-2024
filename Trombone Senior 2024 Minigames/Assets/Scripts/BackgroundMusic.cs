@@ -12,8 +12,8 @@ public class BackgroundMusic : MonoBehaviour
         DontDestroyOnLoad(audio);
     }
 
-    void Update()
+    public void DestroyAudio()
     {
-        
+        if (audio) Destroy(audio);
     }
 }
