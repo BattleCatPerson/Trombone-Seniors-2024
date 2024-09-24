@@ -32,6 +32,7 @@ public class Wardrobe : MonoBehaviour
     [Header("Lists")]
     [SerializeField] List<Cosmetic> costumes;
     [SerializeField] List<Cosmetic> trails;
+    [SerializeField] List<CosmeticData.Upgrade> unlockedUpgrades;
     [SerializeField] Cosmetic initialCosmetic;
     [SerializeField] Transform collectionPanel;
     [SerializeField] Image previewSprite;
@@ -85,6 +86,15 @@ public class Wardrobe : MonoBehaviour
 
         var r = cosmeticShop.ReturnRarityNumbers();
         SetCompendiumTexts(r[0], r[1], r[2]);
+
+        foreach (var v in data.upgrades)
+        {
+            if (v.id == 2)
+            {
+                cosmeticShop.EnableLuckUpgrade();
+                break;
+            }
+        }
     }
 
     void Update()

@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!221 &22100000
+AnimatorOverrideController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Jeremy Transition
+  m_Controller: {fileID: 9100000, guid: 53103d75dcd62d44199337b612a36a0d, type: 2}
+  m_Clips:
+  - m_OriginalClip: {fileID: 7400000, guid: 519a9970c0ad70946accef2d15e4c29e, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: c57fedd55c4fc4d46b3bcbb1f427a819, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 347223fa5bdd63e468431dc6b2a52213, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: ad1c1006eaafd3440967a21164fee7f9, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: b1c9eeb55b44ac943b7787d125450767, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 6d4c92652ddeb5c41b8d286d344a2b9b, type: 2}

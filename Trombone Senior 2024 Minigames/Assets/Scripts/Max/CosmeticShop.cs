@@ -31,6 +31,10 @@ public class CosmeticShop : MonoBehaviour, IWardrobe
     [SerializeField] List<Cosmetic> unlocked;
     [SerializeField] Wardrobe wardrobe;
     [SerializeField] GameObject rollPanel;
+    [SerializeField] bool luckUpgrade;
+    [SerializeField] TextMeshProUGUI commonChanceText;
+    [SerializeField] TextMeshProUGUI sRareChanceText;
+    [SerializeField] GameObject upgradedText;
     int commonCount = 1;
     int rareCount = 0;
     int superRareCount = 0;
@@ -71,6 +75,13 @@ public class CosmeticShop : MonoBehaviour, IWardrobe
     {
         
     }
+    public void EnableLuckUpgrade()
+    {
+        luckUpgrade = true;
+        commonChanceText.text = "65";
+        sRareChanceText.text = "10";
+        upgradedText.SetActive(true);
+    }
     public void DisableUi() => rollPanel.SetActive(false);
     public void EnableUi() => rollPanel.SetActive(true);
     public void Roll()
@@ -109,9 +120,11 @@ public class CosmeticShop : MonoBehaviour, IWardrobe
     public void Start()
     {
         chances = new();
-        for (int i = 0; i < COMMON_PERCENT; i++) chances.Add(Rarity.Common);
+        int finalCommon = luckUpgrade ? COMMON_PERCENT - 5 : COMMON_PERCENT;
+        int finalSuperRare = luckUpgrade ? SUPER_RARE_PERCENT + 5 : SUPER_RARE_PERCENT;
+        for (int i = 0; i < finalCommon; i++) chances.Add(Rarity.Common);
         for (int i = 0; i < RARE_PERCENT; i++) chances.Add(Rarity.Rare);
-        for (int i = 0; i < SUPER_RARE_PERCENT; i++) chances.Add(Rarity.SuperRare);
+        for (int i = 0; i < finalSuperRare; i++) chances.Add(Rarity.SuperRare);
         currency = PlayerPrefs.GetInt("Max Collectibles");
 
         lid.isKinematic = true;

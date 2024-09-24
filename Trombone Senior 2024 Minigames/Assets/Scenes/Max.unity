@@ -42854,6 +42854,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   restartScene: Cosmetic Shop
   quitScene: Upgrade
+  otherScene: Arcade Game Menu
 --- !u!114 &1359288277
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -43380,6 +43381,7 @@ GameObject:
   - component: {fileID: 1458089571}
   - component: {fileID: 1458089573}
   - component: {fileID: 1458089574}
+  - component: {fileID: 1458089575}
   m_Layer: 5
   m_Name: Game Start Panel
   m_TagString: Untagged
@@ -43483,6 +43485,20 @@ MonoBehaviour:
   animator: {fileID: 1458089573}
   trigger: Start
   resetTrigger: 
+--- !u!114 &1458089575
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1458089569}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e74b6ffd88cec3f4f8592eac5f9e0222, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  button: {fileID: 1516852519}
+  data: {fileID: 1168702156}
 --- !u!1 &1491139472
 GameObject:
   m_ObjectHideFlags: 0
@@ -43947,13 +43963,14 @@ GameObject:
   - component: {fileID: 1516852523}
   - component: {fileID: 1516852522}
   - component: {fileID: 1516852521}
+  - component: {fileID: 1516852524}
   m_Layer: 5
   m_Name: To Arcade
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1516852520
 RectTransform:
   m_ObjectHideFlags: 0
@@ -44017,7 +44034,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1359288278}
+      - m_Target: {fileID: 1516852524}
         m_TargetAssemblyTypeName: AnimatorSetTrigger, Assembly-CSharp
         m_MethodName: SetTrigger
         m_Mode: 1
@@ -44067,6 +44084,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1516852519}
   m_CullTransparentMesh: 1
+--- !u!114 &1516852524
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1516852519}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a5bb3ffd80dd39849816a412e3ec45a3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animator: {fileID: 1359288275}
+  trigger: Out Arcade
+  resetTrigger: 
 --- !u!1 &1524330139
 GameObject:
   m_ObjectHideFlags: 0
@@ -72076,6 +72108,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   restartScene: Max
   quitScene: Max
+  otherScene: 
 --- !u!95 &7867293390773570742
 Animator:
   serializedVersion: 5

@@ -9,7 +9,7 @@ public class LoadData : MonoBehaviour
     public CosmeticData Data => data;
     [SerializeField] Cosmetic initialCosmetic;
     [SerializeField] string fileName;
-    [SerializeField] List<CosmeticData.Upgrade> unlockedUpgrades;
+    public List<CosmeticData.Upgrade> unlockedUpgrades;
     void Awake()
     {
         fileHandler = new FileHandler(Application.persistentDataPath, fileName);

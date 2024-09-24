@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028346, g: 0.22571373, b: 0.30692244, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -2078,6 +2078,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1107098414}
   - component: {fileID: 1107098415}
+  - component: {fileID: 1107098416}
   m_Layer: 0
   m_Name: Game Manager
   m_TagString: Untagged
@@ -2132,52 +2133,21 @@ MonoBehaviour:
   firstOrSecond: 0
   foodSource: {fileID: 1955722979}
   scoreText: {fileID: 1388360830}
---- !u!1 &1187773903
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1187773905}
-  - component: {fileID: 1187773904}
-  m_Layer: 0
-  m_Name: Background Music
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1187773904
+--- !u!114 &1107098416
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1187773903}
+  m_GameObject: {fileID: 1107098413}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e23cf418f55a0b9429f0bc6cca7f6fd7, type: 3}
+  m_Script: {fileID: 11500000, guid: 385368c7b024d014499e670ba876143c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  audioLocal: {fileID: 4356246013333428232, guid: e07b811e69d7e0d40a4fb6b115d628ed,
-    type: 3}
---- !u!4 &1187773905
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1187773903}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 190.43417, y: 140.08498, z: -0.7842647}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  fadeTime: 0.5
+  interval: 0.01
+  shopSource: {fileID: 0}
 --- !u!1 &1361922961
 GameObject:
   m_ObjectHideFlags: 0
@@ -3105,6 +3075,7 @@ GameObject:
   - component: {fileID: 1966351024}
   - component: {fileID: 1966351026}
   - component: {fileID: 1966351027}
+  - component: {fileID: 1966351028}
   m_Layer: 5
   m_Name: Transition
   m_TagString: Untagged
@@ -3180,6 +3151,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   restartScene: Arcade Game Menu
   quitScene: 
+  otherScene: 
 --- !u!114 &1966351027
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3195,6 +3167,20 @@ MonoBehaviour:
   animator: {fileID: 1966351024}
   trigger: Out
   resetTrigger: 
+--- !u!114 &1966351028
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1966351022}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e23cf418f55a0b9429f0bc6cca7f6fd7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioLocal: {fileID: 4356246013333428232, guid: e07b811e69d7e0d40a4fb6b115d628ed,
+    type: 3}
 --- !u!1 &2055916374
 GameObject:
   m_ObjectHideFlags: 0
@@ -3789,4 +3775,3 @@ SceneRoots:
   - {fileID: 2141238348}
   - {fileID: 421875464}
   - {fileID: 1813262763}
-  - {fileID: 1187773905}
