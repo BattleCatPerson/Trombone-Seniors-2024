@@ -49,8 +49,10 @@ public class CosmeticShop : MonoBehaviour, IWardrobe
     [Header("Cost")]
     [SerializeField] int cost;
     [SerializeField] int currency;
+    [SerializeField] int scrap;
     [SerializeField] Button rollButton;
     [SerializeField] TextMeshProUGUI currencyText;
+    [SerializeField] TextMeshProUGUI scrapText;
     [SerializeField] TextMeshProUGUI costText;
     [Header("Box Launching")]
     [SerializeField] float launchForce;
@@ -61,6 +63,10 @@ public class CosmeticShop : MonoBehaviour, IWardrobe
     [SerializeField] Animator animator;
     [SerializeField] bool windowsBuild;
     List<Rarity> chances;
+    [Header("Scrap Compensation")]
+    [SerializeField] int commonScrap;
+    [SerializeField] int rareScrap;
+    [SerializeField] int superRareScrap;
 
     const int COMMON_PERCENT = 70;
     const int RARE_PERCENT = 25;
@@ -88,24 +94,35 @@ public class CosmeticShop : MonoBehaviour, IWardrobe
     {
         Rarity selected = chances[Random.Range(0, chances.Count)];
         List<Cosmetic> valid = new();
+        List<int> ids = new();
+        foreach (Cosmetic c in unlocked) ids.Add(c.id);
 
         foreach (Cosmetic c in cosmetics)
         {
-            if (c.rarity == selected) valid.Add(c);
+            if (c.rarity == selected && !ids.Contains(c.id)) valid.Add(c);
         }
-        Cosmetic final = valid[Random.Range(0, valid.Count)];
-        resultText.text = final.name;
-        rarityText.text = ReturnRarityString(final.rarity);
-        resultPlayerImage.sprite = wardrobe.MatchIdToSprite(final.id)[0];
-        List<int> ids = new();
-        foreach (Cosmetic c in unlocked) ids.Add(c.id);
-        if (!ids.Contains(final.id))
+
+        if (valid.Count == 0)
         {
-            unlocked.Add(final);
-            wardrobe.AddToPanel(final.id);
-            wardrobe.UpdatePanel();
-            wardrobe.SetCompendiumTexts(commonCount, rareCount, superRareCount);
-            wardrobe.EnableCompendiumButton(final.id);
+            int scrapBonus = selected == Rarity.Common ? commonScrap : (selected == Rarity.Rare ? rareScrap : superRareScrap);
+            scrap += scrapBonus;
+            PlayerPrefs.SetInt("Scrap", scrap);
+        }
+        else
+        {
+            Cosmetic final = valid[Random.Range(0, valid.Count)];
+            resultText.text = final.name;
+            rarityText.text = ReturnRarityString(final.rarity);
+            resultPlayerImage.sprite = wardrobe.MatchIdToSprite(final.id)[0];
+
+            if (!ids.Contains(final.id))
+            {
+                unlocked.Add(final);
+                wardrobe.AddToPanel(final.id);
+                wardrobe.UpdatePanel();
+                wardrobe.SetCompendiumTexts(commonCount, rareCount, superRareCount);
+                wardrobe.EnableCompendiumButton(final.id);
+            }
         }
     }
     private void Awake()
@@ -131,6 +148,10 @@ public class CosmeticShop : MonoBehaviour, IWardrobe
         originalPosition = lid.transform.localPosition;
         currencyText.text = currency.ToString();
         costText.text = $"x{cost}";
+
+        if (!PlayerPrefs.HasKey("Max Collectibles")) PlayerPrefs.SetInt("Scrap", 0);
+        else scrap = PlayerPrefs.GetInt("Scrap");
+        scrapText.text = scrap.ToString();
     }
 
     public void Update()
@@ -162,6 +183,7 @@ public class CosmeticShop : MonoBehaviour, IWardrobe
         }
         rollButton.interactable = currency >= cost;
         currencyText.text = currency.ToString();
+        scrapText.text = scrap.ToString();
     }
 
     public void SetPanelActive() => resultPanelActive = true;
