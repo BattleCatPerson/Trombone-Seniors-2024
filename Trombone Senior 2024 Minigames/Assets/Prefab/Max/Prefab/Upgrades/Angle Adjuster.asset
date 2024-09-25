@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c8582ee7de6d8214d80373d2a17c539c, type: 3}
   m_Name: Angle Adjuster
   m_EditorClassIdentifier: 
-  cost: 40
+  cost: 750
   id: 4
   name: Angle Adjuster
   sprite: {fileID: -185132139, guid: d30a81fac056c0a408800dca33756fd3, type: 3}

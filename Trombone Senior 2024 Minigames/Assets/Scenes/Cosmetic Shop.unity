@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028346, g: 0.22571373, b: 0.30692244, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -9719,9 +9719,9 @@ MonoBehaviour:
   waitingForLaunchInput: 0
   animator: {fileID: 548401897}
   windowsBuild: 0
-  commonScrap: 120
-  rareScrap: 400
-  superRareScrap: 1200
+  commonScrap: 30
+  rareScrap: 120
+  superRareScrap: 500
   scrapSprite: {fileID: 1329958893, guid: 3175c3007ff0b3e4e981ed3401ed9aa6, type: 3}
 --- !u!114 &548401899
 MonoBehaviour:
