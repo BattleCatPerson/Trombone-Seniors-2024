@@ -8,6 +8,7 @@ using Random = UnityEngine.Random;
 using TMPro;
 using Touch = UnityEngine.InputSystem.EnhancedTouch.Touch;
 using TouchPhase = UnityEngine.InputSystem.TouchPhase;
+using static UnityEngine.ProBuilder.AutoUnwrapSettings;
 public enum CosmeticType
 {
     costume, trail
@@ -67,6 +68,7 @@ public class CosmeticShop : MonoBehaviour, IWardrobe
     [SerializeField] int commonScrap;
     [SerializeField] int rareScrap;
     [SerializeField] int superRareScrap;
+    [SerializeField] Sprite scrapSprite;
 
     const int COMMON_PERCENT = 70;
     const int RARE_PERCENT = 25;
@@ -107,6 +109,9 @@ public class CosmeticShop : MonoBehaviour, IWardrobe
             int scrapBonus = selected == Rarity.Common ? commonScrap : (selected == Rarity.Rare ? rareScrap : superRareScrap);
             scrap += scrapBonus;
             PlayerPrefs.SetInt("Scrap", scrap);
+            resultText.text = scrapBonus.ToString() + " Scrap";
+            rarityText.text = "You have all " + ReturnRarityString(selected) + " skins";
+            resultPlayerImage.sprite = scrapSprite;
         }
         else
         {
@@ -183,10 +188,13 @@ public class CosmeticShop : MonoBehaviour, IWardrobe
         }
         rollButton.interactable = currency >= cost;
         currencyText.text = currency.ToString();
-        scrapText.text = scrap.ToString();
     }
 
-    public void SetPanelActive() => resultPanelActive = true;
+    public void SetPanelActive()
+    {
+        scrapText.text = scrap.ToString();
+        resultPanelActive = true;
+    }
     public void SetPanelStandby()
     {
         resultsPanel.alpha = 0f;

@@ -153,6 +153,8 @@ public class MaxGameManager : MonoBehaviour
         controller.StartGame();
         cam.Priority = 0;
         foreach (var v in startObjects) v.SetActive(true);
+        audioManager.StartGameMusic();
+        Debug.Log("hey guys it's me marcus li and today i need to put in a print statment inside of my code in order to know when something happens or in this case I chose to Debug.Log because Jason Conaway said that it was better I guess");
     }
 
     public void PauseGame()
@@ -260,5 +262,10 @@ public class MaxGameManager : MonoBehaviour
             policeCar.outline = true;
             outlineToggle.isOn = true;
         }
+    }
+    public void GameOver()
+    {
+        gameOver = true;
+        audioManager.DisableMusic();
     }
 }

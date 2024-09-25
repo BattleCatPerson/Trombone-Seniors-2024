@@ -381,7 +381,7 @@ public class MaxCharacterController : MonoBehaviour
     {
         gameOver = true;
         setPlayerSprites.UpdateSkinStats();
-        MaxGameManager.gameOver = true;
+        MaxGameManager.instance.GameOver();
         colliding = true;
         rb.isKinematic = true;
         rb.velocity = Vector2.zero;

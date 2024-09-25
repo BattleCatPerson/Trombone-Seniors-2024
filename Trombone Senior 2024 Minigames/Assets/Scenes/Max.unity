@@ -37446,6 +37446,7 @@ MonoBehaviour:
   menuLoop: {fileID: 8300000, guid: 3e504082dc2469e46bde489ab93d5d83, type: 3}
   mixerGroup: {fileID: -5097335159224112743, guid: 5e53da730ac8d8444badba8cf38df0e7,
     type: 2}
+  gameMusic: {fileID: 1702417460}
   pauseMusic: {fileID: 1725876461}
 --- !u!1 &1323746241
 GameObject:
@@ -45483,6 +45484,135 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1690970237}
   m_CullTransparentMesh: 1
+--- !u!1 &1702417459
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1702417461}
+  - component: {fileID: 1702417460}
+  m_Layer: 0
+  m_Name: Game Music
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!82 &1702417460
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1702417459}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: -5097335159224112743, guid: 5e53da730ac8d8444badba8cf38df0e7,
+    type: 2}
+  m_audioClip: {fileID: 8300000, guid: 54834dbc76e90f74d9d81a07cfe021ad, type: 3}
+  m_PlayOnAwake: 0
+  m_Volume: 0
+  m_Pitch: 1
+  Loop: 1
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+--- !u!4 &1702417461
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1702417459}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 122.50027, y: 201.63992, z: 25.39506}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1708337687
 GameObject:
   m_ObjectHideFlags: 0
@@ -46095,6 +46225,7 @@ MonoBehaviour:
   hits: 0
   hitsToShoot: 5
   shooting: 0
+  count: 0
   setTrigger: {fileID: 1725492624}
   laserOrigin: {fileID: 1341358770}
   laserLine: {fileID: 1341358769}
@@ -71185,6 +71316,7 @@ MonoBehaviour:
   pairs2: {fileID: 8926486792580659431}
   characterController: {fileID: 2137725487}
   collectibleManager: {fileID: 71768894}
+  shield: {fileID: 1725492619}
 --- !u!4 &482481806704038274
 Transform:
   m_ObjectHideFlags: 0
@@ -72291,6 +72423,7 @@ SceneRoots:
   - {fileID: 475622031}
   - {fileID: 1094754096}
   - {fileID: 1949346249}
+  - {fileID: 1702417461}
   - {fileID: 1891730040}
   - {fileID: 2115189027}
   - {fileID: 71768895}

@@ -15,6 +15,8 @@ public class Shield : MonoBehaviour
     [SerializeField] int hits;
     [SerializeField] int hitsToShoot;
     [SerializeField] bool shooting;
+    [SerializeField] int count;
+    public int Count => count;
     public bool Shooting => shooting;
     [SerializeField] AnimatorSetTrigger setTrigger;
     [SerializeField] Transform laserOrigin;
@@ -120,6 +122,7 @@ public class Shield : MonoBehaviour
 
             //Scrap Collect
             collectibleManager.CollectScrap();
+            count++;
         }
         else
         {
@@ -145,6 +148,7 @@ public class Shield : MonoBehaviour
     {
         policeCarTrigger.ResetTrigger();
         hits = 0;
+        count = 0;
     }
 
     public void PlayOpenSound() => openSource.PlayOneShot(open);

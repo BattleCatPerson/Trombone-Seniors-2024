@@ -19,6 +19,7 @@ public class SetPlayerSprite : MonoBehaviour
     [Header("Saving")]
     [SerializeField] MaxCharacterController characterController;
     [SerializeField] CollectibleManager collectibleManager;
+    [SerializeField] Shield shield;
     FileHandler fileHandler;
     CosmeticData data;
     void Start()
@@ -54,7 +55,7 @@ public class SetPlayerSprite : MonoBehaviour
     public void UpdateSkinStats()
     {
         int id = data.selectedId;
-        List<float> stats = new List<float>() { 1, characterController.Score, collectibleManager.CollectiblesCollected };
+        List<float> stats = new List<float>() { 1, characterController.Score, collectibleManager.CollectiblesCollected, shield.Count};
         bool found = false;
         int ind = -1;
         for (int i = 0; i < data.skinStats.Count; i++)
@@ -77,7 +78,8 @@ public class SetPlayerSprite : MonoBehaviour
         {
             for (int i = 0; i < stats.Count; i++)
             {
-                data.skinStats[ind].stats[i] += stats[i];
+                if (i >= data.skinStats[ind].stats.Count) data.skinStats[ind].stats.Add(stats[i]);
+                else data.skinStats[ind].stats[i] += stats[i];
             }
         }
 

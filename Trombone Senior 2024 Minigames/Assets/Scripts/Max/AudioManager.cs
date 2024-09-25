@@ -11,6 +11,7 @@ public class AudioManager : MonoBehaviour
     [SerializeField] AudioClip menuLoop;
     [SerializeField] AudioMixerGroup mixerGroup;
     public static AudioSource menuMusicInstance;
+    [SerializeField] AudioSource gameMusic;
     [Header("Pause Music")]
     [SerializeField] AudioSource pauseMusic;
     public static bool playOnStart;
@@ -59,8 +60,16 @@ public class AudioManager : MonoBehaviour
 
     public void EnablePauseMusic(bool enable)
     {
-        if (enable) pauseMusic.Play();
-        else pauseMusic.Stop();
+        if (enable)
+        {
+            gameMusic.pitch = 0;
+            pauseMusic.Play();
+        }
+        else
+        {
+            pauseMusic.Stop();
+            gameMusic.pitch = 1;
+        }
     }
 
     public IEnumerator FadeMusic(AudioSource s, float interval, float duration)
@@ -72,10 +81,34 @@ public class AudioManager : MonoBehaviour
             accumulated += interval;
             s.volume = (Mathf.Lerp(1, 0, accumulated / duration));
         }
+        s.volume = 0;
     }
+    public IEnumerator FadeMusicIn(AudioSource s, float interval, float duration)
+    {
+        float accumulated = 0f;
+        while (accumulated < duration)
+        {
+            yield return new WaitForSeconds(interval);
+            accumulated += interval;
+            Debug.Log(accumulated);
+            s.volume = (Mathf.Lerp(0, 1, accumulated / duration));
+        }
+        s.volume = 1;
+    }
+    
 
     public void SwitchToMainGameMusic()
     {
         if (menuMusicInstance.volume > 0) StartCoroutine(FadeMusic(menuMusicInstance, 0.05f, 2f));
     }
+    public void StartGameMusic()
+    {
+        gameMusic.volume = 0;
+        StartCoroutine(FadeMusicIn(gameMusic, 0.05f, 2f));
+        gameMusic.Play();
+    }
+
+    public void DisableMusic(float t = 1f) => StartCoroutine(FadeMusic(gameMusic, 0.05f, t));
+
+
 }

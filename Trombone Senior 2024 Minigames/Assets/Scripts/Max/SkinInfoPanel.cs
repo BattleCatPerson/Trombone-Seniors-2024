@@ -14,6 +14,7 @@ public class SkinInfoPanel : MonoBehaviour
     [SerializeField] TextMeshProUGUI skinTotalRuns;
     [SerializeField] TextMeshProUGUI skinTotalPoints;
     [SerializeField] TextMeshProUGUI skinTotalMoney;
+    [SerializeField] TextMeshProUGUI skinPoliceCarsExploded;
     [SerializeField] CanvasGroup canvasGroup;
 
     private void Awake()
@@ -39,13 +40,14 @@ public class SkinInfoPanel : MonoBehaviour
         }
         if (!found)
         {
-            stats = new() { 0, 0, 0 };
+            stats = new() { 0, 0, 0, 0 };
         }
 
         skinName.text = wardrobe.MatchIdToName(id);
         skinTotalRuns.text = $"Total Runs: {stats[0]}";
         skinTotalPoints.text = $"Total Points: {stats[1]}";
         skinTotalMoney.text = $"Total: {stats[2]}";
+        skinPoliceCarsExploded.text = $"Total Police Cars Blown Up: {stats[3]}";
     }
 
     public void EnablePanel(int id)
