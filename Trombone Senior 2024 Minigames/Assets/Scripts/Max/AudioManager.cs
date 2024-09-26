@@ -21,6 +21,18 @@ public class AudioManager : MonoBehaviour
     [Header("Pause Music")]
     [SerializeField] AudioSource pauseMusic;
     public static bool playOnStart;
+    [Header("Record Scratch")]
+    [SerializeField] AudioClip scratch;
+    [SerializeField] AudioSource scratchSource;
+    [Header("Button Sound")]
+    [SerializeField] AudioClip buttonSound;
+    [SerializeField] AudioSource buttonSource;
+    [Header("Explosion")]
+    [SerializeField] AudioClip explosion;
+    [SerializeField] AudioSource explosionSource;
+    [Header("Game Over")]
+    [SerializeField] AudioSource gameOverSource;
+
     private void Awake()
     {
         if (instance == null)
@@ -55,7 +67,7 @@ public class AudioManager : MonoBehaviour
             }
         }
 
-        Upgrade(data.unlockedUpgrades);
+        if (data) Upgrade(data.unlockedUpgrades);
     }
 
     // Update is called once per frame
@@ -123,7 +135,13 @@ public class AudioManager : MonoBehaviour
 
     public void SwitchToMainGameMusic()
     {
-        if (menuMusicInstance.volume > 0) StartCoroutine(FadeMusic(menuMusicInstance, 0.05f, 2f));
+        if (menuMusicInstance.volume > 0)
+        {
+            menuMusicInstance.Stop();
+            scratchSource.PlayOneShot(scratch);
+        }
+
+
     }
     public void StartGameMusic()
     {
@@ -151,7 +169,12 @@ public class AudioManager : MonoBehaviour
                 toggleButton.SetActive(true);
             }
         }
-
-
+    }
+    public void PlayButtonSound() => buttonSource.PlayOneShot(buttonSound);
+    public void Explode() => explosionSource.PlayOneShot(explosion);
+    public void PlayGameOver(bool b)
+    {
+        if (b) gameOverSource.Play();
+        else gameOverSource.Stop();
     }
 }

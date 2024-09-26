@@ -74,6 +74,7 @@ public class MaxGameManager : MonoBehaviour
     }
     void Start()
     {
+        Time.timeScale = 1;
         initialPositions = new();
         started = false;
         gameOver = false;
@@ -154,6 +155,7 @@ public class MaxGameManager : MonoBehaviour
         cam.Priority = 0;
         foreach (var v in startObjects) v.SetActive(true);
         audioManager.StartGameMusic();
+        audioManager.Explode();
         Debug.Log("hey guys it's me marcus li and today i need to put in a print statment inside of my code in order to know when something happens or in this case I chose to Debug.Log because Jason Conaway said that it was better I guess");
     }
 
@@ -198,6 +200,7 @@ public class MaxGameManager : MonoBehaviour
     public void Restart()
     {
         restartEvent?.Invoke();
+        audioManager.PlayGameOver(false);
         //policeCar.Disable();
         //controller.ResetGame();
         //reset drones
