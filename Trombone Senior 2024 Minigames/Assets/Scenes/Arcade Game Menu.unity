@@ -3508,6 +3508,10 @@ MonoBehaviour:
   menuLoop: {fileID: 8300000, guid: 3e504082dc2469e46bde489ab93d5d83, type: 3}
   mixerGroup: {fileID: -5097335159224112743, guid: 5e53da730ac8d8444badba8cf38df0e7,
     type: 2}
+  gameMusic: {fileID: 0}
+  introAlternate: {fileID: 8300000, guid: f0889cec8361c084f8891d02bd502d88, type: 3}
+  loopAlternate: {fileID: 8300000, guid: a4e8744e6c57c51459882fca10f0e9a6, type: 3}
+  alternate: 0
   pauseMusic: {fileID: 0}
 --- !u!4 &1815025386
 Transform:

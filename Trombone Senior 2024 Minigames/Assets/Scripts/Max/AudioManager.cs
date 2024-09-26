@@ -12,6 +12,12 @@ public class AudioManager : MonoBehaviour
     [SerializeField] AudioMixerGroup mixerGroup;
     public static AudioSource menuMusicInstance;
     [SerializeField] AudioSource gameMusic;
+    [Header("Alternate Track")]
+    [SerializeField] AudioClip introAlternate;
+    [SerializeField] AudioClip loopAlternate;
+    [SerializeField] bool alternate;
+    [SerializeField] GameObject toggleButton;
+    [SerializeField] LoadData data;
     [Header("Pause Music")]
     [SerializeField] AudioSource pauseMusic;
     public static bool playOnStart;
@@ -24,6 +30,9 @@ public class AudioManager : MonoBehaviour
     }
     void Start()
     {
+        if (!PlayerPrefs.HasKey("Menu Music")) PlayerPrefs.SetInt("Menu Music", 0);
+        int i = PlayerPrefs.GetInt("Menu Music");
+        alternate = i == 1;
         if (menuMusicInstance == null)
         {
             menuMusicInstance = new GameObject().AddComponent<AudioSource>();
@@ -32,7 +41,8 @@ public class AudioManager : MonoBehaviour
             menuMusicInstance.loop = true;
             menuMusicInstance.outputAudioMixerGroup = mixerGroup;
             DontDestroyOnLoad(menuMusicInstance);
-            InitializeMenuMusic();
+            if (i == 0) InitializeMenuMusic();
+            else if (i == 1) InitializeAlternateMenuMusic();
         }
         else
         {
@@ -40,10 +50,12 @@ public class AudioManager : MonoBehaviour
             if (playOnStart)
             {
                 menuMusicInstance.Stop();
-                InitializeMenuMusic();
+                if (i == 0) InitializeMenuMusic();
+                else if (i == 1) InitializeAlternateMenuMusic();
             }
         }
-       
+
+        Upgrade(data.unlockedUpgrades);
     }
 
     // Update is called once per frame
@@ -53,9 +65,19 @@ public class AudioManager : MonoBehaviour
     }
     public void InitializeMenuMusic()
     {
+        menuMusicInstance.pitch = 1;
+        menuMusicInstance.Stop();
         menuMusicInstance.PlayOneShot(introClip);
         menuMusicInstance.clip = menuLoop;
         menuMusicInstance.PlayScheduled(AudioSettings.dspTime + introClip.length);
+    }
+    public void InitializeAlternateMenuMusic()
+    {
+        menuMusicInstance.pitch = 1;
+        menuMusicInstance.Stop();
+        menuMusicInstance.PlayOneShot(introAlternate);
+        menuMusicInstance.clip = loopAlternate;
+        menuMusicInstance.PlayScheduled(AudioSettings.dspTime + introAlternate.length);
     }
 
     public void EnablePauseMusic(bool enable)
@@ -63,12 +85,14 @@ public class AudioManager : MonoBehaviour
         if (enable)
         {
             gameMusic.pitch = 0;
+            menuMusicInstance.pitch = 0;
             pauseMusic.Play();
         }
         else
         {
             pauseMusic.Stop();
             gameMusic.pitch = 1;
+            menuMusicInstance.pitch = 1;
         }
     }
 
@@ -109,6 +133,25 @@ public class AudioManager : MonoBehaviour
     }
 
     public void DisableMusic(float t = 1f) => StartCoroutine(FadeMusic(gameMusic, 0.05f, t));
+    public void SwitchTracks()
+    {
+        if (!alternate) InitializeAlternateMenuMusic();
+        else InitializeMenuMusic();
+        alternate = !alternate;
+        int i = alternate ? 1 : 0;
+        PlayerPrefs.SetInt("Menu Music", i);
+    }
+    public void Upgrade(List<CosmeticData.Upgrade> upgrades)
+    {
+        foreach (var u in upgrades)
+        {
+            int id = u.id;
+            if (id == 8)
+            {
+                toggleButton.SetActive(true);
+            }
+        }
 
 
+    }
 }

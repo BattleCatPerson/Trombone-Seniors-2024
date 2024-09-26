@@ -15,4 +15,4 @@ MonoBehaviour:
   cost: 2000
   id: 8
   name: Menu Music Alternate
-  sprite: {fileID: -276300742, guid: cf23a8d8848e42945aee81a05c1ae109, type: 3}
+  sprite: {fileID: 21300000, guid: a8dfc849ec8b632469c581359c17d4a0, type: 3}
