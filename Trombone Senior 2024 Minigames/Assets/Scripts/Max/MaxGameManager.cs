@@ -47,6 +47,7 @@ public class MaxGameManager : MonoBehaviour
     [SerializeField] List<Transform> movingObjects;
     [SerializeField] bool restarting;
     [SerializeField] PoliceCarFollow policeCar;
+    [SerializeField] PoliceCarAudio policeCarAudio;
     [SerializeField] MapGeneration mapGeneration;
     [SerializeField] CinemachineBrain brain;
     [SerializeField] float restartCameraTime;
@@ -270,5 +271,6 @@ public class MaxGameManager : MonoBehaviour
     {
         gameOver = true;
         audioManager.DisableMusic();
+        policeCarAudio.StopGame();
     }
 }

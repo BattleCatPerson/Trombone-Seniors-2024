@@ -10,6 +10,7 @@ public class AudioManager : MonoBehaviour
     [SerializeField] AudioClip introClip;
     [SerializeField] AudioClip menuLoop;
     [SerializeField] AudioMixerGroup mixerGroup;
+    [SerializeField] bool createMenuInstance = true;
     public static AudioSource menuMusicInstance;
     [SerializeField] AudioSource gameMusic;
     [Header("Alternate Track")]
@@ -45,28 +46,31 @@ public class AudioManager : MonoBehaviour
         if (!PlayerPrefs.HasKey("Menu Music")) PlayerPrefs.SetInt("Menu Music", 0);
         int i = PlayerPrefs.GetInt("Menu Music");
         alternate = i == 1;
-        if (menuMusicInstance == null)
+        if (createMenuInstance)
         {
-            menuMusicInstance = new GameObject().AddComponent<AudioSource>();
-            menuMusicInstance.gameObject.name = "Menu Music";
-            menuMusicInstance.playOnAwake = false;
-            menuMusicInstance.loop = true;
-            menuMusicInstance.outputAudioMixerGroup = mixerGroup;
-            DontDestroyOnLoad(menuMusicInstance);
-            if (i == 0) InitializeMenuMusic();
-            else if (i == 1) InitializeAlternateMenuMusic();
-        }
-        else
-        {
-            menuMusicInstance.volume = 1;
-            if (playOnStart)
+            if (menuMusicInstance == null)
             {
-                menuMusicInstance.Stop();
+                menuMusicInstance = new GameObject().AddComponent<AudioSource>();
+                menuMusicInstance.gameObject.name = "Menu Music";
+                menuMusicInstance.playOnAwake = false;
+                menuMusicInstance.loop = true;
+                menuMusicInstance.outputAudioMixerGroup = mixerGroup;
+                DontDestroyOnLoad(menuMusicInstance);
                 if (i == 0) InitializeMenuMusic();
                 else if (i == 1) InitializeAlternateMenuMusic();
             }
+            else
+            {
+                menuMusicInstance.volume = 1;
+                if (playOnStart)
+                {
+                    menuMusicInstance.Stop();
+                    if (i == 0) InitializeMenuMusic();
+                    else if (i == 1) InitializeAlternateMenuMusic();
+                }
+            }
         }
-
+        
         if (data) Upgrade(data.unlockedUpgrades);
     }
 
@@ -138,7 +142,6 @@ public class AudioManager : MonoBehaviour
         if (menuMusicInstance.volume > 0)
         {
             menuMusicInstance.Stop();
-            scratchSource.PlayOneShot(scratch);
         }
 
 
@@ -177,4 +180,5 @@ public class AudioManager : MonoBehaviour
         if (b) gameOverSource.Play();
         else gameOverSource.Stop();
     }
+    public void PlayScratch() => scratchSource.PlayOneShot(scratch);
 }

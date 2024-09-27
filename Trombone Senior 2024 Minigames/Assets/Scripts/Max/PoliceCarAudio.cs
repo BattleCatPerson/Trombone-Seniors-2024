@@ -14,7 +14,6 @@ public class PoliceCarAudio : MonoBehaviour
     {
         sourcesStatic.Clear();
         sourcesStatic.AddRange(sources);
-        MaxGameManager.instance.restartEvent.AddListener(StopAllSounds);
     }
     void Update()
     {
@@ -56,5 +55,11 @@ public class PoliceCarAudio : MonoBehaviour
             loopSource.Pause();
             sirenSource.Pause();
         }
+    }
+
+    public void StopGame()
+    {
+        StopAllSounds();
+        startupPlaying = false;
     }
 }

@@ -43,6 +43,11 @@ public class SkinInfoPanel : MonoBehaviour
             stats = new() { 0, 0, 0, 0 };
         }
 
+        for (int i = 1; i < 5; i++)
+        {
+            if (i > stats.Count) stats.Add(0);
+        }
+        wardrobe.SaveData();
         skinName.text = wardrobe.MatchIdToName(id);
         skinTotalRuns.text = $"Total Runs: {stats[0]}";
         skinTotalPoints.text = $"Total Points: {stats[1]}";

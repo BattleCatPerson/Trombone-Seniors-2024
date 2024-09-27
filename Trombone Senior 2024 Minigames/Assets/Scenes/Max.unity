@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.12731713, g: 0.13414735, b: 0.1210785, a: 1}
+  m_IndirectSpecularColor: {r: 0.12731749, g: 0.13414757, b: 0.1210787, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -22896,6 +22896,7 @@ GameObject:
   - component: {fileID: 1007817502}
   - component: {fileID: 1007817504}
   - component: {fileID: 1007817503}
+  - component: {fileID: 1007817505}
   m_Layer: 5
   m_Name: Image
   m_TagString: Untagged
@@ -22960,6 +22961,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1007817501}
   m_CullTransparentMesh: 1
+--- !u!114 &1007817505
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1007817501}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a5bb3ffd80dd39849816a412e3ec45a3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animator: {fileID: 1458089573}
+  trigger: Transition
+  resetTrigger: 
 --- !u!1 &1008129307
 GameObject:
   m_ObjectHideFlags: 0
@@ -35849,6 +35865,7 @@ MonoBehaviour:
   - {fileID: 151143233}
   restarting: 0
   policeCar: {fileID: 1875567656}
+  policeCarAudio: {fileID: 1875567659}
   mapGeneration: {fileID: 1900620850}
   brain: {fileID: 1714497869}
   restartCameraTime: 0.5
@@ -37194,6 +37211,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1323031282}
+        m_TargetAssemblyTypeName: AudioManager, Assembly-CSharp
+        m_MethodName: PlayScratch
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1257422813
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -37629,6 +37658,7 @@ MonoBehaviour:
   menuLoop: {fileID: 8300000, guid: 3e504082dc2469e46bde489ab93d5d83, type: 3}
   mixerGroup: {fileID: -5097335159224112743, guid: 5e53da730ac8d8444badba8cf38df0e7,
     type: 2}
+  createMenuInstance: 1
   gameMusic: {fileID: 1702417460}
   introAlternate: {fileID: 8300000, guid: f0889cec8361c084f8891d02bd502d88, type: 3}
   loopAlternate: {fileID: 8300000, guid: a4e8744e6c57c51459882fca10f0e9a6, type: 3}
@@ -43064,6 +43094,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 1359288275}
+  buttonsToDisable: []
+  setTrigger: {fileID: 1007817505}
 --- !u!114 &1359288278
 MonoBehaviour:
   m_ObjectHideFlags: 0
