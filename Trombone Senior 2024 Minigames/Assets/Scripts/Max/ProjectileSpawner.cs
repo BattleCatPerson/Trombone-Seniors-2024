@@ -5,6 +5,7 @@ using UnityEngine;
 public class ProjectileSpawner : MonoBehaviour
 {
     [SerializeField] float frequency;
+    [SerializeField] float minFrequency;
     private float baseFrequency;
     [SerializeField] float timer;
     [SerializeField] float speed;
@@ -90,7 +91,7 @@ public class ProjectileSpawner : MonoBehaviour
     public void UpdateFrequency(int thousands)
     {
         frequency = baseFrequency * Mathf.Pow(fractionFrequencyAfterThousand, thousands);
-        frequency = Mathf.Clamp(frequency, Projectile.currentTime, frequency);
+        frequency = Mathf.Clamp(frequency, minFrequency, frequency);
     }
 
     public void DisableShooting() => canShoot = false;

@@ -161,7 +161,7 @@ public class Projectile : MonoBehaviour
 
     public static void UpdateTime(int thousands)
     {
-        currentTime = time * Mathf.Pow(MULT, thousands);
+        //currentTime = time * Mathf.Pow(MULT, thousands);
     }
 
     private void OnDrawGizmos()

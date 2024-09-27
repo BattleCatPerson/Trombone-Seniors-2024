@@ -52,6 +52,7 @@ public class MaxCharacterController : MonoBehaviour
     [SerializeField] float maxInitialRotation;
     [SerializeField] float speedIncreasePerThousand;
     [SerializeField] float speedCapIncreasePerThousand;
+    [SerializeField] float multiplier;
     [Header("Camera")]
     [SerializeField] CinemachineVirtualCamera vCam;
     [SerializeField] float verticalDistanceToFloor;
@@ -175,6 +176,9 @@ public class MaxCharacterController : MonoBehaviour
         scoreText.text = $"{score}";
         finalScoreText.text = $"{score}";
 
+        multiplier = 1 + (0.1f * (int)((score) / 1000));
+
+
         collidersTouching = colliders.Count;
         colliding = collidersTouching > 0;
         if (collidersTouching == 0)
@@ -196,10 +200,10 @@ public class MaxCharacterController : MonoBehaviour
 
         if (canFlip)
         {
-            if (slider.value > 0) rotationSpeed += acceleration * slider.value * Time.fixedDeltaTime;
-            else if (slider.value < 0) rotationSpeed += deceleration * slider.value * Time.fixedDeltaTime;
+            if (slider.value > 0) rotationSpeed += acceleration * slider.value * Time.fixedDeltaTime * multiplier;
+            else if (slider.value < 0) rotationSpeed += deceleration * slider.value * Time.fixedDeltaTime * multiplier;
             else rotationSpeed -= drag * Time.fixedDeltaTime;
-            rotationSpeed = Mathf.Clamp(rotationSpeed, 0, maxRotationSpeed);
+            rotationSpeed = Mathf.Clamp(rotationSpeed, 0, maxRotationSpeed * multiplier);
             transform.eulerAngles += Vector3.forward * rotationSpeed * Time.fixedDeltaTime;
             accumulatedAngle += rotationSpeed * Time.fixedDeltaTime;
 
