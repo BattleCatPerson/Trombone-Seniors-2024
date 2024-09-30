@@ -156,7 +156,6 @@ public class Projectile : MonoBehaviour
         }
 
         RaycastHit2D[] p1 = Physics2D.RaycastAll(transform.position, transform.right, offset, mask);
-        Debug.Log($"DEBU G COUNT {p1.Length}");
     }
 
     public static void UpdateTime(int thousands)

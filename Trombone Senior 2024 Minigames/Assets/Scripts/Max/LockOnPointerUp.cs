@@ -37,7 +37,7 @@ public class LockOnPointerUp : MonoBehaviour
     }
     private void Update()
     {
-        bool touching = Input.touchCount > 0 || Input.GetMouseButton(0);
+        bool touching = Input.touchCount > 0;
         if (touching == false)
         {
             if (slider.interactable) LockSlider();
@@ -54,13 +54,23 @@ public class LockOnPointerUp : MonoBehaviour
                 distances.Add(d);
                 touches[d] = t;
             }
-            distances.Sort();
-            Vector3 touchPos = touches[distances[0]].screenPosition;
+            if (distances.Count > 0)
+            {
+                distances.Sort();
+                Debug.Log(distances[0]);
+                Debug.Log(touches[distances[0]]);
+                Vector3 touchPos = touches[distances[0]].screenPosition;
 
-            difference = touchPos - slider.transform.position;
-            difference = new Vector2(Mathf.Abs(difference.x), Mathf.Abs(difference.y));
+                difference = touchPos - slider.transform.position;
+                difference = new Vector2(Mathf.Abs(difference.x), Mathf.Abs(difference.y));
 
-            withinBounds = !(difference.x > maxDistanceFromSlider.x || difference.y > maxDistanceFromSlider.y);
+                withinBounds = !(difference.x > maxDistanceFromSlider.x || difference.y > maxDistanceFromSlider.y);
+            }
+            else
+            {
+                if (slider.interactable) LockSlider();
+                withinBounds = false;
+            }
         }
         
 
