@@ -37,7 +37,7 @@ public class LockOnPointerUp : MonoBehaviour
     }
     private void Update()
     {
-        bool touching = Input.touchCount > 0;
+        bool touching = Touch.activeTouches.Count > 0;
         if (touching == false)
         {
             if (slider.interactable) LockSlider();
@@ -57,8 +57,6 @@ public class LockOnPointerUp : MonoBehaviour
             if (distances.Count > 0)
             {
                 distances.Sort();
-                Debug.Log(distances[0]);
-                Debug.Log(touches[distances[0]]);
                 Vector3 touchPos = touches[distances[0]].screenPosition;
 
                 difference = touchPos - slider.transform.position;

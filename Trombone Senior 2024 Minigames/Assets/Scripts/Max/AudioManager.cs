@@ -130,7 +130,6 @@ public class AudioManager : MonoBehaviour
         {
             yield return new WaitForSeconds(interval);
             accumulated += interval;
-            Debug.Log(accumulated);
             s.volume = (Mathf.Lerp(0, 1, accumulated / duration));
         }
         s.volume = 1;

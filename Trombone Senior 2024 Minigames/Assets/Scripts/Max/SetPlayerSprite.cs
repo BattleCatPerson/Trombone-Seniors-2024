@@ -20,6 +20,7 @@ public class SetPlayerSprite : MonoBehaviour
     [SerializeField] MaxCharacterController characterController;
     [SerializeField] CollectibleManager collectibleManager;
     [SerializeField] Shield shield;
+    [SerializeField] Cosmetic initialCosmetic;
     FileHandler fileHandler;
     CosmeticData data;
     void Start()
@@ -27,7 +28,11 @@ public class SetPlayerSprite : MonoBehaviour
         fileHandler = new FileHandler(Application.persistentDataPath, fileName);
         data = fileHandler.Load();
         if (data != null) currentId = data.selectedId;
-        else currentId = -1;
+        else
+        {
+            data = new CosmeticData(initialCosmetic);
+            currentId = -1;
+        }
 
         foreach (IdSpritePair i in pairs.pairs)
         {
@@ -72,6 +77,7 @@ public class SetPlayerSprite : MonoBehaviour
             CosmeticData.IdToStats c = new();
             c.id = id;
             c.stats = stats;
+            data.skinStats = new();
             data.skinStats.Add(c);
         }
         else

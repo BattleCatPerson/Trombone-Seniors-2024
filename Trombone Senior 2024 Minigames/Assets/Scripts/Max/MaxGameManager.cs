@@ -157,7 +157,6 @@ public class MaxGameManager : MonoBehaviour
         foreach (var v in startObjects) v.SetActive(true);
         audioManager.StartGameMusic();
         audioManager.Explode();
-        Debug.Log("hey guys it's me marcus li and today i need to put in a print statment inside of my code in order to know when something happens or in this case I chose to Debug.Log because Jason Conaway said that it was better I guess");
     }
 
     public void PauseGame()

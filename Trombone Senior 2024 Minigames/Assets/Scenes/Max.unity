@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.12731713, g: 0.13414735, b: 0.1210785, a: 1}
+  m_IndirectSpecularColor: {r: 0.12731749, g: 0.13414757, b: 0.1210787, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -28013,7 +28013,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -250.00002, y: 83.90051}
+  m_AnchoredPosition: {x: -200, y: 83.90051}
   m_SizeDelta: {x: 160, y: 20}
   m_Pivot: {x: 0.5, y: 0.49999836}
 --- !u!114 &1026298543
@@ -72110,6 +72110,10 @@ MonoBehaviour:
   characterController: {fileID: 2137725487}
   collectibleManager: {fileID: 71768894}
   shield: {fileID: 1725492619}
+  initialCosmetic:
+    id: -1
+    rarity: 0
+    name: Default
 --- !u!4 &482481806704038274
 Transform:
   m_ObjectHideFlags: 0

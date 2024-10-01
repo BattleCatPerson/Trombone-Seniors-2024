@@ -34,6 +34,7 @@ public class RadialSlider : MonoBehaviour
         // once onHandle is true, you can be within the movedistance to move the handle
         // if you release or you move past moveDistance, set onHandle to false
         if (!canRotate || gameManager.pauseActive) return;
+        Debug.Log("Shield Slider Active Touches " + Touch.activeTouches.Count);
         if (Touch.activeTouches.Count > 0)
         {
             Dictionary<float, Touch> touches = new();
@@ -52,7 +53,7 @@ public class RadialSlider : MonoBehaviour
             difference = new Vector2(Mathf.Abs(difference.x), Mathf.Abs(difference.y));
 
             withinBounds = !(difference.x > enterDistance || difference.y > enterDistance);
-
+            Debug.Log("Shield Slider Within Bounds");
             if (withinBounds)
             {
                 Vector2 touchDifference = touchPos - parent.transform.position;
