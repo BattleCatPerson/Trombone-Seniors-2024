@@ -161,7 +161,7 @@ public class CosmeticShop : MonoBehaviour, IWardrobe
 
     public void Update()
     {
-        if (waitingForLaunchInput && ((Touch.activeTouches.Count > 0 && !windowsBuild) || (Input.GetMouseButtonDown(0) && windowsBuild)))
+        if (waitingForLaunchInput && ((Input.touchCount > 0 && !windowsBuild) || (Input.GetMouseButtonDown(0) && windowsBuild)))
         {
             //disable waiting
             waitingForLaunchInput = false;

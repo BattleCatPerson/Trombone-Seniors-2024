@@ -2,11 +2,11 @@ using System;
 using System.Collections.Generic;
 using System.Runtime.InteropServices.WindowsRuntime;
 using UnityEngine;
-using Touch = UnityEngine.InputSystem.EnhancedTouch.Touch;
+//using Touch = UnityEngine.InputSystem.EnhancedTouch.Touch;
 using TouchPhase = UnityEngine.InputSystem.TouchPhase;
 using Random = UnityEngine.Random;
 using TMPro;
-using UnityEngine.InputSystem.EnhancedTouch;
+//using UnityEngine.InputSystem.EnhancedTouch;
 public class CollectibleManager : MonoBehaviour
 {
     [SerializeField] int layer;
@@ -66,11 +66,11 @@ public class CollectibleManager : MonoBehaviour
         if (gameOver) return;
         if (!windowsBuild)
         {
-            var activeTouches = Touch.activeTouches;
+            var activeTouches = Input.touches;
 
             foreach (Touch touch in activeTouches)
             {
-                RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(touch.screenPosition), Vector2.zero, Mathf.Infinity, layer);
+                RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(touch.position), Vector2.zero, Mathf.Infinity, layer);
                 if (hit.collider)
                 {
                     Collect(hit.collider.gameObject);

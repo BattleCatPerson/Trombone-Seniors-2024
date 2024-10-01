@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using Touch = UnityEngine.InputSystem.EnhancedTouch.Touch;
+//using Touch = UnityEngine.InputSystem.EnhancedTouch.Touch;
 using TouchPhase = UnityEngine.InputSystem.TouchPhase;
 public class LockOnPointerUp : MonoBehaviour
 {
@@ -37,7 +37,8 @@ public class LockOnPointerUp : MonoBehaviour
     }
     private void Update()
     {
-        bool touching = Touch.activeTouches.Count > 0;
+        //bool touching = Touch.activeTouches.Count > 0;
+        bool touching = Input.touchCount > 0;
         if (touching == false)
         {
             if (slider.interactable) LockSlider();
@@ -48,16 +49,19 @@ public class LockOnPointerUp : MonoBehaviour
             Dictionary<float, Touch> touches = new();
             List<float> distances = new();
 
-            foreach (Touch t in Touch.activeTouches)
+            foreach (Touch t in Input.touches)
             {
-                float d = Vector2.Distance(t.screenPosition, slider.transform.position);
+                //float d = Vector2.Distance(t.screenPosition, slider.transform.position);
+                float d = Vector2.Distance(t.position, slider.transform.position);
+
                 distances.Add(d);
                 touches[d] = t;
             }
             if (distances.Count > 0)
             {
                 distances.Sort();
-                Vector3 touchPos = touches[distances[0]].screenPosition;
+                //Vector3 touchPos = touches[distances[0]].screenPosition;
+                Vector3 touchPos = touches[distances[0]].position;
 
                 difference = touchPos - slider.transform.position;
                 difference = new Vector2(Mathf.Abs(difference.x), Mathf.Abs(difference.y));

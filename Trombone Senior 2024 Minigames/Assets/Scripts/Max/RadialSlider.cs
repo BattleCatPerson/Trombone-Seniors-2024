@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Touch = UnityEngine.InputSystem.EnhancedTouch.Touch;
+//using Touch = UnityEngine.InputSystem.EnhancedTouch.Touch;
 using TouchPhase = UnityEngine.InputSystem.TouchPhase;
 using Random = UnityEngine.Random;
 using Mathf = UnityEngine.Mathf;
@@ -34,20 +34,20 @@ public class RadialSlider : MonoBehaviour
         // once onHandle is true, you can be within the movedistance to move the handle
         // if you release or you move past moveDistance, set onHandle to false
         if (!canRotate || gameManager.pauseActive) return;
-        Debug.Log("Shield Slider Active Touches " + Touch.activeTouches.Count);
-        if (Touch.activeTouches.Count > 0)
+        Debug.Log("Shield Slider Active Touches " + Input.touchCount);
+        if (Input.touchCount > 0)
         {
             Dictionary<float, Touch> touches = new();
             List<float> distances = new();
 
-            foreach (Touch t in Touch.activeTouches)
+            foreach (Touch t in Input.touches)
             {
-                float d = Vector2.Distance(t.screenPosition, parent.transform.position);
+                float d = Vector2.Distance(t.position, parent.transform.position);
                 distances.Add(d);
                 touches[d] = t;
             }
             distances.Sort();
-            Vector3 touchPos = touches[distances[0]].screenPosition;
+            Vector3 touchPos = touches[distances[0]].position;
 
             Vector2 difference = touchPos - parent.transform.position;
             difference = new Vector2(Mathf.Abs(difference.x), Mathf.Abs(difference.y));
