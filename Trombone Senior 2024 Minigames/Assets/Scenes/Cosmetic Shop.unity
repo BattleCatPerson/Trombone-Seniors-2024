@@ -1701,7 +1701,7 @@ MonoBehaviour:
   border: {fileID: 87002923}
   logo: {fileID: 1072483898}
   direction: 0
-  speed: 1
+  speed: 3
   directionVector: {x: 0, y: 0}
   maxDimensions: {x: 0, y: 0}
   logoDimensions: {x: 0, y: 0}
@@ -1768,7 +1768,7 @@ MonoBehaviour:
   border: {fileID: 87002923}
   logo: {fileID: 1442068725}
   direction: 0
-  speed: 1
+  speed: 3
   directionVector: {x: 0, y: 0}
   maxDimensions: {x: 0, y: 0}
   logoDimensions: {x: 0, y: 0}
@@ -1796,7 +1796,7 @@ MonoBehaviour:
   border: {fileID: 87002923}
   logo: {fileID: 37911039}
   direction: 0
-  speed: 1
+  speed: 3
   directionVector: {x: 0, y: 0}
   maxDimensions: {x: 0, y: 0}
   logoDimensions: {x: 0, y: 0}
