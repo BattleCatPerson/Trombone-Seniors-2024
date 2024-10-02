@@ -109,6 +109,7 @@ public class Wardrobe : MonoBehaviour
         float height = 40 * rows;
         scrollPanel.sizeDelta = new Vector2(scrollPanel.sizeDelta.x, height);
         scrollPanel.anchoredPosition = Vector2.up * posY;
+        SortPanel(currentState);
     }
     public void SetCompendiumTexts(int cCount, int rCount, int sCount)
     {
@@ -354,6 +355,15 @@ public class Wardrobe : MonoBehaviour
         currentState = sortStates[data.sortId];
 
         sortText.text = "Sort By: " + ReturnStringSort(sortStates[data.sortId]);
+    }
+    public void SortPanel(SortState state)
+    {
+        if (state == SortState.Newest) SortByTime(true);
+        else if (state == SortState.Oldest) SortByTime(false);
+        else if (state == SortState.Alphabetical) SortAlphabetically(false);
+        else if (state == SortState.AlphaRev) SortAlphabetically(true);
+        else if (state == SortState.Rarity) SortByRarity(false);
+        else if (state == SortState.RarityRev) SortByRarity(true);
     }
 
     public string ReturnStringSort(SortState sortState)

@@ -27,7 +27,7 @@ public class BouncingLogo : MonoBehaviour
         logoDimensions = new Vector2(logo.sizeDelta.x / 2, logo.sizeDelta.y / 2);
     }
 
-    void Update()
+    void FixedUpdate()
     {
         logo.anchoredPosition += directionVector * speed;
         if (logo.anchoredPosition.x + logoDimensions.x >= maxDimensions.x)
