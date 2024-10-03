@@ -54803,7 +54803,7 @@ MonoBehaviour:
   - transform: {fileID: 925732131}
   - transform: {fileID: 440768620}
   minRampAngle: 20
-  maxRampAngle: 85
+  maxRampAngle: 60
   floorAngle: 0
   playerTracker: {fileID: 1995808605}
   player: {fileID: 2137725486}
