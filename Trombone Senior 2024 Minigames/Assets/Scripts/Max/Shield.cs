@@ -41,6 +41,7 @@ public class Shield : MonoBehaviour
     [SerializeField] AudioClip open;
     [SerializeField] AudioClip close;
     [SerializeField] AudioSource laserSource;
+    [SerializeField] AudioClip explodeEffect;
     [Header("Scrap")]
     [SerializeField] CollectibleManager collectibleManager;
 
@@ -119,6 +120,7 @@ public class Shield : MonoBehaviour
             policeNumberTrigger.SetTrigger();
             follow.stop = true;
             policeCarAudio.StopAllSounds();
+            openSource.PlayOneShot(explodeEffect);
 
             //Scrap Collect
             collectibleManager.CollectScrap();

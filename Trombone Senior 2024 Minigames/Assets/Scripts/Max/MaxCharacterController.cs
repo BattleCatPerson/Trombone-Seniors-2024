@@ -176,7 +176,7 @@ public class MaxCharacterController : MonoBehaviour
         scoreText.text = $"{score}";
         finalScoreText.text = $"{score}";
 
-        multiplier = 1 + (0.1f * (int)((score) / 1000));
+        multiplier = 1 + (0.05f * (int)((score) / 1000));
 
 
         collidersTouching = colliders.Count;

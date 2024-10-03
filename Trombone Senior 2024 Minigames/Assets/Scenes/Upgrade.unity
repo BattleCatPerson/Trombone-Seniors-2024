@@ -4241,8 +4241,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: is there anything i can help you with?
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: b9a3730c0f2d06f49b9131256daddf1e, type: 2}
-  m_sharedMaterial: {fileID: -4828740563713195150, guid: b9a3730c0f2d06f49b9131256daddf1e,
+  m_fontAsset: {fileID: 11400000, guid: db740075d0210ca438deea9df94f8e7f, type: 2}
+  m_sharedMaterial: {fileID: -7283107082806138611, guid: db740075d0210ca438deea9df94f8e7f,
     type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -14805,8 +14805,8 @@ RectTransform:
   - {fileID: 412866654}
   - {fileID: 2001136557}
   - {fileID: 886935861}
-  - {fileID: 649349772}
   - {fileID: 1555010882}
+  - {fileID: 649349772}
   m_Father: {fileID: 37340437}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
