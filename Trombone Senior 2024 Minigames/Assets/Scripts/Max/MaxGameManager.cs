@@ -68,6 +68,8 @@ public class MaxGameManager : MonoBehaviour
     [SerializeField] LoadData loadData;
     public UnityEvent<List<CosmeticData.Upgrade>> loadEvent;
     private float accumulated = 0;
+    [Header("Shield")]
+    public bool shieldActive;
     private void Awake()
     {
         instance = this;
@@ -228,8 +230,16 @@ public class MaxGameManager : MonoBehaviour
 
     public void ShieldActive(bool active)
     {
-        if (active) shieldAnimator.SetTrigger();
-        else if (!shield.Shooting) shieldAnimator.ResetTrigger();
+        if (active && !shield.Shooting && !shieldActive)
+        {
+            shieldAnimator.SetTrigger();
+            shieldActive = true;
+        }
+        else if (!shield.Shooting && shieldActive)
+        {
+            shieldActive = false;
+            shieldAnimator.ResetTrigger();
+        }
     }
 
     public void PlayTutorial(bool inGame = true)

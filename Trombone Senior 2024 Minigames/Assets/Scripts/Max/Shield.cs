@@ -82,7 +82,7 @@ public class Shield : MonoBehaviour
         shooting = true;
         hits = 0;
         setTrigger.SetTrigger();
-
+        MaxGameManager.instance.shieldActive = false;
         //disable laser production of police car
     }
 

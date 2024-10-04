@@ -139,7 +139,7 @@ public class Projectile : MonoBehaviour
             else
             {
                 point = p.point;
-                p.collider.GetComponent<Shield>().ChargeShield();
+                if (p.collider.GetComponent<Shield>()) p.collider.GetComponent<Shield>().ChargeShield();
                 Debug.Log("BLOCK");
             }
             
