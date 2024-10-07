@@ -9997,8 +9997,8 @@ MonoBehaviour:
   animator: {fileID: 548401897}
   windowsBuild: 0
   commonScrap: 30
-  rareScrap: 120
-  superRareScrap: 500
+  rareScrap: 40
+  superRareScrap: 50
   scrapSprite: {fileID: 1329958893, guid: 3175c3007ff0b3e4e981ed3401ed9aa6, type: 3}
 --- !u!114 &548401899
 MonoBehaviour:

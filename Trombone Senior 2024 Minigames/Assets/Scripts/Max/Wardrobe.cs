@@ -95,6 +95,7 @@ public class Wardrobe : MonoBehaviour
                 break;
             }
         }
+        UnityEngine.Rendering.DebugManager.instance.enableRuntimeUI = false;
     }
 
     void Update()

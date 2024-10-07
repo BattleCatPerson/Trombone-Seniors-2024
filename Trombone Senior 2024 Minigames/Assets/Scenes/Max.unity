@@ -1008,7 +1008,10 @@ MonoBehaviour:
   collectiblesCollected: 0
   collectiblesPerPickup: 1
   minSpawn: 1
+  upgradedMinSpawn: 6
   maxSpawn: 10
+  upgradedMaxSpawn: 15
+  upgraded: 0
   maxDistanceFromPoint: 5
   lineRenderer: {fileID: 71768896}
   text: {fileID: 68446703}
@@ -27969,7 +27972,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 200, y: -101.09949}
+  m_AnchoredPosition: {x: 250, y: -75}
   m_SizeDelta: {x: 160, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1026298543
@@ -35986,6 +35989,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  shieldActive: 0
 --- !u!4 &1168702155
 Transform:
   m_ObjectHideFlags: 0
@@ -36992,7 +36996,7 @@ MonoBehaviour:
   deployer: {fileID: 107057661}
   deployerCannon: {fileID: 1809666794}
   controller: {fileID: 2137725487}
-  fractionFrequencyAfterThousand: 0.9
+  fractionFrequencyAfterThousand: 0.95
   canShoot: 1
   shield: {fileID: 1725492619}
   outline: 0
@@ -72014,6 +72018,7 @@ MonoBehaviour:
   speedIncreasePerThousand: 0
   speedCapIncreasePerThousand: 0
   multiplier: 0
+  multiplierIncreaseAmount: 0.015
   vCam: {fileID: 410702991}
   verticalDistanceToFloor: 0
   layer:

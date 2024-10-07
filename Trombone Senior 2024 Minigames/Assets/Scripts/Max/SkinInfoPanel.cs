@@ -41,6 +41,7 @@ public class SkinInfoPanel : MonoBehaviour
         if (!found)
         {
             stats = new() { 0, 0, 0, 0 };
+            wardrobe.data.skinStats.Add(new(id, stats));
         }
 
         for (int i = 1; i < 5; i++)

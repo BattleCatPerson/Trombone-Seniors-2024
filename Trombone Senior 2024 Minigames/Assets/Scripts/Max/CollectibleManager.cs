@@ -15,11 +15,14 @@ public class CollectibleManager : MonoBehaviour
     [SerializeField] int collectibles;
     [SerializeField] int collectiblesCollected;
     [SerializeField] int collectiblesPerPickup = 1;
-    
+
     public int CollectiblesCollected => collectiblesCollected;
 
     [SerializeField] int minSpawn;
+    [SerializeField] int upgradedMinSpawn;
     [SerializeField] int maxSpawn;
+    [SerializeField] int upgradedMaxSpawn;
+    [SerializeField] bool upgraded;
     [SerializeField] float maxDistanceFromPoint;
     [SerializeField] LineRenderer lineRenderer;
     [SerializeField] TextMeshProUGUI text;
@@ -47,7 +50,7 @@ public class CollectibleManager : MonoBehaviour
         floorLayer = 1 << floorLayer;
         if (!PlayerPrefs.HasKey("Max Collectibles")) PlayerPrefs.SetInt("Max Collectibles", 0);
         else collectibles = PlayerPrefs.GetInt("Max Collectibles");
-        
+
         if (!PlayerPrefs.HasKey("Max Collectibles")) PlayerPrefs.SetInt("Scrap", 0);
         else scrap = PlayerPrefs.GetInt("Scrap");
 
@@ -85,8 +88,8 @@ public class CollectibleManager : MonoBehaviour
                 Collect(hit.collider.gameObject);
             }
         }
-        
-        
+
+
     }
     public void GameOver()
     {
@@ -106,7 +109,7 @@ public class CollectibleManager : MonoBehaviour
         float velY = v0.y;
         float step = Time.fixedDeltaTime;
         List<Vector2> points = new();
-        
+
         while (true)
         {
             prevVelY = velY;
@@ -130,7 +133,7 @@ public class CollectibleManager : MonoBehaviour
 
     public void Spawn(Vector2 pos)
     {
-        int count = Random.Range(minSpawn, maxSpawn);
+        int count = upgraded ? Random.Range(upgradedMinSpawn, upgradedMaxSpawn) : Random.Range(minSpawn, maxScrap);
         Dictionary<float, float> dict = new();
 
         for (int i = 0; i < count; i++)
@@ -159,7 +162,7 @@ public class CollectibleManager : MonoBehaviour
 
     public void DestroyAllActive()
     {
-        foreach(var c in collectiblesSpawned) Destroy(c);
+        foreach (var c in collectiblesSpawned) Destroy(c);
         collectiblesSpawned.Clear();
         collectiblesCollected = 0;
         scrapCollected = 0;
@@ -173,7 +176,7 @@ public class CollectibleManager : MonoBehaviour
         collectiblesCollected += collectiblesPerPickup;
         Destroy(g);
         text.text = $"{collectibles}";
-        foreach(TextMeshProUGUI t in currentRunText) t.text = $"{collectiblesCollected}";
+        foreach (TextMeshProUGUI t in currentRunText) t.text = $"{collectiblesCollected}";
         source.PlayOneShot(clip);
     }
 
@@ -189,6 +192,6 @@ public class CollectibleManager : MonoBehaviour
     public void ResetGame() => gameOver = false;
     public void Upgrade(List<CosmeticData.Upgrade> upgrades)
     {
-        foreach (var u in upgrades) if (u.id == 1 && u.enabled) collectiblesPerPickup = 2;
+        foreach (var u in upgrades) if (u.id == 1 && u.enabled) upgraded = true;
     }
 }

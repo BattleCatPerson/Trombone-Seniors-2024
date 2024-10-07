@@ -10,6 +10,12 @@ public class CosmeticData
     {
         public int id;
         public List<float> stats;
+
+        public IdToStats(int id, List<float> stats)
+        {
+            this.id = id;
+            this.stats = stats;
+        }
     }
     [Serializable]
     public class Upgrade

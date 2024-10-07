@@ -53,6 +53,7 @@ public class MaxCharacterController : MonoBehaviour
     [SerializeField] float speedIncreasePerThousand;
     [SerializeField] float speedCapIncreasePerThousand;
     [SerializeField] float multiplier;
+    [SerializeField] float multiplierIncreaseAmount;
     [Header("Camera")]
     [SerializeField] CinemachineVirtualCamera vCam;
     [SerializeField] float verticalDistanceToFloor;
@@ -176,7 +177,7 @@ public class MaxCharacterController : MonoBehaviour
         scoreText.text = $"{score}";
         finalScoreText.text = $"{score}";
 
-        multiplier = 1 + (0.05f * (int)((score) / 1000));
+        multiplier = 1 + (multiplierIncreaseAmount * (int)((score) / 1000));
 
 
         collidersTouching = colliders.Count;
@@ -420,6 +421,7 @@ public class MaxCharacterController : MonoBehaviour
     public void Freeze(bool b)
     {
         rb.simulated = !b;
+        canFlip = !b;
         if (b)
         {
             trail.time = Mathf.Infinity;
@@ -452,7 +454,7 @@ public class MaxCharacterController : MonoBehaviour
             if (id == 0)
             {
                 acceleration = 720;
-                maxRotationSpeed = 1080;
+                maxRotationSpeed = 540;
             }
 
             if (id == 3) rampImpulse = 40;

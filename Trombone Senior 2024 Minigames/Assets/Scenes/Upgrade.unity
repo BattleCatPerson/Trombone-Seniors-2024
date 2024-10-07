@@ -17974,8 +17974,8 @@ MonoBehaviour:
   - {fileID: 1347233352}
   - {fileID: 1453649323}
   descriptions:
-  - 'Flip Speed: 360 -> 720(nL)Max Speed: 360 -> 1080'
-  - 'Money per Collectible: 1 -> 2'
+  - 'Flip Speed: 360 -> 720(nL)Max Speed: 360 -> 540'
+  - 'Minimum Money Spawned: 1 -> 6(nL)Max Money Spawned: 10 -> 15'
   - 'Super Rare Skin Chance: 5% -> 10%(nL)Common Skin Chance: 70% -> 65%'
   - 'Base Ramp Impulse: 25 -> 40'
   - 'Max Landing Angle: 55 -> 70'

@@ -74,10 +74,8 @@ public class SetPlayerSprite : MonoBehaviour
         }
         if (!found)
         {
-            CosmeticData.IdToStats c = new();
-            c.id = id;
-            c.stats = stats;
-            data.skinStats = new();
+            CosmeticData.IdToStats c = new(id, stats);
+            if (data.skinStats == null) data.skinStats = new();
             data.skinStats.Add(c);
         }
         else
