@@ -9996,9 +9996,9 @@ MonoBehaviour:
   waitingForLaunchInput: 0
   animator: {fileID: 548401897}
   windowsBuild: 0
-  commonScrap: 30
-  rareScrap: 40
-  superRareScrap: 50
+  commonScrap: 15
+  rareScrap: 20
+  superRareScrap: 25
   scrapSprite: {fileID: 1329958893, guid: 3175c3007ff0b3e4e981ed3401ed9aa6, type: 3}
 --- !u!114 &548401899
 MonoBehaviour:
