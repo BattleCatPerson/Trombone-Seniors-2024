@@ -22,6 +22,8 @@ public class AudioManager : MonoBehaviour
     [Header("Pause Music")]
     [SerializeField] AudioSource pauseMusic;
     public static bool playOnStart;
+    [Header("Game Music")]
+    [SerializeField] bool gameMusicPlaying;
     [Header("Record Scratch")]
     [SerializeField] AudioClip scratch;
     [SerializeField] AudioSource scratchSource;
@@ -77,7 +79,10 @@ public class AudioManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (gameMusicPlaying && !gameMusic.isPlaying)
+        {
+            StartGameMusic();
+        }
     }
     public void InitializeMenuMusic()
     {
@@ -150,9 +155,14 @@ public class AudioManager : MonoBehaviour
         gameMusic.volume = 0;
         StartCoroutine(FadeMusicIn(gameMusic, 0.05f, 2f));
         gameMusic.Play();
+        gameMusicPlaying = true;
     }
 
-    public void DisableMusic(float t = 1f) => StartCoroutine(FadeMusic(gameMusic, 0.05f, t));
+    public void DisableMusic(float t = 1f)
+    {
+        StartCoroutine(FadeMusic(gameMusic, 0.05f, t));
+        gameMusicPlaying = false;
+    }
     public void SwitchTracks()
     {
         if (!alternate) InitializeAlternateMenuMusic();

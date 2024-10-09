@@ -133,7 +133,8 @@ public class CollectibleManager : MonoBehaviour
 
     public void Spawn(Vector2 pos)
     {
-        int count = upgraded ? Random.Range(upgradedMinSpawn, upgradedMaxSpawn) : Random.Range(minSpawn, maxScrap);
+        int count = upgraded ? Random.Range(upgradedMinSpawn, upgradedMaxSpawn) : Random.Range(minSpawn, maxSpawn);
+        Debug.Log(count);
         Dictionary<float, float> dict = new();
 
         for (int i = 0; i < count; i++)

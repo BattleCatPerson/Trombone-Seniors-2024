@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 //using Touch = UnityEngine.InputSystem.EnhancedTouch.Touch;
-using TouchPhase = UnityEngine.InputSystem.TouchPhase;
+//using TouchPhase = UnityEngine.InputSystem.TouchPhase;
 using Random = UnityEngine.Random;
 using Mathf = UnityEngine.Mathf;
 using UnityEngine.UI;
@@ -16,16 +16,20 @@ public class RadialSlider : MonoBehaviour
     [SerializeField] RectTransform parent;
     [SerializeField] bool withinBounds;
     [SerializeField] float enterDistance;
+    [SerializeField] float holdExitDistance;
     [SerializeField] float enterMultiplier;
     [SerializeField] RectTransform top;
     [SerializeField] Shield shield;
     [SerializeField] bool canRotate;
     [SerializeField] MaxGameManager gameManager;
+    [SerializeField] bool cTExists;
+    [SerializeField] Vector3 currentPos;
     void Start()
     {
         float y = top.position.y - handle.transform.position.y;
 
         enterDistance = y * enterMultiplier;
+        holdExitDistance = enterDistance * 1.5f;
     }
 
     void Update()
@@ -34,45 +38,78 @@ public class RadialSlider : MonoBehaviour
         // once onHandle is true, you can be within the movedistance to move the handle
         // if you release or you move past moveDistance, set onHandle to false
         if (!canRotate || gameManager.pauseActive) return;
-        Debug.Log("Shield Slider Active Touches " + Input.touchCount);
+        Touch currentTouch = new();
+
         if (Input.touchCount > 0)
         {
+            Debug.Log("TOUCHING!");
             Dictionary<float, Touch> touches = new();
-            List<float> distances = new();
+            List<float> di = new();
 
             foreach (Touch t in Input.touches)
             {
-                float d = Vector2.Distance(t.position, parent.transform.position);
-                distances.Add(d);
-                touches[d] = t;
+                if (t.phase == TouchPhase.Began)
+                {
+                    float d = Vector2.Distance(t.position, parent.transform.position);
+                    touches[d] = t;
+                    di.Add(d);
+                }
             }
-            distances.Sort();
-            Vector3 touchPos = touches[distances[0]].position;
-
-            Vector2 difference = touchPos - parent.transform.position;
-            difference = new Vector2(Mathf.Abs(difference.x), Mathf.Abs(difference.y));
-
-            withinBounds = !(difference.x > enterDistance || difference.y > enterDistance);
-            Debug.Log("Shield Slider Within Bounds");
-            if (withinBounds)
+            di.Sort();
+            if (di.Count > 0)
             {
-                Vector2 touchDifference = touchPos - parent.transform.position;
-                float touchAngle = Mathf.Atan(touchDifference.y / touchDifference.x) * 180 / Mathf.PI;
+                currentTouch = touches[di[0]];
+                Vector3 touchPos = currentTouch.position;
+                Vector2 difference = touchPos - parent.transform.position;
+                difference = new Vector2(Mathf.Abs(difference.x), Mathf.Abs(difference.y));
+                withinBounds = !(difference.x > enterDistance || difference.y > enterDistance);
 
-                bool right = touchPos.x - parent.position.x >= 0;
-                bool up = touchPos.y - parent.position.y >= 0;
-                if (right && !up) touchAngle = 360f + touchAngle;
-                else if ((!right && up) || (!right && !up)) touchAngle = 180f + touchAngle;
-
-                value = touchAngle;
+                cTExists = withinBounds;
             }
-            shield.rotation = value;
+
+            if (cTExists)
+            {
+                touches = new();
+                List<float> distances = new();
+
+                foreach (Touch t in Input.touches)
+                {
+                    float d = Vector2.Distance(t.position, parent.transform.position);
+                    distances.Add(d);
+                    touches[d] = t;
+                }
+                distances.Sort();
+                currentTouch = touches[distances[0]];
+                Vector3 touchPos = currentTouch.position;
+                Vector2 difference = touchPos - parent.transform.position;
+                difference = new Vector2(Mathf.Abs(difference.x), Mathf.Abs(difference.y));
+                withinBounds = !(difference.x > holdExitDistance || difference.y > holdExitDistance);
+
+                Debug.Log("Shield Slider Within Bounds");
+                if (withinBounds)
+                {
+                    Vector2 touchDifference = touchPos - parent.transform.position;
+                    float touchAngle = Mathf.Atan(touchDifference.y / touchDifference.x) * 180 / Mathf.PI;
+
+                    bool right = touchPos.x - parent.position.x >= 0;
+                    bool up = touchPos.y - parent.position.y >= 0;
+                    if (right && !up) touchAngle = 360f + touchAngle;
+                    else if ((!right && up) || (!right && !up)) touchAngle = 180f + touchAngle;
+
+                    value = touchAngle;
+                }
+                else
+                {
+                    cTExists = false;
+                }
+            }
         }
 
-
+        currentPos = currentTouch.position;
 
         position = ReturnPosition(value);
         handle.anchoredPosition = position;
+        shield.rotation = value;
 
         Vector2 referencePositionPositive = ReturnPosition(value + referenceAngle);
         Vector2 referencePositionNegative = ReturnPosition(value - referenceAngle);
