@@ -138,6 +138,7 @@ public class MaxCharacterController : MonoBehaviour
     }
     public void ResetGame()
     {
+        score = 0f;
         transform.position = initialPos;
         transform.eulerAngles = initialEulerAngles;
         colliding = false;
@@ -402,7 +403,6 @@ public class MaxCharacterController : MonoBehaviour
             newHighScoreText.SetActive(true);
             PlayerPrefs.SetInt("Max High Score", (int)score);
         }
-        score = 0f;
         flips = 0;
         collectibleManager.GameOver();
         mapGeneration.SetPermaFloor();
