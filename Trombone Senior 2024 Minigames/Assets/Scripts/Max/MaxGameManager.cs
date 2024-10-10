@@ -100,7 +100,7 @@ public class MaxGameManager : MonoBehaviour
         restartEvent.AddListener(ResetGame);
         defaultTransitionTime = brain.m_DefaultBlend.m_Time;
 
-        if (!PlayerPrefs.HasKey("Outline")) PlayerPrefs.SetInt("Outline", 0);
+        //if (!PlayerPrefs.HasKey("Outline")) PlayerPrefs.SetInt("Outline", 0);
         EnableOutlines();
         //menuSource.PlayDelayed(introClip.length - 0.25f);
     }
@@ -230,12 +230,12 @@ public class MaxGameManager : MonoBehaviour
 
     public void ShieldActive(bool active)
     {
-        if (active && !shield.Shooting && !shieldActive)
+        if (active && /*!shield.Shooting &&*/ !shieldActive)
         {
             shieldAnimator.SetTrigger();
             shieldActive = true;
         }
-        else if (!shield.Shooting && shieldActive)
+        else if (/*!shield.Shooting &&*/ shieldActive)
         {
             shieldActive = false;
             shieldAnimator.ResetTrigger();
@@ -258,7 +258,8 @@ public class MaxGameManager : MonoBehaviour
     }
     public void EnableOutlines()
     {
-        bool on = PlayerPrefs.GetInt("Outline") == 1;
+        //bool on = PlayerPrefs.GetInt("Outline") == 1;
+        bool on = false;
         if (!on)
         {
             foreach (var v in outlineSprites) v.material = defaultMaterial;

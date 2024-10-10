@@ -8148,7 +8148,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &209182739
 RectTransform:
   m_ObjectHideFlags: 0
@@ -49093,7 +49093,6 @@ MonoBehaviour:
   laserLine: {fileID: 1341358769}
   laserRenderer: {fileID: 8791247}
   laserPoint: {fileID: 2092221677}
-  hitting: 1
   shieldSlider: {fileID: 586023176}
   controller: {fileID: 2137725487}
   points: 1000
@@ -75107,6 +75106,7 @@ MonoBehaviour:
   finalScoreText: {fileID: 7317976404771064564}
   newHighScoreText: {fileID: 769042920}
   laserSpawner: {fileID: 1225280443}
+  shield: {fileID: 1725492619}
   angleDeviation: 55
   gameOver: 0
   panelDelay: 2

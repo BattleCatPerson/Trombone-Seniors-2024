@@ -65,6 +65,8 @@ public class Projectile : MonoBehaviour
     private void FixedUpdate()
     { 
         if (MaxGameManager.gameOver) return;
+        if (!MaxGameManager.instance.shieldActive) MaxGameManager.instance.ShieldActive(true);
+
         if (moving)
         {
             if (!shot)

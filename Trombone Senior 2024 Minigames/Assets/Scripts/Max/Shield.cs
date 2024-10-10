@@ -14,6 +14,7 @@ public class Shield : MonoBehaviour
     [SerializeField] LayerMask mask;
     [SerializeField] int hits;
     [SerializeField] int hitsToShoot;
+    int baseHitsToShoot;
     [SerializeField] bool shooting;
     [SerializeField] int count;
     public int Count => count;
@@ -23,7 +24,6 @@ public class Shield : MonoBehaviour
     [SerializeField] GameObject laserLine;
     [SerializeField] LineRenderer laserRenderer;
     [SerializeField] Transform laserPoint;
-    [SerializeField] bool hitting;
     [SerializeField] RadialSlider shieldSlider;
     [SerializeField] MaxCharacterController controller;
     [SerializeField] float points;
@@ -50,6 +50,8 @@ public class Shield : MonoBehaviour
         MaxGameManager.instance.restartEvent.AddListener(ResetShieldAnimation);
         MaxGameManager.instance.restartEvent.AddListener(ResetShield);
         MaxGameManager.instance.loadEvent.AddListener(Upgrade);
+
+        baseHitsToShoot = hitsToShoot;
     }
 
     void Update()
@@ -68,7 +70,6 @@ public class Shield : MonoBehaviour
 
         if (Input.GetKey(KeyCode.Q)) rotation += 180 * Time.deltaTime;
         if (Input.GetKey(KeyCode.E)) rotation -= 180 * Time.deltaTime;
-
     }
 
     public void ChargeShield()
@@ -97,7 +98,6 @@ public class Shield : MonoBehaviour
         laserSource.Play();
         if (p.collider)
         {
-            hitting = true;
             //destroy the police car, play animation or something liek that
             Debug.Log("LASER HIT POLICE CAR");
             float distance = Vector3.Distance(p.point, laserOrigin.position);
@@ -166,5 +166,8 @@ public class Shield : MonoBehaviour
             }
         }
     }
-    
+    public void UpdateHitsToShoot(int thousands)
+    {
+        hitsToShoot = Mathf.Max((int)(-10 * Mathf.Pow(.95f, thousands) + 15), baseHitsToShoot); 
+    }
 }

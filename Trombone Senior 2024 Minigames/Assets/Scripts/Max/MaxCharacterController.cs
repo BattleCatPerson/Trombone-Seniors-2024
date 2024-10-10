@@ -73,6 +73,7 @@ public class MaxCharacterController : MonoBehaviour
     [SerializeField] TextMeshProUGUI finalScoreText;
     [SerializeField] GameObject newHighScoreText;
     [SerializeField] ProjectileSpawner laserSpawner;
+    [SerializeField] Shield shield;
     [Header("Game Over")]
     [SerializeField] float angleDeviation;
     [SerializeField] bool gameOver;
@@ -293,6 +294,7 @@ public class MaxCharacterController : MonoBehaviour
 
             Projectile.UpdateTime((int)score / 1000);
             laserSpawner.UpdateFrequency((int)score / 1000);
+            shield.UpdateHitsToShoot((int)score / 1000);
         }
         Vector2 v = Vector2.Perpendicular(-collision.GetContact(0).normal);
         rb.velocity = v * rb.velocity.magnitude;
