@@ -42,7 +42,6 @@ public class RadialSlider : MonoBehaviour
 
         if (Input.touchCount > 0)
         {
-            Debug.Log("TOUCHING!");
             Dictionary<float, Touch> touches = new();
             List<float> di = new();
 
@@ -85,7 +84,6 @@ public class RadialSlider : MonoBehaviour
                 difference = new Vector2(Mathf.Abs(difference.x), Mathf.Abs(difference.y));
                 withinBounds = !(difference.x > holdExitDistance || difference.y > holdExitDistance);
 
-                Debug.Log("Shield Slider Within Bounds");
                 if (withinBounds)
                 {
                     Vector2 touchDifference = touchPos - parent.transform.position;
