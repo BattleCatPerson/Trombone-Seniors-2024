@@ -14,6 +14,7 @@ public class Shield : MonoBehaviour
     [SerializeField] LayerMask mask;
     [SerializeField] int hits;
     [SerializeField] int hitsToShoot;
+    [SerializeField] int maxHitsToShoot;
     int baseHitsToShoot;
     [SerializeField] bool shooting;
     [SerializeField] int count;
@@ -168,6 +169,6 @@ public class Shield : MonoBehaviour
     }
     public void UpdateHitsToShoot(int thousands)
     {
-        hitsToShoot = Mathf.Max((int)(-10 * Mathf.Pow(.95f, thousands) + 15), baseHitsToShoot); 
+        hitsToShoot = Mathf.Min(Mathf.Max((int)(-10 * Mathf.Pow(.95f, thousands) + 15), baseHitsToShoot), maxHitsToShoot); 
     }
 }
