@@ -14,6 +14,8 @@ public class Leaderboard : MonoBehaviour
     [SerializeField] TextMeshProUGUI yourNumber;
     [SerializeField] TextMeshProUGUI yourTitle;
     [SerializeField] List<string> nameList;
+    [SerializeField] GameObject leaderboardGroup;
+    [SerializeField] GameObject noNetWorkGroup;
     private string publicLeaderboardKey = "51ad3b5829793874e57f3ace420e00cec973b8409578169d43789631b477ebd6";
     //secret key 361cd9ef106b8d5102e882dc027d0e47e92e78f819fe7935269bab944970f62f0532faf420eab79868d4cd0330ba45a83b76fc288906b178cb436905fe3f7c2ee76cf6457387cd9174433443c2dac6ed27d1a9227619f25dc7299d909bc53da67d80c1d1cb3649178052cfe684646737d97ae3075879f663a328d3c2473f0496
 
@@ -21,6 +23,7 @@ public class Leaderboard : MonoBehaviour
     {
         //GetLeaderboard();
         Leaderboards.FilchFlipperLeaderboard.GetEntries(new Dan.Models.LeaderboardSearchQuery(), OnLeaderboardLoaded, ErrorCallback);
+        LeaderboardCreator.OnNoNetwork.AddListener(NoNewtork);
     }
     public void GetLeaderboard()
     {
@@ -63,7 +66,7 @@ public class Leaderboard : MonoBehaviour
                 nameList.Add(entries[i].Username);
                 names[i].text = entries[i].Username;
                 scores[i].text = entries[i].Score.ToString();
-                numbers[i].text = (i + 1).ToString();
+                numbers[i].text = (i + 1).ToString() + ".";
                 if (entries[i].IsMine())
                 {
                     names[i].color = UnityEngine.Color.yellow;
@@ -83,5 +86,12 @@ public class Leaderboard : MonoBehaviour
     private void ErrorCallback(string error)
     {
         Debug.LogError(error);
+    }
+
+    public void NoNewtork()
+    {
+        Debug.Log("NO NETWORK");
+        leaderboardGroup.SetActive(false);
+        noNetWorkGroup.SetActive(true);
     }
 }

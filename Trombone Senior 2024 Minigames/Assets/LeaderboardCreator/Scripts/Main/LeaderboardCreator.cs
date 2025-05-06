@@ -3,7 +3,7 @@ using System.Collections;
 using Dan.Enums;
 using Dan.Models;
 using UnityEngine;
-
+using UnityEngine.Events;
 using static Dan.ConstantVariables;
 
 namespace Dan.Main
@@ -11,6 +11,7 @@ namespace Dan.Main
     public static class LeaderboardCreator
     {
         public static bool LoggingEnabled { get; set; } = true;
+        public static UnityEvent OnNoNetwork = new();
         
         private static LeaderboardCreatorBehaviour _behaviour;
 
@@ -318,6 +319,11 @@ namespace Dan.Main
         {
             if (!LoggingEnabled) return;
             Debug.LogError($"[LeaderboardCreator] {message}");
+
+            if (message.Equals("Failed To Connect"))
+            {
+                OnNoNetwork?.Invoke();
+            }
         }
     }
 }

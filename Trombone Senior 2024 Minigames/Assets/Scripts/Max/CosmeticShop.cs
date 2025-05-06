@@ -73,7 +73,7 @@ public class CosmeticShop : MonoBehaviour, IWardrobe
     const int COMMON_PERCENT = 70;
     const int RARE_PERCENT = 25;
     const int SUPER_RARE_PERCENT = 5;
-    
+
     public void Load(CosmeticData data)
     {
         unlocked = data.ReturnList(type);

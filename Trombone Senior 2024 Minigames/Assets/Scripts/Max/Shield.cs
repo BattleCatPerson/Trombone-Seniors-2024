@@ -52,7 +52,6 @@ public class Shield : MonoBehaviour
         MaxGameManager.instance.restartEvent.AddListener(ResetShield);
         MaxGameManager.instance.loadEvent.AddListener(Upgrade);
 
-        baseHitsToShoot = hitsToShoot;
     }
 
     void Update()
@@ -166,9 +165,10 @@ public class Shield : MonoBehaviour
                 hitsToShoot = 3;
             }
         }
+        baseHitsToShoot = hitsToShoot;
     }
     public void UpdateHitsToShoot(int thousands)
     {
-        hitsToShoot = Mathf.Min(Mathf.Max((int)(-10 * Mathf.Pow(.95f, thousands) + 15), baseHitsToShoot), maxHitsToShoot); 
+        hitsToShoot = Mathf.Min(Mathf.Max((int)(-10 * Mathf.Pow(.95f, thousands) + baseHitsToShoot + 10), baseHitsToShoot), maxHitsToShoot); 
     }
 }

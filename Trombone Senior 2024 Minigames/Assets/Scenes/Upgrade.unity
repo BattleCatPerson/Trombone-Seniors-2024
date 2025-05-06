@@ -14077,6 +14077,7 @@ MonoBehaviour:
   toggleButton: {fileID: 0}
   data: {fileID: 0}
   pauseMusic: {fileID: 0}
+  gameMusicPlaying: 0
   scratch: {fileID: 0}
   scratchSource: {fileID: 0}
   buttonSound: {fileID: 8300000, guid: 5f7a370c302d7404a9463075b9ef0bd6, type: 3}
@@ -17979,7 +17980,7 @@ MonoBehaviour:
   - 'Super Rare Skin Chance: 5% -> 10%(nL)Common Skin Chance: 70% -> 65%'
   - 'Base Ramp Impulse: 25 -> 40'
   - 'Max Landing Angle: 55 -> 70'
-  - 'Lasers Needed for Shield To Shoot: 5 -> 3'
+  - 'Initial Lasers Needed for Shield To Shoot: 5 -> 3'
   - 'Nice Bonus: 100 -> 200(nL)Cool Bonus: 200 -> 400(nL)Sick Bonus: 400 -> 800'
   - Unlocks Arcade Games
   - Unlocks alternate menu music
