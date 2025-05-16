@@ -118,6 +118,8 @@ public class MaxCharacterController : MonoBehaviour
     [Header("Trail")]
     [SerializeField] TrailRenderer trail;
     [SerializeField] float trailTime;
+    [Header("Tutorial")]
+    [SerializeField] bool tutorial;
     float pauseTime;
     float resumeTime;
     private void Start()
@@ -266,8 +268,16 @@ public class MaxCharacterController : MonoBehaviour
             float deviation = Mathf.Abs(floorRotation - newRotation);
             if (deviation > angleDeviation && !collision.gameObject.CompareTag("Ramp"))
             {
-                StopGame();
-                return;
+                if (!tutorial)
+                {
+                    StopGame();
+                    return;
+                }
+                else
+                {
+                    Debug.Log("you failed the flipping tutorial");
+
+                }
             }
 
             rotationSpeed = 0;
